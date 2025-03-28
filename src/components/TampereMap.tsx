@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -32,24 +31,7 @@ export const TampereMap: React.FC = () => {
     try {
       map.current = new maplibregl.Map({
         container: mapContainer.current,
-        style: {
-          version: 8,
-          sources: {
-            'osm': {
-              type: 'raster',
-              tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
-              tileSize: 256,
-              attribution: '© OpenStreetMap contributors'
-            }
-          },
-          layers: [{
-            id: 'osm-tiles',
-            type: 'raster',
-            source: 'osm',
-            minzoom: 0,
-            maxzoom: 19
-          }]
-        },
+        style: 'https://tiles.openfreemap.org/styles/positron/style.json',
         center: TAMPERE_CENTER,
         zoom: 14,
       });
@@ -193,13 +175,15 @@ export const TampereMap: React.FC = () => {
 
     hotspots.forEach(hotspot => {
       const markerElement = document.createElement("div");
-      // Fix: Add valid class names only, don't add empty strings
       const dangerClass = hotspot.dangerLevel || "medium";
       const pulseClass = pulse ? "animate-pulse-effect" : "";
+      
       markerElement.className = `hotspot-marker ${dangerClass} ${pulseClass}`.trim();
-      markerElement.textContent = hotspot.label;
-
-      const marker = new maplibregl.Marker(markerElement)
+      
+      const marker = new maplibregl.Marker({
+        element: markerElement,
+        anchor: 'center'
+      })
         .setLngLat(hotspot.coordinates)
         .addTo(map.current!);
 
@@ -208,107 +192,116 @@ export const TampereMap: React.FC = () => {
 
     events.forEach(event => {
       const markerElement = document.createElement("div");
-      markerElement.className = "text-tampere-red";
-      // Fix: Ensure we're not adding empty class names
       const pulseClass = pulse ? "animate-pulse-effect" : "";
+      
       markerElement.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar ${pulseClass}">
-          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
+        <div class="event-marker ${pulseClass}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
+            <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+            <circle cx="18" cy="18" r="4"></circle>
+            <path d="M18 16.5v1.5h1.5"></path>
+          </svg>
+        </div>
       `;
 
-      const marker = new maplibregl.Marker(markerElement)
+      const marker = new maplibregl.Marker({
+        element: markerElement,
+        anchor: 'center'
+      })
         .setLngLat(event.coordinates)
         .addTo(map.current!);
 
       markersRef.current[`event-${event.id}`] = marker;
     });
 
-    mockMapItems.forEach(item => {
-      let markerElement = document.createElement("div");
-      markerElement.className = "text-blue-500";
-      
-      let iconHtml = '';
-      
-      switch (item.type) {
-        case "bus":
-          iconHtml = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bus">
-              <path d="M8 6v6"></path>
-              <path d="M16 6v6"></path>
-              <path d="M2 12h20"></path>
-              <path d="M18 18h2a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path>
-              <path d="M8 18h8"></path>
-              <circle cx="7" cy="20" r="2"></circle>
-              <circle cx="17" cy="20" r="2"></circle>
-            </svg>
-          `;
-          markerElement.className = "text-blue-500";
-          break;
-        case "tram":
-          iconHtml = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-help-circle">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-              <path d="M12 17h.01"></path>
-            </svg>
-          `;
-          markerElement.className = "text-purple-800";
-          break;
-        case "business":
-          iconHtml = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building">
-              <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
-              <path d="M9 22v-4h6v4"></path>
-              <path d="M8 6h.01"></path>
-              <path d="M16 6h.01"></path>
-              <path d="M12 6h.01"></path>
-              <path d="M12 10h.01"></path>
-              <path d="M12 14h.01"></path>
-              <path d="M16 10h.01"></path>
-              <path d="M16 14h.01"></path>
-              <path d="M8 10h.01"></path>
-              <path d="M8 14h.01"></path>
-            </svg>
-          `;
-          markerElement.className = "text-gray-800";
-          break;
-        case "parking":
-          iconHtml = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-parking">
-              <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-              <path d="M9 9h4a2 2 0 0 1 0 4h-4"></path>
-              <path d="M9 13v4"></path>
-              <path d="M9 7v2"></path>
-            </svg>
-          `;
-          markerElement.className = "text-blue-500";
-          break;
-        case "available":
-          iconHtml = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
-              <path d="M5 12h14"></path>
-              <path d="M12 5v14"></path>
-            </svg>
-          `;
-          markerElement.className = "text-green-500";
-          break;
-        default:
-          break;
-      }
-      
-      markerElement.innerHTML = iconHtml;
+    if (selectedHotspot || selectedEvent) {
+      mockMapItems.forEach(item => {
+        let markerElement = document.createElement("div");
+        let iconHtml = '';
+        
+        switch (item.type) {
+          case "bus":
+            iconHtml = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bus">
+                <path d="M8 6v6"></path>
+                <path d="M16 6v6"></path>
+                <path d="M2 12h20"></path>
+                <path d="M18 18h2a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"></path>
+                <path d="M8 18h8"></path>
+                <circle cx="7" cy="20" r="2"></circle>
+                <circle cx="17" cy="20" r="2"></circle>
+              </svg>
+            `;
+            markerElement.className = "text-blue-500";
+            break;
+          case "tram":
+            iconHtml = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-help-circle">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <path d="M12 17h.01"></path>
+              </svg>
+            `;
+            markerElement.className = "text-purple-800";
+            break;
+          case "business":
+            iconHtml = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building">
+                <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
+                <path d="M9 22v-4h6v4"></path>
+                <path d="M8 6h.01"></path>
+                <path d="M16 6h.01"></path>
+                <path d="M12 6h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M16 10h.01"></path>
+                <path d="M16 14h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M8 14h.01"></path>
+              </svg>
+            `;
+            markerElement.className = "text-gray-800";
+            break;
+          case "parking":
+            iconHtml = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-parking">
+                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                <path d="M9 9h4a2 2 0 0 1 0 4h-4"></path>
+                <path d="M9 13v4"></path>
+                <path d="M9 7v2"></path>
+              </svg>
+            `;
+            markerElement.className = "text-blue-500";
+            break;
+          case "available":
+            iconHtml = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+                <path d="M5 12h14"></path>
+                <path d="M12 5v14"></path>
+              </svg>
+            `;
+            markerElement.className = "text-green-500";
+            break;
+          default:
+            break;
+        }
+        
+        markerElement.innerHTML = iconHtml;
 
-      const marker = new maplibregl.Marker(markerElement)
-        .setLngLat(item.coordinates)
-        .addTo(map.current!);
+        const marker = new maplibregl.Marker({
+          element: markerElement,
+          anchor: 'center'
+        })
+          .setLngLat(item.coordinates)
+          .addTo(map.current!);
 
-      markersRef.current[`${item.type}-${item.id}`] = marker;
-    });
-  }, [hotspots, events, mapLoaded, pulse]);
+        markersRef.current[`${item.type}-${item.id}`] = marker;
+      });
+    }
+  }, [hotspots, events, mapLoaded, pulse, selectedHotspot, selectedEvent]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -349,11 +342,15 @@ export const TampereMap: React.FC = () => {
         <>
           <div ref={mapContainer} className="absolute inset-0" />
           
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 right-16 z-10">
             <PulseToggle value={pulse} onChange={value => useTampere().setPulse(value)} />
           </div>
           
           {showDetails && <MapLegend />}
+          
+          {showDetails && pulse && (
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-background/10 rounded-lg" />
+          )}
           
           {showDetails && (
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 w-3/4">
