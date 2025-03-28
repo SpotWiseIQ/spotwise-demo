@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -192,7 +193,10 @@ export const TampereMap: React.FC = () => {
 
     hotspots.forEach(hotspot => {
       const markerElement = document.createElement("div");
-      markerElement.className = `hotspot-marker ${hotspot.dangerLevel} ${pulse ? "animate-pulse-effect" : ""}`;
+      // Fix: Add valid class names only, don't add empty strings
+      const dangerClass = hotspot.dangerLevel || "medium";
+      const pulseClass = pulse ? "animate-pulse-effect" : "";
+      markerElement.className = `hotspot-marker ${dangerClass} ${pulseClass}`.trim();
       markerElement.textContent = hotspot.label;
 
       const marker = new maplibregl.Marker(markerElement)
@@ -205,8 +209,10 @@ export const TampereMap: React.FC = () => {
     events.forEach(event => {
       const markerElement = document.createElement("div");
       markerElement.className = "text-tampere-red";
+      // Fix: Ensure we're not adding empty class names
+      const pulseClass = pulse ? "animate-pulse-effect" : "";
       markerElement.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar ${pulse ? "animate-pulse-effect" : ""}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar ${pulseClass}">
           <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
           <line x1="16" y1="2" x2="16" y2="6"></line>
           <line x1="8" y1="2" x2="8" y2="6"></line>
