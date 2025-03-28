@@ -1,13 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from "react";
+import { TampereProvider } from "@/lib/TampereContext";
+import { LeftSidebar } from "@/components/LeftSidebar";
+import { TampereMap } from "@/components/TampereMap";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <TampereProvider>
+      <div className="flex h-screen w-full overflow-hidden">
+        <div className="w-2/5 border-r border-gray-200 bg-white">
+          <LeftSidebar />
+        </div>
+        <div className="w-3/5">
+          <TampereMap />
+        </div>
       </div>
-    </div>
+    </TampereProvider>
   );
 };
 
