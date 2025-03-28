@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Plus, Calendar, Bus, Building, Parking, HelpCircle } from "lucide-react";
+import { Plus, Calendar, Bus, Building, CircleP, HelpCircle } from "lucide-react";
 
 export const MapLegend: React.FC = () => {
   const items = [
@@ -9,7 +9,7 @@ export const MapLegend: React.FC = () => {
     { icon: <Bus className="text-blue-500" size={18} />, label: "Bus stop" },
     { icon: <HelpCircle className="text-purple-800" size={18} />, label: "Tram stop" },
     { icon: <Building className="text-gray-800" size={18} />, label: "Business" },
-    { icon: <Parking className="text-blue-500" size={18} />, label: "Parking" }
+    { icon: <CircleP className="text-blue-500" size={18} />, label: "Parking" }
   ];
 
   return (

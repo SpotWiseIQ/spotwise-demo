@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -7,6 +6,7 @@ import { TAMPERE_CENTER, mockMapItems } from "@/lib/mockData";
 import { Event, Hotspot, MapItem } from "@/lib/types";
 import { TimelineSlider } from "./TimelineSlider";
 import { MapLegend } from "./MapLegend";
+import { PulseToggle } from "./PulseToggle";
 
 export const TampereMap: React.FC = () => {
   const {
@@ -25,7 +25,6 @@ export const TampereMap: React.FC = () => {
   
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Initialize the map
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
@@ -39,19 +38,16 @@ export const TampereMap: React.FC = () => {
     map.current.on("load", () => {
       setMapLoaded(true);
       
-      // Add navigation controls
       map.current?.addControl(
         new maplibregl.NavigationControl(),
         "top-right"
       );
 
-      // Add the traffic lines
       map.current?.addSource("traffic", {
         type: "geojson",
         data: {
           type: "FeatureCollection",
           features: [
-            // Horizontal lines
             {
               type: "Feature",
               properties: { status: "available" },
@@ -88,7 +84,6 @@ export const TampereMap: React.FC = () => {
                 ],
               },
             },
-            // Vertical lines
             {
               type: "Feature",
               properties: { status: "congested" },
@@ -161,15 +156,12 @@ export const TampereMap: React.FC = () => {
     };
   }, []);
 
-  // Create markers for hotspots, events, and other map items
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
-    // Clear existing markers
     Object.values(markersRef.current).forEach(marker => marker.remove());
     markersRef.current = {};
 
-    // Add hotspot markers
     hotspots.forEach(hotspot => {
       const markerElement = document.createElement("div");
       markerElement.className = `hotspot-marker ${hotspot.dangerLevel} ${pulse ? "animate-pulse-effect" : ""}`;
@@ -182,7 +174,6 @@ export const TampereMap: React.FC = () => {
       markersRef.current[`hotspot-${hotspot.id}`] = marker;
     });
 
-    // Add event markers
     events.forEach(event => {
       const markerElement = document.createElement("div");
       markerElement.className = "text-tampere-red";
@@ -202,7 +193,6 @@ export const TampereMap: React.FC = () => {
       markersRef.current[`event-${event.id}`] = marker;
     });
 
-    // Add other map items (bus stops, tram stops, etc.)
     mockMapItems.forEach(item => {
       let markerElement = document.createElement("div");
       markerElement.className = "text-blue-500";
@@ -284,10 +274,8 @@ export const TampereMap: React.FC = () => {
 
       markersRef.current[`${item.type}-${item.id}`] = marker;
     });
-
   }, [hotspots, events, mapLoaded, pulse]);
 
-  // Fly to selected hotspot or event
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
