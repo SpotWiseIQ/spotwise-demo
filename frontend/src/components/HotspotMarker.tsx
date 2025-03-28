@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Hotspot } from "@/lib/types";
 import { AlertTriangle, Cloud, Sun } from "lucide-react";
@@ -16,7 +15,7 @@ export const HotspotMarker: React.FC<HotspotMarkerProps> = ({
 }) => {
   return (
     <div
-      className={`flex items-center p-2 my-2 bg-white rounded-lg border cursor-pointer transition-all hover:shadow-md ${
+      className={`flex items-center p-2 my-1.5 bg-gray-50 rounded-lg border cursor-pointer transition-all hover:shadow-md min-h-[60px] ${
         selected ? "ring-2 ring-tampere-red border-tampere-red" : "border-gray-200"
       }`}
       onClick={onClick}

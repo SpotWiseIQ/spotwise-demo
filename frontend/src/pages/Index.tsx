@@ -1,4 +1,3 @@
-
 import React from "react";
 import { TampereProvider } from "@/lib/TampereContext";
 import { LeftSidebar } from "@/components/LeftSidebar";
@@ -11,7 +10,7 @@ const Index = () => {
         <div className="w-2/5 border-r border-gray-200 bg-white">
           <LeftSidebar />
         </div>
-        <div className="w-3/5">
+        <div className="w-3/5 h-full">
           <TampereMap />
         </div>
       </div>

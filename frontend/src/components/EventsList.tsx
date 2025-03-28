@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { EventCard } from "./EventCard";
@@ -14,7 +13,7 @@ export const EventsList: React.FC = () => {
   return (
     <div>
       <div className="mb-2 font-medium">Today's events</div>
-      <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
+      <div className="space-y-1.5 max-h-[290px] overflow-y-auto pr-2">
         {events.map((event) => (
           <EventCard
             key={event.id}

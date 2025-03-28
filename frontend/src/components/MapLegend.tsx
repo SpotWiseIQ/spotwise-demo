@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Plus, Calendar, Bus, Building, CircleParking, HelpCircle } from "lucide-react";
 
@@ -13,7 +12,7 @@ export const MapLegend: React.FC = () => {
   ];
 
   return (
-    <div className="absolute left-6 bottom-20 z-10 bg-white rounded-lg shadow-md p-3 border border-gray-200">
+    <div className="bg-white rounded-lg shadow-md p-3 border border-gray-200">
       <div className="space-y-2">
         {items.map((item, index) => (
           <div key={index} className="flex items-center space-x-2">

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { DateSelector } from "./DateSelector";
@@ -32,12 +31,13 @@ export const LeftSidebar: React.FC = () => {
 
       {!selectedEvent ? (
         <>
-          {showTimelineSlider && (
+          <div className="mb-6 pr-2">
             <TimelineSlider
               value={timelineRange}
               onChange={setTimelineRange}
+              label="Timeline"
             />
-          )}
+          </div>
           <HotspotsList />
           <EventsList />
         </>

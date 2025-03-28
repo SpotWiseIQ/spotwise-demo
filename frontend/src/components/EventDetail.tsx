@@ -1,10 +1,9 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Event } from "@/lib/types";
-import { Calendar, Clock, MapPin, Users, Calendar as CalendarIcon } from "lucide-react";
+import { Calendar, Clock, MapPin, Users } from "lucide-react";
 import { format } from "date-fns";
 import { EventCard } from "./EventCard";
-import { getSimilarEvents } from "@/lib/mockData";
+import { fetchSimilarEvents } from "@/lib/api";
 
 interface EventDetailProps {
   event: Event;
@@ -12,11 +11,29 @@ interface EventDetailProps {
 }
 
 export const EventDetail: React.FC<EventDetailProps> = ({ event, onEventClick }) => {
-  const similarEvents = getSimilarEvents(event.id);
+  const [similarEvents, setSimilarEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getSimilarEvents = async () => {
+      setLoading(true);
+      try {
+        const events = await fetchSimilarEvents(event.id);
+        setSimilarEvents(events);
+      } catch (error) {
+        console.error("Failed to fetch similar events:", error);
+        setSimilarEvents([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getSimilarEvents();
+  }, [event.id]);
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-lg p-4 border border-gray-200">
+      <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
         <div className="flex items-start">
           <div className="text-tampere-red mr-3">
             <Calendar size={24} />
@@ -62,10 +79,12 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event, onEventClick })
         </div>
       </div>
 
-      {similarEvents.length > 0 && (
+      {loading ? (
+        <div className="text-center py-4 text-gray-500">Loading similar events...</div>
+      ) : similarEvents.length > 0 ? (
         <div>
           <h3 className="text-lg font-medium mb-3">Similar events</h3>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {similarEvents.map(event => (
               <EventCard 
                 key={event.id} 
@@ -76,7 +95,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event, onEventClick })
             ))}
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

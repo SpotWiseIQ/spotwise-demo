@@ -1,69 +1,103 @@
-# Welcome to your Lovable project
+# Tampere Explorer Hub
 
-## Project info
+This project consists of a React frontend and a FastAPI backend for a Tampere city explorer application.
 
-**URL**: https://lovable.dev/projects/26cd9bb5-bfd1-4b40-b4fe-ef14ab48e84e
+## Project Structure
 
-## How can I edit this code?
+- `frontend/` - Frontend React application
+- `backend/` - FastAPI backend providing data for the application
 
-There are several ways of editing your application.
+## Frontend
 
-**Use Lovable**
+The frontend is a React application that displays the Tampere Explorer Hub interface.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/26cd9bb5-bfd1-4b40-b4fe-ef14ab48e84e) and start prompting.
+## Backend
 
-Changes made via Lovable will be committed automatically to this repo.
+The backend is a FastAPI application providing all the data for the frontend:
 
-**Use your preferred IDE**
+- Hotspots
+- Events
+- Map items
+- Traffic data
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Setup and Running
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Backend
 
-Follow these steps:
+1. Navigate to the backend directory:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+cd backend
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+2. Activate the virtual environment:
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+source ./.venv/bin/activate
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Run the backend:
+
+```bash
+python main.py
+```
+
+The backend will be running at http://localhost:8000. API documentation is available at http://localhost:8000/docs.
+
+### Frontend
+
+1. Navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+2. Install dependencies (if not already installed):
+
+```bash
+npm install
+```
+
+3. Run the frontend development server:
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The frontend will be running at http://localhost:8080.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Connecting Frontend to Backend
 
-**Use GitHub Codespaces**
+To use the backend API in the frontend, you would need to modify the frontend code to fetch data from the API instead of using the mock data. This would involve:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Create an API service to fetch data from the backend
+2. Update the context provider to use this service
+3. Handle loading states and errors
 
-## What technologies are used for this project?
+Example integration:
 
-This project is built with .
+```typescript
+// frontend/src/lib/api.ts
+export const fetchHotspots = async () => {
+  const response = await fetch("http://localhost:8000/hotspots");
+  if (!response.ok) {
+    throw new Error("Failed to fetch hotspots");
+  }
+  return response.json();
+};
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+export const fetchEvents = async (date?: string) => {
+  const url = date
+    ? `http://localhost:8000/events?date=${date}`
+    : "http://localhost:8000/events";
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Failed to fetch events");
+  }
+  return response.json();
+};
 
-## How can I deploy this project?
+// ... other API methods
+```
 
-Simply open [Lovable](https://lovable.dev/projects/26cd9bb5-bfd1-4b40-b4fe-ef14ab48e84e) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Then update the TampereContext to use these API methods.
