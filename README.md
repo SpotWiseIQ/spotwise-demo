@@ -1,69 +1,151 @@
-# Welcome to your Lovable project
+# Location Insights for Small and Medium-sized Businesses
 
-## Project info
+This project consists of a React frontend and a FastAPI backend for a Tampere city explorer application.
 
-**URL**: https://lovable.dev/projects/26cd9bb5-bfd1-4b40-b4fe-ef14ab48e84e
+**Live demo available at:** https://location-insights.onrender.com/
 
-## How can I edit this code?
+## Project Structure
 
-There are several ways of editing your application.
+- `frontend/` - Frontend React application
+- `backend/` - FastAPI backend providing data for the application
 
-**Use Lovable**
+For detailed documentation about the project structure, features, workflows, and API endpoints, please refer to [project_structure.md](project_structure.md).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/26cd9bb5-bfd1-4b40-b4fe-ef14ab48e84e) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+### Frontend
 
-**Use your preferred IDE**
+- React with TypeScript
+- Vite as build tool
+- Tailwind CSS for styling
+- React Query for state management
+- React Router for routing
+- Custom components built with Radix UI primitives
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Backend
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Python 3.12+
+- FastAPI framework
+- [uv](https://github.com/astral-sh/uv) for Python package and environment management
+- Custom database implementation
 
-Follow these steps:
+## Frontend
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+The frontend is a React application that displays the Tampere Explorer Hub interface.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Backend
 
-# Step 3: Install the necessary dependencies.
-npm i
+The backend is a FastAPI application providing all the data for the frontend:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+- Hotspots
+- Events
+- Map items
+- Traffic data
+
+## Supported Operating Systems
+
+- **Ubuntu Linux / WSL (Windows Subsystem for Linux)** – Recommended and fully supported
+- **macOS** – Should work, but not officially tested
+- **Windows (native)** – Not recommended for backend development; use WSL for best compatibility
+
+## Setup and Running
+
+### Prerequisites
+
+- **Node.js** (version 18+) and **npm** for the frontend
+- **Python 3.12+** for the backend
+- **uv** for Python package and environment management
+
+---
+
+### One-Time Project Setup
+
+Run the provided setup script from the project root (requires bash/WSL/Linux):
+
+```bash
+chmod +x helper/scripts/firsttime_setup_project.sh
+./helper/scripts/firsttime_setup_project.sh
+```
+
+This script will:
+- Install frontend dependencies
+- Set up the backend Python virtual environment
+- Install backend dependencies using `uv` and `pyproject.toml`
+- Build the backend
+
+---
+
+### Starting the Development Servers
+
+After setup, in separate terminals:
+
+**Backend:**
+```bash
+chmod +x helper/scripts/setup_project.sh
+./helper/scripts/firsttime_setup_project.sh
+```
+
+This script will:
+- Install frontend dependencies
+- Set up the backend Python virtual environment
+- Install backend dependencies using `uv` and `pyproject.toml`
+- Build the backend
+
+---
+
+### Starting the Development Servers
+
+After setup, in separate terminals:
+
+**Backend:**
+```bash
+chmod +x helper/scripts/setup_project.sh
+./helper/scripts/firsttime_setup_project.sh
+```
+
+This script will:
+- Install frontend dependencies
+- Set up the backend Python virtual environment
+- Install backend dependencies using `uv` and `pyproject.toml`
+- Build the backend
+
+---
+
+### Starting the Development Servers
+
+After setup, in separate terminals:
+
+**Backend:**
+```bash
+cd backend
+source .venv/bin/activate
+python main.py
+```
+_or, from the project root:_
+```bash
+npm run backend:dev
+```
+_or, you can manually activate the virtual env using "source backend/.venv/bin/activate" inside the root folder and then run:_
+```bash
+npm run backend:dev2
+```
+
+The backend will be running at http://localhost:8000. API documentation is available at http://localhost:8000/docs.
+
+**Frontend:**
+```bash
+cd frontend
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The frontend will be running at http://localhost:8080.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+### Notes
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- If you encounter issues with Python versions, ensure you have Python 3.12+ available. `uv` will manage the environment for you.
+- For Windows users, WSL (Ubuntu) is recommended for best compatibility.
+- No need for `pyenv`—`uv` handles Python version and environment management.
 
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/26cd9bb5-bfd1-4b40-b4fe-ef14ab48e84e) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+---

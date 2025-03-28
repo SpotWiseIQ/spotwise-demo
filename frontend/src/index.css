@@ -1,0 +1,394 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 0 69% 50%;  /* Tampere Warm Red */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 46% 38%;  /* Tampere Dark Blue */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 0 69% 50%;  /* Tampere Warm Red */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 0 69% 50%;  /* Tampere Warm Red */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 46% 38%;  /* Tampere Dark Blue */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 0 69% 50%;  /* Tampere Warm Red */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.hotspot-card {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px white;
+}
+
+/* Event hotspot card styling - calendar shape */
+.event-hotspot-card {
+  width: 1.6rem;
+  height: 1.8rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  background-color: #ea384c;
+  overflow: hidden;
+  padding-top: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+}
+
+/* Calendar header at the top */
+.event-hotspot-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.32rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.hotspot-card.high {
+  background-color: #ea384c;
+}
+
+.hotspot-card.medium {
+  background-color: #ea384c;
+}
+
+.hotspot-card.low {
+  background-color: #ea384c;
+}
+
+/* Map-specific hotspot styles */
+.map-hotspot-marker.hotspot-card {
+  background-color: rgba(234, 56, 76, 0.7) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+  transform-origin: center center;
+  will-change: transform;
+  z-index: 1;
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+  font-size: 0.75rem !important;
+}
+
+.map-hotspot-marker.hotspot-card.selected {
+  background-color: rgba(234, 56, 76, 0.7) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6) !important;
+  z-index: 2;
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+}
+
+/* Map event marker styles */
+.event-marker {
+  width: 1.6rem;
+  height: 1.8rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: rgba(234, 56, 76, 0.7);
+  overflow: hidden;
+  padding-top: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  transform-origin: center center;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Calendar header for map event marker */
+.event-marker::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.32rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Selected event marker */
+.event-marker.selected {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+  z-index: 2;
+}
+
+.bg-traffic-high {
+  background-color: #ea384c;
+}
+
+.bg-traffic-medium {
+  background-color: #ffc107;
+}
+
+.bg-traffic-low {
+  background-color: #4caf50;
+}
+
+.bg-weather-sunny {
+  background-color: #ff9800;
+}
+
+.bg-weather-clouded {
+  background-color: #607d8b;
+}
+
+.bg-weather-rainy {
+  background-color: #2196f3;
+}
+
+.bg-weather-snowy {
+  background-color: #90a4ae;
+}
+
+.bg-tampere-red {
+  background-color: #ea384c;
+}
+
+.text-tampere-red {
+  color: #ea384c;
+}
+
+.timeline-slider {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.timeline-slider.compact-slider {
+  height: 24px;
+  border-radius: 12px;
+  padding: 6px 10px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.slider-track {
+  position: absolute;
+  height: 4px;
+  width: 100%;
+  background-color: #e5e7eb;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+}
+
+.compact-slider .slider-track {
+  height: 3px;
+}
+
+.slider-track-red {
+  position: absolute;
+  height: 4px;
+  background-color: #ea384c;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+}
+
+.compact-slider .slider-track-red {
+  height: 3px;
+}
+
+.slider-thumb {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ea384c;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.compact-slider .slider-thumb {
+  width: 14px;
+  height: 14px;
+}
+
+.slider-thumb:hover {
+  box-shadow: 0 0 0 8px rgba(234, 56, 76, 0.1);
+}
+
+.compact-slider .slider-thumb:hover {
+  box-shadow: 0 0 0 4px rgba(234, 56, 76, 0.1);
+}
+
+.slider-label {
+  position: absolute;
+  top: -25px;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.animate-pulse-effect {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(234, 56, 76, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(234, 56, 76, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 56, 76, 0);
+  }
+}
+
+.mapboxgl-popup-content,
+.maplibregl-popup-content {
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Styles for the Now marker */
+.now-marker-container {
+  position: absolute;
+  height: 100%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  top: 0;
+}
+
+.now-marker {
+  height: 20px;
+  width: 2px;
+  background-color: #4b5563;
+  margin-top: 10px;
+}
+
+.now-label {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* Map icon styles */
+.map-icon-container {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.map-icon-container svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Map-specific hotspot styles */
+.marker-tooltip {
+  /* Override default maplibre popup styles */
+  .maplibregl-popup-content {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 12px;
+    line-height: 1.2;
+    max-width: 200px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Remove the popup tip */
+  .maplibregl-popup-tip {
+    display: none;
+  }
+}

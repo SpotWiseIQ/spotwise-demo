@@ -1,0 +1,3429 @@
+[
+  {
+    "locationKey": "kirjastonpuisto park, puutarhakatu, 33100 tampere",
+    "address": "Kirjastonpuisto Park, Puutarhakatu, 33100 Tampere",
+    "lat": 61.49932339999999,
+    "lng": 23.7617918,
+    "totalEvents": 1,
+    "totalViews": 3538,
+    "avgViews": 3538.0,
+    "eventTypes": [
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "laikunlava outdoor stage, puutarhakatu 1, 33210 tampere",
+    "address": "Laikunlava outdoor stage, Puutarhakatu 1, 33210 Tampere",
+    "lat": 61.499484908944474,
+    "lng": 23.761686380975043,
+    "totalEvents": 1,
+    "totalViews": 3538,
+    "avgViews": 3538.0,
+    "eventTypes": [
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "culture house laikku, keskustori 4, tampere",
+    "address": "Culture House Laikku, Keskustori 4, Tampere",
+    "lat": 61.4988264,
+    "lng": 23.762119,
+    "totalEvents": 1,
+    "totalViews": 3538,
+    "avgViews": 3538.0,
+    "eventTypes": [
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "sorsapuisto, 33500 tampere",
+    "address": "Sorsapuisto, 33500 Tampere",
+    "lat": 61.49662278362218,
+    "lng": 23.780980302624826,
+    "totalEvents": 6,
+    "totalViews": 1826,
+    "avgViews": 304.3333333333333,
+    "eventTypes": [
+      "tt_sairaudet",
+      "consert",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "festivals",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_opiskelu_oppiminen",
+      "voluntary",
+      "tt_asuminen",
+      "tt_kaverit_ihmissuhteet",
+      "tt_terveys_elintavat",
+      "museums and galleries",
+      "handicraft",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "exhibitions",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "museums",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "LGBTQ+",
+      "Family",
+      "Youth"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere-talo, yliopistonkatu 55, 33100 tampere",
+    "address": "Tampere-talo, Yliopistonkatu 55, 33100 Tampere",
+    "lat": 61.49595300000001,
+    "lng": 23.781375,
+    "totalEvents": 1,
+    "totalViews": 714,
+    "avgViews": 714.0,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tehdaskartanonkatu 24, 33400 tampere",
+    "address": "Tehdaskartanonkatu 24, 33400 Tampere",
+    "lat": 61.51647166228276,
+    "lng": 23.684129736574285,
+    "totalEvents": 1,
+    "totalViews": 1055,
+    "avgViews": 1055.0,
+    "eventTypes": [
+      "festivals",
+      "movies"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tallipiha, kuninkaankatu 4, 33210 tampere",
+    "address": "Tallipiha, Kuninkaankatu 4, 33210 Tampere",
+    "lat": 61.5034939,
+    "lng": 23.7540468,
+    "totalEvents": 10,
+    "totalViews": 1280,
+    "avgViews": 128.0,
+    "eventTypes": [
+      "consert",
+      "handicraft",
+      "nature and well-being",
+      "kids and family",
+      "food and beverage",
+      "festivals",
+      "fairs"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "Youth",
+      "International"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "August",
+      "June",
+      "September"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori by the fountain, 33210 tampere",
+    "address": "Keskustori by the fountain, 33210 Tampere",
+    "lat": 61.49804349999999,
+    "lng": 23.7600789,
+    "totalEvents": 1,
+    "totalViews": 971,
+    "avgViews": 971.0,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "Youth"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere art museum, puutarhakatu 34, 33230 tampere",
+    "address": "Tampere Art Museum, Puutarhakatu 34, 33230 Tampere",
+    "lat": 61.4984925,
+    "lng": 23.7438104,
+    "totalEvents": 3,
+    "totalViews": 2467,
+    "avgViews": 822.3333333333334,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "activities",
+      "museums",
+      "excursions, guided tours"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "Art Enthusiasts",
+      "Adults"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June",
+      "February"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "culture house laikku, music hall, keskustori 4, 33100 tampere",
+    "address": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere",
+    "lat": 61.4988264,
+    "lng": 23.762119,
+    "totalEvents": 5,
+    "totalViews": 2093,
+    "avgViews": 418.6,
+    "eventTypes": [
+      "consert",
+      "dance",
+      "circus",
+      "gig"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Youth",
+      "Family",
+      "Children"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori 1, 33200 tampere",
+    "address": "Keskustori 1, 33200 Tampere",
+    "lat": 61.49803669999999,
+    "lng": 23.7604206,
+    "totalEvents": 1,
+    "totalViews": 1069,
+    "avgViews": 1069.0,
+    "eventTypes": [
+      "voluntary",
+      "kids and family"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "insinöörinkatu 38, 33720 tampere",
+    "address": "Insinöörinkatu 38, 33720 Tampere",
+    "lat": 61.4506297,
+    "lng": 23.8484435,
+    "totalEvents": 1,
+    "totalViews": 256,
+    "avgViews": 256.0,
+    "eventTypes": [
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kajaniemi camping, kajaniementie 79, 31720 urjala",
+    "address": "Kajaniemi Camping, Kajaniementie 79, 31720 Urjala",
+    "lat": 61.07270070000001,
+    "lng": 23.4050362,
+    "totalEvents": 2,
+    "totalViews": 321,
+    "avgViews": 160.5,
+    "eventTypes": [
+      "seminars and meetings",
+      "food and beverage",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family",
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "moomin museum, tampere hall, yliopistonkatu 55, 33100 tampere, finland",
+    "address": "Moomin Museum, Tampere Hall, Yliopistonkatu 55, 33100 Tampere, Finland",
+    "lat": 61.49595300000001,
+    "lng": 23.781375,
+    "totalEvents": 2,
+    "totalViews": 511,
+    "avgViews": 255.5,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "LGBTQ+",
+      "Youth"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "laukontori, 33200 tampere",
+    "address": "Laukontori, 33200 Tampere",
+    "lat": 61.4954216,
+    "lng": 23.761186,
+    "totalEvents": 3,
+    "totalViews": 1301,
+    "avgViews": 433.6666666666667,
+    "eventTypes": [
+      "voluntary",
+      "excursions, guided tours",
+      "activities"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+",
+      "Family",
+      "Tourists"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kulttuuritalo laikku, musiikkisali, keskustori 4, 33100 tampere",
+    "address": "Kulttuuritalo Laikku, Musiikkisali, Keskustori 4, 33100 Tampere",
+    "lat": 61.4988264,
+    "lng": 23.762119,
+    "totalEvents": 1,
+    "totalViews": 1294,
+    "avgViews": 1294.0,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "September"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "väinö linnan aukio 8, 33210 tampere",
+    "address": "Väinö Linnan aukio 8, 33210 Tampere",
+    "lat": 61.5015878,
+    "lng": 23.75952389999999,
+    "totalEvents": 1,
+    "totalViews": 339,
+    "avgViews": 339.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries",
+      "festivals"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "May"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere-talo oy, yliopistonkatu 55, 33100 tampere",
+    "address": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
+    "lat": 61.4959526,
+    "lng": 23.7813754,
+    "totalEvents": 30,
+    "totalViews": 333,
+    "avgViews": 11.1,
+    "eventTypes": [
+      "consert",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "International",
+      "Music Enthusiasts"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "November",
+      "September",
+      "December"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "ponsantie 1649, 36340 tohkala",
+    "address": "Ponsantie 1649, 36340 Tohkala",
+    "lat": 61.55369559999999,
+    "lng": 24.3132931,
+    "totalEvents": 1,
+    "totalViews": 4,
+    "avgViews": 4.0,
+    "eventTypes": [
+      "kids and family",
+      "food and beverage"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pirkkalaistori, 37100 nokia",
+    "address": "Pirkkalaistori, 37100 Nokia",
+    "lat": 61.477788,
+    "lng": 23.5128612,
+    "totalEvents": 1,
+    "totalViews": 150,
+    "avgViews": 150.0,
+    "eventTypes": [
+      "consert",
+      "fairs",
+      "food and beverage"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Family",
+      "Local Community",
+      "Tourists"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori 4, 33100 tampere",
+    "address": "Keskustori 4, 33100 Tampere",
+    "lat": 61.4988264,
+    "lng": 23.762119,
+    "totalEvents": 2,
+    "totalViews": 754,
+    "avgViews": 377.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "handicraft",
+      "museums",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "April"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "haihara art centre, haiharankatu 30, 33710 tampere",
+    "address": "Haihara Art Centre, Haiharankatu 30, 33710 Tampere",
+    "lat": 61.4697426,
+    "lng": 23.8904216,
+    "totalEvents": 1,
+    "totalViews": 90,
+    "avgViews": 90.0,
+    "eventTypes": [
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tesoman valtatie 44, 33310 tampere",
+    "address": "Tesoman valtatie 44, 33310 Tampere",
+    "lat": 61.5079095,
+    "lng": 23.6271097,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "käätykatu 8, 33710 tampere",
+    "address": "Käätykatu 8, 33710 Tampere",
+    "lat": 61.4698913,
+    "lng": 23.8735266,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kemianraitti 6, 33720 tampere",
+    "address": "Kemianraitti 6, 33720 Tampere",
+    "lat": 61.44745039999999,
+    "lng": 23.8415464,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "ahlströmin parras, 33400 tampere",
+    "address": "Ahlströmin parras, 33400 Tampere",
+    "lat": 61.5220803,
+    "lng": 23.7018201,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kuntokatu 5, 33500 tampere",
+    "address": "Kuntokatu 5, 33500 Tampere",
+    "lat": 61.51047149999999,
+    "lng": 23.8081184,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "vuoreksen puistokatu 62, 33870 tampere",
+    "address": "Vuoreksen Puistokatu 62, 33870 Tampere",
+    "lat": 61.4381005,
+    "lng": 23.8089828,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "visit nokia, 37100 nokia",
+    "address": "Visit Nokia, 37100 Nokia",
+    "lat": 61.4803094,
+    "lng": 23.501203,
+    "totalEvents": 1,
+    "totalViews": 59,
+    "avgViews": 59.0,
+    "eventTypes": [
+      "food and beverage",
+      "festivals"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "laikunlava, puutarhakatu 1, 33210 tampere",
+    "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
+    "lat": 61.499484908944474,
+    "lng": 23.761686380975043,
+    "totalEvents": 25,
+    "totalViews": 860,
+    "avgViews": 34.4,
+    "eventTypes": [
+      "consert",
+      "dance",
+      "circus",
+      "gig",
+      "food and beverage"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family",
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "July",
+      "August",
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "poutunpuisto, 37100 nokia",
+    "address": "Poutunpuisto, 37100 Nokia",
+    "lat": 61.47972109999999,
+    "lng": 23.511793,
+    "totalEvents": 2,
+    "totalViews": 105,
+    "avgViews": 52.5,
+    "eventTypes": [
+      "voluntary",
+      "fairs",
+      "food and beverage",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "August",
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kulttuurikeskus piipoo, kulttuurikeskus piipoo, ideaparkinkatu 4, 37570 lempäälä",
+    "address": "Kulttuurikeskus PiiPoo, Kulttuurikeskus PiiPoo, Ideaparkinkatu 4, 37570 Lempäälä",
+    "lat": 61.3617556,
+    "lng": 23.7950444,
+    "totalEvents": 1,
+    "totalViews": 15,
+    "avgViews": 15.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "handicraft",
+      "museums",
+      "kids and family",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "hiedanranta, hiedanrannan paja, tehdaskartanonkatu 28, 33400 tampere",
+    "address": "Hiedanranta, Hiedanrannan Paja, Tehdaskartanonkatu 28, 33400 Tampere",
+    "lat": 61.5168525,
+    "lng": 23.6847724,
+    "totalEvents": 1,
+    "totalViews": 78,
+    "avgViews": 78.0,
+    "eventTypes": [
+      "handicraft"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "rauhaniementie 23, 33180 tampere",
+    "address": "Rauhaniementie 23, 33180 Tampere",
+    "lat": 61.51548539999999,
+    "lng": 23.7852902,
+    "totalEvents": 5,
+    "totalViews": 59,
+    "avgViews": 11.8,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "activities",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_mielen_hyvinvointi",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "nature and well-being",
+      "tt_asuminen",
+      "excursions, guided tours",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "gig",
+      "festivals",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General",
+      "Adults",
+      "Youth"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kulttuuritalo laikku, keskustori 4, tampere",
+    "address": "Kulttuuritalo Laikku, Keskustori 4, Tampere",
+    "lat": 61.4988264,
+    "lng": 23.762119,
+    "totalEvents": 1,
+    "totalViews": 105,
+    "avgViews": 105.0,
+    "eventTypes": [
+      "voluntary",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "LGBTQ+",
+      "International"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori 10, 33200 tampere",
+    "address": "Keskustori 10, 33200 Tampere",
+    "lat": 61.49806159999999,
+    "lng": 23.7594294,
+    "totalEvents": 1,
+    "totalViews": 1282,
+    "avgViews": 1282.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries",
+      "literature"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Adults",
+      "History Enthusiasts",
+      "Cultural Visitors"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tuulensuun palatsi, hämeenkatu 30, 33200 tampere",
+    "address": "Tuulensuun Palatsi, Hämeenkatu 30, 33200 Tampere",
+    "lat": 61.49730629999999,
+    "lng": 23.7527402,
+    "totalEvents": 1,
+    "totalViews": 178,
+    "avgViews": 178.0,
+    "eventTypes": [
+      "food and beverage",
+      "movies"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pispalan valtatie 39, 33250 tampere",
+    "address": "Pispalan valtatie 39, 33250 Tampere",
+    "lat": 61.50460750000001,
+    "lng": 23.711748,
+    "totalEvents": 1,
+    "totalViews": 13,
+    "avgViews": 13.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "haiharankatu 30, 33710 tampere",
+    "address": "Haiharankatu 30, 33710 Tampere",
+    "lat": 61.4697642,
+    "lng": 23.8903981,
+    "totalEvents": 1,
+    "totalViews": 141,
+    "avgViews": 141.0,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities",
+      "food and beverage",
+      "nature and well-being"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "makkarajärvenkatu 35, 33720 tampere",
+    "address": "Makkarajärvenkatu 35, 33720 Tampere",
+    "lat": 61.43955489999999,
+    "lng": 23.8784435,
+    "totalEvents": 1,
+    "totalViews": 141,
+    "avgViews": 141.0,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities",
+      "food and beverage",
+      "nature and well-being"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "unisex, rautatienkatu 22, 33100 tampere",
+    "address": "Unisex, Rautatienkatu 22, 33100 Tampere",
+    "lat": 61.49683269999999,
+    "lng": 23.77206929999999,
+    "totalEvents": 1,
+    "totalViews": 691,
+    "avgViews": 691.0,
+    "eventTypes": [
+      "circus",
+      "dance"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+",
+      "Open-minded",
+      "Community-oriented"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pellavatehtaankatu 4, 33100 tampere",
+    "address": "Pellavatehtaankatu 4, 33100 Tampere",
+    "lat": 61.50104049999999,
+    "lng": 23.7657317,
+    "totalEvents": 1,
+    "totalViews": 234,
+    "avgViews": 234.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "festivals",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "sarkiantie 199, 38300 sastamala",
+    "address": "Sarkiantie 199, 38300 Sastamala",
+    "lat": 61.3197949,
+    "lng": 22.824461,
+    "totalEvents": 1,
+    "totalViews": 122,
+    "avgViews": 122.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "activities",
+      "museums",
+      "excursions, guided tours",
+      "literature"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "artteli-kumppanuusyhdistys ry, mustanlahdenkatu 22, 33210 tampere",
+    "address": "Artteli-kumppanuusyhdistys ry, Mustanlahdenkatu 22, 33210 Tampere",
+    "lat": 61.4989197,
+    "lng": 23.7486952,
+    "totalEvents": 1,
+    "totalViews": 436,
+    "avgViews": 436.0,
+    "eventTypes": [
+      "voluntary",
+      "festivals"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pääkirjasto metso, pirkankatu 2, 33210 tampere",
+    "address": "Pääkirjasto Metso, Pirkankatu 2, 33210 Tampere",
+    "lat": 61.4981872,
+    "lng": 23.7506002,
+    "totalEvents": 3,
+    "totalViews": 643,
+    "avgViews": 214.33333333333334,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "dance",
+      "theatre",
+      "museums",
+      "circus",
+      "nature and well-being",
+      "kids and family",
+      "literature"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "Youth",
+      "Environmental Enthusiasts"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June",
+      "May",
+      "November"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kansikatu 3, 33100 tampere",
+    "address": "Kansikatu 3, 33100 Tampere",
+    "lat": 61.4936273,
+    "lng": 23.7738686,
+    "totalEvents": 1,
+    "totalViews": 33,
+    "avgViews": 33.0,
+    "eventTypes": [
+      "consert",
+      "festivals"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kauppakatu 14, 33210 tampere",
+    "address": "Kauppakatu 14, 33210 Tampere",
+    "lat": 61.4980675,
+    "lng": 23.7543612,
+    "totalEvents": 1,
+    "totalViews": 27,
+    "avgViews": 27.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "May"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "nuorten kulttuurikeskus monitoimitalo 13, pellavatehtaankatu 4, 33100 tampere",
+    "address": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere",
+    "lat": 61.50097899999999,
+    "lng": 23.7657001,
+    "totalEvents": 3,
+    "totalViews": 140,
+    "avgViews": 46.666666666666664,
+    "eventTypes": [
+      "voluntary",
+      "handicraft",
+      "fairs",
+      "festivals"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "piiponraitti, 37500 lempäälä",
+    "address": "Piiponraitti, 37500 Lempäälä",
+    "lat": 61.31586369999999,
+    "lng": 23.7575606,
+    "totalEvents": 1,
+    "totalViews": 2,
+    "avgViews": 2.0,
+    "eventTypes": [
+      "gig",
+      "theatre",
+      "food and beverage"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "ratinan raitti, 33100 tampere",
+    "address": "Ratinan Raitti, 33100 Tampere",
+    "lat": 61.49294231190305,
+    "lng": 23.7602199156611,
+    "totalEvents": 1,
+    "totalViews": 299,
+    "avgViews": 299.0,
+    "eventTypes": [
+      "festivals",
+      "sports and fitness"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Running Enthusiasts",
+      "Fitness Participants"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "September"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "fame club, satakunnankatu 18, 33210 tampere",
+    "address": "Fame club, Satakunnankatu 18, 33210 Tampere",
+    "lat": 61.5010826,
+    "lng": 23.76124740000001,
+    "totalEvents": 1,
+    "totalViews": 8,
+    "avgViews": 8.0,
+    "eventTypes": [
+      "consert",
+      "gig"
+    ],
+    "primaryAudienceType": "Senior",
+    "topDemographics": [
+      "Senior",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "souranderintie 2, 37100 nokia",
+    "address": "Souranderintie 2, 37100 Nokia",
+    "lat": 61.47349149999999,
+    "lng": 23.5027351,
+    "totalEvents": 1,
+    "totalViews": 22,
+    "avgViews": 22.0,
+    "eventTypes": [
+      "dance",
+      "circus",
+      "gig",
+      "festivals"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tehdaskartanonkatu 26, 33400 tampere",
+    "address": "Tehdaskartanonkatu 26, 33400 Tampere",
+    "lat": 61.51647166228276,
+    "lng": 23.684129736574285,
+    "totalEvents": 2,
+    "totalViews": 178,
+    "avgViews": 89.0,
+    "eventTypes": [
+      "movies"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Youth",
+      "International",
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampereen messu- ja urheilukeskus, ilmailunkatu 20, 33900 tampere",
+    "address": "Tampereen Messu- ja Urheilukeskus, Ilmailunkatu 20, 33900 Tampere",
+    "lat": 61.4641863,
+    "lng": 23.73187459999999,
+    "totalEvents": 6,
+    "totalViews": 101,
+    "avgViews": 16.833333333333332,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "entrepreneurs",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_mielen_hyvinvointi",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "sports and fitness",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "food and beverage",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "fairs",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Professionals",
+      "International",
+      "Logistics/Supply Chain"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "September",
+      "June",
+      "January"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "haiharan taidekeskus, haiharankatu 30, 33710 tampere",
+    "address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere",
+    "lat": 61.4697426,
+    "lng": 23.8904216,
+    "totalEvents": 14,
+    "totalViews": 502,
+    "avgViews": 35.857142857142854,
+    "eventTypes": [
+      "exhibitions",
+      "consert",
+      "museums and galleries",
+      "theatre",
+      "handicraft",
+      "museums",
+      "nature and well-being",
+      "kids and family"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General",
+      "Family",
+      "Senior"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "July",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "hämeenkatu 25, 33200 tampere",
+    "address": "Hämeenkatu 25, 33200 Tampere",
+    "lat": 61.4971404,
+    "lng": 23.7560099,
+    "totalEvents": 4,
+    "totalViews": 656,
+    "avgViews": 164.0,
+    "eventTypes": [
+      "voluntary",
+      "circus",
+      "dance",
+      "theatre"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family",
+      "International",
+      "Contemporary dance enthusiasts"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "September",
+      "November",
+      "December"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "valokuvakeskus nykyaika, kauppakatu 14, 33210 tampere",
+    "address": "Valokuvakeskus Nykyaika, Kauppakatu 14, 33210 Tampere",
+    "lat": 61.4980675,
+    "lng": 23.7543612,
+    "totalEvents": 1,
+    "totalViews": 11,
+    "avgViews": 11.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "May"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "hirvitalo - pispala contemporary art center, hirvikatu 10, 33240 tampere",
+    "address": "Hirvitalo - Pispala Contemporary Art Center, Hirvikatu 10, 33240 Tampere",
+    "lat": 61.499362,
+    "lng": 23.7139393,
+    "totalEvents": 1,
+    "totalViews": 1,
+    "avgViews": 1.0,
+    "eventTypes": [
+      "voluntary",
+      "gig",
+      "festivals"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+",
+      "Family",
+      "Youth"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "ratinanniemi, 33200 tampere",
+    "address": "Ratinanniemi, 33200 Tampere",
+    "lat": 61.49263,
+    "lng": 23.76842,
+    "totalEvents": 2,
+    "totalViews": 0,
+    "avgViews": 0.0,
+    "eventTypes": [
+      "gig",
+      "music",
+      "festivals"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "old dolphinarium at särkänniemi amusement park",
+    "address": "Old dolphinarium at Särkänniemi amusement park",
+    "lat": 61.50396698160202,
+    "lng": 23.741965306271812,
+    "totalEvents": 1,
+    "totalViews": 18,
+    "avgViews": 18.0,
+    "eventTypes": [
+      "dance",
+      "circus",
+      "theatre"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Youth",
+      "Family",
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "aurinkokuja 5, 33420 tampere",
+    "address": "Aurinkokuja 5, 33420 Tampere",
+    "lat": 61.52836060000001,
+    "lng": 23.6360003,
+    "totalEvents": 1,
+    "totalViews": 24,
+    "avgViews": 24.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries",
+      "sports and fitness"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori cerca de la fuente , 33200 tampere",
+    "address": "Keskustori cerca de la fuente , 33200 Tampere",
+    "lat": 61.49803669999999,
+    "lng": 23.7604206,
+    "totalEvents": 1,
+    "totalViews": 69,
+    "avgViews": 69.0,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "Tourists",
+      "Spanish speakers"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "puutarhakatu 1, 33210 tampere",
+    "address": "Puutarhakatu 1, 33210 Tampere",
+    "lat": 61.499484908944474,
+    "lng": 23.761686380975043,
+    "totalEvents": 7,
+    "totalViews": 258,
+    "avgViews": 36.857142857142854,
+    "eventTypes": [
+      "consert",
+      "circus",
+      "dance"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Youth",
+      "LGBTQ+",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "yliopistonkatu 58d, 33100 tampere",
+    "address": "Yliopistonkatu 58D, 33100 Tampere",
+    "lat": 61.49550379999999,
+    "lng": 23.7794352,
+    "totalEvents": 1,
+    "totalViews": 4,
+    "avgViews": 4.0,
+    "eventTypes": [
+      "circus",
+      "dance",
+      "theatre"
+    ],
+    "primaryAudienceType": "Student",
+    "topDemographics": [
+      "International"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori, tampere",
+    "address": "Keskustori, Tampere",
+    "lat": 61.49767079999999,
+    "lng": 23.75993,
+    "totalEvents": 1,
+    "totalViews": 71,
+    "avgViews": 71.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "activities",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_mielen_hyvinvointi",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "sports and fitness",
+      "tt_asuminen",
+      "excursions, guided tours",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "työväenmuseo werstas, väinö linnan aukio 8, 33210 tampere",
+    "address": "Työväenmuseo Werstas, Väinö Linnan aukio 8, 33210 Tampere",
+    "lat": 61.5015878,
+    "lng": 23.75952389999999,
+    "totalEvents": 2,
+    "totalViews": 272,
+    "avgViews": 136.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_opiskelu_oppiminen",
+      "students",
+      "seminars and meetings",
+      "tt_asuminen",
+      "tt_kaverit_ihmissuhteet",
+      "tt_terveys_elintavat",
+      "museums and galleries",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "literature",
+      "exhibitions",
+      "museums",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsilinnankatu 22 a, 2nd floor, 33210 tampere",
+    "address": "Näsilinnankatu 22 A, 2nd floor, 33210 Tampere",
+    "lat": 61.49871279999999,
+    "lng": 23.7542794,
+    "totalEvents": 1,
+    "totalViews": 353,
+    "avgViews": 353.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsilinnankatu 48 e, 3.kerros, 33200 tampere",
+    "address": "Näsilinnankatu 48 E, 3.kerros, 33200 Tampere",
+    "lat": 61.49202339999999,
+    "lng": 23.7557734,
+    "totalEvents": 1,
+    "totalViews": 122,
+    "avgViews": 122.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+",
+      "Family",
+      "Youth"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "amurin museokortteli, satakunnankatu 49, 33230 tampere",
+    "address": "Amurin museokortteli, Satakunnankatu 49, 33230 Tampere",
+    "lat": 61.4992975,
+    "lng": 23.7430531,
+    "totalEvents": 6,
+    "totalViews": 49,
+    "avgViews": 8.166666666666666,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "July",
+      "June",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kulttuurikeskus piipoo, ideaparkinkatu 4, 37570 lempäälä",
+    "address": "Kulttuurikeskus PiiPoo, Ideaparkinkatu 4, 37570 Lempäälä",
+    "lat": 61.357677,
+    "lng": 23.7960018,
+    "totalEvents": 1,
+    "totalViews": 132,
+    "avgViews": 132.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "handicraft",
+      "museums",
+      "kids and family"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "January"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "annikinkatu, 33500 tampere",
+    "address": "Annikinkatu, 33500 Tampere",
+    "lat": 61.50446952598526,
+    "lng": 23.783848483503068,
+    "totalEvents": 1,
+    "totalViews": 85,
+    "avgViews": 85.0,
+    "eventTypes": [
+      "voluntary",
+      "food and beverage",
+      "festivals"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pirkankatu 10, 33230 tampere",
+    "address": "Pirkankatu 10, 33230 Tampere",
+    "lat": 61.49776629999999,
+    "lng": 23.7462129,
+    "totalEvents": 1,
+    "totalViews": 9,
+    "avgViews": 9.0,
+    "eventTypes": [
+      "handicraft"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Youth",
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tehdaskartanonkatu 36, 33400 tampere",
+    "address": "Tehdaskartanonkatu 36, 33400 Tampere",
+    "lat": 61.51659657234287,
+    "lng": 23.685386904454003,
+    "totalEvents": 1,
+    "totalViews": 11,
+    "avgViews": 11.0,
+    "eventTypes": [],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Local Residents",
+      "Tourists",
+      "History Enthusiasts"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "gallery mältinranta, kuninkaankatu 2, 33210 tampere",
+    "address": "Gallery Mältinranta, Kuninkaankatu 2, 33210 Tampere",
+    "lat": 61.5038257,
+    "lng": 23.7548719,
+    "totalEvents": 1,
+    "totalViews": 23,
+    "avgViews": 23.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "Student",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "May"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "studio mältinranta, kuninkaankatu 2, 33210 tampere",
+    "address": "Studio Mältinranta, Kuninkaankatu 2, 33210 Tampere",
+    "lat": 61.5038257,
+    "lng": 23.7548719,
+    "totalEvents": 1,
+    "totalViews": 21,
+    "avgViews": 21.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "Student",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "May"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pispala clothing, aleksis kiven katu 15, 33200 tampere",
+    "address": "Pispala Clothing, Aleksis Kiven katu 15, 33200 Tampere",
+    "lat": 61.4957848,
+    "lng": 23.7606689,
+    "totalEvents": 1,
+    "totalViews": 56,
+    "avgViews": 56.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums and galleries",
+      "handicraft",
+      "museums",
+      "fairs"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Adults",
+      "Art Enthusiasts",
+      "Local Community"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "May"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "arthouse cinema niagara / pirkanmaa film center, kehräsaari b, 33200 tampere",
+    "address": "Arthouse Cinema Niagara / Pirkanmaa Film Center, Kehräsaari B, 33200 Tampere",
+    "lat": 61.4953835,
+    "lng": 23.7637295,
+    "totalEvents": 4,
+    "totalViews": 627,
+    "avgViews": 156.75,
+    "eventTypes": [
+      "movies"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+",
+      "International",
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "ohranjyvä, näsilinnankatu 15, 33210",
+    "address": "Ohranjyvä, Näsilinnankatu 15, 33210",
+    "lat": 61.49986707907093,
+    "lng": 23.754202765382505,
+    "totalEvents": 1,
+    "totalViews": 45,
+    "avgViews": 45.0,
+    "eventTypes": [
+      "food and beverage",
+      "literature"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "ratinan stadion, ratinan rantatie 1, 33100 tampere",
+    "address": "RATINAN STADION, Ratinan Rantatie 1, 33100 Tampere",
+    "lat": 61.49328,
+    "lng": 23.76384,
+    "totalEvents": 1,
+    "totalViews": 32,
+    "avgViews": 32.0,
+    "eventTypes": [
+      "gig",
+      "music"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tesoman kirjasto, tesomankatu 4, 33310 tampere",
+    "address": "Tesoman kirjasto, Tesomankatu 4, 33310 Tampere",
+    "lat": 61.50536520000001,
+    "lng": 23.6261726,
+    "totalEvents": 1,
+    "totalViews": 54,
+    "avgViews": 54.0,
+    "eventTypes": [
+      "theatre",
+      "kids and family",
+      "literature"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "October"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsilinnankatu 15, 33210 tampere",
+    "address": "Näsilinnankatu 15, 33210 Tampere",
+    "lat": 61.4998469,
+    "lng": 23.7542787,
+    "totalEvents": 1,
+    "totalViews": 48,
+    "avgViews": 48.0,
+    "eventTypes": [
+      "food and beverage"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori 1, 33100 tampere",
+    "address": "Keskustori 1, 33100 Tampere",
+    "lat": 61.4974843,
+    "lng": 23.7620308,
+    "totalEvents": 1,
+    "totalViews": 16,
+    "avgViews": 16.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Senior",
+      "Health-conscious"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsilinnankatu 48 d, 33200 tampere",
+    "address": "Näsilinnankatu 48 D, 33200 Tampere",
+    "lat": 61.4925205,
+    "lng": 23.7562308,
+    "totalEvents": 1,
+    "totalViews": 219,
+    "avgViews": 219.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "voluntary",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Rainbow-friendly",
+      "Swedish speakers",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "eteläpuisto, 33200 tampere",
+    "address": "Eteläpuisto, 33200 Tampere",
+    "lat": 61.4902329,
+    "lng": 23.7511196,
+    "totalEvents": 1,
+    "totalViews": 219,
+    "avgViews": 219.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "voluntary",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Rainbow-friendly",
+      "Swedish speakers",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kuntokatu 17, 33520 tampere",
+    "address": "Kuntokatu 17, 33520 Tampere",
+    "lat": 61.5080459,
+    "lng": 23.8083578,
+    "totalEvents": 1,
+    "totalViews": 176,
+    "avgViews": 176.0,
+    "eventTypes": [
+      "sports and fitness"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere intercultural art, pirkankatu 10",
+    "address": "Tampere Intercultural Art, Pirkankatu 10",
+    "lat": 61.497881,
+    "lng": 23.74587499999999,
+    "totalEvents": 1,
+    "totalViews": 10,
+    "avgViews": 10.0,
+    "eventTypes": [
+      "excursions, guided tours",
+      "activities"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "Adults",
+      "Tourists"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere sports & expo, ilmailunkatu 20, 33900 tampere, finland",
+    "address": "Tampere Sports & Expo, Ilmailunkatu 20, 33900 Tampere, Finland",
+    "lat": 61.4641863,
+    "lng": 23.73187459999999,
+    "totalEvents": 1,
+    "totalViews": 4,
+    "avgViews": 4.0,
+    "eventTypes": [
+      "fairs",
+      "entrepreneurs"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Industry Professionals",
+      "Policymakers",
+      "Experts"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "January"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tullikamarin aukio 1, 33100 tampere",
+    "address": "Tullikamarin aukio 1, 33100 Tampere",
+    "lat": 61.498432,
+    "lng": 23.7777731,
+    "totalEvents": 1,
+    "totalViews": 152,
+    "avgViews": 152.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+",
+      "Young Adults"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tammelantori, tampere",
+    "address": "Tammelantori, Tampere",
+    "lat": 61.5016559,
+    "lng": 23.778584,
+    "totalEvents": 6,
+    "totalViews": 110,
+    "avgViews": 18.333333333333332,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June",
+      "July",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "käätykatu 6, 33710 tampere",
+    "address": "Käätykatu 6, 33710 Tampere",
+    "lat": 61.47008239999999,
+    "lng": 23.8720148,
+    "totalEvents": 1,
+    "totalViews": 33,
+    "avgViews": 33.0,
+    "eventTypes": [
+      "theatre",
+      "kids and family",
+      "literature"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "November"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampereen messu-ja urheilukeskus, ilmailunkatu 20, 33900 tampere",
+    "address": "TAMPEREEN MESSU-JA URHEILUKESKUS, Ilmailunkatu 20, 33900 Tampere",
+    "lat": 61.46345,
+    "lng": 23.72916,
+    "totalEvents": 3,
+    "totalViews": 0,
+    "avgViews": 0.0,
+    "eventTypes": [
+      "fairs",
+      "kids and family"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Kids and Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "November"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "lielahden kirjasto, antti possin kuja 1, 33400 tampere",
+    "address": "Lielahden kirjasto, Antti Possin Kuja 1, 33400 Tampere",
+    "lat": 61.51995299999999,
+    "lng": 23.66912079999999,
+    "totalEvents": 1,
+    "totalViews": 42,
+    "avgViews": 42.0,
+    "eventTypes": [
+      "theatre",
+      "kids and family",
+      "literature"
+    ],
+    "primaryAudienceType": "Family",
+    "topDemographics": [
+      "Family"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "November"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsinpuiston laululava, näsinpuisto, 33210 tampere",
+    "address": "Näsinpuiston laululava, Näsinpuisto, 33210 Tampere",
+    "lat": 61.5036474,
+    "lng": 23.7513074,
+    "totalEvents": 4,
+    "totalViews": 64,
+    "avgViews": 16.0,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "July",
+      "June",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere conservatoire, tampere conservatoire, f.e. sillanpään katu 9",
+    "address": "Tampere Conservatoire, Tampere Conservatoire, F.E. Sillanpään katu 9",
+    "lat": 61.4966604,
+    "lng": 23.73994459999999,
+    "totalEvents": 1,
+    "totalViews": 98,
+    "avgViews": 98.0,
+    "eventTypes": [
+      "consert",
+      "festivals"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "International",
+      "Music Enthusiasts"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "niihaman siirtolapuutarha, luhtaankartanontie 39, 33560 tampere",
+    "address": "Niihaman siirtolapuutarha, Luhtaankartanontie 39, 33560 Tampere",
+    "lat": 61.51979509999999,
+    "lng": 23.8922355,
+    "totalEvents": 2,
+    "totalViews": 29,
+    "avgViews": 14.5,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June",
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "beer shop & bar kuja, ratinankuja 1, 33100 tampere",
+    "address": "Beer Shop & Bar Kuja, Ratinankuja 1, 33100 Tampere",
+    "lat": 61.49429490000001,
+    "lng": 23.7679781,
+    "totalEvents": 2,
+    "totalViews": 86,
+    "avgViews": 43.0,
+    "eventTypes": [
+      "voluntary",
+      "gig",
+      "food and beverage",
+      "festivals"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General",
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "hiedanranta, lielahti manor, tehdaskartanonkatu 38, 33400 tampere",
+    "address": "Hiedanranta, Lielahti Manor, Tehdaskartanonkatu 38, 33400 Tampere",
+    "lat": 61.5160985,
+    "lng": 23.6864171,
+    "totalEvents": 5,
+    "totalViews": 423,
+    "avgViews": 84.6,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General",
+      "International"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "July",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "keskustori 4, tampere",
+    "address": "Keskustori 4, Tampere",
+    "lat": 61.4988264,
+    "lng": 23.762119,
+    "totalEvents": 1,
+    "totalViews": 8,
+    "avgViews": 8.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "museokeskus vapriikki, alaverstaanraitti 5, 33100 tampere",
+    "address": "Museokeskus Vapriikki, Alaverstaanraitti 5, 33100 Tampere",
+    "lat": 61.5030142,
+    "lng": 23.7601947,
+    "totalEvents": 1,
+    "totalViews": 208,
+    "avgViews": 208.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "February"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "mustanlahdenkatu 18, 33210 tampere",
+    "address": "Mustanlahdenkatu 18, 33210 Tampere",
+    "lat": 61.4996941,
+    "lng": 23.74853359999999,
+    "totalEvents": 1,
+    "totalViews": 146,
+    "avgViews": 146.0,
+    "eventTypes": [],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+",
+      "Youth"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "choose joy laitepilates / pilates studio, itsenäisyydenkatu 16, 33500 tampere",
+    "address": "Choose Joy Laitepilates / Pilates Studio, Itsenäisyydenkatu 16, 33500 Tampere",
+    "lat": 61.498847233767776,
+    "lng": 23.785194549685507,
+    "totalEvents": 6,
+    "totalViews": 446,
+    "avgViews": 74.33333333333333,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "LGBTQ+",
+      "Youth"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "sinuiksi ry's office, näsilinnankatu 48 e, 33200 tampere",
+    "address": "Sinuiksi ry's office, Näsilinnankatu 48 E, 33200 Tampere",
+    "lat": 61.49202339999999,
+    "lng": 23.7557734,
+    "totalEvents": 1,
+    "totalViews": 78,
+    "avgViews": 78.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "LGBTQ+",
+    "topDemographics": [
+      "LGBTQ+",
+      "Youth",
+      "Adult"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "pyynikki hall, tampere conservatoire, f.e. sillanpään katu 9",
+    "address": "Pyynikki Hall, Tampere Conservatoire, F.E. Sillanpään katu 9",
+    "lat": 61.4966604,
+    "lng": 23.73994459999999,
+    "totalEvents": 1,
+    "totalViews": 2,
+    "avgViews": 2.0,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "International",
+      "Music Enthusiasts"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "evening",
+    "seasonality": [
+      "November"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsilinnankatu 28 e 5, 33200 tampere",
+    "address": "Näsilinnankatu 28 E 5, 33200 Tampere",
+    "lat": 61.49685719999999,
+    "lng": 23.7545701,
+    "totalEvents": 1,
+    "totalViews": 154,
+    "avgViews": 154.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "festivals",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "LGBTQ+",
+    "topDemographics": [
+      "Queer",
+      "Inclusive",
+      "Spirituality interested"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "tampere cathedral, tuomiokirkonkatu 3b, 33100 tampere",
+    "address": "Tampere Cathedral, Tuomiokirkonkatu 3b, 33100 Tampere",
+    "lat": 61.5025181,
+    "lng": 23.7698735,
+    "totalEvents": 12,
+    "totalViews": 73,
+    "avgViews": 6.083333333333333,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Music Enthusiasts",
+      "Family",
+      "Local Community"
+    ],
+    "peakDayType": "weekend",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "July",
+      "June",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "kimmo pyykkö -taidemuseo, kuohunharjuntie 6, 36200 kangasala",
+    "address": "Kimmo Pyykkö -taidemuseo, Kuohunharjuntie 6, 36200 Kangasala",
+    "lat": 61.46347799999999,
+    "lng": 24.073117,
+    "totalEvents": 1,
+    "totalViews": 87,
+    "avgViews": 87.0,
+    "eventTypes": [
+      "exhibitions",
+      "museums",
+      "museums and galleries"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "Adults",
+      "Art Enthusiasts",
+      "Finnish Culture"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "January"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "aleksanterinkatu 17, 33100 tampere",
+    "address": "Aleksanterinkatu 17, 33100 Tampere",
+    "lat": 61.5005982,
+    "lng": 23.7682135,
+    "totalEvents": 1,
+    "totalViews": 7,
+    "avgViews": 7.0,
+    "eventTypes": [
+      "gig"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Music Enthusiasts",
+      "Local Community"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "litukan siirtolapuutarha, litukankatu 13, 33500 tampere",
+    "address": "Litukan siirtolapuutarha, Litukankatu 13, 33500 Tampere",
+    "lat": 61.50335539999999,
+    "lng": 23.8026905,
+    "totalEvents": 2,
+    "totalViews": 29,
+    "avgViews": 14.5,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "International",
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "July",
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "hirvikatu 10, 33240 tampere",
+    "address": "Hirvikatu 10, 33240 Tampere",
+    "lat": 61.499362,
+    "lng": 23.7139393,
+    "totalEvents": 1,
+    "totalViews": 27,
+    "avgViews": 27.0,
+    "eventTypes": [
+      "seminars and meetings",
+      "gig",
+      "students"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "raholan siirtolapuutarha, kaarilankatu 26, 33300 tampere",
+    "address": "Raholan siirtolapuutarha, Kaarilankatu 26, 33300 Tampere",
+    "lat": 61.4999433,
+    "lng": 23.6658183,
+    "totalEvents": 2,
+    "totalViews": 22,
+    "avgViews": 11.0,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "July"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "nekalan siirtolapuutarha, muotialantie 43, 33800 tampere",
+    "address": "Nekalan siirtolapuutarha, Muotialantie 43, 33800 Tampere",
+    "lat": 61.4789936,
+    "lng": 23.8140176,
+    "totalEvents": 2,
+    "totalViews": 25,
+    "avgViews": 12.5,
+    "eventTypes": [
+      "consert"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June",
+      "August"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "hinttalankatu 6, 37100 nokia",
+    "address": "Hinttalankatu 6, 37100 Nokia",
+    "lat": 61.4821421,
+    "lng": 23.5241987,
+    "totalEvents": 1,
+    "totalViews": 0,
+    "avgViews": 0.0,
+    "eventTypes": [
+      "sports and fitness"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Sports Enthusiasts",
+      "Football Fans",
+      "Local Community"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "federleynkatu 19, 33400 tampere",
+    "address": "Federleynkatu 19, 33400 Tampere",
+    "lat": 61.5214593,
+    "lng": 23.6873269,
+    "totalEvents": 4,
+    "totalViews": 8,
+    "avgViews": 2.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "consert",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "Wellness Enthusiasts",
+      "Relaxation Seekers",
+      "Relaxation"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "July",
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "nightclub mixei, itsenäisyydenkatu 7, 33100 tampere",
+    "address": "Nightclub Mixei, Itsenäisyydenkatu 7, 33100 Tampere",
+    "lat": 61.49912680000001,
+    "lng": 23.7789038,
+    "totalEvents": 1,
+    "totalViews": 190,
+    "avgViews": 190.0,
+    "eventTypes": [
+      "voluntary"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+",
+      "Local Community"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "koivistonkylän kirjasto, lehvänkatu 9, 33820 tampere",
+    "address": "Koivistonkylän kirjasto, Lehvänkatu 9, 33820 Tampere",
+    "lat": 61.47077549999999,
+    "lng": 23.7968243,
+    "totalEvents": 1,
+    "totalViews": 40,
+    "avgViews": 40.0,
+    "eventTypes": [
+      "circus",
+      "dance",
+      "kids and family",
+      "literature"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "morning",
+    "seasonality": [
+      "October"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "mustanlahdenkatu 22, 33210 tampere",
+    "address": "Mustanlahdenkatu 22, 33210 Tampere",
+    "lat": 61.4989197,
+    "lng": 23.7486952,
+    "totalEvents": 1,
+    "totalViews": 35,
+    "avgViews": 35.0,
+    "eventTypes": [
+      "voluntary",
+      "handicraft"
+    ],
+    "primaryAudienceType": "General",
+    "topDemographics": [
+      "General"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  },
+  {
+    "locationKey": "näsilinnankatu 48, 33200 tampere",
+    "address": "Näsilinnankatu 48, 33200 Tampere",
+    "lat": 61.4923726,
+    "lng": 23.7562087,
+    "totalEvents": 1,
+    "totalViews": 19,
+    "avgViews": 19.0,
+    "eventTypes": [
+      "tt_sairaudet",
+      "tt_opiskelu_oppiminen",
+      "tt_terveys_elintavat",
+      "tt_mielen_hyvinvointi",
+      "tt_kotoutuminen_maahanmuutto",
+      "tt_paihteettomyys_riippuvuudet",
+      "tt_talous_velka",
+      "tt_tyottomyys_tyollistyminen",
+      "tt_asuminen",
+      "tt_vammaisuus_liikuntarajoitteisuus",
+      "tt_kaverit_ihmissuhteet",
+      "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+      "tt_digitaidot"
+    ],
+    "primaryAudienceType": "Adult",
+    "topDemographics": [
+      "LGBTQ+"
+    ],
+    "peakDayType": "weekday",
+    "peakTimeOfDay": "other",
+    "seasonality": [
+      "June"
+    ],
+    "availableSpotsNearby": 0,
+    "weatherTypes": [
+      "N/A"
+    ]
+  }
+]

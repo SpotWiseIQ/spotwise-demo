@@ -7,10 +7,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Frontend
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/*.local
+
+# Backend
+backend/.venv
+backend/__pycache__
+backend/**/__pycache__
+backend/.pytest_cache
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +29,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Cursor files
+.cursor/
+.cursor
+
+# Environment variables
+.env
+
+# ignore node_modules in the root directory
+node_modules/
+
+__pycache__/
+*.pyc
