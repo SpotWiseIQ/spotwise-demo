@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -24,131 +23,160 @@ export const TampereMap: React.FC = () => {
   const markersRef = useRef<{ [key: string]: maplibregl.Marker }>({});
   
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapError, setMapError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
-    map.current = new maplibregl.Map({
-      container: mapContainer.current,
-      style: "https://api.maptiler.com/maps/basic-v2/style.json?key=AfAN9b1DSd3npFhD2AXC",
-      center: TAMPERE_CENTER,
-      zoom: 14,
-    });
-
-    map.current.on("load", () => {
-      setMapLoaded(true);
-      
-      map.current?.addControl(
-        new maplibregl.NavigationControl(),
-        "top-right"
-      );
-
-      map.current?.addSource("traffic", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              properties: { status: "available" },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [23.748, 61.4988],
-                  [23.760, 61.4988],
-                  [23.772, 61.4988],
-                ],
-              },
-            },
-            {
-              type: "Feature",
-              properties: { status: "moderate" },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [23.748, 61.4970],
-                  [23.760, 61.4970],
-                  [23.772, 61.4970],
-                ],
-              },
-            },
-            {
-              type: "Feature",
-              properties: { status: "congested" },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [23.748, 61.4950],
-                  [23.760, 61.4950],
-                  [23.772, 61.4950],
-                ],
-              },
-            },
-            {
-              type: "Feature",
-              properties: { status: "congested" },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [23.760, 61.4930],
-                  [23.760, 61.4950],
-                  [23.760, 61.4970],
-                  [23.760, 61.4990],
-                ],
-              },
-            },
-            {
-              type: "Feature",
-              properties: { status: "available" },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [23.748, 61.4930],
-                  [23.748, 61.4950],
-                  [23.748, 61.4970],
-                  [23.748, 61.4990],
-                ],
-              },
-            },
-            {
-              type: "Feature",
-              properties: { status: "moderate" },
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [23.772, 61.4930],
-                  [23.772, 61.4950],
-                  [23.772, 61.4970],
-                  [23.772, 61.4990],
-                ],
-              },
-            },
-          ],
+    try {
+      map.current = new maplibregl.Map({
+        container: mapContainer.current,
+        style: {
+          version: 8,
+          sources: {
+            'osm': {
+              type: 'raster',
+              tiles: ['https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'],
+              tileSize: 256,
+              attribution: '© OpenStreetMap contributors'
+            }
+          },
+          layers: [{
+            id: 'osm-tiles',
+            type: 'raster',
+            source: 'osm',
+            minzoom: 0,
+            maxzoom: 19
+          }]
         },
+        center: TAMPERE_CENTER,
+        zoom: 14,
       });
 
-      map.current?.addLayer({
-        id: "traffic-lines",
-        type: "line",
-        source: "traffic",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round",
-        },
-        paint: {
-          "line-width": 6,
-          "line-color": [
-            "match",
-            ["get", "status"],
-            "available", "#4caf50",
-            "moderate", "#ffc107",
-            "congested", "#ea384c",
-            "#000000",
-          ],
-          "line-opacity": 0.7,
-        },
+      map.current.on("load", () => {
+        setMapLoaded(true);
+        console.log("Map loaded successfully");
+        
+        map.current?.addControl(
+          new maplibregl.NavigationControl(),
+          "top-right"
+        );
+
+        map.current?.addSource("traffic", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: { status: "available" },
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [23.748, 61.4988],
+                    [23.760, 61.4988],
+                    [23.772, 61.4988],
+                  ],
+                },
+              },
+              {
+                type: "Feature",
+                properties: { status: "moderate" },
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [23.748, 61.4970],
+                    [23.760, 61.4970],
+                    [23.772, 61.4970],
+                  ],
+                },
+              },
+              {
+                type: "Feature",
+                properties: { status: "congested" },
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [23.748, 61.4950],
+                    [23.760, 61.4950],
+                    [23.772, 61.4950],
+                  ],
+                },
+              },
+              {
+                type: "Feature",
+                properties: { status: "congested" },
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [23.760, 61.4930],
+                    [23.760, 61.4950],
+                    [23.760, 61.4970],
+                    [23.760, 61.4990],
+                  ],
+                },
+              },
+              {
+                type: "Feature",
+                properties: { status: "available" },
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [23.748, 61.4930],
+                    [23.748, 61.4950],
+                    [23.748, 61.4970],
+                    [23.748, 61.4990],
+                  ],
+                },
+              },
+              {
+                type: "Feature",
+                properties: { status: "moderate" },
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [23.772, 61.4930],
+                    [23.772, 61.4950],
+                    [23.772, 61.4970],
+                    [23.772, 61.4990],
+                  ],
+                },
+              },
+            ],
+          },
+        });
+
+        map.current?.addLayer({
+          id: "traffic-lines",
+          type: "line",
+          source: "traffic",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-width": 6,
+            "line-color": [
+              "match",
+              ["get", "status"],
+              "available", "#4caf50",
+              "moderate", "#ffc107",
+              "congested", "#ea384c",
+              "#000000",
+            ],
+            "line-opacity": 0.7,
+          },
+        });
       });
-    });
+
+      map.current.on("error", (e) => {
+        console.error("Map error:", e);
+        setMapError("Failed to load the map. Please try again later.");
+      });
+    } catch (error) {
+      console.error("Map initialization error:", error);
+      setMapError("Failed to initialize the map. Please try again later.");
+    }
 
     return () => {
       map.current?.remove();
@@ -294,26 +322,42 @@ export const TampereMap: React.FC = () => {
     }
   }, [selectedHotspot, selectedEvent, mapLoaded]);
 
-  // Show details only when an event or hotspot is selected
   const showDetails = selectedEvent !== null || selectedHotspot !== null;
 
   return (
     <div className="relative w-full h-full">
-      <div ref={mapContainer} className="absolute inset-0" />
-      
-      <div className="absolute top-4 right-4 z-10">
-        <PulseToggle value={pulse} onChange={value => useTampere().setPulse(value)} />
-      </div>
-      
-      {showDetails && <MapLegend />}
-      
-      {showDetails && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 w-3/4">
-          <TimelineSlider 
-            value={timelineRange} 
-            onChange={setTimelineRange} 
-          />
+      {mapError ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 className="text-lg font-medium text-red-600 mb-2">Map Error</h3>
+            <p className="text-gray-700">{mapError}</p>
+            <button 
+              className="mt-4 px-4 py-2 bg-tampere-red text-white rounded hover:bg-red-700 transition-colors"
+              onClick={() => window.location.reload()}
+            >
+              Reload
+            </button>
+          </div>
         </div>
+      ) : (
+        <>
+          <div ref={mapContainer} className="absolute inset-0" />
+          
+          <div className="absolute top-4 right-4 z-10">
+            <PulseToggle value={pulse} onChange={value => useTampere().setPulse(value)} />
+          </div>
+          
+          {showDetails && <MapLegend />}
+          
+          {showDetails && (
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 w-3/4">
+              <TimelineSlider 
+                value={timelineRange} 
+                onChange={setTimelineRange} 
+              />
+            </div>
+          )}
+        </>
       )}
     </div>
   );
