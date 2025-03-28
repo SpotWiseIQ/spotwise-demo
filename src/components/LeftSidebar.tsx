@@ -14,8 +14,12 @@ export const LeftSidebar: React.FC = () => {
     timelineRange, 
     setTimelineRange,
     selectedEvent,
-    setSelectedEvent
+    setSelectedEvent,
+    selectedHotspot
   } = useTampere();
+
+  // Show timeline slider only when an event or hotspot is selected
+  const showTimelineSlider = selectedEvent !== null || selectedHotspot !== null;
 
   return (
     <div className="p-6 h-full overflow-y-auto">
@@ -28,10 +32,12 @@ export const LeftSidebar: React.FC = () => {
 
       {!selectedEvent ? (
         <>
-          <TimelineSlider
-            value={timelineRange}
-            onChange={setTimelineRange}
-          />
+          {showTimelineSlider && (
+            <TimelineSlider
+              value={timelineRange}
+              onChange={setTimelineRange}
+            />
+          )}
           <HotspotsList />
           <EventsList />
         </>

@@ -1,9 +1,9 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useTampere } from "@/lib/TampereContext";
 import { TAMPERE_CENTER, mockMapItems } from "@/lib/mockData";
-import { Event, Hotspot, MapItem } from "@/lib/types";
 import { TimelineSlider } from "./TimelineSlider";
 import { MapLegend } from "./MapLegend";
 import { PulseToggle } from "./PulseToggle";
@@ -294,6 +294,9 @@ export const TampereMap: React.FC = () => {
     }
   }, [selectedHotspot, selectedEvent, mapLoaded]);
 
+  // Show details only when an event or hotspot is selected
+  const showDetails = selectedEvent !== null || selectedHotspot !== null;
+
   return (
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="absolute inset-0" />
@@ -302,14 +305,16 @@ export const TampereMap: React.FC = () => {
         <PulseToggle value={pulse} onChange={value => useTampere().setPulse(value)} />
       </div>
       
-      <MapLegend />
+      {showDetails && <MapLegend />}
       
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 w-3/4">
-        <TimelineSlider 
-          value={timelineRange} 
-          onChange={setTimelineRange} 
-        />
-      </div>
+      {showDetails && (
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 w-3/4">
+          <TimelineSlider 
+            value={timelineRange} 
+            onChange={setTimelineRange} 
+          />
+        </div>
+      )}
     </div>
   );
 };
