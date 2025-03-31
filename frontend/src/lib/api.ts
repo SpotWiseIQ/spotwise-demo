@@ -26,8 +26,15 @@ export const fetchHotspots = async (): Promise<Hotspot[]> => {
 };
 
 export const fetchEvents = async (date?: string): Promise<Event[]> => {
-  const url = date ? `${API_BASE_URL}/events?date=${date}` : `${API_BASE_URL}/events`;
+  // Ensure date is properly formatted and add a cache-busting timestamp
+  const timestamp = new Date().getTime();
+  const url = date 
+    ? `${API_BASE_URL}/events?date=${encodeURIComponent(date)}&_=${timestamp}` 
+    : `${API_BASE_URL}/events?_=${timestamp}`;
+    
+  console.log(`🔌 API: FETCH_EVENTS START for date=${date || 'all'}`);
   debugLog(`GET ${url}`);
+  
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -35,10 +42,24 @@ export const fetchEvents = async (date?: string): Promise<Event[]> => {
       debugLog(`Error fetching events: ${response.status} ${response.statusText}`, errorText);
       throw new Error('Failed to fetch events');
     }
+    
     const data = await response.json();
-    debugLog(`Events response received`, { count: data.length, date });
+    console.log(`🔌 API: FETCH_EVENTS COMPLETED for date=${date || 'all'}, received ${data.length} events:`);
+    data.forEach((event: Event, index: number) => {
+      console.log(`  API Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
+    });
+    
+    debugLog(`Events response received`, { count: data.length, date, data });
+    
+    // Additional validation to ensure we got events
+    if (!Array.isArray(data)) {
+      debugLog(`Invalid events data received`, data);
+      throw new Error('Invalid events data format');
+    }
+    
     return data;
   } catch (error) {
+    console.log(`🔌 API: FETCH_EVENTS ERROR for date=${date || 'all'}`, error);
     debugLog(`Exception in fetchEvents`, error);
     throw error;
   }
@@ -99,19 +120,61 @@ export const fetchTampereCenter = async (): Promise<[number, number]> => {
 };
 
 export const fetchSimilarEvents = async (eventId: string): Promise<Event[]> => {
-  debugLog(`GET ${API_BASE_URL}/events/${eventId}/similar`);
+  const timestamp = new Date().getTime();
+  const url = `${API_BASE_URL}/events/${eventId}/similar?_=${timestamp}`;
+  
+  console.log(`🔌 API: FETCH_SIMILAR_EVENTS START for eventId=${eventId}`);
+  debugLog(`GET ${url}`);
+  
   try {
-    const response = await fetch(`${API_BASE_URL}/events/${eventId}/similar`);
+    const response = await fetch(url);
     if (!response.ok) {
       const errorText = await response.text();
       debugLog(`Error fetching similar events: ${response.status} ${response.statusText}`, errorText);
       throw new Error('Failed to fetch similar events');
     }
+    
     const data = await response.json();
-    debugLog(`Similar events response received`, { count: data.length, eventId });
+    console.log(`🔌 API: FETCH_SIMILAR_EVENTS COMPLETED for eventId=${eventId}, received ${data.length} events:`);
+    data.forEach((event: Event, index: number) => {
+      console.log(`  API Similar Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
+    });
+    
+    debugLog(`Similar events response received`, { count: data.length, eventId, data });
     return data;
   } catch (error) {
+    console.log(`🔌 API: FETCH_SIMILAR_EVENTS ERROR for eventId=${eventId}`, error);
     debugLog(`Exception in fetchSimilarEvents`, error);
+    throw error;
+  }
+};
+
+export const fetchSimilarHotspots = async (hotspotId: string): Promise<Hotspot[]> => {
+  const timestamp = new Date().getTime();
+  const url = `${API_BASE_URL}/hotspots/${hotspotId}/similar?_=${timestamp}`;
+  
+  console.log(`🔌 API: FETCH_SIMILAR_HOTSPOTS START for hotspotId=${hotspotId}`);
+  debugLog(`GET ${url}`);
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error fetching similar hotspots: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch similar hotspots');
+    }
+    
+    const data = await response.json();
+    console.log(`🔌 API: FETCH_SIMILAR_HOTSPOTS COMPLETED for hotspotId=${hotspotId}, received ${data.length} hotspots:`);
+    data.forEach((hotspot: Hotspot, index: number) => {
+      console.log(`  API Similar Hotspot ${index+1}: id=${hotspot.id}, label=${hotspot.label}, address=${hotspot.address}`);
+    });
+    
+    debugLog(`Similar hotspots response received`, { count: data.length, hotspotId, data });
+    return data;
+  } catch (error) {
+    console.log(`🔌 API: FETCH_SIMILAR_HOTSPOTS ERROR for hotspotId=${hotspotId}`, error);
+    debugLog(`Exception in fetchSimilarHotspots`, error);
     throw error;
   }
 }; 

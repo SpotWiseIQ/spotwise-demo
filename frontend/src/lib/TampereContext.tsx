@@ -29,7 +29,9 @@ const TampereContext = createContext<TampereContextType | undefined>(undefined);
 export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   debugLog("TampereProvider initializing");
   
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date("2025-03-26"));
+  // Initialize with noon time to avoid timezone issues
+  const initialDate = new Date("2025-03-26T12:00:00");
+  const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
   const [timelineRange, setTimelineRange] = useState<TimelineRange>({ start: 50, end: 75 });
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
@@ -40,6 +42,24 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Handler for date changes that clears the selected event
+  const handleDateChange = (newDate: Date) => {
+    debugLog("Date changing", { 
+      from: selectedDate.toISOString(), 
+      to: newDate.toISOString(),
+      fromDate: selectedDate.toISOString().split('T')[0],
+      toDate: newDate.toISOString().split('T')[0]
+    });
+    
+    // Clear selected event when date changes
+    if (selectedEvent) {
+      debugLog("Clearing selected event due to date change");
+      setSelectedEvent(null);
+    }
+    
+    setSelectedDate(newDate);
+  };
 
   // Custom state setters with logging
   const loggedSetSelectedHotspot = (hotspot: Hotspot | null) => {
@@ -87,16 +107,37 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   // Fetch events whenever selectedDate changes
   useEffect(() => {
-    debugLog(`Fetching events for date: ${selectedDate.toISOString().split('T')[0]}`);
+    // Get YYYY-MM-DD format, but ensure we're using the actual selected date
+    // by creating a fixed version with consistent time (noon) to avoid timezone issues
+    const dateToFetch = new Date(selectedDate);
+    dateToFetch.setHours(12, 0, 0, 0);
+    const formattedDate = dateToFetch.toISOString().split('T')[0]; // YYYY-MM-DD format
+    
+    debugLog(`🔎 START: Fetching events for date: ${formattedDate} (from date ${selectedDate.toISOString()})`);
+    console.log(`🔎 STATE BEFORE FETCH: ${events.length} events currently in state`);
+    events.forEach((event, index) => {
+      console.log(`  Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
+    });
+    
     const getEvents = async () => {
       setLoading(true);
       try {
-        const formattedDate = selectedDate.toISOString().split('T')[0]; // YYYY-MM-DD format
         debugLog(`API call: fetchEvents(${formattedDate})`);
         const data = await fetchEvents(formattedDate);
-        debugLog(`Fetched ${data.length} events successfully`);
+        debugLog(`🔎 FETCH RESULT: ${data.length} events for date ${formattedDate}:`);
+        data.forEach((event, index) => {
+          console.log(`  Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
+        });
+        
+        // Set the events in state
+        console.log(`🔎 UPDATING STATE: Setting ${data.length} events in state`);
         setEvents(data);
         setError(null);
+        
+        // Debug one more time after state set
+        setTimeout(() => {
+          console.log(`🔎 STATE CHECK: Current events in state after update: ${data.length}`);
+        }, 0);
       } catch (err) {
         console.error("Failed to fetch events:", err);
         debugLog("Error fetching events", err);
@@ -109,6 +150,11 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     getEvents();
+    
+    // Debug cleanup function
+    return () => {
+      console.log(`🔎 CLEANUP: Events fetch effect for date ${formattedDate}`);
+    };
   }, [selectedDate]);
 
   // Debug state changes
@@ -127,7 +173,7 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     <TampereContext.Provider
       value={{
         selectedDate,
-        setSelectedDate,
+        setSelectedDate: handleDateChange,
         timelineRange,
         setTimelineRange,
         selectedHotspot,

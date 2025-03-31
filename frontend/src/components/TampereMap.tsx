@@ -62,26 +62,23 @@ export const TampereMap: React.FC = () => {
     getTampereCenter();
   }, []);
 
-  // Fetch map items when needed
+  // Fetch map items
   useEffect(() => {
-    if (selectedHotspot || selectedEvent) {
-      debugLog(`Fetching map items for ${selectedHotspot ? 'hotspot' : 'event'}`);
-      const getMapItems = async () => {
-        try {
-          debugLog("API call: fetchMapItems");
-          const items = await fetchMapItems();
-          debugLog(`Fetched ${items.length} map items successfully`);
-          setMapItems(items);
-        } catch (error) {
-          console.error("Failed to fetch map items:", error);
-          debugLog("Error fetching map items");
-          setMapItems([]);
-        }
-      };
+    debugLog("Fetching map items");
+    const getMapItems = async () => {
+      try {
+        debugLog("API call: fetchMapItems");
+        const items = await fetchMapItems();
+        debugLog("Map items fetched successfully", items);
+        setMapItems(items);
+      } catch (error) {
+        console.error("Failed to fetch map items:", error);
+        debugLog("Error fetching map items", error);
+      }
+    };
 
-      getMapItems();
-    }
-  }, [selectedHotspot, selectedEvent]);
+    getMapItems();
+  }, []);
 
   useEffect(() => {
     debugLog("Map initialization effect triggered");
@@ -183,6 +180,39 @@ export const TampereMap: React.FC = () => {
     };
   }, [tampereCenter]);
 
+  // Update traffic data based on pulse state
+  useEffect(() => {
+    if (!map.current || !mapLoaded) {
+      debugLog("Map not ready for traffic data update");
+      return;
+    }
+
+    if (pulse) {
+      debugLog("Pulse enabled - fetching traffic data");
+      fetchTrafficData()
+        .then(trafficData => {
+          debugLog("Traffic data loaded successfully");
+          if (map.current && map.current.getSource('traffic')) {
+            (map.current.getSource('traffic') as maplibregl.GeoJSONSource).setData(trafficData);
+          }
+        })
+        .catch(error => {
+          console.error("Failed to fetch traffic data:", error);
+          debugLog("Error fetching traffic data");
+        });
+    } else {
+      // Clear traffic lines when pulse is off
+      if (map.current && map.current.getSource('traffic')) {
+        debugLog("Clearing traffic data - pulse off");
+        (map.current.getSource('traffic') as maplibregl.GeoJSONSource).setData({
+          type: "FeatureCollection",
+          features: [],
+        });
+      }
+    }
+  }, [pulse, mapLoaded]);
+
+  // Update map markers and traffic data for selected items
   useEffect(() => {
     if (!map.current || !mapLoaded) {
       debugLog(`Skipping markers update - Map ready: ${!!map.current}, Map loaded: ${mapLoaded}`);
@@ -206,7 +236,7 @@ export const TampereMap: React.FC = () => {
     hotspots.forEach(hotspot => {
       const markerElement = document.createElement("div");
       const dangerClass = hotspot.dangerLevel || "medium";
-      const pulseClass = pulse ? "animate-pulse-effect" : "";
+      const pulseClass = "";  // Remove pulse effect from markers
       const isSelected = selectedHotspot && selectedHotspot.id === hotspot.id;
       
       markerElement.className = `hotspot-marker ${dangerClass} ${pulseClass} ${isSelected ? 'selected' : ''}`.trim();
@@ -233,7 +263,7 @@ export const TampereMap: React.FC = () => {
     debugLog(`Adding ${events.length} event markers`);
     events.forEach(event => {
       const markerElement = document.createElement("div");
-      const pulseClass = pulse ? "animate-pulse-effect" : "";
+      const pulseClass = "";  // Remove pulse effect from markers
       const isSelected = selectedEvent && selectedEvent.id === event.id;
       
       markerElement.innerHTML = `
@@ -266,8 +296,8 @@ export const TampereMap: React.FC = () => {
       markersRef.current[`event-${event.id}`] = marker;
     });
 
-    // Only show additional items when a hotspot or event is selected
-    if (selectedHotspot || selectedEvent) {
+    // Only show additional items when a hotspot or event is selected AND pulse is not active
+    if ((selectedHotspot || selectedEvent) && !pulse) {
       debugLog(`Adding ${mapItems.length} additional map items`);
       mapItems.forEach(item => {
         let markerElement = document.createElement("div");
@@ -300,38 +330,30 @@ export const TampereMap: React.FC = () => {
             break;
           case "business":
             iconHtml = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building">
-                <rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect>
-                <path d="M9 22v-4h6v4"></path>
-                <path d="M8 6h.01"></path>
-                <path d="M16 6h.01"></path>
-                <path d="M12 6h.01"></path>
-                <path d="M12 10h.01"></path>
-                <path d="M12 14h.01"></path>
-                <path d="M16 10h.01"></path>
-                <path d="M16 14h.01"></path>
-                <path d="M8 10h.01"></path>
-                <path d="M8 14h.01"></path>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building-2">
+                <path d="M6 22V2a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v20"></path>
+                <path d="M18 11h3v11"></path>
+                <path d="M3 22h18"></path>
+                <path d="M15 2v7"></path>
+                <rect x="10" y="14" width="2" height="2"></rect>
               </svg>
             `;
-            markerElement.className = "text-gray-800";
+            markerElement.className = "text-orange-600";
             break;
           case "parking":
             iconHtml = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-parking">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-parking-square">
                 <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                <path d="M9 9h4a2 2 0 0 1 0 4h-4"></path>
-                <path d="M9 13v4"></path>
-                <path d="M9 7v2"></path>
+                <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
               </svg>
             `;
-            markerElement.className = "text-blue-500";
+            markerElement.className = "text-blue-800";
             break;
           case "available":
             iconHtml = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
-                <path d="M5 12h14"></path>
-                <path d="M12 5v14"></path>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check">
+                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path>
+                <path d="m9 12 2 2 4-4"></path>
               </svg>
             `;
             markerElement.className = "text-green-500";
@@ -351,58 +373,8 @@ export const TampereMap: React.FC = () => {
 
         markersRef.current[`${item.type}-${item.id}`] = marker;
       });
-      
-      // Update traffic lines data
-      if (map.current.getSource('traffic')) {
-        debugLog("Fetching traffic data for selected item");
-        fetchTrafficData()
-          .then(trafficData => {
-            debugLog("Traffic data loaded successfully");
-            if (map.current && map.current.getSource('traffic')) {
-              (map.current.getSource('traffic') as maplibregl.GeoJSONSource).setData(trafficData);
-            }
-          })
-          .catch(error => {
-            console.error("Failed to fetch traffic data:", error);
-            debugLog("Error fetching traffic data");
-            if (map.current && map.current.getSource('traffic')) {
-              // Set empty traffic data on error
-              (map.current.getSource('traffic') as maplibregl.GeoJSONSource).setData({
-                type: "FeatureCollection",
-                features: [],
-              });
-            }
-          });
-      }
-    } else {
-      // Clear traffic lines when nothing is selected
-      if (map.current && map.current.getSource('traffic')) {
-        debugLog("Clearing traffic data - no selection");
-        (map.current.getSource('traffic') as maplibregl.GeoJSONSource).setData({
-          type: "FeatureCollection",
-          features: [],
-        });
-      }
     }
   }, [hotspots, events, mapItems, selectedHotspot, selectedEvent, pulse, mapLoaded]);
-
-  useEffect(() => {
-    if (!map.current || !mapLoaded) return;
-
-    if (selectedHotspot) {
-      map.current.flyTo({
-        center: selectedHotspot.coordinates,
-        zoom: 15,
-        essential: true,
-      });
-    } else if (selectedEvent) {
-      map.current.flyTo({
-        center: selectedEvent.coordinates,
-        zoom: 15,
-        essential: true,
-      });
-    }
-  }, [selectedHotspot, selectedEvent, mapLoaded]);
 
   const showDetails = selectedEvent !== null || selectedHotspot !== null;
 
@@ -413,6 +385,31 @@ export const TampereMap: React.FC = () => {
       hasSelectedEvent: !!selectedEvent 
     });
   }, [showDetails, selectedHotspot, selectedEvent]);
+
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    if (selectedHotspot || selectedEvent) {
+      const coordinates = selectedHotspot ? selectedHotspot.coordinates : selectedEvent!.coordinates;
+      
+      // Calculate the offset to center vertically and shift slightly left
+      // For half-height map, we need to adjust the pitch and offset
+      const offsetOptions = {
+        // Move point ~30% to the right of center (which appears left-biased in the viewport)
+        offset: [window.innerWidth * 0.15, 0] as [number, number],
+        // Additional options
+        zoom: 15,
+        essential: true,
+        padding: { top: 50, bottom: 50, left: 50, right: 50 }
+      };
+
+      // Fly to the location with the calculated offset
+      map.current.flyTo({
+        center: coordinates,
+        ...offsetOptions
+      });
+    }
+  }, [selectedHotspot, selectedEvent, mapLoaded, showDetails]);
 
   // Debug effect to log container dimensions only on mount and resize
   useEffect(() => {
@@ -468,55 +465,47 @@ export const TampereMap: React.FC = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col">
-      {/* Debug dimensions overlay */}
-      {process.env.NODE_ENV !== 'production' && (
-        <div className="absolute top-0 left-0 z-50 bg-black bg-opacity-70 text-white text-xs p-1 pointer-events-none">
-          W: {mapContainer.current?.offsetWidth || 0} x H: {mapContainer.current?.offsetHeight || 0}
-          {!mapLoaded && " | Map not loaded"}
-          {mapError && " | Error"}
-        </div>
-      )}
-      
-      <div ref={mapContainer} className="w-full h-full flex-grow relative">
+      <div
+        ref={mapContainer}
+        className={`w-full ${showDetails ? 'h-1/2' : 'h-full'} rounded-lg overflow-hidden border border-gray-200 relative`}
+      >
         {mapError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-red-100 bg-opacity-75 z-10">
-            <div className="bg-white p-4 rounded-md shadow-md">
-              <h3 className="text-red-600 font-medium">Map Error</h3>
+          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-10">
+            <div className="text-red-500 text-center p-4">
+              <p className="font-bold">Error</p>
               <p>{mapError}</p>
             </div>
           </div>
         )}
-        {loading && !mapLoaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10">
-            <div className="flex flex-col items-center">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-gray-900"></div>
-              <p className="mt-2 text-gray-600">Loading map...</p>
-            </div>
+        
+        {/* Pulse toggle always visible */}
+        <div className="absolute top-4 left-4 z-10">
+          <PulseToggle 
+            value={pulse} 
+            onChange={(value) => {
+              debugLog(`Pulse toggle changed to: ${value}`);
+              setPulse(value);
+            }} 
+          />
+        </div>
+        
+        {/* TimelineSlider only shown when an event or hotspot is selected */}
+        {showDetails && (
+          <div className="absolute bottom-4 left-4 z-10 w-48">
+            <TimelineSlider
+              value={timelineRange}
+              onChange={setTimelineRange}
+              label="Timeline"
+              compact={true}
+            />
           </div>
         )}
       </div>
       
-      {/* Map controls - moved to top-left to avoid collision with navigation controls */}
-      <div className="absolute top-4 left-4 z-10">
-        <PulseToggle value={pulse} onChange={value => useTampere().setPulse(value)} />
-      </div>
-      
-      {/* Only show these components when a hotspot or event is selected */}
       {showDetails && (
-        <>
-          <div className="absolute bottom-4 right-4 z-10">
-            <MapLegend />
-          </div>
-          
-          <div className="absolute bottom-4 left-4 z-10 w-48">
-            <TimelineSlider 
-              value={timelineRange} 
-              onChange={setTimelineRange} 
-              compact={true}
-              label="Timeline"
-            />
-          </div>
-        </>
+        <div className="w-full h-1/2 relative p-4">
+          {/* Lower half section - empty for now */}
+        </div>
       )}
     </div>
   );

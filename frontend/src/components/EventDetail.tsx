@@ -15,10 +15,16 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event, onEventClick })
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log(`🔍 EVENT DETAIL: Fetching similar events for event id=${event.id}, name=${event.name}, date=${event.date}`);
+    
     const getSimilarEvents = async () => {
       setLoading(true);
       try {
         const events = await fetchSimilarEvents(event.id);
+        console.log(`🔍 EVENT DETAIL: Received ${events.length} similar events for event id=${event.id}`);
+        events.forEach((similarEvent, index) => {
+          console.log(`  Similar Event ${index+1}: id=${similarEvent.id}, name=${similarEvent.name}, date=${similarEvent.date}`);
+        });
         setSimilarEvents(events);
       } catch (error) {
         console.error("Failed to fetch similar events:", error);
@@ -29,7 +35,12 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event, onEventClick })
     };
 
     getSimilarEvents();
-  }, [event.id]);
+  }, [event.id, event.name, event.date]);
+
+  const handleSimilarEventClick = (similarEvent: Event) => {
+    console.log(`🔍 EVENT DETAIL: Similar event clicked - id=${similarEvent.id}, name=${similarEvent.name}, date=${similarEvent.date}`);
+    onEventClick(similarEvent);
+  };
 
   return (
     <div className="space-y-6">
@@ -89,7 +100,7 @@ export const EventDetail: React.FC<EventDetailProps> = ({ event, onEventClick })
               <EventCard 
                 key={event.id} 
                 event={event} 
-                onClick={() => onEventClick(event)}
+                onClick={() => handleSimilarEventClick(event)}
                 showDate={true}
               />
             ))}

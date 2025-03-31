@@ -11,7 +11,7 @@ export const HotspotsList: React.FC = () => {
   };
 
   return (
-    <div className="mb-6">
+    <div>
       <div className="mb-2 font-medium">Hotspots</div>
       <div className="space-y-1.5 max-h-[290px] overflow-y-auto pr-2">
         {hotspots.map((hotspot) => (

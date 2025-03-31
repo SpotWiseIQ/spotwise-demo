@@ -1,4 +1,3 @@
-
 import React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -18,6 +17,20 @@ interface DateSelectorProps {
 }
 
 export const DateSelector: React.FC<DateSelectorProps> = ({ date, onSelect }) => {
+  const handleDateSelect = (newDate: Date | undefined) => {
+    if (!newDate) return;
+    
+    // Fix timezone issue by setting time to noon to avoid date shifts
+    const fixedDate = new Date(newDate);
+    fixedDate.setHours(12, 0, 0, 0);
+    
+    console.log(`📅 DATE SELECTOR: Selected date ${format(newDate, "yyyy-MM-dd")}`);
+    console.log(`📅 DATE SELECTOR: Current state date is ${format(date, "yyyy-MM-dd")}`);
+    console.log(`📅 DATE SELECTOR: Fixed date is ${format(fixedDate, "yyyy-MM-dd")}`);
+    
+    onSelect(fixedDate);
+  };
+  
   return (
     <div className="flex items-center space-x-4">
       <div className="font-medium">{format(date, "EEEE")}</div>
@@ -37,7 +50,7 @@ export const DateSelector: React.FC<DateSelectorProps> = ({ date, onSelect }) =>
           <Calendar
             mode="single"
             selected={date}
-            onSelect={(date) => date && onSelect(date)}
+            onSelect={handleDateSelect}
             initialFocus
             className="p-3 pointer-events-auto"
           />

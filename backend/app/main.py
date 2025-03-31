@@ -12,6 +12,7 @@ from app.database import (
     get_events_by_date,
     get_event_by_id,
     get_similar_events,
+    get_similar_hotspots,
     get_map_items,
     get_traffic_data,
     TAMPERE_CENTER,
@@ -71,6 +72,13 @@ async def read_hotspot(hotspot_id: str):
         logger.warning(f"Hotspot with ID {hotspot_id} not found")
         raise HTTPException(status_code=404, detail="Hotspot not found")
     return hotspot
+
+
+@app.get("/hotspots/{hotspot_id}/similar", response_model=List[Hotspot])
+async def read_similar_hotspots(hotspot_id: str):
+    """Get similar hotspots to a specific hotspot"""
+    logger.info(f"Similar hotspots requested for hotspot ID: {hotspot_id}")
+    return get_similar_hotspots(hotspot_id)
 
 
 @app.get("/events", response_model=List[Event])
