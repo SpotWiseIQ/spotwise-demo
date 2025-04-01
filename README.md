@@ -22,7 +22,36 @@ The backend is a FastAPI application providing all the data for the frontend:
 
 ## Setup and Running
 
-### Backend
+### Prerequisites
+
+- Node.js and npm for the frontend
+- Python 3.12 (specified in `.python-version`)
+- `uv` for Python package management
+
+### Quick Start
+
+You can use the following npm scripts to manage the project:
+
+```bash
+# Install all dependencies
+npm run install:all
+
+# Build the backend (using uv)
+npm run backend:build
+
+# Start the backend development server
+npm run backend:dev
+
+# Start the frontend development server
+npm run frontend:dev
+
+# Build the frontend for production
+npm run frontend:build
+```
+
+### Manual Setup
+
+#### Backend
 
 1. Navigate to the backend directory:
 
@@ -30,13 +59,19 @@ The backend is a FastAPI application providing all the data for the frontend:
 cd backend
 ```
 
-2. Activate the virtual environment:
+2. Build the backend using uv:
+
+```bash
+uv sync
+```
+
+3. Activate the virtual environment:
 
 ```bash
 source ./.venv/bin/activate
 ```
 
-3. Run the backend:
+4. Run the backend:
 
 ```bash
 python main.py
@@ -44,7 +79,7 @@ python main.py
 
 The backend will be running at http://localhost:8000. API documentation is available at http://localhost:8000/docs.
 
-### Frontend
+#### Frontend
 
 1. Navigate to the frontend directory:
 
