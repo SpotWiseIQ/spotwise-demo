@@ -32,30 +32,27 @@ export const DateSelector: React.FC<DateSelectorProps> = ({ date, onSelect }) =>
   };
   
   return (
-    <div className="flex items-center space-x-4">
-      <div className="font-medium">{format(date, "EEEE")}</div>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            className={cn(
-              "w-[140px] justify-start text-left font-normal border border-gray-300",
-            )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {format(date, "dd.MM.yyyy")}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0 z-50 bg-white" align="start">
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={handleDateSelect}
-            initialFocus
-            className="p-3 pointer-events-auto"
-          />
-        </PopoverContent>
-      </Popover>
-    </div>
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          className={cn(
+            "w-[120px] justify-center text-center font-normal border border-gray-300 px-1",
+          )}
+        >
+          <CalendarIcon className="mr-1 h-4 w-4" />
+          {format(date, "dd.MM.yy")}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0 z-50 bg-white" align="start">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={handleDateSelect}
+          initialFocus
+          className="p-3 pointer-events-auto"
+        />
+      </PopoverContent>
+    </Popover>
   );
 };

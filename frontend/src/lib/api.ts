@@ -177,4 +177,46 @@ export const fetchSimilarHotspots = async (hotspotId: string): Promise<Hotspot[]
     debugLog(`Exception in fetchSimilarHotspots`, error);
     throw error;
   }
+};
+
+// Mock data for foot traffic
+const generateFootTrafficData = (hotspotId: string) => {
+  const currentHour = new Date().getHours();
+  const data = [];
+  
+  // Generate past data (0 to current hour)
+  for (let hour = 0; hour <= currentHour; hour++) {
+    const baseValue = Math.floor(Math.random() * 50) + 10; // Random value between 10-60
+    const timeMultiplier = hour >= 8 && hour <= 18 ? 2 : 1; // More traffic during day
+    
+    data.push({
+      hour,
+      value: baseValue * timeMultiplier,
+      type: 'past' as const
+    });
+  }
+  
+  // Generate predicted data (current hour to 24)
+  for (let hour = currentHour + 1; hour < 24; hour++) {
+    const baseValue = Math.floor(Math.random() * 50) + 10;
+    const timeMultiplier = hour >= 8 && hour <= 18 ? 2 : 1;
+    
+    data.push({
+      hour,
+      value: baseValue * timeMultiplier,
+      type: 'predicted' as const
+    });
+  }
+  
+  return data;
+};
+
+// Function to fetch foot traffic data for a hotspot
+export const fetchHotspotFootTraffic = async (hotspotId: string) => {
+  // For now we're using mock data, but in a real app this would be a fetch call
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(generateFootTrafficData(hotspotId));
+    }, 300); // Add a small delay to simulate network request
+  });
 }; 

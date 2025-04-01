@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Event, Hotspot, TimelineRange } from "./types";
-import { fetchHotspots, fetchEvents } from "./api";
+import { fetchHotspots, fetchEvents, fetchHotspotFootTraffic } from "./api";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -22,6 +22,9 @@ interface TampereContextType {
   events: Event[];
   loading: boolean;
   error: string | null;
+  timePeriod: 'real-time' | 'daily' | 'weekly' | 'monthly';
+  setTimePeriod: (period: 'real-time' | 'daily' | 'weekly' | 'monthly') => void;
+  loadHotspotFootTraffic: (hotspotId: string) => Promise<any>;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -36,6 +39,7 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [pulse, setPulse] = useState<boolean>(false);
+  const [timePeriod, setTimePeriod] = useState<'real-time' | 'daily' | 'weekly' | 'monthly'>('real-time');
   
   // State for API data
   const [hotspots, setHotspots] = useState<Hotspot[]>([]);
@@ -169,6 +173,20 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     });
   }, [hotspots, events, selectedHotspot, selectedEvent, loading, error]);
 
+  // Function to load foot traffic data for a specific hotspot
+  const loadHotspotFootTraffic = async (hotspotId: string) => {
+    debugLog(`Loading foot traffic data for hotspot ${hotspotId}`);
+    try {
+      const data = await fetchHotspotFootTraffic(hotspotId);
+      debugLog(`Fetched foot traffic data for hotspot ${hotspotId}`, data);
+      return data;
+    } catch (err) {
+      console.error(`Failed to fetch foot traffic for hotspot ${hotspotId}:`, err);
+      debugLog(`Error fetching foot traffic for hotspot ${hotspotId}`, err);
+      throw new Error("Failed to fetch foot traffic data.");
+    }
+  };
+
   return (
     <TampereContext.Provider
       value={{
@@ -186,6 +204,9 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         events,
         loading,
         error,
+        timePeriod,
+        setTimePeriod,
+        loadHotspotFootTraffic,
       }}
     >
       {children}

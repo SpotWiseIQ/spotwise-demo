@@ -1,4 +1,3 @@
-
 export type DangerLevel = 'high' | 'medium' | 'low';
 export type WeatherType = 'sunny' | 'clouded' | 'rainy' | 'snowy';
 
@@ -9,6 +8,11 @@ export interface Hotspot {
   dangerLevel: DangerLevel;
   weather: WeatherType;
   coordinates: [number, number]; // [longitude, latitude]
+  footTraffic?: {
+    hour: number;
+    value: number;
+    type: 'past' | 'current' | 'predicted';
+  }[];
 }
 
 export interface Event {

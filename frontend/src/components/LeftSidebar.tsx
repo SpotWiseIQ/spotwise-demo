@@ -6,6 +6,13 @@ import { HotspotsList } from "./HotspotsList";
 import { EventsList } from "./EventsList";
 import { EventDetail } from "./EventDetail";
 import { HotspotDetail } from "./HotspotDetail";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const LeftSidebar: React.FC = () => {
   const { 
@@ -16,7 +23,9 @@ export const LeftSidebar: React.FC = () => {
     selectedEvent,
     setSelectedEvent,
     selectedHotspot,
-    setSelectedHotspot
+    setSelectedHotspot,
+    timePeriod,
+    setTimePeriod
   } = useTampere();
 
   // Track view changes
@@ -46,7 +55,35 @@ export const LeftSidebar: React.FC = () => {
             <span className="text-tampere-red">Tampere</span> hot spots
           </a>
         </h1>
-        <DateSelector date={selectedDate} onSelect={setSelectedDate} />
+        <div className="mb-4">
+          <Select value={timePeriod} onValueChange={(value) => setTimePeriod(value as 'real-time' | 'daily' | 'weekly' | 'monthly')}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select time period" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="real-time">Real-time</SelectItem>
+              <SelectItem value="daily">Daily</SelectItem>
+              <SelectItem value="weekly">Weekly</SelectItem>
+              <SelectItem value="monthly">Monthly</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        {timePeriod === 'real-time' ? (
+          <div className="flex gap-2">
+            <div className="flex-none translate-y-[10px]">
+              <DateSelector date={selectedDate} onSelect={setSelectedDate} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <TimelineSlider
+                value={timelineRange}
+                onChange={setTimelineRange}
+                label=""
+              />
+            </div>
+          </div>
+        ) : (
+          <DateSelector date={selectedDate} onSelect={setSelectedDate} />
+        )}
       </div>
 
       {selectedEvent ? (
@@ -67,13 +104,15 @@ export const LeftSidebar: React.FC = () => {
         />
       ) : (
         <>
-          <div className="mb-6 pr-2">
-            <TimelineSlider
-              value={timelineRange}
-              onChange={setTimelineRange}
-              label="Timeline"
-            />
-          </div>
+          {timePeriod !== 'real-time' && (
+            <div className="mb-6 pr-2">
+              <TimelineSlider
+                value={timelineRange}
+                onChange={setTimelineRange}
+                label="Timeline"
+              />
+            </div>
+          )}
           <HotspotsList />
           <EventsList />
         </>
