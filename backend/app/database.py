@@ -444,29 +444,74 @@ def get_hotspot_foot_traffic(hotspot_id: str) -> List[FootTrafficData]:
             )
         )
 
-    print(
-        f"🔍 DEBUG: First predicted data point - hour: {current_hour}, value: {hour_values[current_hour]}"
-    )
+    return data
 
-    # Print all data points for debugging
-    hour_data_pairs = [(item.hour, item.value, item.type) for item in data]
-    print(f"🔍 DEBUG: All data points: {hour_data_pairs}")
 
-    # Check for continuity
-    hours_set = set(item.hour for item in data)
+def get_event_foot_traffic(event_id: str) -> List[FootTrafficData]:
+    """Generate foot traffic data for a specific event.
+
+    Similar to hotspot foot traffic, but with a different pattern that peaks around event time.
+    """
+    current_hour = datetime.now().hour
+    data = []
+
+    # Generate a seed based on the event ID to ensure consistent data for the same event
+    seed = sum(ord(c) for c in event_id)
+    random.seed(seed)
+
+    # Find the event to adjust traffic based on event details
+    event = get_event_by_id(event_id)
+    if not event:
+        return []
+
+    # Parse event time to get hour
+    event_hour = 12  # Default to noon if we can't parse
+    try:
+        if event.time and ":" in event.time:
+            event_hour = int(event.time.split(":")[0])
+    except Exception:
+        pass
+
+    # Generate values for all hours with peak around event time
+    hour_values = {}
     for hour in range(0, 24):
-        if hour not in hours_set:
-            print(f"⚠️ WARNING: Missing hour {hour} in data")
+        # Base traffic is low
+        base_value = random.randint(5, 20)
 
-    # Check duplicate hours
-    hour_counts = {}
-    for item in data:
-        hour_counts[item.hour] = hour_counts.get(item.hour, 0) + 1
+        # Traffic ramps up before event, peaks during, and decreases after
+        time_factor = 1.0
+        hours_to_event = abs(hour - event_hour)
 
-    for hour, count in hour_counts.items():
-        if count > 1:
-            print(
-                f"🔍 DEBUG: Hour {hour} appears {count} times - current_hour: {current_hour}"
+        if hours_to_event == 0:  # During event
+            time_factor = 5.0
+        elif hours_to_event == 1:  # 1 hour before/after
+            time_factor = 3.0
+        elif hours_to_event == 2:  # 2 hours before/after
+            time_factor = 2.0
+        elif hours_to_event <= 4:  # Up to 4 hours before/after
+            time_factor = 1.5
+
+        hour_values[hour] = int(base_value * time_factor)
+
+    # Generate past data (0 to current hour)
+    for hour in range(0, current_hour + 1):
+        data.append(
+            FootTrafficData(
+                hour=hour,
+                value=hour_values[hour],
+                type=FootTrafficType.PAST,
             )
+        )
+
+    # Generate predicted data (current hour to 23)
+    # Note: current hour is included in both past and predicted
+    for hour in range(current_hour, 24):
+        data.append(
+            FootTrafficData(
+                hour=hour,
+                value=hour_values[hour],
+                type=FootTrafficType.PREDICTED,
+            )
+        )
 
     return data

@@ -205,4 +205,32 @@ export const fetchHotspotFootTraffic = async (hotspotId: string) => {
     debugLog(`Exception in fetchHotspotFootTraffic`, error);
     throw error;
   }
+};
+
+// Function to fetch foot traffic data for an event
+export const fetchEventFootTraffic = async (eventId: string) => {
+  const timestamp = new Date().getTime();
+  const url = `${API_BASE_URL}/events/${eventId}/foot-traffic?_=${timestamp}`;
+  
+  console.log(`🔌 API: FETCH_EVENT_FOOT_TRAFFIC START for eventId=${eventId}`);
+  debugLog(`GET ${url}`);
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error fetching event foot traffic: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch event foot traffic data');
+    }
+    
+    const data = await response.json();
+    console.log(`🔌 API: FETCH_EVENT_FOOT_TRAFFIC COMPLETED for eventId=${eventId}`);
+    
+    debugLog(`Event foot traffic data received`, { eventId, dataPoints: data.length });
+    return data;
+  } catch (error) {
+    console.log(`🔌 API: FETCH_EVENT_FOOT_TRAFFIC ERROR for eventId=${eventId}`, error);
+    debugLog(`Exception in fetchEventFootTraffic`, error);
+    throw error;
+  }
 }; 

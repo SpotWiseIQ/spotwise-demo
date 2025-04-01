@@ -16,6 +16,7 @@ from app.database import (
     get_map_items,
     get_traffic_data,
     get_hotspot_foot_traffic,
+    get_event_foot_traffic,
     TAMPERE_CENTER,
 )
 
@@ -141,5 +142,21 @@ async def read_hotspot_foot_traffic(hotspot_id: str):
     foot_traffic = get_hotspot_foot_traffic(hotspot_id)
     logger.info(
         f"Retrieved {len(foot_traffic)} foot traffic data points for hotspot ID: {hotspot_id}"
+    )
+    return foot_traffic
+
+
+@app.get("/events/{event_id}/foot-traffic", response_model=List[FootTrafficData])
+async def read_event_foot_traffic(event_id: str):
+    """Get foot traffic data for a specific event"""
+    logger.info(f"Foot traffic data requested for event ID: {event_id}")
+    event = get_event_by_id(event_id)
+    if not event:
+        logger.warning(f"Event with ID {event_id} not found")
+        raise HTTPException(status_code=404, detail="Event not found")
+
+    foot_traffic = get_event_foot_traffic(event_id)
+    logger.info(
+        f"Retrieved {len(foot_traffic)} foot traffic data points for event ID: {event_id}"
     )
     return foot_traffic

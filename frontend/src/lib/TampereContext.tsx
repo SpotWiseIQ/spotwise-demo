@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Event, Hotspot, TimelineRange } from "./types";
-import { fetchHotspots, fetchEvents, fetchHotspotFootTraffic } from "./api";
+import { fetchHotspots, fetchEvents, fetchHotspotFootTraffic, fetchEventFootTraffic } from "./api";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -25,6 +25,7 @@ interface TampereContextType {
   timePeriod: 'real-time' | 'daily' | 'weekly' | 'monthly';
   setTimePeriod: (period: 'real-time' | 'daily' | 'weekly' | 'monthly') => void;
   loadHotspotFootTraffic: (hotspotId: string) => Promise<any>;
+  loadEventFootTraffic: (eventId: string) => Promise<any>;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -187,6 +188,20 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   };
 
+  // Function to load foot traffic data for a specific event
+  const loadEventFootTraffic = async (eventId: string) => {
+    debugLog(`Loading foot traffic data for event ${eventId}`);
+    try {
+      const data = await fetchEventFootTraffic(eventId);
+      debugLog(`Fetched foot traffic data for event ${eventId}`, data);
+      return data;
+    } catch (err) {
+      console.error(`Failed to fetch foot traffic for event ${eventId}:`, err);
+      debugLog(`Error fetching foot traffic for event ${eventId}`, err);
+      throw new Error("Failed to fetch event foot traffic data.");
+    }
+  };
+
   return (
     <TampereContext.Provider
       value={{
@@ -206,7 +221,8 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         error,
         timePeriod,
         setTimePeriod,
-        loadHotspotFootTraffic
+        loadHotspotFootTraffic,
+        loadEventFootTraffic
       }}
     >
       {children}
