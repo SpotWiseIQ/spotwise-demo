@@ -1,11 +1,11 @@
-export type DangerLevel = 'high' | 'medium' | 'low';
+export type TrafficLevel = 'high' | 'medium' | 'low';
 export type WeatherType = 'sunny' | 'clouded' | 'rainy' | 'snowy';
 
 export interface Hotspot {
   id: string;
   label: string;
   address: string;
-  dangerLevel: DangerLevel;
+  trafficLevel: TrafficLevel;
   weather: WeatherType;
   coordinates: [number, number]; // [longitude, latitude]
   footTraffic?: {

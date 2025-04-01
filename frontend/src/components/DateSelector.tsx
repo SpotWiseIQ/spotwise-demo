@@ -37,10 +37,10 @@ export const DateSelector: React.FC<DateSelectorProps> = ({ date, onSelect }) =>
         <Button
           variant="outline"
           className={cn(
-            "w-[120px] justify-center text-center font-normal border border-gray-300 px-1",
+            "w-[120px] justify-center text-center font-normal border border-gray-300 px-1 py-1 h-8 text-xs",
           )}
         >
-          <CalendarIcon className="mr-1 h-4 w-4" />
+          <CalendarIcon className="mr-1 h-3 w-3" />
           {format(date, "dd.MM.yy")}
         </Button>
       </PopoverTrigger>

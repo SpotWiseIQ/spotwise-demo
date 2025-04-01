@@ -49,15 +49,15 @@ export const LeftSidebar: React.FC = () => {
 
   return (
     <div className="p-6 h-full overflow-y-auto overflow-x-hidden">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-6">
+      <div className="mb-3">
+        <h1 className="text-xl font-bold mb-2">
           <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
             <span className="text-tampere-red">Tampere</span> hot spots
           </a>
         </h1>
-        <div className="mb-4">
+        <div className="mb-2">
           <Select value={timePeriod} onValueChange={(value) => setTimePeriod(value as 'real-time' | 'daily' | 'weekly' | 'monthly')}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full py-1 h-8 text-xs">
               <SelectValue placeholder="Select time period" />
             </SelectTrigger>
             <SelectContent>
@@ -70,7 +70,7 @@ export const LeftSidebar: React.FC = () => {
         </div>
         {timePeriod === 'real-time' ? (
           <div className="flex gap-2">
-            <div className="flex-none translate-y-[10px]">
+            <div className="flex-none translate-y-[15px]">
               <DateSelector date={selectedDate} onSelect={setSelectedDate} />
             </div>
             <div className="flex-1 min-w-0">
@@ -105,11 +105,12 @@ export const LeftSidebar: React.FC = () => {
       ) : (
         <>
           {timePeriod !== 'real-time' && (
-            <div className="mb-6 pr-2">
+            <div className="mb-4 pr-2">
               <TimelineSlider
                 value={timelineRange}
                 onChange={setTimelineRange}
                 label="Timeline"
+                compact={true}
               />
             </div>
           )}

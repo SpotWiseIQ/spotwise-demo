@@ -235,11 +235,11 @@ export const TampereMap: React.FC = () => {
     debugLog(`Adding ${hotspots.length} hotspot markers`);
     hotspots.forEach(hotspot => {
       const markerElement = document.createElement("div");
-      const dangerClass = hotspot.dangerLevel || "medium";
+      const trafficClass = hotspot.trafficLevel || "medium";
       const pulseClass = "";  // Remove pulse effect from markers
       const isSelected = selectedHotspot && selectedHotspot.id === hotspot.id;
       
-      markerElement.className = `hotspot-marker ${dangerClass} ${pulseClass} ${isSelected ? 'selected' : ''}`.trim();
+      markerElement.className = `hotspot-marker ${trafficClass} ${pulseClass} ${isSelected ? 'selected' : ''}`.trim();
       markerElement.textContent = hotspot.label;
       
       markerElement.addEventListener('click', () => {

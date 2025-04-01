@@ -3,7 +3,7 @@ from typing import List, Optional, Tuple, Literal
 from pydantic import BaseModel
 
 
-class DangerLevel(str, Enum):
+class TrafficLevel(str, Enum):
     HIGH = "high"
     MEDIUM = "medium"
     LOW = "low"
@@ -16,11 +16,23 @@ class WeatherType(str, Enum):
     SNOWY = "snowy"
 
 
+class FootTrafficType(str, Enum):
+    PAST = "past"
+    CURRENT = "current"
+    PREDICTED = "predicted"
+
+
+class FootTrafficData(BaseModel):
+    hour: int
+    value: int
+    type: FootTrafficType
+
+
 class Hotspot(BaseModel):
     id: str
     label: str
     address: str
-    dangerLevel: DangerLevel
+    trafficLevel: TrafficLevel
     weather: WeatherType
     coordinates: Tuple[float, float]  # [longitude, latitude]
 

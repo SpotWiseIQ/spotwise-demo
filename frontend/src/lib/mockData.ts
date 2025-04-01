@@ -1,4 +1,3 @@
-
 import { Event, Hotspot, MapItem } from "./types";
 
 // Tampere coordinates: 61.4978, 23.7610
@@ -9,7 +8,7 @@ export const mockHotspots: Hotspot[] = [
     id: "1",
     label: "A",
     address: "Address 1",
-    dangerLevel: "high",
+    trafficLevel: "high",
     weather: "sunny",
     coordinates: [23.775, 61.4998],
   },
@@ -17,7 +16,7 @@ export const mockHotspots: Hotspot[] = [
     id: "2",
     label: "B",
     address: "Address 2",
-    dangerLevel: "high",
+    trafficLevel: "high",
     weather: "clouded",
     coordinates: [23.745, 61.4990],
   },
@@ -25,7 +24,7 @@ export const mockHotspots: Hotspot[] = [
     id: "3",
     label: "C",
     address: "Address 3",
-    dangerLevel: "medium",
+    trafficLevel: "medium",
     weather: "clouded",
     coordinates: [23.755, 61.4960],
   },
@@ -33,7 +32,7 @@ export const mockHotspots: Hotspot[] = [
     id: "4",
     label: "D",
     address: "Address 4",
-    dangerLevel: "medium",
+    trafficLevel: "medium",
     weather: "sunny",
     coordinates: [23.765, 61.4940],
   },

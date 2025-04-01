@@ -111,15 +111,15 @@
   box-shadow: 0 0 0 2px #ea384c;
 }
 
-.bg-danger-high {
+.bg-traffic-high {
   background-color: #ea384c;
 }
 
-.bg-danger-medium {
+.bg-traffic-medium {
   background-color: #ffc107;
 }
 
-.bg-danger-low {
+.bg-traffic-low {
   background-color: #4caf50;
 }
 

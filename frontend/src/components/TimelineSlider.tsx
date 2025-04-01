@@ -64,7 +64,7 @@ export const TimelineSlider: React.FC<TimelineSliderProps> = ({
 
   return (
     <div className={`${compact ? 'w-full max-w-xs' : 'w-full'}`}>
-      <div className="space-y-2">
+      <div className={`${compact ? 'space-y-1' : 'space-y-2'}`}>
         <div className="text-center text-xs text-gray-600">{currentTime}</div>
         <div className="flex items-center">
           <div className="text-xs text-gray-500 mr-2">00:00</div>
@@ -76,11 +76,11 @@ export const TimelineSlider: React.FC<TimelineSliderProps> = ({
             step={0.069} // 1 minute steps (100/1440 minutes in a day)
             aria-label={label}
           >
-            <SliderPrimitive.Track className="relative h-1 w-full grow rounded-full bg-tampere-red">
+            <SliderPrimitive.Track className={`relative ${compact ? 'h-0.5' : 'h-1'} w-full grow rounded-full bg-tampere-red`}>
               <SliderPrimitive.Range className="absolute h-full bg-tampere-red" />
             </SliderPrimitive.Track>
             <SliderPrimitive.Thumb 
-              className="block h-4 w-1.5 rounded-none bg-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 cursor-pointer hover:bg-gray-700 transition-colors"
+              className={`block ${compact ? 'h-3 w-1' : 'h-4 w-1.5'} rounded-none bg-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 cursor-pointer hover:bg-gray-700 transition-colors`}
             />
           </SliderPrimitive.Root>
           <div className="text-xs text-gray-500 ml-2">23:59</div>

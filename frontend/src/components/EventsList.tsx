@@ -33,7 +33,7 @@ export const EventsList: React.FC = () => {
   };
 
   return (
-    <div className="mt-6">
+    <div className="mt-4">
       <div className="mb-2 font-medium">Today's events</div>
       <div className="space-y-1.5 max-h-[290px] overflow-y-auto pr-2">
         {loading ? (

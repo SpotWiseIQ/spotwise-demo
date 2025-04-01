@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 from datetime import datetime
 
-from app.models import Hotspot, Event, MapItem, TrafficData
+from app.models import Hotspot, Event, MapItem, TrafficData, FootTrafficData
 from app.database import (
     get_all_hotspots,
     get_hotspot_by_id,
@@ -15,6 +15,7 @@ from app.database import (
     get_similar_hotspots,
     get_map_items,
     get_traffic_data,
+    get_hotspot_foot_traffic,
     TAMPERE_CENTER,
 )
 
@@ -126,3 +127,19 @@ async def read_traffic_data():
     """Get traffic data for the map"""
     logger.info("Traffic data requested")
     return get_traffic_data()
+
+
+@app.get("/hotspots/{hotspot_id}/foot-traffic", response_model=List[FootTrafficData])
+async def read_hotspot_foot_traffic(hotspot_id: str):
+    """Get foot traffic data for a specific hotspot"""
+    logger.info(f"Foot traffic data requested for hotspot ID: {hotspot_id}")
+    hotspot = get_hotspot_by_id(hotspot_id)
+    if not hotspot:
+        logger.warning(f"Hotspot with ID {hotspot_id} not found")
+        raise HTTPException(status_code=404, detail="Hotspot not found")
+
+    foot_traffic = get_hotspot_foot_traffic(hotspot_id)
+    logger.info(
+        f"Retrieved {len(foot_traffic)} foot traffic data points for hotspot ID: {hotspot_id}"
+    )
+    return foot_traffic

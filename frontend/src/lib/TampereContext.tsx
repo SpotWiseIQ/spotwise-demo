@@ -206,7 +206,7 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         error,
         timePeriod,
         setTimePeriod,
-        loadHotspotFootTraffic,
+        loadHotspotFootTraffic
       }}
     >
       {children}

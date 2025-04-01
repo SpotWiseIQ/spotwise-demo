@@ -11,9 +11,9 @@ export const HotspotsList: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="mt-6">
       <div className="mb-2 font-medium">Hotspots</div>
-      <div className="space-y-1.5 max-h-[290px] overflow-y-auto pr-2">
+      <div className="space-y-1.5 pr-2">
         {hotspots.map((hotspot) => (
           <HotspotMarker
             key={hotspot.id}

@@ -1,7 +1,8 @@
 import os
 import json
+import random
 from app.models import (
-    DangerLevel,
+    TrafficLevel,
     WeatherType,
     Hotspot,
     Event,
@@ -12,6 +13,8 @@ from app.models import (
     TrafficFeatureProperties,
     TrafficLineCoordinates,
     TrafficData,
+    FootTrafficType,
+    FootTrafficData,
 )
 from typing import List, Dict, Callable
 from datetime import datetime
@@ -26,7 +29,7 @@ hotspots: List[Hotspot] = [
         id="1",
         label="A",
         address="Address 1",
-        dangerLevel=DangerLevel.HIGH,
+        trafficLevel=TrafficLevel.HIGH,
         weather=WeatherType.SUNNY,
         coordinates=(23.775, 61.4998),
     ),
@@ -34,7 +37,7 @@ hotspots: List[Hotspot] = [
         id="2",
         label="B",
         address="Address 2",
-        dangerLevel=DangerLevel.HIGH,
+        trafficLevel=TrafficLevel.HIGH,
         weather=WeatherType.CLOUDED,
         coordinates=(23.745, 61.4990),
     ),
@@ -42,7 +45,7 @@ hotspots: List[Hotspot] = [
         id="3",
         label="C",
         address="Address 3",
-        dangerLevel=DangerLevel.MEDIUM,
+        trafficLevel=TrafficLevel.MEDIUM,
         weather=WeatherType.CLOUDED,
         coordinates=(23.755, 61.4960),
     ),
@@ -50,7 +53,7 @@ hotspots: List[Hotspot] = [
         id="4",
         label="D",
         address="Address 4",
-        dangerLevel=DangerLevel.MEDIUM,
+        trafficLevel=TrafficLevel.MEDIUM,
         weather=WeatherType.SUNNY,
         coordinates=(23.765, 61.4940),
     ),
@@ -354,15 +357,16 @@ def get_similar_events(event_id: str) -> List[Event]:
 
 
 def get_similar_hotspots(hotspot_id: str) -> List[Hotspot]:
+    """Get similar hotspots to a specific hotspot."""
     hotspot = get_hotspot_by_id(hotspot_id)
     if not hotspot:
         return []
 
-    # First get hotspots with similar danger level
-    similar_danger = [
+    # First get hotspots with similar traffic level
+    similar_traffic = [
         h
         for h in hotspots
-        if h.dangerLevel == hotspot.dangerLevel and h.id != hotspot_id
+        if h.trafficLevel == hotspot.trafficLevel and h.id != hotspot_id
     ]
 
     # Then get hotspots with similar weather
@@ -371,19 +375,98 @@ def get_similar_hotspots(hotspot_id: str) -> List[Hotspot]:
         for h in hotspots
         if h.weather == hotspot.weather
         and h.id != hotspot_id
-        and h not in similar_danger
+        and h not in similar_traffic
     ]
 
-    # Combine them, prioritizing similar danger level
-    result = similar_danger + similar_weather
-
-    # If we still don't have enough, add other hotspots
-    if len(result) < 3:
-        other_hotspots = [h for h in hotspots if h.id != hotspot_id and h not in result]
-        result.extend(other_hotspots)
-
-    return result[:4]  # Return up to 4 similar hotspots
+    # Combine them, prioritizing similar traffic level
+    result = similar_traffic + similar_weather
+    return result[:3]  # Return at most 3 similar hotspots
 
 
 def get_map_items() -> List[MapItem]:
+    """Get all map items."""
     return map_items
+
+
+def get_hotspot_foot_traffic(hotspot_id: str) -> List[FootTrafficData]:
+    """Generate foot traffic data for a specific hotspot.
+
+    Creates a dataset with past data (hours 0 to current) and predicted data (hours current to 23),
+    ensuring a seamless transition at the current hour by including the current hour in both datasets.
+    """
+    current_hour = datetime.now().hour
+    data = []
+
+    # Generate a seed based on the hotspot ID to ensure consistent data for the same hotspot
+    seed = sum(ord(c) for c in hotspot_id)
+    random.seed(seed)
+
+    # Find the hotspot to adjust traffic based on traffic level
+    hotspot = get_hotspot_by_id(hotspot_id)
+    traffic_multiplier = 1.0
+    if hotspot:
+        if hotspot.trafficLevel == TrafficLevel.HIGH:
+            traffic_multiplier = 2.0
+        elif hotspot.trafficLevel == TrafficLevel.MEDIUM:
+            traffic_multiplier = 1.5
+
+    # Generate values for all hours
+    hour_values = {}
+    for hour in range(0, 24):
+        base_value = random.randint(10, 60)
+        time_multiplier = 2 if (hour >= 8 and hour <= 18) else 1
+        hour_values[hour] = int(base_value * time_multiplier * traffic_multiplier)
+
+    print(f"🔍 DEBUG: Current hour is {current_hour}")
+
+    # Generate past data (0 to current hour)
+    for hour in range(0, current_hour + 1):
+        data.append(
+            FootTrafficData(
+                hour=hour,
+                value=hour_values[hour],
+                type=FootTrafficType.PAST,
+            )
+        )
+
+    print(
+        f"🔍 DEBUG: Last past data point - hour: {current_hour}, value: {hour_values[current_hour]}"
+    )
+
+    # Generate predicted data (current hour to 23)
+    # Note: current hour is included in both past and predicted
+    for hour in range(current_hour, 24):
+        data.append(
+            FootTrafficData(
+                hour=hour,
+                value=hour_values[hour],
+                type=FootTrafficType.PREDICTED,
+            )
+        )
+
+    print(
+        f"🔍 DEBUG: First predicted data point - hour: {current_hour}, value: {hour_values[current_hour]}"
+    )
+
+    # Print all data points for debugging
+    hour_data_pairs = [(item.hour, item.value, item.type) for item in data]
+    print(f"🔍 DEBUG: All data points: {hour_data_pairs}")
+
+    # Check for continuity
+    hours_set = set(item.hour for item in data)
+    for hour in range(0, 24):
+        if hour not in hours_set:
+            print(f"⚠️ WARNING: Missing hour {hour} in data")
+
+    # Check duplicate hours
+    hour_counts = {}
+    for item in data:
+        hour_counts[item.hour] = hour_counts.get(item.hour, 0) + 1
+
+    for hour, count in hour_counts.items():
+        if count > 1:
+            print(
+                f"🔍 DEBUG: Hour {hour} appears {count} times - current_hour: {current_hour}"
+            )
+
+    return data
