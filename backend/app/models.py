@@ -35,6 +35,12 @@ class Hotspot(BaseModel):
     trafficLevel: TrafficLevel
     weather: WeatherType
     coordinates: Tuple[float, float]  # [longitude, latitude]
+    population: Optional[str] = None
+    areaType: Optional[str] = None
+    peakHour: Optional[str] = None
+    avgDailyTraffic: Optional[str] = None
+    dominantDemographics: Optional[str] = None
+    nearbyBusinesses: Optional[str] = None
 
 
 class Event(BaseModel):
@@ -49,6 +55,8 @@ class Event(BaseModel):
     duration: Optional[str] = None
     capacity: Optional[int] = None
     demographics: Optional[str] = None
+    peakTrafficImpact: Optional[str] = None
+    ticketStatus: Optional[str] = None
 
 
 class MapItemType(str, Enum):

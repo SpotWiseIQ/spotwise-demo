@@ -16,9 +16,12 @@ from app.models import (
     FootTrafficType,
     FootTrafficData,
 )
-from typing import List, Dict, Callable
+from typing import List, Dict, Callable, Optional
 from datetime import datetime
 from app.fetch_tampere_roads import fetch_tampere_roads, process_road_data
+import requests
+from math import sin, cos, sqrt, atan2, radians
+import math
 
 # Tampere center coordinates
 TAMPERE_CENTER = (23.7610, 61.4978)
@@ -32,6 +35,12 @@ hotspots: List[Hotspot] = [
         trafficLevel=TrafficLevel.HIGH,
         weather=WeatherType.SUNNY,
         coordinates=(23.775, 61.4998),
+        population="~10k",
+        areaType="Commercial",
+        peakHour="17:00",
+        avgDailyTraffic="~8k",
+        dominantDemographics="25-45",
+        nearbyBusinesses="50+",
     ),
     Hotspot(
         id="2",
@@ -40,6 +49,12 @@ hotspots: List[Hotspot] = [
         trafficLevel=TrafficLevel.HIGH,
         weather=WeatherType.CLOUDED,
         coordinates=(23.745, 61.4990),
+        population="~5k",
+        areaType="Residential/Office",
+        peakHour="08:00",
+        avgDailyTraffic="~4k",
+        dominantDemographics="30-55",
+        nearbyBusinesses="20+",
     ),
     Hotspot(
         id="3",
@@ -48,6 +63,12 @@ hotspots: List[Hotspot] = [
         trafficLevel=TrafficLevel.MEDIUM,
         weather=WeatherType.CLOUDED,
         coordinates=(23.755, 61.4960),
+        population="~8k",
+        areaType="Mixed Use",
+        peakHour="16:00",
+        avgDailyTraffic="~6k",
+        dominantDemographics="Students, Young Adults",
+        nearbyBusinesses="35+",
     ),
     Hotspot(
         id="4",
@@ -56,6 +77,12 @@ hotspots: List[Hotspot] = [
         trafficLevel=TrafficLevel.MEDIUM,
         weather=WeatherType.SUNNY,
         coordinates=(23.765, 61.4940),
+        population="~12k",
+        areaType="Entertainment District",
+        peakHour="20:00",
+        avgDailyTraffic="~10k",
+        dominantDemographics="18-30",
+        nearbyBusinesses="60+",
     ),
 ]
 
@@ -73,6 +100,8 @@ events: List[Event] = [
         duration="2 h",
         capacity=1000,
         demographics="18-35",
+        peakTrafficImpact="+50%",
+        ticketStatus="Sold Out",
     ),
     Event(
         id="2",
@@ -81,6 +110,8 @@ events: List[Event] = [
         place="Place",
         coordinates=(23.772, 61.4975),
         date="2025-03-26",
+        peakTrafficImpact="+20%",
+        ticketStatus="Available",
     ),
     Event(
         id="3",
@@ -89,6 +120,8 @@ events: List[Event] = [
         place="Place",
         coordinates=(23.750, 61.4965),
         date="2025-03-26",
+        peakTrafficImpact="+15%",
+        ticketStatus="Limited",
     ),
     Event(
         id="4",
@@ -383,9 +416,103 @@ def get_similar_hotspots(hotspot_id: str) -> List[Hotspot]:
     return result[:3]  # Return at most 3 similar hotspots
 
 
-def get_map_items() -> List[MapItem]:
-    """Get all map items."""
-    return map_items
+def get_map_items(
+    lat: float, lng: float, radius: float, types: Optional[List[str]] = None
+) -> List[MapItem]:
+    """Get map items within a specific area - generates exactly two of each type."""
+    # Convert radius from meters to degrees
+    # At Tampere's latitude (~61.5°N), longitude degrees are shorter
+    radius_deg_lat = radius / 111000  # 1 degree latitude is ~111km
+    radius_deg_lng = radius / (
+        111000 * math.cos(math.radians(lat))
+    )  # Adjust for longitude at this latitude
+
+    # Define the item types we want to generate
+    required_types = [
+        MapItemType.BUS,
+        MapItemType.TRAM,
+        MapItemType.BUSINESS,
+        MapItemType.PARKING,
+        MapItemType.AVAILABLE,
+    ]
+
+    # Filter types if specified
+    if types:
+        required_types = [t for t in required_types if t.value in types]
+
+    # Prepare result list
+    items: List[MapItem] = []
+
+    # Type-specific labels
+    type_labels = {
+        MapItemType.BUS: "Bus Stop",
+        MapItemType.TRAM: "Tram Station",
+        MapItemType.BUSINESS: "Local Business",
+        MapItemType.PARKING: "Parking Area",
+        MapItemType.AVAILABLE: "Available Location",
+    }
+
+    # Generate two items for each type
+    for item_type in required_types:
+        for i in range(2):  # Generate exactly 2 of each type
+            # Generate a random angle and distance within the radius
+            angle = random.uniform(0, 2 * math.pi)  # Random angle in radians
+
+            # First item closer (20-35% of radius), second further away (35-45%)
+            if i == 0:
+                distance_factor = random.uniform(0.20, 0.35)
+            else:
+                distance_factor = random.uniform(0.35, 0.45)
+
+            # Calculate coordinates with proper scaling
+            # Use different scales for latitude and longitude to maintain circular distribution
+            delta_lng = distance_factor * radius_deg_lng * math.cos(angle)
+            delta_lat = distance_factor * radius_deg_lat * math.sin(angle)
+
+            new_lng = lng + delta_lng
+            new_lat = lat + delta_lat
+
+            # Create label
+            label = f"{type_labels.get(item_type, 'Place')} {i + 1}"
+
+            # Add some variety to business names
+            if item_type == MapItemType.BUSINESS:
+                business_names = [
+                    "Cafe",
+                    "Restaurant",
+                    "Shop",
+                    "Store",
+                    "Market",
+                    "Bookstore",
+                ]
+                label = f"{random.choice(business_names)} {i + 1}"
+
+            # Create the item
+            mock_item = MapItem(
+                type=item_type,
+                id=f"mock-{item_type}-{i}",
+                coordinates=(new_lng, new_lat),
+                label=label,
+            )
+
+            items.append(mock_item)
+            print(f"Added mock item: {mock_item}")
+
+    return items
+
+
+# Helper function to calculate distance between two points
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Calculate the distance between two points on Earth using the Haversine formula."""
+    R = 6371000  # Earth's radius in meters
+
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    return R * c
 
 
 def get_hotspot_foot_traffic(hotspot_id: str) -> List[FootTrafficData]:

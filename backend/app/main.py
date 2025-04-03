@@ -1,5 +1,5 @@
 import logging
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 from datetime import datetime
@@ -43,21 +43,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Create API router with /api prefix
+api_router = APIRouter(prefix="/api")
 
-@app.get("/")
+
+@api_router.get("/")
 async def root():
     logger.info("Root endpoint accessed")
     return {"message": "Welcome to the Tampere Explorer Hub API"}
 
 
-@app.get("/tampere-center", response_model=List[float])
+@api_router.get("/tampere-center")
 async def get_tampere_center():
-    """Get the coordinates of Tampere center"""
-    logger.info(f"Tampere center coordinates requested, returning: {TAMPERE_CENTER}")
-    return list(TAMPERE_CENTER)
+    """Get Tampere center coordinates"""
+    logger.info("Tampere center coordinates requested")
+    return TAMPERE_CENTER
 
 
-@app.get("/hotspots", response_model=List[Hotspot])
+@api_router.get("/hotspots", response_model=List[Hotspot])
 async def read_hotspots():
     """Get all hotspots"""
     hotspots = get_all_hotspots()
@@ -65,7 +68,7 @@ async def read_hotspots():
     return hotspots
 
 
-@app.get("/hotspots/{hotspot_id}", response_model=Hotspot)
+@api_router.get("/hotspots/{hotspot_id}", response_model=Hotspot)
 async def read_hotspot(hotspot_id: str):
     """Get a specific hotspot by ID"""
     logger.info(f"Hotspot requested with ID: {hotspot_id}")
@@ -76,14 +79,14 @@ async def read_hotspot(hotspot_id: str):
     return hotspot
 
 
-@app.get("/hotspots/{hotspot_id}/similar", response_model=List[Hotspot])
+@api_router.get("/hotspots/{hotspot_id}/similar", response_model=List[Hotspot])
 async def read_similar_hotspots(hotspot_id: str):
     """Get similar hotspots to a specific hotspot"""
     logger.info(f"Similar hotspots requested for hotspot ID: {hotspot_id}")
     return get_similar_hotspots(hotspot_id)
 
 
-@app.get("/events", response_model=List[Event])
+@api_router.get("/events", response_model=List[Event])
 async def read_events(date: Optional[str] = None):
     """
     Get all events or filter by date
@@ -97,7 +100,7 @@ async def read_events(date: Optional[str] = None):
     return get_all_events()
 
 
-@app.get("/events/{event_id}", response_model=Event)
+@api_router.get("/events/{event_id}", response_model=Event)
 async def read_event(event_id: str):
     """Get a specific event by ID"""
     logger.info(f"Event requested with ID: {event_id}")
@@ -108,29 +111,35 @@ async def read_event(event_id: str):
     return event
 
 
-@app.get("/events/{event_id}/similar", response_model=List[Event])
+@api_router.get("/events/{event_id}/similar", response_model=List[Event])
 async def read_similar_events(event_id: str):
     """Get similar events to a specific event"""
     logger.info(f"Similar events requested for event ID: {event_id}")
     return get_similar_events(event_id)
 
 
-@app.get("/map-items", response_model=List[MapItem])
-async def read_map_items():
-    """Get all map items (bus stops, trams, businesses, etc.)"""
-    map_items = get_map_items()
-    logger.info(f"Retrieved {len(map_items)} map items")
-    return map_items
+@api_router.get("/map-items", response_model=List[MapItem])
+async def read_map_items(
+    lat: float,
+    lng: float,
+    radius: int = Query(500, gt=0, le=5000),
+    types: Optional[List[str]] = Query(None),
+):
+    """Get map items within a radius of a point"""
+    logger.info(f"Map items requested for lat={lat}, lng={lng}, radius={radius}m")
+    return get_map_items(lat, lng, radius, types)
 
 
-@app.get("/traffic", response_model=TrafficData)
+@api_router.get("/traffic", response_model=TrafficData)
 async def read_traffic_data():
     """Get traffic data for the map"""
     logger.info("Traffic data requested")
     return get_traffic_data()
 
 
-@app.get("/hotspots/{hotspot_id}/foot-traffic", response_model=List[FootTrafficData])
+@api_router.get(
+    "/hotspots/{hotspot_id}/foot-traffic", response_model=List[FootTrafficData]
+)
 async def read_hotspot_foot_traffic(hotspot_id: str):
     """Get foot traffic data for a specific hotspot"""
     logger.info(f"Foot traffic data requested for hotspot ID: {hotspot_id}")
@@ -146,7 +155,7 @@ async def read_hotspot_foot_traffic(hotspot_id: str):
     return foot_traffic
 
 
-@app.get("/events/{event_id}/foot-traffic", response_model=List[FootTrafficData])
+@api_router.get("/events/{event_id}/foot-traffic", response_model=List[FootTrafficData])
 async def read_event_foot_traffic(event_id: str):
     """Get foot traffic data for a specific event"""
     logger.info(f"Foot traffic data requested for event ID: {event_id}")
@@ -160,3 +169,7 @@ async def read_event_foot_traffic(event_id: str):
         f"Retrieved {len(foot_traffic)} foot traffic data points for event ID: {event_id}"
     )
     return foot_traffic
+
+
+# Include the API router in the main app
+app.include_router(api_router)
