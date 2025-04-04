@@ -27,15 +27,16 @@ export const EventsList: React.FC = () => {
   }, [events, selectedDate, loading, error]);
 
   const handleEventClick = (event: typeof events[0]) => {
-    console.log(`📋 EVENTSLIST: Event clicked - id=${event.id}, name=${event.name}`);
+    console.log(`📅 EVENTSLIST: Event clicked - id=${event.id}, name=${event.name}`);
     setSelectedHotspot(null);
-    setSelectedEvent(event);
+    // Toggle selection: if already selected, deselect (set to null)
+    setSelectedEvent(selectedEvent?.id === event.id ? null : event);
   };
 
   return (
     <div className="mt-4">
       <div className="mb-2 font-medium">Today's events</div>
-      <div className="space-y-1.5 max-h-[290px] overflow-y-auto pr-2">
+      <div className="space-y-1.5 pr-2">
         {loading ? (
           <div className="text-gray-500 text-sm py-2">Loading events...</div>
         ) : error ? (

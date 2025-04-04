@@ -4,8 +4,6 @@ import { DateSelector } from "./DateSelector";
 import { TimelineSlider } from "./TimelineSlider";
 import { HotspotsList } from "./HotspotsList";
 import { EventsList } from "./EventsList";
-import { EventDetail } from "./EventDetail";
-import { HotspotDetail } from "./HotspotDetail";
 import {
   Select,
   SelectContent,
@@ -86,38 +84,19 @@ export const LeftSidebar: React.FC = () => {
         )}
       </div>
 
-      {selectedEvent ? (
-        <EventDetail 
-          event={selectedEvent} 
-          onEventClick={(event) => {
-            console.log(`🧩 SIDEBAR: EventDetail called onEventClick with event id=${event.id}, name=${event.name}, date=${event.date}`);
-            setSelectedEvent(event);
-          }} 
-        />
-      ) : selectedHotspot ? (
-        <HotspotDetail
-          hotspot={selectedHotspot}
-          onHotspotClick={(hotspot) => {
-            console.log(`🧩 SIDEBAR: HotspotDetail called onHotspotClick with hotspot id=${hotspot.id}, label=${hotspot.label}, address=${hotspot.address}`);
-            setSelectedHotspot(hotspot);
-          }}
-        />
-      ) : (
-        <>
-          {timePeriod !== 'real-time' && (
-            <div className="mb-4 pr-2">
-              <TimelineSlider
-                value={timelineRange}
-                onChange={setTimelineRange}
-                label="Timeline"
-                compact={true}
-              />
-            </div>
-          )}
-          <HotspotsList />
-          <EventsList />
-        </>
+      {/* Always render the lists and potentially the timeline based on timePeriod */}
+      {timePeriod !== 'real-time' && (
+        <div className="mb-4 pr-2">
+          <TimelineSlider
+            value={timelineRange}
+            onChange={setTimelineRange}
+            label="Timeline"
+            compact={true}
+          />
+        </div>
       )}
+      <HotspotsList />
+      <EventsList />
     </div>
   );
 };

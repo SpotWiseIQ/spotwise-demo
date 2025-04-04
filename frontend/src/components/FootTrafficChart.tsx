@@ -85,7 +85,7 @@ export const FootTrafficChart: React.FC<FootTrafficChartProps> = ({
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={chartData}
-          margin={{ top: 0, right: 0, left: -20, bottom: 0 }}
+          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
         >
           <defs>
             <linearGradient id="pastGradient" x1="0" y1="0" x2="0" y2="1">
@@ -104,6 +104,8 @@ export const FootTrafficChart: React.FC<FootTrafficChartProps> = ({
             stroke="#9ca3af"
             type="category"
             allowDuplicatedCategory={false}
+            ticks={[...Array(24).keys()]}
+            padding={{ left: 10, right: 10 }}
           />
           <YAxis hide domain={[0, 'auto']} />
           <Tooltip 
@@ -125,6 +127,7 @@ export const FootTrafficChart: React.FC<FootTrafficChartProps> = ({
             fill="url(#pastGradient)" 
             strokeWidth={1.5}
             connectNulls={true}
+            isAnimationActive={false}
           />
           
           {/* Predicted data */}
@@ -137,6 +140,7 @@ export const FootTrafficChart: React.FC<FootTrafficChartProps> = ({
             strokeWidth={1.5}
             strokeDasharray="3 3"
             connectNulls={true}
+            isAnimationActive={false}
           />
         </AreaChart>
       </ResponsiveContainer>

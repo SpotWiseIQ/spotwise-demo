@@ -13,6 +13,12 @@ export interface Hotspot {
     value: number;
     type: 'past' | 'current' | 'predicted';
   }[];
+  population?: string;
+  areaType?: string;
+  peakHour?: string;
+  avgDailyTraffic?: string;
+  dominantDemographics?: string;
+  nearbyBusinesses?: string;
 }
 
 export interface Event {
@@ -27,6 +33,8 @@ export interface Event {
   demographics?: string;
   coordinates: [number, number]; // [longitude, latitude]
   date: string;
+  peakTrafficImpact?: string;
+  ticketStatus?: string;
 }
 
 export interface MapItem {
