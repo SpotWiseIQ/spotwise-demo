@@ -419,7 +419,7 @@ def get_similar_hotspots(hotspot_id: str) -> List[Hotspot]:
 def get_map_items(
     lat: float, lng: float, radius: float, types: Optional[List[str]] = None
 ) -> List[MapItem]:
-    """Get map items within a specific area - generates exactly two of each type."""
+    """Get map items within a specific area - places them near actual streets."""
     # Convert radius from meters to degrees
     # At Tampere's latitude (~61.5°N), longitude degrees are shorter
     radius_deg_lat = radius / 111000  # 1 degree latitude is ~111km
@@ -452,17 +452,202 @@ def get_map_items(
         MapItemType.AVAILABLE: "Available Location",
     }
 
+    # Get road data
+    traffic_data = get_traffic_data()
+
+    # Extract road segments
+    road_segments = []
+    for feature in traffic_data.features:
+        if feature.geometry and feature.geometry.coordinates:
+            road_segments.append(feature.geometry.coordinates)
+
+    # If no road data is available, fall back to the original random method
+    if not road_segments:
+        print("No road data available, falling back to random placement")
+        return _get_random_map_items(lat, lng, radius, required_types, type_labels)
+
+    # Find road segments within radius
+    # Use a smaller search radius to ensure icons are closer to hotspot/center
+    search_radius = min(radius * 0.6, 300)  # Max 300m or 60% of original radius
+    nearby_segments = []
+
+    for segment in road_segments:
+        for point in segment:
+            point_lng, point_lat = point
+            distance = haversine_distance(lat, lng, point_lat, point_lng)
+            if distance <= search_radius:
+                nearby_segments.append(segment)
+                break
+
+    # If no nearby segments, gradually expand search until we find at least one
+    if not nearby_segments:
+        # Try with larger radius up to original
+        expanded_radius = search_radius
+        while expanded_radius < radius and not nearby_segments:
+            expanded_radius = min(expanded_radius * 1.5, radius)
+            print(f"Expanding search to {expanded_radius}m")
+
+            for segment in road_segments:
+                for point in segment:
+                    point_lng, point_lat = point
+                    distance = haversine_distance(lat, lng, point_lat, point_lng)
+                    if distance <= expanded_radius:
+                        nearby_segments.append(segment)
+                        break
+                if nearby_segments:
+                    break
+
+        # If still no segments, use closest one(s)
+        if not nearby_segments:
+            # Find the closest segments
+            segments_with_distances = []
+
+            for segment in road_segments:
+                # Find minimum distance from any point in segment to center
+                min_segment_distance = float("inf")
+                for point in segment:
+                    point_lng, point_lat = point
+                    distance = haversine_distance(lat, lng, point_lat, point_lng)
+                    min_segment_distance = min(min_segment_distance, distance)
+
+                segments_with_distances.append((segment, min_segment_distance))
+
+            # Sort segments by distance
+            segments_with_distances.sort(key=lambda x: x[1])
+
+            # Take 2-3 closest segments
+            nearby_segments = [s[0] for s in segments_with_distances[:3]]
+
+    # Generate items for each type
+    for item_type in required_types:
+        for i in range(2):  # Generate exactly 2 of each type
+            # Choose a segment prioritizing closer ones
+            if i == 0 and len(nearby_segments) > 1:
+                # For first item, use segments very close to center
+                segment_idx = random.randint(0, min(1, len(nearby_segments) - 1))
+                segment = nearby_segments[segment_idx]
+            else:
+                segment = random.choice(nearby_segments)
+
+            # Choose a point along the segment
+            if len(segment) < 2:
+                # If segment has only one point, add small variation
+                base_point = segment[0]
+                # Very small random offset (closer to the point)
+                offset_factor = (
+                    0.00005 * random.random()
+                )  # About 5m at Tampere's latitude
+                point_lng = base_point[0] + random.uniform(
+                    -offset_factor, offset_factor
+                )
+                point_lat = base_point[1] + random.uniform(
+                    -offset_factor, offset_factor
+                )
+            else:
+                # Choose point in segment closest to center
+                closest_idx = 0
+                closest_distance = float("inf")
+
+                for idx, point in enumerate(segment):
+                    point_lng, point_lat = point
+                    distance = haversine_distance(lat, lng, point_lat, point_lng)
+                    if distance < closest_distance:
+                        closest_distance = distance
+                        closest_idx = idx
+
+                # Use adjacent points to closest point
+                idx = max(0, min(closest_idx, len(segment) - 2))
+                p1 = segment[idx]
+                p2 = segment[idx + 1]
+
+                # Interpolate with bias towards closest side
+                # This ensures we're picking a point along the segment that is
+                # relatively close to the center coordinates
+                t = random.random() * 0.6 + 0.2  # Random value between 0.2-0.8
+                point_lng = p1[0] + t * (p2[0] - p1[0])
+                point_lat = p1[1] + t * (p2[1] - p1[1])
+
+                # Add a small perpendicular offset to place slightly off the street
+                # Calculate perpendicular vector
+                dx = p2[0] - p1[0]
+                dy = p2[1] - p1[1]
+                length = math.sqrt(dx * dx + dy * dy)
+
+                if length > 0:
+                    # Normalize and create perpendicular vector
+                    dx, dy = dx / length, dy / length
+                    perp_dx, perp_dy = -dy, dx
+
+                    # Smaller offset (0.5-2 meters) to keep closer to the road
+                    offset_meters = random.uniform(0.5, 2)
+                    offset_deg_lat = offset_meters / 111000
+                    offset_deg_lng = offset_meters / (
+                        111000 * math.cos(math.radians(point_lat))
+                    )
+
+                    # Apply offset in the perpendicular direction
+                    side = 1 if random.random() > 0.5 else -1
+                    point_lng += side * perp_dx * offset_deg_lng
+                    point_lat += side * perp_dy * offset_deg_lat
+
+            # Create label
+            label = f"{type_labels.get(item_type, 'Place')} {i + 1}"
+
+            # Add some variety to business names
+            if item_type == MapItemType.BUSINESS:
+                business_names = [
+                    "Cafe",
+                    "Restaurant",
+                    "Shop",
+                    "Store",
+                    "Market",
+                    "Bookstore",
+                ]
+                label = f"{random.choice(business_names)} {i + 1}"
+
+            # Create the item
+            mock_item = MapItem(
+                type=item_type,
+                id=f"mock-{item_type}-{i}",
+                coordinates=(point_lng, point_lat),
+                label=label,
+            )
+
+            items.append(mock_item)
+            print(f"Added street-based mock item: {mock_item}")
+
+    return items
+
+
+def _get_random_map_items(
+    lat: float,
+    lng: float,
+    radius: float,
+    required_types: List[MapItemType],
+    type_labels: Dict,
+) -> List[MapItem]:
+    """Original implementation of get_map_items that uses random placement."""
+    # Convert radius from meters to degrees
+    radius_deg_lat = radius / 111000  # 1 degree latitude is ~111km
+    radius_deg_lng = radius / (
+        111000 * math.cos(math.radians(lat))
+    )  # Adjust for longitude at this latitude
+
+    # Prepare result list
+    items: List[MapItem] = []
+
     # Generate two items for each type
     for item_type in required_types:
         for i in range(2):  # Generate exactly 2 of each type
             # Generate a random angle and distance within the radius
             angle = random.uniform(0, 2 * math.pi)  # Random angle in radians
 
-            # First item closer (20-35% of radius), second further away (35-45%)
+            # Reduced distance factors to keep items closer to center
+            # First item much closer (10-20% of radius), second still fairly close (20-30%)
             if i == 0:
-                distance_factor = random.uniform(0.20, 0.35)
+                distance_factor = random.uniform(0.10, 0.20)
             else:
-                distance_factor = random.uniform(0.35, 0.45)
+                distance_factor = random.uniform(0.20, 0.30)
 
             # Calculate coordinates with proper scaling
             # Use different scales for latitude and longitude to maintain circular distribution
@@ -496,7 +681,7 @@ def get_map_items(
             )
 
             items.append(mock_item)
-            print(f"Added mock item: {mock_item}")
+            print(f"Added random mock item: {mock_item}")
 
     return items
 
