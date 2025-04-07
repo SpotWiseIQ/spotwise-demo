@@ -75,7 +75,7 @@
   }
 }
 
-.hotspot-marker {
+.hotspot-card {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -88,15 +88,15 @@
   box-shadow: 0 0 0 2px white;
 }
 
-.hotspot-marker.high {
+.hotspot-card.high {
   background-color: #ea384c;
 }
 
-.hotspot-marker.medium {
+.hotspot-card.medium {
   background-color: #ea384c;
 }
 
-.hotspot-marker.low {
+.hotspot-card.low {
   background-color: #ea384c;
 }
 

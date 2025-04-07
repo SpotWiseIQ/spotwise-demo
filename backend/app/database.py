@@ -363,57 +363,7 @@ def get_events_by_date(date_str: str) -> List[Event]:
 
 
 def get_event_by_id(event_id: str) -> Event:
-    for event in events:
-        if event.id == event_id:
-            return event
-    return None
-
-
-def get_similar_events(event_id: str) -> List[Event]:
-    event = get_event_by_id(event_id)
-    if not event:
-        return []
-
-    # Return events that are not the same as the selected one
-    # First find events on the same date
-    same_date_events = [e for e in events if e.date == event.date and e.id != event_id]
-
-    # If we don't have enough same-date events, add events from other dates
-    if len(same_date_events) < 3:
-        other_date_events = [e for e in events if e.date != event.date]
-        # Sort them chronologically
-        other_date_events.sort(key=lambda x: x.date)
-        # Combine the lists
-        return (same_date_events + other_date_events)[:4]
-
-    return same_date_events[:4]
-
-
-def get_similar_hotspots(hotspot_id: str) -> List[Hotspot]:
-    """Get similar hotspots to a specific hotspot."""
-    hotspot = get_hotspot_by_id(hotspot_id)
-    if not hotspot:
-        return []
-
-    # First get hotspots with similar traffic level
-    similar_traffic = [
-        h
-        for h in hotspots
-        if h.trafficLevel == hotspot.trafficLevel and h.id != hotspot_id
-    ]
-
-    # Then get hotspots with similar weather
-    similar_weather = [
-        h
-        for h in hotspots
-        if h.weather == hotspot.weather
-        and h.id != hotspot_id
-        and h not in similar_traffic
-    ]
-
-    # Combine them, prioritizing similar traffic level
-    result = similar_traffic + similar_weather
-    return result[:3]  # Return at most 3 similar hotspots
+    return [e for e in events if e.id == event_id]
 
 
 def get_map_items(

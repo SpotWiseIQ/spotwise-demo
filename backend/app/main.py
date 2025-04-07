@@ -11,8 +11,6 @@ from app.database import (
     get_all_events,
     get_events_by_date,
     get_event_by_id,
-    get_similar_events,
-    get_similar_hotspots,
     get_map_items,
     get_traffic_data,
     get_hotspot_foot_traffic,
@@ -79,13 +77,6 @@ async def read_hotspot(hotspot_id: str):
     return hotspot
 
 
-@api_router.get("/hotspots/{hotspot_id}/similar", response_model=List[Hotspot])
-async def read_similar_hotspots(hotspot_id: str):
-    """Get similar hotspots to a specific hotspot"""
-    logger.info(f"Similar hotspots requested for hotspot ID: {hotspot_id}")
-    return get_similar_hotspots(hotspot_id)
-
-
 @api_router.get("/events", response_model=List[Event])
 async def read_events(date: Optional[str] = None):
     """
@@ -109,13 +100,6 @@ async def read_event(event_id: str):
         logger.warning(f"Event with ID {event_id} not found")
         raise HTTPException(status_code=404, detail="Event not found")
     return event
-
-
-@api_router.get("/events/{event_id}/similar", response_model=List[Event])
-async def read_similar_events(event_id: str):
-    """Get similar events to a specific event"""
-    logger.info(f"Similar events requested for event ID: {event_id}")
-    return get_similar_events(event_id)
 
 
 @api_router.get("/map-items", response_model=List[MapItem])
