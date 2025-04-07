@@ -7,6 +7,24 @@ This project consists of a React frontend and a FastAPI backend for a Tampere ci
 - `frontend/` - Frontend React application
 - `backend/` - FastAPI backend providing data for the application
 
+## Technical Stack
+
+### Frontend
+
+- React with TypeScript
+- Vite as build tool
+- Tailwind CSS for styling
+- React Query for state management
+- React Router for routing
+- Custom components built with Radix UI primitives
+
+### Backend
+
+- Python 3.12
+- FastAPI framework
+- uv for Python package management
+- Custom database implementation
+
 ## Frontend
 
 The frontend is a React application that displays the Tampere Explorer Hub interface.
@@ -100,39 +118,3 @@ npm run dev
 ```
 
 The frontend will be running at http://localhost:8080.
-
-## Connecting Frontend to Backend
-
-To use the backend API in the frontend, you would need to modify the frontend code to fetch data from the API instead of using the mock data. This would involve:
-
-1. Create an API service to fetch data from the backend
-2. Update the context provider to use this service
-3. Handle loading states and errors
-
-Example integration:
-
-```typescript
-// frontend/src/lib/api.ts
-export const fetchHotspots = async () => {
-  const response = await fetch("http://localhost:8000/hotspots");
-  if (!response.ok) {
-    throw new Error("Failed to fetch hotspots");
-  }
-  return response.json();
-};
-
-export const fetchEvents = async (date?: string) => {
-  const url = date
-    ? `http://localhost:8000/events?date=${date}`
-    : "http://localhost:8000/events";
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to fetch events");
-  }
-  return response.json();
-};
-
-// ... other API methods
-```
-
-Then update the TampereContext to use these API methods.

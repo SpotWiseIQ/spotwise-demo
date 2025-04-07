@@ -9,8 +9,7 @@
     "frontend:preview": "cd frontend && npm run preview",
     "backend:dev": "cd backend && source ./.venv/bin/activate && python main.py",
     "backend:build": "cd backend && uv sync",
-    "install:all": "cd frontend && npm install"
+    "install:all": "cd frontend && npm install && cd ../backend && uv sync"
   },
-  "author": "",
-  "license": "MIT"
+  "author": ""
 }
