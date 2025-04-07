@@ -7,7 +7,9 @@ This project consists of a React frontend and a FastAPI backend for a Tampere ci
 - `frontend/` - Frontend React application
 - `backend/` - FastAPI backend providing data for the application
 
-## Technical Stack
+For detailed documentation about the project structure, features, workflows, and API endpoints, please refer to [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md).
+
+## Tech Stack
 
 ### Frontend
 

@@ -4,23 +4,24 @@
 
 The Tampere Explorer Hub is a modern web application designed to explore and visualize data related to Tampere, with a specific focus on road and transportation infrastructure. The project uses a modern tech stack with a React/TypeScript frontend and Python backend.
 
-## Technical Stack
+## Tech Stack
 
 ### Frontend
 
 - **Framework**: React with TypeScript
 - **Build Tool**: Vite
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS with custom configuration
 - **State Management**: React Query
 - **Routing**: React Router
 - **UI Components**: Custom components built with Radix UI primitives
+- **Package Manager**: Both npm (package-lock.json) and Bun (bun.lockb) supported
 
 ### Backend
 
 - **Language**: Python 3.12
 - **Package Management**: uv (modern Python package manager)
-- **Data Management**: Custom database implementation
-- **API**: FastAPI (inferred from the modern Python stack)
+- **Web Framework**: FastAPI
+- **Data Storage**: Harcoded in database.py and some JSON (tampere_roads.json)
 
 ## Project Structure
 
@@ -28,22 +29,29 @@ The Tampere Explorer Hub is a modern web application designed to explore and vis
 
 ```
 frontend/
-├── src/
-│   ├── components/         # Reusable UI components
-│   │   ├── ui/            # Base UI components
-│   │   ├── LeftSidebar    # Main sidebar component
-│   │   └── TampereMap     # Map visualization component
-│   ├── pages/             # Page components
-│   │   ├── Index.tsx      # Main application page
-│   │   └── NotFound.tsx   # 404 page
-│   ├── lib/               # Utility functions and contexts
+├── src/                  # Source code
+│   ├── components/       # Reusable UI components
+│   │   ├── ui/          # Base UI components
+│   │   ├── LeftSidebar  # Main sidebar component
+│   │   └── TampereMap   # Map visualization component
+│   ├── pages/           # Page components
+│   │   ├── Index.tsx    # Main application page
+│   │   └── NotFound.tsx # 404 page
+│   ├── lib/             # Utility functions and contexts
 │   │   ├── utils.ts
 │   │   └── TampereContext.ts
-│   ├── hooks/             # Custom React hooks
-│   └── App.tsx            # Main application component
-├── public/                # Static assets
-├── vite.config.ts         # Vite configuration
-└── package.json           # Frontend dependencies
+│   ├── hooks/           # Custom React hooks
+│   └── App.tsx          # Main application component
+├── public/              # Static assets
+├── vite.config.ts       # Vite configuration
+├── tailwind.config.ts   # Tailwind CSS configuration
+├── tsconfig.json        # TypeScript base configuration
+├── tsconfig.app.json    # App-specific TypeScript config
+├── tsconfig.node.json   # Node-specific TypeScript config
+├── components.json      # UI components configuration
+├── eslint.config.js     # ESLint configuration
+├── postcss.config.js    # PostCSS configuration
+└── package.json         # Frontend dependencies
 ```
 
 ### Backend Structure (`/backend`)
@@ -51,13 +59,16 @@ frontend/
 ```
 backend/
 ├── app/
-│   ├── main.py           # FastAPI application entry point
-│   ├── database.py       # Database operations
-│   ├── models.py         # Data models
+│   ├── __init__.py           # Python package marker
+│   ├── main.py              # FastAPI application entry point
+│   ├── database.py          # Database operations
+│   ├── models.py            # Data models
 │   ├── fetch_tampere_roads.py  # Road data fetching script
 │   └── tampere_roads.json      # Cached road data
-├── pyproject.toml        # Python project configuration
-└── .python-version       # Python version specification
+├── pyproject.toml           # Python project configuration
+├── uv.lock                  # uv lock file for dependencies
+├── .python-version          # Python version specification (3.12)
+└── .venv/                   # Virtual environment directory
 ```
 
 ## UI Workflow
@@ -129,34 +140,69 @@ The application follows a responsive, split-view design:
    - Frontend caches and manages data through React Query
    - Real-time updates handled through modern state management
 
-## Development Workflow
+## User Workflow & Features
 
-1. **Frontend Development**
+### Core Features
 
-   - Uses Vite for fast development experience
-   - TypeScript for type safety
-   - Modern component architecture with Radix UI primitives
+1. **Interactive Map Exploration**
 
-2. **Backend Development**
-   - Python 3.12 with modern async capabilities
-   - uv for dependency management
-   - FastAPI for high-performance API endpoints
+   - Central map view of Tampere region
+   - Real-time traffic visualization
+   - Dynamic points of interest (hotspots, events, transport)
+   - Radius-based location search
 
-## Future Considerations
+2. **Hotspot Discovery**
 
-1. **Scalability**
+   - Browse popular locations and areas
+   - View traffic levels and weather conditions
+   - Access demographic and population data
+   - Find similar hotspots
+   - Analyze foot traffic patterns
 
-   - Component structure ready for additional features
-   - Modular design allows easy extension
-   - State management prepared for increased complexity
+3. **Event Management**
 
-2. **Performance**
+   - Browse upcoming events
+   - Filter events by date
+   - View event details (capacity, type, duration)
+   - Monitor event-related foot traffic
 
-   - Code splitting and lazy loading ready
-   - Efficient data caching through React Query
-   - Optimized map rendering
+4. **Transportation Features**
+   - Real-time foot traffic status
+   - Public transport integration (bus, tram locations)
+   - Parking availability
+   - Traffic impact analysis
 
-3. **Accessibility**
-   - ARIA attributes implemented
-   - Keyboard navigation support
-   - Screen reader friendly components
+### Data Flow
+
+1. **Map Interaction**
+
+   - User selects location on map
+   - System fetches nearby items within specified radius
+   - Displays filtered results (events, hotspots, transport)
+
+2. **Traffic Monitoring**
+
+   - Real-time foot traffic data visualization
+   - Color-coded foot traffic status indicators
+   - GeoJSON-based road network representation
+
+3. **Analytics**
+   - Historical foot traffic patterns
+   - Current occupancy levels
+   - Predicted crowd movements
+   - Peak hour identification
+
+### API Structure
+
+1. **Core Endpoints**
+
+   - `/api/map-items`: Location-based point of interest search
+   - `/api/hotspots`: Hotspot management and discovery
+   - `/api/events`: Event browsing and filtering
+   - `/api/traffic`: Real-time traffic data
+
+2. **Analytics Endpoints**
+   - `/api/hotspots/{id}/foot-traffic`: Hotspot crowd analysis
+   - `/api/events/{id}/foot-traffic`: Event attendance patterns
+   - `/api/hotspots/{id}/similar`: Related location discovery
+   - `/api/events/{id}/similar`: Similar event suggestions
