@@ -7,9 +7,18 @@ export const HotspotsList: React.FC = () => {
     useTampere();
 
   const handleHotspotClick = (hotspot: (typeof hotspots)[0]) => {
+    // Enhanced logging with colors
     console.log(
-      `📍 HOTSPOTSLIST: Hotspot clicked - id=${hotspot.id}, label=${hotspot.label}`
+      `%c📍 CLICK EVENT: Hotspot clicked - id=${hotspot.id}, label=${hotspot.label}`, 
+      'background: #e91e63; color: white; font-weight: bold; padding: 3px 5px; border-radius: 3px;'
     );
+    
+    // Log the action being taken
+    console.log(
+      `%c👉 ACTION: ${selectedHotspot?.id === hotspot.id ? 'Deselecting' : 'Selecting'} hotspot`,
+      'background: #673ab7; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
+    );
+    
     setSelectedEvent(null);
     // If the clicked hotspot is already selected, deselect it (toggle behavior)
     setSelectedHotspot(selectedHotspot?.id === hotspot.id ? null : hotspot);

@@ -9,7 +9,7 @@ export const EventsList: React.FC = () => {
   // Track component renders
   useEffect(() => {
     renderCount.current += 1;
-    console.log(`📋 EVENTSLIST: Render #${renderCount.current}`);
+    console.log(`%c📋 EVENTSLIST: Render #${renderCount.current}`, 'color: #666; font-style: italic;');
   });
 
   // Debug log when events change
@@ -19,15 +19,31 @@ export const EventsList: React.FC = () => {
     dateToDisplay.setHours(12, 0, 0, 0);
     const formattedDate = dateToDisplay.toISOString().split('T')[0];
     
-    console.log(`📋 EVENTSLIST: Events changed - now showing ${events.length} events for date ${formattedDate}`);
-    console.log(`📋 EVENTSLIST: Loading state: ${loading}, Error state: ${error ? 'Error: ' + error : 'No error'}`);
-    events.forEach((event, index) => {
-      console.log(`  Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
-    });
+    console.log(`%c📋 EVENTS DATA: ${events.length} events for ${formattedDate}`, 'background: #4caf50; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;');
+    console.log(`Loading: ${loading}, Error: ${error ? error : 'none'}`);
+    
+    if (events.length > 0) {
+      console.group('Events list');
+      events.forEach((event, index) => {
+        console.log(`  Event ${index+1}: id=${event.id}, name=${event.name}`);
+      });
+      console.groupEnd();
+    }
   }, [events, selectedDate, loading, error]);
 
   const handleEventClick = (event: typeof events[0]) => {
-    console.log(`📅 EVENTSLIST: Event clicked - id=${event.id}, name=${event.name}`);
+    // Enhanced logging with colors
+    console.log(
+      `%c📅 CLICK EVENT: Event clicked - id=${event.id}, name=${event.name}`, 
+      'background: #ff9800; color: black; font-weight: bold; padding: 3px 5px; border-radius: 3px;'
+    );
+    
+    // Log the action being taken
+    console.log(
+      `%c👉 ACTION: ${selectedEvent?.id === event.id ? 'Deselecting' : 'Selecting'} event`,
+      'background: #2196f3; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
+    );
+    
     setSelectedHotspot(null);
     // Toggle selection: if already selected, deselect (set to null)
     setSelectedEvent(selectedEvent?.id === event.id ? null : event);
