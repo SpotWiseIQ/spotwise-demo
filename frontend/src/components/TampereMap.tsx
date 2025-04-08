@@ -44,7 +44,7 @@ export const TampereMap: React.FC = () => {
   
   // SEQUENCE FIX: Create a ref to track the latest coordinates for fly-to
   const pendingFlyToRef = useRef<[number, number] | null>(null);
-
+  
   // Debug component mount
   useEffect(() => {
     debugLog("TampereMap component mounted");
@@ -516,6 +516,36 @@ export const TampereMap: React.FC = () => {
   };
 
   const showDetails = selectedEvent !== null || selectedHotspot !== null;
+
+  // Add ref to track container size changes
+  const prevShowDetails = useRef(showDetails);
+  const prevIsExpanded = useRef(isAnyCardExpanded);
+  
+  // Listen for container size changes and resize map correctly
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+    
+    // Only trigger resize when container size actually changes
+    if (prevShowDetails.current !== showDetails || 
+        prevIsExpanded.current !== isAnyCardExpanded) {
+      
+      debugLog("Container size changed, triggering map resize");
+      
+      // Use requestAnimationFrame to ensure resize happens at the right time
+      // after the CSS transition has started but before rendering the next frame
+      requestAnimationFrame(() => {
+        if (!map.current) return;
+        
+        // Explicitly resize the map to prevent white flash
+        map.current.resize();
+        debugLog("Map resize() called");
+      });
+      
+      // Update refs for next comparison
+      prevShowDetails.current = showDetails;
+      prevIsExpanded.current = isAnyCardExpanded;
+    }
+  }, [showDetails, isAnyCardExpanded, mapLoaded]);
 
   // Log when selection changes
   useEffect(() => {
