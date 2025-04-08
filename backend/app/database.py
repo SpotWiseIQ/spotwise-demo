@@ -26,64 +26,60 @@ import math
 # Tampere center coordinates
 TAMPERE_CENTER = (23.7610, 61.4978)
 
-# Mock hotspots data
-hotspots: List[Hotspot] = [
-    Hotspot(
-        id="1",
-        label="A",
-        address="Address 1",
-        trafficLevel=TrafficLevel.HIGH,
-        weather=WeatherType.SUNNY,
-        coordinates=(23.775, 61.4998),
-        population="~10k",
-        areaType="Commercial",
-        peakHour="17:00",
-        avgDailyTraffic="~8k",
-        dominantDemographics="25-45",
-        nearbyBusinesses="50+",
-    ),
-    Hotspot(
-        id="2",
-        label="B",
-        address="Address 2",
-        trafficLevel=TrafficLevel.HIGH,
-        weather=WeatherType.CLOUDED,
-        coordinates=(23.745, 61.4990),
-        population="~5k",
-        areaType="Residential/Office",
-        peakHour="08:00",
-        avgDailyTraffic="~4k",
-        dominantDemographics="30-55",
-        nearbyBusinesses="20+",
-    ),
-    Hotspot(
-        id="3",
-        label="C",
-        address="Address 3",
-        trafficLevel=TrafficLevel.MEDIUM,
-        weather=WeatherType.CLOUDED,
-        coordinates=(23.755, 61.4960),
-        population="~8k",
-        areaType="Mixed Use",
-        peakHour="16:00",
-        avgDailyTraffic="~6k",
-        dominantDemographics="Students, Young Adults",
-        nearbyBusinesses="35+",
-    ),
-    Hotspot(
-        id="4",
-        label="D",
-        address="Address 4",
-        trafficLevel=TrafficLevel.MEDIUM,
-        weather=WeatherType.SUNNY,
-        coordinates=(23.765, 61.4940),
-        population="~12k",
-        areaType="Entertainment District",
-        peakHour="20:00",
-        avgDailyTraffic="~10k",
-        dominantDemographics="18-30",
-        nearbyBusinesses="60+",
-    ),
+# Fixed hotspot locations and characteristics
+HOTSPOT_TEMPLATES = [
+    {
+        "id": "1",
+        "name": "Keskustori Zone",  # Central Square Zone
+        "address": "Hämeenkatu 10",
+        "coordinates": (23.775, 61.4998),
+        "population": "~10k",
+        "areaType": "Commercial",
+        "avgDailyTraffic": "~8k",
+        "dominantDemographics": "25-45",
+        "nearbyBusinesses": "50+",
+        "peak_hour": 17,  # Peak at 17:00
+        "traffic_pattern": "commercial",  # High during day, peak after work
+    },
+    {
+        "id": "2",
+        "name": "Rautatieasema Zone",  # Railway Station Zone
+        "address": "Rautatienkatu 25",
+        "coordinates": (23.745, 61.4990),
+        "population": "~5k",
+        "areaType": "Residential/Office",
+        "avgDailyTraffic": "~4k",
+        "dominantDemographics": "30-55",
+        "nearbyBusinesses": "20+",
+        "peak_hour": 8,  # Peak at 8:00
+        "traffic_pattern": "office",  # High during work hours
+    },
+    {
+        "id": "3",
+        "name": "Tampere-talo Zone",  # Tampere Hall Zone
+        "address": "Yliopistonkatu 55",
+        "coordinates": (23.755, 61.4960),
+        "population": "~8k",
+        "areaType": "Mixed Use",
+        "avgDailyTraffic": "~6k",
+        "dominantDemographics": "Students, Young Adults",
+        "nearbyBusinesses": "35+",
+        "peak_hour": 16,  # Peak at 16:00
+        "traffic_pattern": "student",  # High during class hours, evening activities
+    },
+    {
+        "id": "4",
+        "name": "Koskikeskus Zone",  # Shopping Center Zone
+        "address": "Hatanpään valtatie 1",
+        "coordinates": (23.765, 61.4940),
+        "population": "~12k",
+        "areaType": "Entertainment District",
+        "avgDailyTraffic": "~10k",
+        "dominantDemographics": "18-30",
+        "nearbyBusinesses": "60+",
+        "peak_hour": 20,  # Peak at 20:00
+        "traffic_pattern": "entertainment",  # High in evenings and weekends
+    },
 ]
 
 # Cache for dynamically generated events
@@ -268,19 +264,81 @@ def get_mock_traffic_data() -> TrafficData:
 
 
 # Database access functions
-def get_all_hotspots() -> List[Hotspot]:
-    """Get all hotspots with their foot traffic data included."""
-    # Add foot traffic data to each hotspot
-    for hotspot in hotspots:
-        hotspot.footTraffic = get_hotspot_foot_traffic(hotspot.id)
+def get_all_hotspots(
+    target_date: Optional[str] = None, target_hour: Optional[int] = None
+) -> List[Hotspot]:
+    """Get all hotspots with dynamic foot traffic data."""
+    if target_date is None:
+        target_date = datetime.now().strftime("%Y-%m-%d")
+    if target_hour is None:
+        target_hour = datetime.now().hour
+
+    # Generate hotspots with foot traffic
+    hotspots_with_traffic = []
+    for template in HOTSPOT_TEMPLATES:
+        # Generate foot traffic data
+        foot_traffic = generate_foot_traffic(template, target_date, target_hour)
+
+        # Get the current hour's traffic value for sorting
+        current_traffic = next(
+            (ft.value for ft in foot_traffic if ft.type == FootTrafficType.CURRENT), 0
+        )
+
+        # Create hotspot with traffic level based on current value
+        traffic_level = (
+            TrafficLevel.HIGH
+            if current_traffic > 150
+            else TrafficLevel.MEDIUM
+            if current_traffic > 80
+            else TrafficLevel.LOW
+        )
+
+        # Create hotspot with dynamic data
+        hotspot = Hotspot(
+            id=template["id"],
+            name=template["name"],
+            label="",  # Will be assigned after sorting
+            address=template["address"],
+            trafficLevel=traffic_level,
+            weather=random.choice(list(WeatherType)),  # Random weather for now
+            coordinates=template["coordinates"],
+            population=template["population"],
+            areaType=template["areaType"],
+            peakHour=f"{template['peak_hour']:02d}:00",
+            avgDailyTraffic=template["avgDailyTraffic"],
+            dominantDemographics=template["dominantDemographics"],
+            nearbyBusinesses=template["nearbyBusinesses"],
+            footTraffic=foot_traffic,
+        )
+        hotspots_with_traffic.append((hotspot, current_traffic))
+
+    # Sort hotspots by current traffic value in descending order
+    hotspots_with_traffic.sort(key=lambda x: x[1], reverse=True)
+
+    # Assign labels A through D based on traffic order
+    labels = ["A", "B", "C", "D"]
+    hotspots = []
+    for (hotspot, _), label in zip(hotspots_with_traffic, labels):
+        hotspot.label = label
+        hotspots.append(hotspot)
 
     return hotspots
 
 
-def get_hotspot_by_id(hotspot_id: str) -> Hotspot:
-    for hotspot in hotspots:
+def get_hotspot_by_id(
+    hotspot_id: str,
+    target_date: Optional[str] = None,
+    target_hour: Optional[int] = None,
+) -> Optional[Hotspot]:
+    """Get a specific hotspot by ID with dynamic foot traffic data."""
+    # Get all hotspots to determine the correct label based on traffic order
+    all_hotspots = get_all_hotspots(target_date, target_hour)
+
+    # Find the hotspot with the matching ID
+    for hotspot in all_hotspots:
         if hotspot.id == hotspot_id:
             return hotspot
+
     return None
 
 
@@ -921,61 +979,63 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     return R * c
 
 
-def get_hotspot_foot_traffic(hotspot_id: str) -> List[FootTrafficData]:
-    """Generate foot traffic data for a specific hotspot.
+def get_traffic_pattern_values(pattern: str, hour: int, date_seed: int) -> int:
+    """Generate foot traffic values based on pattern and hour."""
+    random.seed(date_seed + hash(pattern))  # Use date seed for consistent randomness
+    base = random.randint(20, 40)  # Base traffic level
 
-    Creates a dataset with past data (hours 0 to current) and predicted data (hours current to 23),
-    ensuring a seamless transition at the current hour by including the current hour in both datasets.
-    """
-    current_hour = datetime.now().hour
+    if pattern == "commercial":
+        if 9 <= hour <= 20:  # Shopping hours
+            base *= 3
+            if 16 <= hour <= 18:  # After work peak
+                base *= 1.5
+    elif pattern == "office":
+        if 8 <= hour <= 17:  # Work hours
+            base *= 4
+            if hour in [8, 12, 17]:  # Commute and lunch peaks
+                base *= 1.3
+    elif pattern == "student":
+        if 8 <= hour <= 16:  # Class hours
+            base *= 3
+            if hour in [8, 12, 16]:  # Class change and lunch peaks
+                base *= 1.4
+        elif 17 <= hour <= 22:  # Evening activities
+            base *= 2
+    elif pattern == "entertainment":
+        if 12 <= hour <= 23:  # Entertainment hours
+            base *= 2
+            if 18 <= hour <= 22:  # Evening peak
+                base *= 3
+
+    # Add some randomness
+    variation = random.uniform(0.8, 1.2)
+    return int(base * variation)
+
+
+def generate_foot_traffic(
+    hotspot_template: dict, target_date: str, target_hour: int
+) -> List[FootTrafficData]:
+    """Generate foot traffic data for a hotspot based on its pattern."""
+    date_seed = sum(ord(c) for c in target_date)  # Create a seed from the date
     data = []
 
-    # Generate a seed based on the hotspot ID to ensure consistent data for the same hotspot
-    seed = sum(ord(c) for c in hotspot_id)
-    random.seed(seed)
-
-    # Find the hotspot to adjust traffic based on traffic level
-    hotspot = get_hotspot_by_id(hotspot_id)
-    traffic_multiplier = 1.0
-    if hotspot:
-        if hotspot.trafficLevel == TrafficLevel.HIGH:
-            traffic_multiplier = 2.0
-        elif hotspot.trafficLevel == TrafficLevel.MEDIUM:
-            traffic_multiplier = 1.5
-
     # Generate values for all hours
-    hour_values = {}
-    for hour in range(0, 24):
-        base_value = random.randint(10, 60)
-        time_multiplier = 2 if (hour >= 8 and hour <= 18) else 1
-        hour_values[hour] = int(base_value * time_multiplier * traffic_multiplier)
-
-    print(f"🔍 DEBUG: Current hour is {current_hour}")
-
-    # Generate past data (0 to current hour)
-    for hour in range(0, current_hour + 1):
-        data.append(
-            FootTrafficData(
-                hour=hour,
-                value=hour_values[hour],
-                type=FootTrafficType.PAST,
-            )
+    for hour in range(24):
+        value = get_traffic_pattern_values(
+            hotspot_template["traffic_pattern"], hour, date_seed
         )
 
-    print(
-        f"🔍 DEBUG: Last past data point - hour: {current_hour}, value: {hour_values[current_hour]}"
-    )
-
-    # Generate predicted data (current hour to 23)
-    # Note: current hour is included in both past and predicted
-    for hour in range(current_hour, 24):
-        data.append(
-            FootTrafficData(
-                hour=hour,
-                value=hour_values[hour],
-                type=FootTrafficType.PREDICTED,
-            )
+        # Determine if this is past or predicted data
+        data_type = (
+            FootTrafficType.PAST if hour <= target_hour else FootTrafficType.PREDICTED
         )
+        if hour == target_hour:
+            # Current hour appears in both past and predicted
+            data.append(
+                FootTrafficData(hour=hour, value=value, type=FootTrafficType.CURRENT)
+            )
+
+        data.append(FootTrafficData(hour=hour, value=value, type=data_type))
 
     return data
 
@@ -1100,7 +1160,7 @@ def get_hotspot_detailed_metrics(hotspot_id: str) -> dict:
     return {
         "basic": {
             "id": hotspot.id,
-            "label": hotspot.label,
+            "name": hotspot.name,
             "address": hotspot.address,
             "coordinates": hotspot.coordinates,
         },

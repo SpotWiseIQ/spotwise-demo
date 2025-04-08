@@ -61,8 +61,8 @@ export const FootTrafficChart: React.FC<FootTrafficChartProps> = ({
   // Simple transformation for recharts - map data to the format needed by the chart
   const chartData = sortedData.map(item => ({
     hour: item.hour,
-    pastValue: item.type === 'past' ? item.value : undefined,
-    predictedValue: item.type === 'predicted' ? item.value : undefined
+    pastValue: item.type === 'past' || item.type === 'current' ? item.value : undefined,
+    predictedValue: item.type === 'predicted' || item.type === 'current' ? item.value : undefined
   }));
   
   // Debug logging for chart data

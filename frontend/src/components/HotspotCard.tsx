@@ -166,8 +166,8 @@ export const HotspotCard: React.FC<HotspotCardProps> = ({
           <div className="ml-3 flex-grow h-[20px] flex items-center overflow-hidden">
             <p
               className="text-sm font-medium truncate"
-              title={`Zone ${hotspot.label}`}
-            >{`Zone ${hotspot.label}`}</p>
+              title={hotspot.name}
+            >{hotspot.name}</p>
           </div>
           <div className="flex flex-col min-w-[110px]">
             <div className="grid grid-cols-2 gap-x-5">

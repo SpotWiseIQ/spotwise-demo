@@ -23,7 +23,6 @@ from app.database import (
     get_event_by_id,
     get_map_items,
     get_traffic_data,
-    get_hotspot_foot_traffic,
     get_event_foot_traffic,
     get_hotspot_detailed_metrics,
     get_event_detailed_metrics,
@@ -82,26 +81,44 @@ async def read_hotspots(
     time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
 ):
     """
-    Get all hotspots with optional filtering by time period, date, and time
-
-    For now, returns the same hardcoded hotspots regardless of parameters
+    Get all hotspots with optional filtering by time period, date, and time.
+    Returns hotspots with their foot traffic data, ordered by current traffic level.
     """
     # Log the request parameters
     logger.info(
         f"Hotspots requested with filters: time_period={time_period}, date={date}, time={time}"
     )
 
-    # For now, simply return all hotspots regardless of filters
-    hotspots = get_all_hotspots()
+    # Use current date/time if not provided
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
+    if time is None:
+        time = datetime.now().hour
+
+    # Get hotspots with dynamic foot traffic data
+    hotspots = get_all_hotspots(date, time)
     logger.info(f"Retrieved {len(hotspots)} hotspots")
     return hotspots
 
 
 @api_router.get("/hotspots/{hotspot_id}", response_model=Hotspot)
-async def read_hotspot(hotspot_id: str):
-    """Get a specific hotspot by ID"""
-    logger.info(f"Hotspot requested with ID: {hotspot_id}")
-    hotspot = get_hotspot_by_id(hotspot_id)
+async def read_hotspot(
+    hotspot_id: str,
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
+):
+    """Get a specific hotspot by ID with dynamic foot traffic data."""
+    logger.info(f"Hotspot requested with ID: {hotspot_id}, date: {date}, time: {time}")
+
+    # Use current date/time if not provided
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
+    if time is None:
+        time = datetime.now().hour
+
+    hotspot = get_hotspot_by_id(hotspot_id, date, time)
     if not hotspot:
         logger.warning(f"Hotspot with ID {hotspot_id} not found")
         raise HTTPException(status_code=404, detail="Hotspot not found")
@@ -172,19 +189,26 @@ async def read_traffic_data():
 @api_router.get(
     "/hotspots/{hotspot_id}/foot-traffic", response_model=List[FootTrafficData]
 )
-async def read_hotspot_foot_traffic(hotspot_id: str):
-    """Get foot traffic data for a specific hotspot"""
+async def read_hotspot_foot_traffic(
+    hotspot_id: str,
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
+):
+    """Get foot traffic data for a specific hotspot."""
     logger.info(f"Foot traffic data requested for hotspot ID: {hotspot_id}")
-    hotspot = get_hotspot_by_id(hotspot_id)
+
+    # Get the hotspot with its foot traffic data
+    hotspot = get_hotspot_by_id(hotspot_id, date, time)
     if not hotspot:
         logger.warning(f"Hotspot with ID {hotspot_id} not found")
         raise HTTPException(status_code=404, detail="Hotspot not found")
 
-    foot_traffic = get_hotspot_foot_traffic(hotspot_id)
     logger.info(
-        f"Retrieved {len(foot_traffic)} foot traffic data points for hotspot ID: {hotspot_id}"
+        f"Retrieved {len(hotspot.footTraffic) if hotspot.footTraffic else 0} foot traffic data points for hotspot ID: {hotspot_id}"
     )
-    return foot_traffic
+    return hotspot.footTraffic or []
 
 
 @api_router.get("/events/{event_id}/foot-traffic", response_model=List[FootTrafficData])

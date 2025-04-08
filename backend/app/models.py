@@ -30,7 +30,8 @@ class FootTrafficData(BaseModel):
 
 class Hotspot(BaseModel):
     id: str
-    label: str
+    name: str  # Fixed zone name
+    label: str  # A, B, C, D based on current traffic
     address: str
     trafficLevel: TrafficLevel
     weather: WeatherType
