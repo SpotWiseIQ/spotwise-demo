@@ -5,7 +5,7 @@ import { TampereMap } from "@/components/TampereMap";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const Index = () => {
+const MobileBusinessMap = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   return (
@@ -30,4 +30,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default MobileBusinessMap;

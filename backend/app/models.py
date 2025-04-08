@@ -105,3 +105,25 @@ class TrafficFeature(BaseModel):
 class TrafficData(BaseModel):
     type: Literal["FeatureCollection"]
     features: List[TrafficFeature]
+
+
+# Business requirement models
+class BusinessType(str, Enum):
+    STATIC = "Static"
+    MOBILE = "Mobile"
+
+
+class BusinessIntent(str, Enum):
+    SETUP = "Setup"
+    RESEARCH = "Research"
+
+
+class BusinessRequirementRequest(BaseModel):
+    text: str
+
+
+class BusinessPreferences(BaseModel):
+    business_type: BusinessType
+    business: str
+    location: str
+    intent: BusinessIntent

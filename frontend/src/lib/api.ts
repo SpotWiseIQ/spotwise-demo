@@ -181,4 +181,37 @@ export const fetchEventFootTraffic = async (eventId: string) => {
     debugLog(`Exception in fetchEventFootTraffic`, error);
     throw error;
   }
+};
+
+export interface BusinessPreferences {
+  business_type: string;
+  business: string;
+  location: string;
+  intent: string;
+}
+
+export const analyzeBusiness = async (text: string): Promise<BusinessPreferences> => {
+  debugLog(`POST /api/analyze-business`);
+  try {
+    const response = await fetch(`/api/analyze-business`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error analyzing business: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to analyze business requirement');
+    }
+    
+    const data = await response.json();
+    debugLog(`Business analysis response received`, data);
+    return data;
+  } catch (error) {
+    debugLog(`Exception in analyzeBusiness`, error);
+    throw error;
+  }
 }; 

@@ -4,7 +4,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 from datetime import datetime
 
-from app.models import Hotspot, Event, MapItem, TrafficData, FootTrafficData
+from app.models import (
+    Hotspot,
+    Event,
+    MapItem,
+    TrafficData,
+    FootTrafficData,
+    BusinessType,
+    BusinessIntent,
+    BusinessRequirementRequest,
+    BusinessPreferences,
+)
 from app.database import (
     get_all_hotspots,
     get_hotspot_by_id,
@@ -25,6 +35,7 @@ logging.basicConfig(
     handlers=[logging.StreamHandler()],
 )
 logger = logging.getLogger(__name__)
+
 
 app = FastAPI(
     title="Tampere Explorer Hub API",
@@ -153,6 +164,21 @@ async def read_event_foot_traffic(event_id: str):
         f"Retrieved {len(foot_traffic)} foot traffic data points for event ID: {event_id}"
     )
     return foot_traffic
+
+
+@api_router.post("/analyze-business", response_model=BusinessPreferences)
+async def analyze_business_requirement(requirement: BusinessRequirementRequest):
+    """Analyze business requirement text and return business preferences"""
+    logger.info(f"Analyzing business requirement: {requirement.text}")
+
+    # For now, return fixed preferences
+    # In the future, this will use an LLM to analyze the text
+    return BusinessPreferences(
+        business_type=BusinessType.MOBILE,
+        business="Foodstand",
+        location="Tampere",
+        intent=BusinessIntent.RESEARCH,
+    )
 
 
 # Include the API router in the main app
