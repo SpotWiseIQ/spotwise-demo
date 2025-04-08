@@ -109,47 +109,12 @@ export const TampereMap: React.FC = () => {
             ? selectedHotspot.coordinates
             : selectedEvent!.coordinates;
 
-          debugLog("API call: fetchMapItems for selected location");
-          let items = await fetchMapItems(coordinates[1], coordinates[0], 400);
+          // Request all types in a single API call
+          const availableTypes = ["bus", "tram", "business", "parking", "available"];
+          debugLog("API call: fetchMapItems for selected location with all types");
+          const items = await fetchMapItems(coordinates[1], coordinates[0], 400, availableTypes);
           debugLog("Map items fetched successfully", items);
-
-          // Check if we have at least one of each type
-          const availableTypes: MapItem["type"][] = [
-            "bus",
-            "tram",
-            "business",
-            "parking",
-            "available",
-          ];
-          const existingTypes = new Set(items.map((item) => item.type));
-
-          // For missing types, generate mock items with random positions
-          const missingTypes = availableTypes.filter(
-            (type) => !existingTypes.has(type)
-          );
-
-          if (missingTypes.length > 0) {
-            debugLog(
-              `Requesting missing types from backend: ${missingTypes.join(
-                ", "
-              )}`
-            );
-
-            // Request additional items from backend
-            const additionalItems = await fetchMapItems(
-              coordinates[1],
-              coordinates[0],
-              400,
-              missingTypes
-            );
-
-            // Combine original and additional items
-            items = [...items, ...additionalItems];
-            debugLog("Received additional items from backend", additionalItems);
-          }
-
           setMapItems(items);
-          debugLog("Fetch map items complete", { itemsCount: items.length });
         } else {
           // Clear map items when nothing is selected
           setMapItems([]);
@@ -316,8 +281,8 @@ export const TampereMap: React.FC = () => {
 
     debugLog("Markers update start", {
       markersCount: Object.keys(markersRef.current).length,
-      hotspots: hotspots.length,
-      events: events.length,
+      hasSelectedHotspot: !!selectedHotspot,
+      hasSelectedEvent: !!selectedEvent,
       mapItems: mapItems.length
     });
     
@@ -409,64 +374,73 @@ export const TampereMap: React.FC = () => {
 
         markersRef.current[`${item.type}-${item.id}`] = marker;
       });
-    } else {
-      // Show all hotspots and events
-      hotspots.forEach((hotspot) => {
-        const markerElement = document.createElement("div");
-        const trafficClass = hotspot.trafficLevel || "medium";
-        markerElement.className = `hotspot-card ${trafficClass}`;
-        markerElement.textContent = hotspot.label;
-
-        markerElement.addEventListener("click", () => {
-          debugLog(`Hotspot marker clicked: ${hotspot.id}`);
-          useTampere().setSelectedHotspot(hotspot);
-        });
-
-        const marker = new maplibregl.Marker({
-          element: markerElement,
-          anchor: "center",
-        })
-          .setLngLat(hotspot.coordinates)
-          .addTo(map.current!);
-
-        markersRef.current[`hotspot-${hotspot.id}`] = marker;
-      });
-
-      events.forEach((event) => {
-        const markerElement = document.createElement("div");
-        markerElement.innerHTML = `
-          <div class="event-marker">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
-              <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
-              <path d="M16 2v4"></path>
-              <path d="M8 2v4"></path>
-              <path d="M3 10h18"></path>
-              <circle cx="18" cy="18" r="4"></circle>
-              <path d="M18 16.5v1.5h1.5"></path>
-            </svg>
-          </div>
-        `;
-
-        markerElement.addEventListener("click", () => {
-          debugLog(`Event marker clicked: ${event.id}`);
-          useTampere().setSelectedEvent(event);
-        });
-
-        const marker = new maplibregl.Marker({
-          element: markerElement,
-          anchor: "center",
-        })
-          .setLngLat(event.coordinates)
-          .addTo(map.current!);
-
-        markersRef.current[`event-${event.id}`] = marker;
-      });
     }
+  }, [selectedHotspot, selectedEvent, mapItems, mapLoaded]);
+
+  // Separate effect for overview markers when nothing is selected
+  useEffect(() => {
+    if (!map.current || !mapLoaded || selectedHotspot || selectedEvent) {
+      return;
+    }
+
+    debugLog("Updating overview markers");
     
-    debugLog("Markers update complete", {
-      newMarkersCount: Object.keys(markersRef.current).length
+    // Remove all existing markers
+    Object.values(markersRef.current).forEach((marker) => marker.remove());
+    markersRef.current = {};
+
+    // Show all hotspots and events as unselected markers
+    hotspots.forEach((hotspot) => {
+      const markerElement = document.createElement("div");
+      const trafficClass = hotspot.trafficLevel || "medium";
+      markerElement.className = `hotspot-card ${trafficClass}`;
+      markerElement.textContent = hotspot.label;
+
+      markerElement.addEventListener("click", () => {
+        debugLog(`Hotspot marker clicked: ${hotspot.id}`);
+        useTampere().setSelectedHotspot(hotspot);
+      });
+
+      const marker = new maplibregl.Marker({
+        element: markerElement,
+        anchor: "center",
+      })
+        .setLngLat(hotspot.coordinates)
+        .addTo(map.current!);
+
+      markersRef.current[`hotspot-${hotspot.id}`] = marker;
     });
-  }, [hotspots, events, mapItems, selectedHotspot, selectedEvent, mapLoaded]);
+
+    events.forEach((event) => {
+      const markerElement = document.createElement("div");
+      markerElement.innerHTML = `
+        <div class="event-marker">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
+            <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+            <circle cx="18" cy="18" r="4"></circle>
+            <path d="M18 16.5v1.5h1.5"></path>
+          </svg>
+        </div>
+      `;
+
+      markerElement.addEventListener("click", () => {
+        debugLog(`Event marker clicked: ${event.id}`);
+        useTampere().setSelectedEvent(event);
+      });
+
+      const marker = new maplibregl.Marker({
+        element: markerElement,
+        anchor: "center",
+      })
+        .setLngLat(event.coordinates)
+        .addTo(map.current!);
+
+      markersRef.current[`event-${event.id}`] = marker;
+    });
+  }, [hotspots, events, mapLoaded, selectedHotspot, selectedEvent]);
 
   // Helper function to get map item icon
   const getMapItemIcon = (type: string) => {

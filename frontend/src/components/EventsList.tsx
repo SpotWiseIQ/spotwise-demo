@@ -31,27 +31,27 @@ export const EventsList: React.FC = () => {
     }
   }, [events, selectedDate, loading, error]);
 
-  const handleEventClick = (event: typeof events[0]) => {
+  const handleEventClick = (event: (typeof events)[0]) => {
     // Enhanced logging with colors
     console.log(
       `%c📅 CLICK EVENT: Event clicked - id=${event.id}, name=${event.name}`, 
-      'background: #ff9800; color: black; font-weight: bold; padding: 3px 5px; border-radius: 3px;'
+      'background: #2196f3; color: white; font-weight: bold; padding: 3px 5px; border-radius: 3px;'
     );
     
     // Log the action being taken
     console.log(
       `%c👉 ACTION: ${selectedEvent?.id === event.id ? 'Deselecting' : 'Selecting'} event`,
-      'background: #2196f3; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
+      'background: #673ab7; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
     );
     
     setSelectedHotspot(null);
-    // Toggle selection: if already selected, deselect (set to null)
+    // If the clicked event is already selected, deselect it (toggle behavior)
     setSelectedEvent(selectedEvent?.id === event.id ? null : event);
   };
 
   return (
-    <div className="mt-4">
-      <div className="mb-2 font-medium">Today's events</div>
+    <div className="mt-6">
+      <div className="mb-2 font-medium">Events</div>
       <div className="space-y-1.5 pr-2">
         {loading ? (
           <div className="text-gray-500 text-sm py-2">Loading events...</div>

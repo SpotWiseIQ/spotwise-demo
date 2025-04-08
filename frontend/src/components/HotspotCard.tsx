@@ -38,9 +38,18 @@ export const HotspotCard: React.FC<HotspotCardProps> = ({
   const [isTrafficOpen, setIsTrafficOpen] = useState(false);
 
   useEffect(() => {
+    // Always fetch foot traffic data regardless of selection
     const fetchData = async () => {
       setIsLoadingTraffic(true);
       try {
+        // If footTraffic is already available in the hotspot object, use it
+        if (hotspot.footTraffic) {
+          setFootTrafficData(hotspot.footTraffic);
+          setIsLoadingTraffic(false);
+          return;
+        }
+        
+        // Otherwise, load it via the context (which now prioritizes pre-loaded data)
         const data = await loadHotspotFootTraffic(hotspot.id);
         setFootTrafficData(data);
       } catch (error) {
@@ -52,7 +61,14 @@ export const HotspotCard: React.FC<HotspotCardProps> = ({
     };
 
     fetchData();
-  }, [hotspot.id, loadHotspotFootTraffic]);
+  }, [hotspot.id, hotspot.footTraffic, loadHotspotFootTraffic]);
+
+  // Reset traffic panel when deselected
+  useEffect(() => {
+    if (!selected) {
+      setIsTrafficOpen(false);
+    }
+  }, [selected]);
 
   const getTrafficColor = (level: string) => {
     switch (level) {

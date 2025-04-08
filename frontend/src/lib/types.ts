@@ -1,6 +1,12 @@
 export type TrafficLevel = 'high' | 'medium' | 'low';
 export type WeatherType = 'sunny' | 'clouded' | 'rainy' | 'snowy';
 
+export interface FootTrafficData {
+  hour: number;
+  value: number;
+  type: 'past' | 'current' | 'predicted';
+}
+
 export interface Hotspot {
   id: string;
   label: string;
@@ -8,11 +14,7 @@ export interface Hotspot {
   trafficLevel: TrafficLevel;
   weather: WeatherType;
   coordinates: [number, number]; // [longitude, latitude]
-  footTraffic?: {
-    hour: number;
-    value: number;
-    type: 'past' | 'current' | 'predicted';
-  }[];
+  footTraffic?: FootTrafficData[];
   population?: string;
   areaType?: string;
   peakHour?: string;
@@ -26,13 +28,14 @@ export interface Event {
   name: string;
   time: string;
   place: string;
+  coordinates: [number, number]; // [longitude, latitude]
+  date: string;
+  footTraffic?: FootTrafficData[];
   address?: string;
   type?: string;
   duration?: string;
-  capacity?: number;
+  capacity?: string;
   demographics?: string;
-  coordinates: [number, number]; // [longitude, latitude]
-  date: string;
   peakTrafficImpact?: string;
   ticketStatus?: string;
 }

@@ -448,12 +448,26 @@ export interface LocationMetricsProps {
 }
 
 export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpanded }) => {
-  const { selectedHotspot, selectedEvent, loadHotspotFootTraffic, loadEventFootTraffic } = useTampere();
+  const { 
+    selectedHotspot, 
+    selectedEvent, 
+    loadHotspotFootTraffic, 
+    loadEventFootTraffic,
+    loadHotspotDetailedMetrics,
+    loadEventDetailedMetrics 
+  } = useTampere();
+  
   const [expandedCardCount, setExpandedCardCount] = useState(0);
   const [hotspotFootTrafficData, setHotspotFootTrafficData] = useState<any[]>([]);
   const [eventFootTrafficData, setEventFootTrafficData] = useState<any[]>([]);
   const [isLoadingHotspotData, setIsLoadingHotspotData] = useState(false);
   const [isLoadingEventData, setIsLoadingEventData] = useState(false);
+  
+  // New states for detailed metrics
+  const [hotspotDetailedMetrics, setHotspotDetailedMetrics] = useState<any>(null);
+  const [eventDetailedMetrics, setEventDetailedMetrics] = useState<any>(null);
+  const [loadingHotspotDetailedMetrics, setLoadingHotspotDetailedMetrics] = useState(false);
+  const [loadingEventDetailedMetrics, setLoadingEventDetailedMetrics] = useState(false);
   
   // Track when any card is expanded
   const handleCardExpandToggle = (expanded: boolean) => {
@@ -473,9 +487,14 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
       if (selectedHotspot) {
         setIsLoadingHotspotData(true);
         try {
-          const data = await loadHotspotFootTraffic(selectedHotspot.id);
-          if (data) {
-            setHotspotFootTrafficData(data);
+          // Use pre-loaded foot traffic data if available
+          if (selectedHotspot.footTraffic) {
+            setHotspotFootTrafficData(selectedHotspot.footTraffic);
+          } else {
+            const data = await loadHotspotFootTraffic(selectedHotspot.id);
+            if (data) {
+              setHotspotFootTrafficData(data);
+            }
           }
         } catch (error) {
           console.error("Error loading hotspot foot traffic data:", error);
@@ -490,15 +509,43 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
     loadHotspotData();
   }, [selectedHotspot, loadHotspotFootTraffic]);
 
+  // Load detailed metrics for hotspot when selected
+  useEffect(() => {
+    const loadHotspotDetailedData = async () => {
+      if (selectedHotspot) {
+        setLoadingHotspotDetailedMetrics(true);
+        try {
+          const data = await loadHotspotDetailedMetrics(selectedHotspot.id);
+          if (data) {
+            setHotspotDetailedMetrics(data);
+          }
+        } catch (error) {
+          console.error("Error loading hotspot detailed metrics:", error);
+        } finally {
+          setLoadingHotspotDetailedMetrics(false);
+        }
+      } else {
+        setHotspotDetailedMetrics(null);
+      }
+    };
+
+    loadHotspotDetailedData();
+  }, [selectedHotspot, loadHotspotDetailedMetrics]);
+
   // Load event foot traffic data when an event is selected
   useEffect(() => {
     const loadEventData = async () => {
       if (selectedEvent) {
         setIsLoadingEventData(true);
         try {
-          const data = await loadEventFootTraffic(selectedEvent.id);
-          if (data) {
-            setEventFootTrafficData(data);
+          // Use pre-loaded foot traffic data if available
+          if (selectedEvent.footTraffic) {
+            setEventFootTrafficData(selectedEvent.footTraffic);
+          } else {
+            const data = await loadEventFootTraffic(selectedEvent.id);
+            if (data) {
+              setEventFootTrafficData(data);
+            }
           }
         } catch (error) {
           console.error("Error loading event foot traffic data:", error);
@@ -512,6 +559,29 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
 
     loadEventData();
   }, [selectedEvent, loadEventFootTraffic]);
+  
+  // Load detailed metrics for event when selected
+  useEffect(() => {
+    const loadEventDetailedData = async () => {
+      if (selectedEvent) {
+        setLoadingEventDetailedMetrics(true);
+        try {
+          const data = await loadEventDetailedMetrics(selectedEvent.id);
+          if (data) {
+            setEventDetailedMetrics(data);
+          }
+        } catch (error) {
+          console.error("Error loading event detailed metrics:", error);
+        } finally {
+          setLoadingEventDetailedMetrics(false);
+        }
+      } else {
+        setEventDetailedMetrics(null);
+      }
+    };
+
+    loadEventDetailedData();
+  }, [selectedEvent, loadEventDetailedMetrics]);
 
   // Calculate the peak hour from foot traffic data
   const findPeakHour = (data: any[]) => {

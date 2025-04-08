@@ -41,6 +41,7 @@ class Hotspot(BaseModel):
     avgDailyTraffic: Optional[str] = None
     dominantDemographics: Optional[str] = None
     nearbyBusinesses: Optional[str] = None
+    footTraffic: Optional[List[FootTrafficData]] = None
 
 
 class Event(BaseModel):
@@ -57,6 +58,7 @@ class Event(BaseModel):
     demographics: Optional[str] = None
     peakTrafficImpact: Optional[str] = None
     ticketStatus: Optional[str] = None
+    footTraffic: Optional[List[FootTrafficData]] = None
 
 
 class MapItemType(str, Enum):

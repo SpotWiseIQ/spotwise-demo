@@ -25,6 +25,8 @@ from app.database import (
     get_traffic_data,
     get_hotspot_foot_traffic,
     get_event_foot_traffic,
+    get_hotspot_detailed_metrics,
+    get_event_detailed_metrics,
     TAMPERE_CENTER,
 )
 
@@ -70,8 +72,26 @@ async def get_tampere_center():
 
 
 @api_router.get("/hotspots", response_model=List[Hotspot])
-async def read_hotspots():
-    """Get all hotspots"""
+async def read_hotspots(
+    time_period: Optional[str] = Query(
+        None, description="Time period: real-time, daily, weekly, monthly"
+    ),
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
+):
+    """
+    Get all hotspots with optional filtering by time period, date, and time
+
+    For now, returns the same hardcoded hotspots regardless of parameters
+    """
+    # Log the request parameters
+    logger.info(
+        f"Hotspots requested with filters: time_period={time_period}, date={date}, time={time}"
+    )
+
+    # For now, simply return all hotspots regardless of filters
     hotspots = get_all_hotspots()
     logger.info(f"Retrieved {len(hotspots)} hotspots")
     return hotspots
@@ -89,15 +109,32 @@ async def read_hotspot(hotspot_id: str):
 
 
 @api_router.get("/events", response_model=List[Event])
-async def read_events(date: Optional[str] = None):
+async def read_events(
+    date: Optional[str] = None,
+    current_time: Optional[int] = Query(
+        None,
+        description="Current hour (0-23) to filter events starting after this time",
+    ),
+):
     """
-    Get all events or filter by date
+    Get all events or filter by date and current time
 
-    Format: YYYY-MM-DD (e.g., 2025-03-26)
+    - date: YYYY-MM-DD (e.g., 2025-03-26)
+    - current_time: Current hour (0-23), only events starting after this time will be returned
+
+    For now, returns the same hardcoded events filtered only by date
     """
+    # Log the request parameters
+    logger.info(
+        f"Events requested with filters: date={date}, current_time={current_time}"
+    )
+
     if date:
-        logger.info(f"Events requested for date: {date}")
-        return get_events_by_date(date)
+        logger.info(
+            f"Events filtered by date: {date} and time: {current_time if current_time is not None else 'all'}"
+        )
+        return get_events_by_date(date, current_time)
+
     logger.info("All events requested")
     return get_all_events()
 
@@ -179,6 +216,34 @@ async def analyze_business_requirement(requirement: BusinessRequirementRequest):
         location="Tampere",
         intent=BusinessIntent.RESEARCH,
     )
+
+
+@api_router.get("/hotspots/{hotspot_id}/detailed-metrics")
+async def read_hotspot_detailed_metrics(hotspot_id: str):
+    """Get detailed metrics for a specific hotspot"""
+    logger.info(f"Detailed metrics requested for hotspot ID: {hotspot_id}")
+    hotspot = get_hotspot_by_id(hotspot_id)
+    if not hotspot:
+        logger.warning(f"Hotspot with ID {hotspot_id} not found")
+        raise HTTPException(status_code=404, detail="Hotspot not found")
+
+    detailed_metrics = get_hotspot_detailed_metrics(hotspot_id)
+    logger.info(f"Retrieved detailed metrics for hotspot ID: {hotspot_id}")
+    return detailed_metrics
+
+
+@api_router.get("/events/{event_id}/detailed-metrics")
+async def read_event_detailed_metrics(event_id: str):
+    """Get detailed metrics for a specific event"""
+    logger.info(f"Detailed metrics requested for event ID: {event_id}")
+    event = get_event_by_id(event_id)
+    if not event:
+        logger.warning(f"Event with ID {event_id} not found")
+        raise HTTPException(status_code=404, detail="Event not found")
+
+    detailed_metrics = get_event_detailed_metrics(event_id)
+    logger.info(f"Retrieved detailed metrics for event ID: {event_id}")
+    return detailed_metrics
 
 
 # Include the API router in the main app

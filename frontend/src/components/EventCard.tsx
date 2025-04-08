@@ -30,9 +30,18 @@ export const EventCard: React.FC<EventCardProps> = ({
   const [isTrafficOpen, setIsTrafficOpen] = useState(false);
 
   useEffect(() => {
+    // Always fetch foot traffic data regardless of selection
     const fetchData = async () => {
       setIsLoadingTraffic(true);
       try {
+        // If footTraffic is already available in the event object, use it
+        if (event.footTraffic) {
+          setFootTrafficData(event.footTraffic);
+          setIsLoadingTraffic(false);
+          return;
+        }
+        
+        // Otherwise, load it via the context (which now prioritizes pre-loaded data)
         const data = await loadEventFootTraffic(event.id);
         setFootTrafficData(data);
       } catch (error) {
@@ -44,7 +53,14 @@ export const EventCard: React.FC<EventCardProps> = ({
     };
 
     fetchData();
-  }, [event.id, loadEventFootTraffic]);
+  }, [event.id, event.footTraffic, loadEventFootTraffic]);
+
+  // Reset traffic panel when deselected
+  useEffect(() => {
+    if (!selected) {
+      setIsTrafficOpen(false);
+    }
+  }, [selected]);
 
   const handleCardClick = (e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest('[data-collapsible-trigger]')) {

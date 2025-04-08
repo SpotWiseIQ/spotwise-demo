@@ -1,6 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Event, Hotspot, TimelineRange } from "./types";
-import { fetchHotspots, fetchEvents, fetchHotspotFootTraffic, fetchEventFootTraffic } from "./api";
+import { 
+  fetchHotspots, 
+  fetchEvents, 
+  fetchHotspotFootTraffic, 
+  fetchEventFootTraffic,
+  fetchHotspotDetailedMetrics,
+  fetchEventDetailedMetrics
+} from "./api";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -26,6 +33,8 @@ interface TampereContextType {
   setTimePeriod: (period: 'real-time' | 'daily' | 'weekly' | 'monthly') => void;
   loadHotspotFootTraffic: (hotspotId: string) => Promise<any>;
   loadEventFootTraffic: (eventId: string) => Promise<any>;
+  loadHotspotDetailedMetrics: (hotspotId: string) => Promise<any>;
+  loadEventDetailedMetrics: (eventId: string) => Promise<any>;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -33,10 +42,22 @@ const TampereContext = createContext<TampereContextType | undefined>(undefined);
 export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   debugLog("TampereProvider initializing");
   
-  // Initialize with noon time to avoid timezone issues
-  const initialDate = new Date("2025-03-26T12:00:00");
-  const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
-  const [timelineRange, setTimelineRange] = useState<TimelineRange>({ start: 50, end: 75 });
+  // Initialize with current date and time
+  const now = new Date();
+  const currentHour = now.getHours();
+  
+  // Convert current hour to percentage for timeline (0-100 range)
+  const currentTimePercentage = Math.round((currentHour / 24) * 100);
+  // Set end to be about 25% ahead of current time, but cap at 100
+  const endTimePercentage = Math.min(100, currentTimePercentage + 25);
+  
+  debugLog(`Initializing with current date: ${now.toISOString().split('T')[0]}, hour: ${currentHour}, time percentage: ${currentTimePercentage}`);
+  
+  const [selectedDate, setSelectedDate] = useState<Date>(now);
+  const [timelineRange, setTimelineRange] = useState<TimelineRange>({ 
+    start: currentTimePercentage, 
+    end: endTimePercentage 
+  });
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [pulse, setPulse] = useState<boolean>(false);
@@ -91,13 +112,24 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setSelectedEvent(event);
   };
 
-  // Fetch hotspots
+  // Fetch hotspots every time the date, time period, or timeline changes
   useEffect(() => {
     debugLog("Fetching hotspots");
     const getHotspots = async () => {
       try {
-        debugLog("API call: fetchHotspots");
-        const data = await fetchHotspots();
+        // Format date as YYYY-MM-DD
+        const dateToFetch = new Date(selectedDate);
+        dateToFetch.setHours(12, 0, 0, 0);
+        const formattedDate = dateToFetch.toISOString().split('T')[0];
+        
+        // Call fetchHotspots with the appropriate parameters
+        debugLog(`API call: fetchHotspots(${timePeriod}, ${formattedDate}, ${JSON.stringify(timelineRange)})`);
+        const data = await fetchHotspots(
+          timePeriod,
+          formattedDate,
+          timelineRange
+        );
+        
         debugLog(`Fetched ${data.length} hotspots successfully`);
         setHotspots(data);
       } catch (err) {
@@ -108,41 +140,36 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     getHotspots();
-  }, []);
+  }, [selectedDate, timePeriod, timelineRange]);
 
-  // Fetch events whenever selectedDate changes
+  // Fetch events only when date or timeline changes and no selection is active
   useEffect(() => {
+    // Skip fetching if there's a selected item
+    if (selectedHotspot || selectedEvent) {
+      debugLog("Skipping events fetch - there is a selected item");
+      return;
+    }
+
     // Get YYYY-MM-DD format, but ensure we're using the actual selected date
     // by creating a fixed version with consistent time (noon) to avoid timezone issues
     const dateToFetch = new Date(selectedDate);
     dateToFetch.setHours(12, 0, 0, 0);
     const formattedDate = dateToFetch.toISOString().split('T')[0]; // YYYY-MM-DD format
     
-    debugLog(`🔎 START: Fetching events for date: ${formattedDate} (from date ${selectedDate.toISOString()})`);
-    console.log(`🔎 STATE BEFORE FETCH: ${events.length} events currently in state`);
-    events.forEach((event, index) => {
-      console.log(`  Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
-    });
+    // Use selected time from the timeline slider instead of system time
+    // Convert from percentage to hour (0-23)
+    const selectedTime = Math.round(timelineRange.start / 100 * 24);
+    
+    debugLog(`🔎 START: Fetching events for date: ${formattedDate}, selectedTime: ${selectedTime} (from date ${selectedDate.toISOString()})`);
     
     const getEvents = async () => {
       setLoading(true);
       try {
-        debugLog(`API call: fetchEvents(${formattedDate})`);
-        const data = await fetchEvents(formattedDate);
-        debugLog(`🔎 FETCH RESULT: ${data.length} events for date ${formattedDate}:`);
-        data.forEach((event, index) => {
-          console.log(`  Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
-        });
-        
-        // Set the events in state
-        console.log(`🔎 UPDATING STATE: Setting ${data.length} events in state`);
+        debugLog(`API call: fetchEvents(${formattedDate}, ${selectedTime})`);
+        const data = await fetchEvents(formattedDate, selectedTime);
+        debugLog(`🔎 FETCH RESULT: ${data.length} events for date ${formattedDate}`);
         setEvents(data);
         setError(null);
-        
-        // Debug one more time after state set
-        setTimeout(() => {
-          console.log(`🔎 STATE CHECK: Current events in state after update: ${data.length}`);
-        }, 0);
       } catch (err) {
         console.error("Failed to fetch events:", err);
         debugLog("Error fetching events", err);
@@ -155,12 +182,7 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
 
     getEvents();
-    
-    // Debug cleanup function
-    return () => {
-      console.log(`🔎 CLEANUP: Events fetch effect for date ${formattedDate}`);
-    };
-  }, [selectedDate]);
+  }, [selectedDate, timelineRange, selectedHotspot, selectedEvent]);
 
   // Debug state changes
   useEffect(() => {
@@ -178,6 +200,16 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const loadHotspotFootTraffic = async (hotspotId: string) => {
     debugLog(`Loading foot traffic data for hotspot ${hotspotId}`);
     try {
+      // Find the hotspot in the already loaded data
+      const hotspot = hotspots.find(h => h.id === hotspotId);
+      if (hotspot && hotspot.footTraffic) {
+        // Use the foot traffic data from the hotspot if available
+        debugLog(`Using pre-loaded foot traffic data for hotspot ${hotspotId}`);
+        return hotspot.footTraffic;
+      }
+      
+      // Fall back to API call if not available (should be rare)
+      debugLog(`Foot traffic data not found in hotspot ${hotspotId}, falling back to API call`);
       const data = await fetchHotspotFootTraffic(hotspotId);
       debugLog(`Fetched foot traffic data for hotspot ${hotspotId}`, data);
       return data;
@@ -192,6 +224,16 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const loadEventFootTraffic = async (eventId: string) => {
     debugLog(`Loading foot traffic data for event ${eventId}`);
     try {
+      // Find the event in the already loaded data
+      const event = events.find(e => e.id === eventId);
+      if (event && event.footTraffic) {
+        // Use the foot traffic data from the event if available
+        debugLog(`Using pre-loaded foot traffic data for event ${eventId}`);
+        return event.footTraffic;
+      }
+      
+      // Fall back to API call if not available (should be rare)
+      debugLog(`Foot traffic data not found in event ${eventId}, falling back to API call`);
       const data = await fetchEventFootTraffic(eventId);
       debugLog(`Fetched foot traffic data for event ${eventId}`, data);
       return data;
@@ -199,6 +241,34 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
       console.error(`Failed to fetch foot traffic for event ${eventId}:`, err);
       debugLog(`Error fetching foot traffic for event ${eventId}`, err);
       throw new Error("Failed to fetch event foot traffic data.");
+    }
+  };
+
+  // Function to load detailed metrics for a specific hotspot
+  const loadHotspotDetailedMetrics = async (hotspotId: string) => {
+    debugLog(`Loading detailed metrics for hotspot ${hotspotId}`);
+    try {
+      const data = await fetchHotspotDetailedMetrics(hotspotId);
+      debugLog(`Fetched detailed metrics for hotspot ${hotspotId}`, data);
+      return data;
+    } catch (err) {
+      console.error(`Failed to fetch detailed metrics for hotspot ${hotspotId}:`, err);
+      debugLog(`Error fetching detailed metrics for hotspot ${hotspotId}`, err);
+      throw new Error("Failed to fetch hotspot detailed metrics.");
+    }
+  };
+
+  // Function to load detailed metrics for a specific event
+  const loadEventDetailedMetrics = async (eventId: string) => {
+    debugLog(`Loading detailed metrics for event ${eventId}`);
+    try {
+      const data = await fetchEventDetailedMetrics(eventId);
+      debugLog(`Fetched detailed metrics for event ${eventId}`, data);
+      return data;
+    } catch (err) {
+      console.error(`Failed to fetch detailed metrics for event ${eventId}:`, err);
+      debugLog(`Error fetching detailed metrics for event ${eventId}`, err);
+      throw new Error("Failed to fetch event detailed metrics.");
     }
   };
 
@@ -222,7 +292,9 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         timePeriod,
         setTimePeriod,
         loadHotspotFootTraffic,
-        loadEventFootTraffic
+        loadEventFootTraffic,
+        loadHotspotDetailedMetrics,
+        loadEventDetailedMetrics
       }}
     >
       {children}
