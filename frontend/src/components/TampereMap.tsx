@@ -72,6 +72,28 @@ export const TampereMap: React.FC = () => {
     getTampereCenter();
   }, []);
 
+  // Add immediate fly-to effect that runs as soon as selection changes
+  useEffect(() => {
+    if (!map.current || !mapLoaded) return;
+
+    const coordinates = selectedHotspot?.coordinates || selectedEvent?.coordinates;
+    if (coordinates) {
+      debugLog("Immediate fly to coordinates", coordinates);
+      map.current.flyTo({
+        center: coordinates,
+        zoom: 15.5,
+        essential: true,
+        duration: 1000, // 1 second transition
+        padding: {
+          top: 50,
+          bottom: 50,
+          left: 50,
+          right: 50,
+        },
+      });
+    }
+  }, [selectedHotspot, selectedEvent, mapLoaded]);
+
   // Fetch map items
   useEffect(() => {
     debugLog("Fetch map items start", {
@@ -86,9 +108,6 @@ export const TampereMap: React.FC = () => {
           const coordinates = selectedHotspot
             ? selectedHotspot.coordinates
             : selectedEvent!.coordinates;
-            
-          // Store these coordinates for the flyTo that will happen after items load
-          pendingFlyToRef.current = coordinates;
 
           debugLog("API call: fetchMapItems for selected location");
           let items = await fetchMapItems(coordinates[1], coordinates[0], 400);
@@ -134,7 +153,6 @@ export const TampereMap: React.FC = () => {
         } else {
           // Clear map items when nothing is selected
           setMapItems([]);
-          pendingFlyToRef.current = null;
           debugLog("Fetch map items cleared");
         }
       } catch (error) {
@@ -536,9 +554,12 @@ export const TampereMap: React.FC = () => {
       requestAnimationFrame(() => {
         if (!map.current) return;
         
-        // Explicitly resize the map to prevent white flash
-        map.current.resize();
-        debugLog("Map resize() called");
+        // Add a small delay to let the CSS transition complete
+        setTimeout(() => {
+          if (!map.current) return;
+          map.current.resize();
+          debugLog("Map resize() called");
+        }, 300); // Match the CSS transition duration
       });
       
       // Update refs for next comparison
@@ -571,37 +592,6 @@ export const TampereMap: React.FC = () => {
       isAnyCardExpanded 
     });
   }, [showDetails, isAnyCardExpanded]);
-
-  // FIXED: Track map transitions - now dependent on mapItems being loaded
-  useEffect(() => {
-    if (!map.current || !mapLoaded || loadingMapItems) {
-      // Don't fly if still loading map items
-      return;
-    }
-
-    // Only fly to coordinates when we have a stored pending location
-    if (pendingFlyToRef.current) {
-      const coordinates = pendingFlyToRef.current;
-      pendingFlyToRef.current = null; // Clear pending coordinates
-      
-      // Very visible log
-      console.log(`%c📍 MAP MOVE: Flying to ${JSON.stringify(coordinates)} AFTER items loaded`, 
-        'background: #ffeb3b; color: #000; font-weight: bold; padding: 3px 5px; border-radius: 3px;');
-
-      // Center the map on the selected point with appropriate zoom level
-      map.current.flyTo({
-        center: coordinates,
-        zoom: 15.5, // Slightly increased zoom level for better visibility
-        essential: true,
-        padding: {
-          top: 50,
-          bottom: 50,
-          left: 50,
-          right: 50,
-        },
-      });
-    }
-  }, [mapLoaded, loadingMapItems, mapItems]);
 
   // Debug effect to log container dimensions only on mount and resize
   useEffect(() => {
