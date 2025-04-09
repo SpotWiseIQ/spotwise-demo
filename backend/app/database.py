@@ -32,7 +32,7 @@ HOTSPOT_TEMPLATES = [
         "id": "1",
         "name": "Keskustori Zone",  # Central Square Zone
         "address": "Hämeenkatu 10",
-        "coordinates": (23.775, 61.4998),
+        "coordinates": (23.760831, 61.498164),  # Updated coordinates
         "population": "~10k",
         "areaType": "Commercial",
         "avgDailyTraffic": "~8k",
@@ -45,7 +45,7 @@ HOTSPOT_TEMPLATES = [
         "id": "2",
         "name": "Rautatieasema Zone",  # Railway Station Zone
         "address": "Rautatienkatu 25",
-        "coordinates": (23.745, 61.4990),
+        "coordinates": (23.773060, 61.498472),  # Updated coordinates
         "population": "~5k",
         "areaType": "Residential/Office",
         "avgDailyTraffic": "~4k",
@@ -58,7 +58,7 @@ HOTSPOT_TEMPLATES = [
         "id": "3",
         "name": "Tampere-talo Zone",  # Tampere Hall Zone
         "address": "Yliopistonkatu 55",
-        "coordinates": (23.755, 61.4960),
+        "coordinates": (23.781940, 61.495830),  # Updated coordinates
         "population": "~8k",
         "areaType": "Mixed Use",
         "avgDailyTraffic": "~6k",
@@ -71,7 +71,7 @@ HOTSPOT_TEMPLATES = [
         "id": "4",
         "name": "Koskikeskus Zone",  # Shopping Center Zone
         "address": "Hatanpään valtatie 1",
-        "coordinates": (23.765, 61.4940),
+        "coordinates": (23.767500, 61.495833),  # Updated coordinates
         "population": "~12k",
         "areaType": "Entertainment District",
         "avgDailyTraffic": "~10k",
@@ -404,229 +404,80 @@ def generate_mock_events_for_date(date_str: str) -> List[Event]:
     seed = sum(ord(c) for c in date_str)
     random.seed(seed)
 
-    # Number of events to generate (between 4 and 8)
-    num_events = random.randint(4, 8)
-
-    # Time slots distributed across the day (from 9:00 to 21:00)
-    time_slots = [
-        "09:00",
-        "10:30",
-        "12:00",
-        "13:30",
-        "15:00",
-        "16:30",
-        "18:00",
-        "19:30",
-        "21:00",
+    # These are our fixed events
+    fixed_events = [
+        {
+            "id": f"{date_str}-1",
+            "name": "Tampere Film Festival Opening Screening",
+            "time": "18:00",
+            "place": "Finnkino Plevna",
+            "coordinates": (23.7586, 61.5008),  # Corrected coordinates
+            "date": date_str,
+            "address": "Itäinenkatu 4, 33210 Tampere",
+            "type": "festival",
+            "duration": "2.5 h",
+            "capacity": 500,
+            "demographics": "All ages",
+            "peakTrafficImpact": "+30%",
+            "ticketStatus": "Available",
+        },
+        {
+            "id": f"{date_str}-2",
+            "name": "Irish Festival Tampere: Lamb, Galway, Rainey Trio Concert",
+            "time": "18:00",
+            "place": "Höllä-näyttämö",
+            "coordinates": (23.7600, 61.4980),  # Corrected coordinates
+            "date": date_str,
+            "address": "Hämeenkatu 25, 33200 Tampere",
+            "type": "concert",
+            "duration": "3 h",
+            "capacity": 300,
+            "demographics": "All ages",
+            "peakTrafficImpact": "+20%",
+            "ticketStatus": "Limited",
+        },
+        {
+            "id": f"{date_str}-3",
+            "name": "Manse Pride Main Celebration",
+            "time": "15:00",
+            "place": "Sorsapuisto Park",
+            "coordinates": (23.7813, 61.4973),  # Corrected coordinates
+            "date": date_str,
+            "address": "Sorsapuisto Park, 33500 Tampere",
+            "type": "festival",
+            "duration": "3 h",
+            "capacity": 2000,
+            "demographics": "All ages",
+            "peakTrafficImpact": "+40%",
+            "ticketStatus": "Available",
+        },
+        {
+            "id": f"{date_str}-4",
+            "name": "FIBA EuroBasket Group Stage Match",
+            "time": "15:00",
+            "place": "Nokia Arena",
+            "coordinates": (23.772955, 61.493952),  # Corrected coordinates
+            "date": date_str,
+            "address": "Kansikatu 3, 33100 Tampere",
+            "type": "sports",
+            "duration": "2 h",
+            "capacity": 15000,
+            "demographics": "All ages",
+            "peakTrafficImpact": "+50%",
+            "ticketStatus": "Selling Fast",
+        },
     ]
 
-    # Shuffle the time slots and pick the first 'num_events'
-    random.shuffle(time_slots)
-    selected_times = sorted(time_slots[:num_events])
-
-    # Event types
-    event_types = [
-        "concert",
-        "sports",
-        "exhibition",
-        "festival",
-        "conference",
-        "workshop",
-        "theatre",
-    ]
-
-    # Event names by type
-    event_names = {
-        "concert": [
-            "Rock Concert",
-            "Jazz Night",
-            "Symphony Orchestra",
-            "Electronic Music Festival",
-            "Pop Music Show",
-        ],
-        "sports": [
-            "Basketball Match",
-            "Football Game",
-            "Ice Hockey Tournament",
-            "Tennis Championship",
-            "Swimming Competition",
-        ],
-        "exhibition": [
-            "Art Exhibition",
-            "Photography Showcase",
-            "Historical Display",
-            "Science Exhibition",
-            "Design Expo",
-        ],
-        "festival": [
-            "Food Festival",
-            "Cultural Festival",
-            "Film Festival",
-            "Beer Festival",
-            "Music Festival",
-        ],
-        "conference": [
-            "Tech Conference",
-            "Business Summit",
-            "Medical Conference",
-            "Education Symposium",
-            "Research Convention",
-        ],
-        "workshop": [
-            "Coding Workshop",
-            "Creative Writing Class",
-            "Design Thinking Workshop",
-            "Entrepreneurship Seminar",
-            "Dance Workshop",
-        ],
-        "theatre": [
-            "Theatre Play",
-            "Musical Performance",
-            "Comedy Show",
-            "Drama Production",
-            "Opera Night",
-        ],
-    }
-
-    # Venue names by type
-    venue_names = {
-        "concert": [
-            "Tampere Hall",
-            "YO-talo",
-            "Pakkahuone",
-            "Tullikamari",
-            "Olympia-kortteli",
-        ],
-        "sports": [
-            "Hakametsä Ice Stadium",
-            "Tampere Stadium",
-            "Ratina Stadium",
-            "Kauppi Sports Center",
-            "Pyynikki Sports Field",
-        ],
-        "exhibition": [
-            "Tampere Art Museum",
-            "Vapriikki Museum",
-            "Sara Hildén Art Museum",
-            "Mältinranta Art Center",
-            "TR1 Exhibition Space",
-        ],
-        "festival": [
-            "Ratina Festival Park",
-            "Eteläpuisto Park",
-            "Särkänniemi Area",
-            "Tampere Exhibition Center",
-            "Laukontori Square",
-        ],
-        "conference": [
-            "Tampere Hall Congress Center",
-            "Technopolis Yliopistonrinne",
-            "Tampere University",
-            "Hotel Rosendahl",
-            "TOAS Conference Center",
-        ],
-        "workshop": [
-            "Werstas Creative Space",
-            "Y-kampus",
-            "New Factory",
-            "Tribe Tampere",
-            "Demola Tampere",
-        ],
-        "theatre": [
-            "Tampere Theatre",
-            "TTT-Theatre",
-            "Tampere Comedy Theatre",
-            "Komediatehdas",
-            "Telakka Cultural House",
-        ],
-    }
-
-    # Address templates
-    address_templates = [
-        "Hämeenkatu {num}",
-        "Hatanpään valtatie {num}",
-        "Itsenäisyydenkatu {num}",
-        "Satakunnankatu {num}",
-        "Pirkankatu {num}",
-        "Sammonkatu {num}",
-        "Aleksis Kiven katu {num}",
-        "Kauppakatu {num}",
-        "Tuomiokirkonkatu {num}",
-        "Rautatienkatu {num}",
-    ]
-
-    # Generate events
+    # Create Event objects from the fixed events
     generated_events = []
-
-    for i in range(num_events):
-        # Random coordinates near Tampere center
-        lng_offset = random.uniform(-0.03, 0.03)
-        lat_offset = random.uniform(-0.01, 0.01)
-        coordinates = (TAMPERE_CENTER[0] + lng_offset, TAMPERE_CENTER[1] + lat_offset)
-
-        # Random event attributes
-        event_type = random.choice(event_types)
-        capacity = random.choice([200, 300, 500, 800, 1000, 1500, 2000])
-        duration = random.choice(["1 h", "1.5 h", "2 h", "2.5 h", "3 h"])
-        demographics = random.choice(
-            ["All ages", "18+", "18-35", "25-45", "Family-friendly"]
-        )
-
-        # Choose a descriptive name based on event type
-        event_name = random.choice(event_names.get(event_type, ["Event"]))
-
-        # Add a number to differentiate multiple events of the same type
-        if random.random() < 0.5:  # Only add numbers sometimes for more variety
-            event_name = f"{event_name} {i + 1}"
-
-        # Choose a venue name based on event type
-        venue_name = random.choice(venue_names.get(event_type, ["Venue"]))
-
-        # Generate a realistic address
-        address_template = random.choice(address_templates)
-        address = address_template.format(num=random.randint(1, 99))
-
-        # Traffic impact options with weights to favor certain values
-        impact_options = ["+10%", "+15%", "+20%", "+30%", "+40%", "+50%"]
-        impact_weights = [
-            0.2,
-            0.3,
-            0.2,
-            0.15,
-            0.1,
-            0.05,
-        ]  # More likely to be moderate impact
-        traffic_impact = random.choices(impact_options, weights=impact_weights)[0]
-
-        # Ticket status options with weights
-        status_options = ["Available", "Limited", "Selling Fast", "Sold Out"]
-        status_weights = [0.5, 0.25, 0.15, 0.1]  # More likely to be available
-        ticket_status = random.choices(status_options, weights=status_weights)[0]
-
-        # Create the event
-        event = Event(
-            id=f"{date_str}-{i + 1}",
-            name=event_name,
-            time=selected_times[i],
-            place=venue_name,
-            coordinates=coordinates,
-            date=date_str,
-            address=address,
-            type=event_type,
-            duration=duration,
-            capacity=capacity,
-            demographics=demographics,
-            peakTrafficImpact=traffic_impact,
-            ticketStatus=ticket_status,
-        )
-
+    for event_data in fixed_events:
+        event = Event(**event_data)
         generated_events.append(event)
-        # Also cache by event ID for quick lookup
+        # Also cache by event ID
         events_cache[event.id] = event
 
     # Cache the results for this date
     date_events_cache[date_str] = generated_events
-
     return generated_events
 
 
