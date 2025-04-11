@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { TampereProvider } from "@/lib/TampereContext";
-import { MobileBusinessSidebar } from "@/components/MobileBusinessSidebar";
-import { MobileBusinessMap } from "@/components/MobileBusinessMap";
+import { StaticBusinessSidebar } from "@/components/StaticBusinessSidebar";
+import { StaticBusinessMap } from "@/components/StaticBusinessMap";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const MobileBusinessMapPage = () => {
+const StaticBusinessMapPage = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   
   return (
     <TampereProvider>
       <div className="flex h-screen w-full overflow-hidden">
         <div className={`${sidebarCollapsed ? 'w-0' : 'w-1/3'} border-r border-gray-200 bg-white transition-all duration-300 relative`}>
-          <MobileBusinessSidebar />
+          <StaticBusinessSidebar />
           <Button 
             variant="outline" 
             size="icon" 
@@ -23,11 +23,11 @@ const MobileBusinessMapPage = () => {
           </Button>
         </div>
         <div className={`${sidebarCollapsed ? 'w-full' : 'w-2/3'} h-full transition-all duration-300`}>
-          <MobileBusinessMap />
+          <StaticBusinessMap />
         </div>
       </div>
     </TampereProvider>
   );
 };
 
-export default MobileBusinessMapPage;
+export default StaticBusinessMapPage; 

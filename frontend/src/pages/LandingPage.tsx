@@ -61,6 +61,8 @@ export default function LandingPage(): JSX.Element {
   const handleRedirect = () => {
     if (businessType.toLowerCase() === "mobile" && location === "Tampere") {
       navigate("/mobile-business");
+    } else if (businessType.toLowerCase() === "static" && location === "Tampere") {
+      navigate("/static-business");
     }
   };
 
