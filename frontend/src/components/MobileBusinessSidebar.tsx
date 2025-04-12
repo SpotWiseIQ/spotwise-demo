@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { DateSelector } from "./DateSelector";
 import { TimelineSlider } from "./TimelineSlider";
@@ -19,9 +19,32 @@ export const MobileBusinessSidebar: React.FC = () => {
     setSelectedDate, 
     timelineRange, 
     setTimelineRange,
+    selectedEvent,
+    setSelectedEvent,
+    selectedHotspot,
+    setSelectedHotspot,
     timePeriod,
     setTimePeriod
   } = useTampere();
+
+  // Track view changes
+  useEffect(() => {
+    // Create a fixed date for consistent display
+    const dateToDisplay = new Date(selectedDate);
+    dateToDisplay.setHours(12, 0, 0, 0);
+    const formattedDate = dateToDisplay.toISOString().split('T')[0];
+    
+    if (selectedEvent) {
+      console.log(`🧩 SIDEBAR: Showing EVENT DETAIL view for event id=${selectedEvent.id}, name=${selectedEvent.name}, date=${selectedEvent.date}`);
+    } else if (selectedHotspot) {
+      console.log(`🧩 SIDEBAR: Showing HOTSPOT DETAIL view for hotspot id=${selectedHotspot.id}, label=${selectedHotspot.label}, address=${selectedHotspot.address}`);
+    } else {
+      console.log(`🧩 SIDEBAR: Showing EVENTS LIST view for date ${formattedDate}`);
+    }
+  }, [selectedEvent, selectedHotspot, selectedDate]);
+
+  // Show timeline slider only when an event or hotspot is selected
+  const showTimelineSlider = selectedEvent !== null || selectedHotspot !== null;
 
   return (
     <div className="p-6 h-full overflow-y-auto overflow-x-hidden">
@@ -63,7 +86,7 @@ export const MobileBusinessSidebar: React.FC = () => {
         )}
       </div>
 
-      {/* Timeline for non-real-time periods */}
+      {/* Always render the lists and potentially the timeline based on timePeriod */}
       {timePeriod !== 'real-time' && (
         <div className="mb-4 pr-2">
           <TimelineSlider
@@ -74,8 +97,6 @@ export const MobileBusinessSidebar: React.FC = () => {
           />
         </div>
       )}
-
-      {/* Mobile business specific content */}
       <HotspotsList />
       <EventsList />
     </div>
