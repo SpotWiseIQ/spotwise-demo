@@ -199,7 +199,7 @@ export const MobileBusinessMap: React.FC = () => {
               ['match',
                 ['get', 'status'],
                 'congested', 1.0,
-                'moderate', 0.4,
+                'moderate', 0.8,
                 'available', 0.1,
                 0
               ],
@@ -207,7 +207,7 @@ export const MobileBusinessMap: React.FC = () => {
               ['match',
                 ['get', 'status'],
                 'congested', 1.0,
-                'moderate', 0.4,
+                'moderate', 0.8,
                 'available', 0.1,
                 0
               ]
@@ -227,12 +227,12 @@ export const MobileBusinessMap: React.FC = () => {
               'interpolate',
               ['linear'],
               ['heatmap-density'],
-              0, 'rgba(33,102,172,0)',
-              0.2, 'rgba(76,175,80,0.25)',    // Available - Green (more transparent)
-              0.4, 'rgba(255,193,7,0.5)',     // Moderate - Yellow
-              0.6, 'rgba(234,56,76,0.7)',     // Congested - Red
-              0.8, 'rgba(183,28,28,0.8)',
-              1, 'rgba(183,28,28,0.9)'
+              0, 'rgba(0, 0, 0, 0)',        // Fully transparent start
+              0.2, 'rgba(76, 175, 80, 0)',  // Start green ramp transparently
+              0.35, 'rgba(173, 255, 47, 0.6)', // Shift to Yellow-Green (was green at 0.4)
+              0.55, 'rgba(255, 193, 7, 0.8)', // Yellow/Orange starts sooner (was 0.7)
+              0.75, 'rgba(234, 56, 76, 0.9)', // Red starts a bit sooner (was 0.8)
+              1, 'rgba(183, 28, 28, 1.0)'    // Fully opaque Red (Congested)
             ],
             // Adjust radius to maintain strong blending at high zoom levels
             'heatmap-radius': [
@@ -570,7 +570,7 @@ export const MobileBusinessMap: React.FC = () => {
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
             <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
             <path d="M2 7h20"></path>
-            <path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"></path>
+            <path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"></path>
           </svg>
         `;
       case "parking":
