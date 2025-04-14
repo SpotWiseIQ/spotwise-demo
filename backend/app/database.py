@@ -107,33 +107,18 @@ TAMPERE_ROADS_CACHE = os.path.join(os.path.dirname(__file__), "tampere_roads.jso
 
 
 # Traffic data
-def get_traffic_data() -> TrafficData:
+def get_traffic_data(hotspots: Optional[List[Hotspot]] = None) -> TrafficData:
     """Get traffic data for Tampere streets."""
-    # Try to load from cache file first
-    if os.path.exists(TAMPERE_ROADS_CACHE):
-        try:
-            with open(TAMPERE_ROADS_CACHE, "r") as f:
-                data = json.load(f)
-                return TrafficData(**data)
-        except Exception as e:
-            print(f"Error loading cached road data: {e}")
-
-    # If cache doesn't exist or couldn't be loaded, fetch from API
     try:
-        print("Fetching fresh road data from Overpass API...")
+        # Always fetch road data (will use cache if available)
         osm_data = fetch_tampere_roads()
-        traffic_data = process_road_data(osm_data)
 
-        # Save to cache for future use
-        try:
-            with open(TAMPERE_ROADS_CACHE, "w") as f:
-                json.dump(traffic_data.dict(), f)
-        except Exception as e:
-            print(f"Error saving road data to cache: {e}")
-
+        # Process with current hotspots to get real-time traffic data
+        traffic_data = process_road_data(osm_data, hotspots)
         return traffic_data
+
     except Exception as e:
-        print(f"Error fetching road data from API: {e}")
+        print(f"Error generating traffic data: {e}")
         # Fall back to the mock data if everything else fails
         return get_mock_traffic_data()
 

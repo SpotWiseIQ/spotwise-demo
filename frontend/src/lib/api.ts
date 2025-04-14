@@ -155,20 +155,38 @@ export const fetchMapItems = async (lat: number, lng: number, radius: number = 5
   }
 };
 
-export const fetchTrafficData = async () => {
-  debugLog(`GET /api/traffic`);
+export const fetchTrafficData = async (useHotspots: boolean = true) => {
+  debugLog(`GET /api/traffic?use_hotspots=${useHotspots}`);
   try {
-    const response = await fetch(buildUrl(`/api/traffic`));
+    const response = await fetch(buildUrl(`/api/traffic?use_hotspots=${useHotspots}`));
     if (!response.ok) {
       const errorText = await response.text();
       debugLog(`Error fetching traffic data: ${response.status} ${response.statusText}`, errorText);
       throw new Error('Failed to fetch traffic data');
     }
     const data = await response.json();
-    debugLog(`Traffic data response received`);
+    debugLog(`Traffic data response received with useHotspots=${useHotspots}`);
     return data;
   } catch (error) {
     debugLog(`Exception in fetchTrafficData`, error);
+    throw error;
+  }
+};
+
+export const fetchTrafficPoints = async (useHotspots: boolean = true) => {
+  debugLog(`GET /api/traffic/points?use_hotspots=${useHotspots}`);
+  try {
+    const response = await fetch(buildUrl(`/api/traffic/points?use_hotspots=${useHotspots}`));
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error fetching traffic points data: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch traffic points data');
+    }
+    const data = await response.json();
+    debugLog(`Traffic points data response received with useHotspots=${useHotspots}`);
+    return data;
+  } catch (error) {
+    debugLog(`Exception in fetchTrafficPoints`, error);
     throw error;
   }
 };

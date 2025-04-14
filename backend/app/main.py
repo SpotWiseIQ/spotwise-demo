@@ -28,6 +28,7 @@ from app.database import (
     get_event_detailed_metrics,
     TAMPERE_CENTER,
 )
+from app.fetch_tampere_roads import generate_traffic_points
 
 # Configure logging
 logging.basicConfig(
@@ -180,9 +181,22 @@ async def read_map_items(
 
 
 @api_router.get("/traffic", response_model=TrafficData)
-async def read_traffic_data():
+async def read_traffic_data(
+    use_hotspots: bool = Query(
+        True, description="Whether to use hotspots to generate traffic data"
+    ),
+):
     """Get traffic data for the map"""
-    logger.info("Traffic data requested")
+    logger.info(f"Traffic data requested with use_hotspots={use_hotspots}")
+
+    if use_hotspots:
+        # Get current hotspots
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        current_hour = datetime.now().hour
+        hotspots = get_all_hotspots(current_date, current_hour)
+        logger.info(f"Using {len(hotspots)} hotspots for traffic generation")
+        return get_traffic_data(hotspots)
+
     return get_traffic_data()
 
 
@@ -268,6 +282,30 @@ async def read_event_detailed_metrics(event_id: str):
     detailed_metrics = get_event_detailed_metrics(event_id)
     logger.info(f"Retrieved detailed metrics for event ID: {event_id}")
     return detailed_metrics
+
+
+@api_router.get("/traffic/points")
+async def read_traffic_points(
+    use_hotspots: bool = Query(
+        True, description="Whether to use hotspots to generate traffic data"
+    ),
+):
+    """Get traffic data as points for the map, with varying density based on traffic status"""
+    logger.info(f"Traffic points data requested with use_hotspots={use_hotspots}")
+
+    if use_hotspots:
+        # Get current hotspots
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        current_hour = datetime.now().hour
+        hotspots = get_all_hotspots(current_date, current_hour)
+        logger.info(f"Using {len(hotspots)} hotspots for traffic generation")
+        traffic_data = get_traffic_data(hotspots)
+    else:
+        traffic_data = get_traffic_data()
+
+    # Convert traffic lines to points
+    points_data = generate_traffic_points(traffic_data)
+    return points_data
 
 
 # Include the API router in the main app

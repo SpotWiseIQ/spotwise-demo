@@ -4,7 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useTampere } from "@/lib/TampereContext";
 import { MobileBusinessLegend } from "./MobileBusinessLegend";
 import { PulseToggle } from "./PulseToggle";
-import { fetchMapItems, fetchTrafficData, fetchTampereCenter } from "@/lib/api";
+import { fetchMapItems, fetchTrafficData, fetchTrafficPoints, fetchTampereCenter } from "@/lib/api";
 import { MapItem } from "@/lib/types";
 import { LocationMetrics } from "./LocationMetrics";
 
@@ -148,7 +148,7 @@ export const MobileBusinessMap: React.FC = () => {
         container: mapContainer.current,
         style: "https://tiles.openfreemap.org/styles/positron",
         center: tampereCenter,
-        zoom: 12,
+        zoom: 13.5,
       });
 
       debugLog("Map instance created successfully");
@@ -164,22 +164,108 @@ export const MobileBusinessMap: React.FC = () => {
         );
         debugLog("Navigation controls added");
 
-        map.current?.addSource("traffic", {
+        // Add source for traffic lines
+        map.current?.addSource("traffic-lines", {
           type: "geojson",
           data: {
             type: "FeatureCollection",
             features: [],
           },
         });
-        debugLog("Traffic source added");
+        debugLog("Traffic lines source added");
+
+        // Add source for traffic points
+        map.current?.addSource("traffic-points", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [],
+          },
+        });
+        debugLog("Traffic points source added");
+
+        // Add heatmap layer for traffic visualization using points
+        map.current?.addLayer({
+          id: "traffic-heatmap",
+          type: "heatmap",
+          source: "traffic-points",
+          paint: {
+            // Adjust weight based on traffic status
+            'heatmap-weight': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10,
+              ['match',
+                ['get', 'status'],
+                'congested', 1.0,
+                'moderate', 0.4,
+                'available', 0.1,
+                0
+              ],
+              15,
+              ['match',
+                ['get', 'status'],
+                'congested', 1.0,
+                'moderate', 0.4,
+                'available', 0.1,
+                0
+              ]
+            ],
+            // Adjust intensity based on zoom level
+            'heatmap-intensity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 0.5,    // Base intensity at low zoom
+              12, 0.6,    // Moderate increase
+              14, 0.7,    // Keep moderate intensity at high zoom
+              16, 0.7     // Keep moderate intensity at max zoom
+            ],
+            // Color gradient for the heatmap
+            'heatmap-color': [
+              'interpolate',
+              ['linear'],
+              ['heatmap-density'],
+              0, 'rgba(33,102,172,0)',
+              0.2, 'rgba(76,175,80,0.25)',    // Available - Green (more transparent)
+              0.4, 'rgba(255,193,7,0.5)',     // Moderate - Yellow
+              0.6, 'rgba(234,56,76,0.7)',     // Congested - Red
+              0.8, 'rgba(183,28,28,0.8)',
+              1, 'rgba(183,28,28,0.9)'
+            ],
+            // Adjust radius to maintain strong blending at high zoom levels
+            'heatmap-radius': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 10,     // Original radius at low zoom
+              12, 15,     // Moderate increase at medium-low zoom
+              14, 30,     // Larger radius at medium-high zoom
+              16, 60      // Very large radius at max zoom for complete blending
+            ],
+            // Adjust opacity to maintain consistent blend
+            'heatmap-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 0.6,    // Base opacity at low zoom
+              12, 0.7,    // Slight increase at medium zoom
+              14, 0.7,    // Keep consistent at high zoom
+              16, 0.7     // Keep consistent at max zoom
+            ]
+          }
+        });
 
         map.current?.addLayer({
           id: "traffic-lines",
           type: "line",
-          source: "traffic",
+          source: "traffic-lines",
           layout: {
             "line-join": "round",
             "line-cap": "round",
+            // Only show lines when pulse is on
+            "visibility": "none"
           },
           paint: {
             "line-width": 6,
@@ -197,7 +283,6 @@ export const MobileBusinessMap: React.FC = () => {
             "line-opacity": 0.7,
           },
         });
-        debugLog("Traffic layer added");
       });
 
       map.current.on("error", (e) => {
@@ -240,30 +325,45 @@ export const MobileBusinessMap: React.FC = () => {
       return;
     }
 
-    if (pulse) {
-      debugLog("Pulse enabled - fetching traffic data");
-      fetchTrafficData()
-        .then((trafficData) => {
-          debugLog("Traffic data loaded successfully");
-          if (map.current && map.current.getSource("traffic")) {
-            (
-              map.current.getSource("traffic") as maplibregl.GeoJSONSource
-            ).setData(trafficData);
-          }
-        })
-        .catch((error) => {
-          console.error("Failed to fetch traffic data:", error);
-          debugLog("Error fetching traffic data");
-        });
-    } else {
-      // Clear traffic lines when pulse is off
-      if (map.current && map.current.getSource("traffic")) {
-        debugLog("Clearing traffic data - pulse off");
-        (map.current.getSource("traffic") as maplibregl.GeoJSONSource).setData({
-          type: "FeatureCollection",
-          features: [],
-        });
-      }
+    // Fetch traffic points data for heatmap
+    debugLog("Fetching traffic points data for visualization");
+    fetchTrafficPoints()
+      .then((pointsData) => {
+        debugLog("Traffic points data loaded successfully");
+        if (map.current && map.current.getSource("traffic-points")) {
+          (
+            map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
+          ).setData(pointsData);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch traffic points data:", error);
+        debugLog("Error fetching traffic points data");
+      });
+
+    // Fetch traffic line data for pulse visualization
+    debugLog("Fetching traffic line data for visualization");
+    fetchTrafficData()
+      .then((trafficData) => {
+        debugLog("Traffic line data loaded successfully");
+        if (map.current && map.current.getSource("traffic-lines")) {
+          (
+            map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
+          ).setData(trafficData);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch traffic line data:", error);
+        debugLog("Error fetching traffic line data");
+      });
+
+    // Toggle visibility of traffic lines based on pulse state
+    if (map.current) {
+      map.current.setLayoutProperty(
+        "traffic-lines",
+        "visibility",
+        pulse ? "visible" : "none"
+      );
     }
   }, [pulse, mapLoaded]);
 
@@ -294,7 +394,7 @@ export const MobileBusinessMap: React.FC = () => {
       // Add selected hotspot marker
       const markerElement = document.createElement("div");
       const trafficClass = selectedHotspot.trafficLevel || "medium";
-      markerElement.className = `hotspot-card ${trafficClass} selected`;
+      markerElement.className = `hotspot-card ${trafficClass} map-hotspot-marker selected`;
       markerElement.textContent = selectedHotspot.label;
 
       markerElement.addEventListener("click", () => {
@@ -331,7 +431,7 @@ export const MobileBusinessMap: React.FC = () => {
       const markerElement = document.createElement("div");
       markerElement.innerHTML = `
         <div class="event-marker selected">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
             <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
             <path d="M16 2v4"></path>
             <path d="M8 2v4"></path>
@@ -390,7 +490,7 @@ export const MobileBusinessMap: React.FC = () => {
     hotspots.forEach((hotspot) => {
       const markerElement = document.createElement("div");
       const trafficClass = hotspot.trafficLevel || "medium";
-      markerElement.className = `hotspot-card ${trafficClass}`;
+      markerElement.className = `hotspot-card ${trafficClass} map-hotspot-marker`;
       markerElement.textContent = hotspot.label;
 
       markerElement.addEventListener("click", () => {
@@ -412,7 +512,7 @@ export const MobileBusinessMap: React.FC = () => {
       const markerElement = document.createElement("div");
       markerElement.innerHTML = `
         <div class="event-marker">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
             <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
             <path d="M16 2v4"></path>
             <path d="M8 2v4"></path>
