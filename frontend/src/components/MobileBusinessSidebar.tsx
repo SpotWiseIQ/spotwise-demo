@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Truck } from "lucide-react";
+import { Truck, Home } from "lucide-react";
 
 export const MobileBusinessSidebar: React.FC = () => {
   const { 
@@ -49,12 +49,17 @@ export const MobileBusinessSidebar: React.FC = () => {
   return (
     <div className="p-6 h-full overflow-y-auto overflow-x-hidden">
       <div className="mb-3">
-        <h1 className="text-xl font-bold mb-2 flex items-center gap-2">
-          <Truck className="text-tampere-red" />
-          <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
-            Mobile Business Spots
+        <div className="flex items-center gap-4 mb-2">
+          <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0">
+            <Home className="text-gray-600" size={20} />
           </a>
-        </h1>
+          <h1 className="text-xl font-bold flex items-center gap-2">
+            <a href="/mobile-business" className="cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-2">
+              <Truck className="text-tampere-red" />
+              <span>Mobile Business Spots</span>
+            </a>
+          </h1>
+        </div>
         <div className="mb-2">
           <Select value={timePeriod} onValueChange={(value) => setTimePeriod(value as 'real-time' | 'daily' | 'weekly' | 'monthly')}>
             <SelectTrigger className="w-full py-1 h-8 text-xs">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTampere } from "@/lib/TampereContext";
-import { Search, Building2 } from "lucide-react";
+import { Search, Building2, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ZoneCard, Zone } from "./ZoneCard";
 
@@ -89,12 +89,17 @@ export const StaticBusinessSidebar: React.FC = () => {
   return (
     <div className="p-6 h-full overflow-y-auto overflow-x-hidden">
       <div className="mb-3">
-        <h1 className="text-xl font-bold mb-2 flex items-center gap-2">
-          <Building2 className="text-tampere-red" />
-          <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity">
-            Static Business Locations
+        <div className="flex items-center gap-4 mb-2">
+          <a href="/" className="cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0">
+            <Home className="text-gray-600" size={20} />
           </a>
-        </h1>
+          <h1 className="text-xl font-bold flex items-center gap-2">
+            <a href="/static-business" className="cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-2">
+              <Building2 className="text-tampere-red" />
+              <span>Static Business Locations</span>
+            </a>
+          </h1>
+        </div>
       </div>
 
       {/* Search Bar */}
