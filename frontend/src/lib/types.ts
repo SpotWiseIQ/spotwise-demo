@@ -10,6 +10,7 @@ export interface FootTrafficData {
 export interface Hotspot {
   id: string;
   label: string;
+  name: string;
   address: string;
   trafficLevel: TrafficLevel;
   weather: WeatherType;

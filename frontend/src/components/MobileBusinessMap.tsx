@@ -22,6 +22,8 @@ export const MobileBusinessMap: React.FC = () => {
     pulse,
     loading,
     setPulse,
+    setSelectedHotspot,
+    setSelectedEvent,
   } = useTampere();
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -76,17 +78,23 @@ export const MobileBusinessMap: React.FC = () => {
     const coordinates = selectedHotspot?.coordinates || selectedEvent?.coordinates;
     if (coordinates) {
       debugLog("Immediate fly to coordinates", coordinates);
+      
+      // Calculate vertical offset based on container height
+      const containerHeight = mapContainer.current?.offsetHeight || 0;
+      const verticalOffset = containerHeight * 0.2; // 20% of container height for vertical centering
+
       map.current.flyTo({
         center: coordinates,
         zoom: 15.5,
         essential: true,
         duration: 1000, // 1 second transition
         padding: {
-          top: 50,
-          bottom: 50,
+          top: verticalOffset,
+          bottom: verticalOffset,
           left: 50,
           right: 50,
         },
+        offset: [0, -verticalOffset / 2] // Additional offset to ensure marker is centered
       });
     }
   }, [selectedHotspot, selectedEvent, mapLoaded]);
@@ -325,6 +333,12 @@ export const MobileBusinessMap: React.FC = () => {
       return;
     }
 
+    // Automatically enable pulse when a selection is made
+    if ((selectedHotspot || selectedEvent) && !pulse) {
+      debugLog("Selection detected, enabling pulse");
+      setPulse(true);
+    }
+
     // Fetch traffic points data for heatmap
     debugLog("Fetching traffic points data for visualization");
     fetchTrafficPoints()
@@ -357,15 +371,23 @@ export const MobileBusinessMap: React.FC = () => {
         debugLog("Error fetching traffic line data");
       });
 
-    // Toggle visibility of traffic lines based on pulse state
+    // Toggle visibility of traffic layers based on selection and pulse state
     if (map.current) {
+      // Hide heatmap when a selection is made, show otherwise
+      map.current.setLayoutProperty(
+        "traffic-heatmap",
+        "visibility",
+        selectedHotspot || selectedEvent ? "none" : "visible"
+      );
+
+      // Show traffic lines only when pulse is on
       map.current.setLayoutProperty(
         "traffic-lines",
         "visibility",
         pulse ? "visible" : "none"
       );
     }
-  }, [pulse, mapLoaded]);
+  }, [pulse, mapLoaded, selectedHotspot, selectedEvent]);
 
   // Update map markers and traffic data for selected items
   useEffect(() => {
@@ -397,9 +419,26 @@ export const MobileBusinessMap: React.FC = () => {
       markerElement.className = `hotspot-card ${trafficClass} map-hotspot-marker selected`;
       markerElement.textContent = selectedHotspot.label;
 
+      // Create popup for hover effect
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: [0, -8],
+        className: 'marker-tooltip',
+        anchor: 'bottom'
+      }).setText(selectedHotspot.name || `${selectedHotspot.label} Zone`);
+
+      markerElement.addEventListener("mouseenter", () => {
+        popup.addTo(map.current!);
+      });
+
+      markerElement.addEventListener("mouseleave", () => {
+        popup.remove();
+      });
+
       markerElement.addEventListener("click", () => {
         debugLog(`Selected hotspot marker clicked: ${selectedHotspot.id}`);
-        useTampere().setSelectedHotspot(null);
+        setSelectedHotspot(null);
       });
 
       const marker = new maplibregl.Marker({
@@ -407,21 +446,40 @@ export const MobileBusinessMap: React.FC = () => {
         anchor: "center",
       })
         .setLngLat(selectedHotspot.coordinates)
+        .setPopup(popup)
         .addTo(map.current!);
 
       markersRef.current[`hotspot-${selectedHotspot.id}`] = marker;
 
-      // Add additional map items
+      // Add additional map items with tooltips
       mapItems.forEach((item: MapItem) => {
         let markerElement = document.createElement("div");
         markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
         markerElement.innerHTML = getMapItemIcon(item.type);
+
+        // Create popup for hover effect
+        const popup = new maplibregl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+          offset: [0, -8],
+          className: 'marker-tooltip',
+          anchor: 'bottom'
+        }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+
+        markerElement.addEventListener("mouseenter", () => {
+          popup.addTo(map.current!);
+        });
+
+        markerElement.addEventListener("mouseleave", () => {
+          popup.remove();
+        });
 
         const marker = new maplibregl.Marker({
           element: markerElement,
           anchor: "center",
         })
           .setLngLat(item.coordinates)
+          .setPopup(popup)
           .addTo(map.current!);
 
         markersRef.current[`${item.type}-${item.id}`] = marker;
@@ -442,9 +500,25 @@ export const MobileBusinessMap: React.FC = () => {
         </div>
       `;
 
+      // Create popup for hover effect
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 15,
+        className: 'marker-tooltip'
+      }).setText(selectedEvent.name);
+
+      markerElement.addEventListener("mouseenter", () => {
+        popup.addTo(map.current!);
+      });
+
+      markerElement.addEventListener("mouseleave", () => {
+        popup.remove();
+      });
+
       markerElement.addEventListener("click", () => {
         debugLog(`Selected event marker clicked: ${selectedEvent.id}`);
-        useTampere().setSelectedEvent(null);
+        setSelectedEvent(null);
       });
 
       const marker = new maplibregl.Marker({
@@ -452,21 +526,39 @@ export const MobileBusinessMap: React.FC = () => {
         anchor: "center",
       })
         .setLngLat(selectedEvent.coordinates)
+        .setPopup(popup)
         .addTo(map.current!);
 
       markersRef.current[`event-${selectedEvent.id}`] = marker;
 
-      // Add additional map items
+      // Add additional map items with tooltips
       mapItems.forEach((item: MapItem) => {
         let markerElement = document.createElement("div");
         markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
         markerElement.innerHTML = getMapItemIcon(item.type);
+
+        // Create popup for hover effect
+        const popup = new maplibregl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+          offset: 15,
+          className: 'marker-tooltip'
+        }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+
+        markerElement.addEventListener("mouseenter", () => {
+          popup.addTo(map.current!);
+        });
+
+        markerElement.addEventListener("mouseleave", () => {
+          popup.remove();
+        });
 
         const marker = new maplibregl.Marker({
           element: markerElement,
           anchor: "center",
         })
           .setLngLat(item.coordinates)
+          .setPopup(popup)
           .addTo(map.current!);
 
         markersRef.current[`${item.type}-${item.id}`] = marker;
@@ -493,9 +585,25 @@ export const MobileBusinessMap: React.FC = () => {
       markerElement.className = `hotspot-card ${trafficClass} map-hotspot-marker`;
       markerElement.textContent = hotspot.label;
 
+      // Create popup for hover effect
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 15,
+        className: 'marker-tooltip'
+      }).setText(hotspot.name || `${hotspot.label} Zone`);
+
+      markerElement.addEventListener("mouseenter", () => {
+        popup.addTo(map.current!);
+      });
+
+      markerElement.addEventListener("mouseleave", () => {
+        popup.remove();
+      });
+
       markerElement.addEventListener("click", () => {
         debugLog(`Hotspot marker clicked: ${hotspot.id}`);
-        useTampere().setSelectedHotspot(hotspot);
+        setSelectedHotspot(hotspot);
       });
 
       const marker = new maplibregl.Marker({
@@ -503,6 +611,7 @@ export const MobileBusinessMap: React.FC = () => {
         anchor: "center",
       })
         .setLngLat(hotspot.coordinates)
+        .setPopup(popup)
         .addTo(map.current!);
 
       markersRef.current[`hotspot-${hotspot.id}`] = marker;
@@ -523,9 +632,25 @@ export const MobileBusinessMap: React.FC = () => {
         </div>
       `;
 
+      // Create popup for hover effect
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 15,
+        className: 'marker-tooltip'
+      }).setText(event.name);
+
+      markerElement.addEventListener("mouseenter", () => {
+        popup.addTo(map.current!);
+      });
+
+      markerElement.addEventListener("mouseleave", () => {
+        popup.remove();
+      });
+
       markerElement.addEventListener("click", () => {
         debugLog(`Event marker clicked: ${event.id}`);
-        useTampere().setSelectedEvent(event);
+        setSelectedEvent(event);
       });
 
       const marker = new maplibregl.Marker({
@@ -533,6 +658,7 @@ export const MobileBusinessMap: React.FC = () => {
         anchor: "center",
       })
         .setLngLat(event.coordinates)
+        .setPopup(popup)
         .addTo(map.current!);
 
       markersRef.current[`event-${event.id}`] = marker;
@@ -762,4 +888,4 @@ export const MobileBusinessMap: React.FC = () => {
       )}
     </div>
   );
-}; 
+};
