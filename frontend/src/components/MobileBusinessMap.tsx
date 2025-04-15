@@ -7,6 +7,7 @@ import { PulseToggle } from "./PulseToggle";
 import { fetchMapItems, fetchTrafficData, fetchTrafficPoints, fetchTampereCenter } from "@/lib/api";
 import { MapItem } from "@/lib/types";
 import { LocationMetrics } from "./LocationMetrics";
+import { ComparisonView } from "./ComparisonView";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -24,6 +25,10 @@ export const MobileBusinessMap: React.FC = () => {
     setPulse,
     setSelectedHotspot,
     setSelectedEvent,
+    isHotspotCompareMode,
+    isEventCompareMode,
+    selectedHotspotsForComparison,
+    selectedEventsForComparison,
   } = useTampere();
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -81,7 +86,13 @@ export const MobileBusinessMap: React.FC = () => {
       
       // Calculate vertical offset based on container height
       const containerHeight = mapContainer.current?.offsetHeight || 0;
-      const verticalOffset = containerHeight * 0.2; // 20% of container height for vertical centering
+      
+      // Increase the vertical offset to account for the metrics component at the bottom
+      const verticalOffset = containerHeight * 0.25; // Increased from 0.2 to 0.25
+      
+      // Calculate additional offset to compensate for the metrics panel at the bottom
+      // This shifts the focal point up to keep marker centered in the visible area
+      const bottomOffsetAdjustment = isAnyCardExpanded ? containerHeight * 0.15 : containerHeight * 0.1;
 
       map.current.flyTo({
         center: coordinates,
@@ -89,15 +100,15 @@ export const MobileBusinessMap: React.FC = () => {
         essential: true,
         duration: 1000, // 1 second transition
         padding: {
-          top: verticalOffset,
-          bottom: verticalOffset,
+          top: 60, // Reduced top padding
+          bottom: verticalOffset + 80, // Increased bottom padding to account for metrics panel
           left: 50,
           right: 50,
         },
-        offset: [0, -verticalOffset / 2] // Additional offset to ensure marker is centered
+        offset: [0, -bottomOffsetAdjustment] // Increased negative offset to move focus point higher
       });
     }
-  }, [selectedHotspot, selectedEvent, mapLoaded]);
+  }, [selectedHotspot, selectedEvent, mapLoaded, isAnyCardExpanded]);
 
   // Fetch map items
   useEffect(() => {
@@ -337,6 +348,11 @@ export const MobileBusinessMap: React.FC = () => {
     if ((selectedHotspot || selectedEvent) && !pulse) {
       debugLog("Selection detected, enabling pulse");
       setPulse(true);
+    } 
+    // Turn off pulse when nothing is selected
+    else if (!selectedHotspot && !selectedEvent && pulse) {
+      debugLog("No selection detected, disabling pulse");
+      setPulse(false);
     }
 
     // Fetch traffic points data for heatmap
@@ -731,10 +747,13 @@ export const MobileBusinessMap: React.FC = () => {
   };
 
   const showDetails = selectedEvent !== null || selectedHotspot !== null;
+  const showComparison = (isHotspotCompareMode && selectedHotspotsForComparison.length > 0) || 
+                         (isEventCompareMode && selectedEventsForComparison.length > 0);
 
   // Add ref to track container size changes
   const prevShowDetails = useRef(showDetails);
   const prevIsExpanded = useRef(isAnyCardExpanded);
+  const prevShowComparison = useRef(showComparison);
   
   // Listen for container size changes and resize map correctly
   useEffect(() => {
@@ -742,28 +761,27 @@ export const MobileBusinessMap: React.FC = () => {
     
     // Only trigger resize when container size actually changes
     if (prevShowDetails.current !== showDetails || 
-        prevIsExpanded.current !== isAnyCardExpanded) {
+        prevIsExpanded.current !== isAnyCardExpanded ||
+        prevShowComparison.current !== showComparison) {
       
       debugLog("Container size changed, triggering map resize");
       
-      // Use requestAnimationFrame to ensure resize happens at the right time
-      // after the CSS transition has started but before rendering the next frame
       requestAnimationFrame(() => {
         if (!map.current) return;
         
-        // Add a small delay to let the CSS transition complete
         setTimeout(() => {
           if (!map.current) return;
           map.current.resize();
           debugLog("Map resize() called");
-        }, 300); // Match the CSS transition duration
+        }, 300);
       });
       
       // Update refs for next comparison
       prevShowDetails.current = showDetails;
       prevIsExpanded.current = isAnyCardExpanded;
+      prevShowComparison.current = showComparison;
     }
-  }, [showDetails, isAnyCardExpanded, mapLoaded]);
+  }, [showDetails, isAnyCardExpanded, showComparison, mapLoaded]);
 
   // Log when selection changes
   useEffect(() => {
@@ -846,43 +864,32 @@ export const MobileBusinessMap: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full flex flex-col">
-      <div
-        ref={mapContainer}
-        className={`w-full transition-all duration-300 ${
-          showDetails
-            ? isAnyCardExpanded
-              ? "h-1/3" // Smaller map when details shown and card expanded
-              : "h-1/2" // Normal split when details shown
-            : "h-full" // Full height when no details
-        } rounded-lg overflow-hidden border border-gray-200 relative`}
-      >
-        {mapError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-10">
-            <div className="text-red-500 text-center p-4">
-              <p className="font-bold">Error</p>
-              <p>{mapError}</p>
-            </div>
+    <div className="relative w-full h-full">
+      <div 
+        ref={mapContainer} 
+        className="absolute inset-0"
+      />
+      
+      {mapError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-20">
+          <div className="text-red-500 text-center p-4">
+            <p className="font-bold">Error</p>
+            <p>{mapError}</p>
           </div>
-        )}
-
-        <div className="absolute top-4 left-4 z-10">
-          <PulseToggle value={pulse} onChange={setPulse} />
         </div>
+      )}
 
-        {showDetails && (
-          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
-            <MobileBusinessLegend />
-          </div>
-        )}
-      </div>
-
-      {showDetails && (
-        <div
-          className={`w-full transition-all duration-300 ${
-            isAnyCardExpanded ? "h-2/3" : "h-1/2"
-          } relative`}
-        >
+      {/* Hide PulseToggle while keeping it in the code */}
+      {/* <div className="absolute top-4 left-4 z-10">
+        <PulseToggle value={pulse} onChange={setPulse} />
+      </div> */}
+      
+      {/* ComparisonView will handle its own visibility */}
+      <ComparisonView />
+      
+      {/* Show location metrics if there's a selection and not in comparison mode */}
+      {showDetails && !showComparison && (
+        <div className="absolute bottom-0 left-0 right-0 z-10">
           <LocationMetrics onAnyCardExpanded={setIsAnyCardExpanded} />
         </div>
       )}

@@ -11,6 +11,7 @@ import {
   BarChart2,
   MapPin,
   Users,
+  ArrowLeftRight,
 } from "lucide-react";
 import { FootTrafficChart } from "./FootTrafficChart";
 import { useTampere } from "@/lib/TampereContext";
@@ -25,12 +26,16 @@ type HotspotCardProps = {
   hotspot: Hotspot;
   onClick?: () => void;
   selected?: boolean;
+  isCompareMode?: boolean;
+  onCompareClick?: () => void;
 };
 
 export const HotspotCard: React.FC<HotspotCardProps> = ({
   hotspot,
   onClick,
   selected,
+  isCompareMode = false,
+  onCompareClick,
 }) => {
   const { loadHotspotFootTraffic } = useTampere();
   const [footTrafficData, setFootTrafficData] = useState<any[]>([]);
@@ -53,7 +58,7 @@ export const HotspotCard: React.FC<HotspotCardProps> = ({
         const data = await loadHotspotFootTraffic(hotspot.id);
         setFootTrafficData(data);
       } catch (error) {
-        console.error("Error loading foot traffic data:", error);
+        console.error("Error loading hotspot foot traffic data:", error);
         setFootTrafficData([]);
       } finally {
         setIsLoadingTraffic(false);
@@ -132,17 +137,27 @@ export const HotspotCard: React.FC<HotspotCardProps> = ({
   const WeatherIcon = weatherInfo.icon;
 
   const handleCardClick = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest("[data-collapsible-trigger]")) {
+    // If in compare mode or clicking on specific elements, don't handle the click
+    if (isCompareMode || 
+        (e.target as HTMLElement).closest('[data-collapsible-trigger]') || 
+        (e.target as HTMLElement).closest('[data-compare-button]')) {
       return;
     }
     if (onClick) {
       onClick();
     }
   };
-
+  
   const handleChartToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsTrafficOpen(!isTrafficOpen);
+  };
+
+  const handleCompareClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onCompareClick) {
+      onCompareClick();
+    }
   };
 
   return (
@@ -169,102 +184,103 @@ export const HotspotCard: React.FC<HotspotCardProps> = ({
               title={hotspot.name}
             >{hotspot.name}</p>
           </div>
-          <div className="flex flex-col min-w-[110px]">
-            <div className="grid grid-cols-2 gap-x-5">
-              <div className="flex flex-col items-center">
-                <div
-                  className={`w-6 h-6 ${getTrafficColor(
-                    hotspot.trafficLevel?.toLowerCase() || "unknown"
-                  )} rounded-md flex items-center justify-center text-white`}
-                >
-                  <Footprints className="w-4 h-4" />
+          <div className="flex items-center gap-2">
+            {isCompareMode && (
+              <Button
+                variant={selected ? "secondary" : "ghost"}
+                size="sm"
+                className="h-6 px-2 text-xs"
+                onClick={handleCompareClick}
+                data-compare-button
+              >
+                <ArrowLeftRight className="w-3 h-3" />
+              </Button>
+            )}
+            <div className="flex flex-col min-w-[110px]">
+              <div className="grid grid-cols-2 gap-x-5">
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-6 h-6 ${getTrafficColor(
+                      hotspot.trafficLevel?.toLowerCase() || "unknown"
+                    )} rounded-md flex items-center justify-center text-white`}
+                  >
+                    <Footprints className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] mt-0.5 text-gray-500 text-center w-10">
+                    {hotspot.trafficLevel?.toLowerCase()}
+                  </span>
                 </div>
-                <span className="text-[10px] mt-0.5 text-gray-500 text-center w-10">
-                  {hotspot.trafficLevel?.toLowerCase()}
-                </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div
-                  className={`w-6 h-6 ${weatherInfo.color} rounded-md flex items-center justify-center text-white`}
-                >
-                  <WeatherIcon className="w-4 h-4" />
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-6 h-6 ${weatherInfo.color} rounded-md flex items-center justify-center text-white`}
+                  >
+                    <WeatherIcon className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] mt-0.5 text-gray-500 text-center w-10">
+                    {weatherInfo.label}
+                  </span>
                 </div>
-                <span className="text-[10px] mt-0.5 text-gray-500 text-center w-10">
-                  {weatherInfo.label}
-                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {selected && (
+      {selected && !isCompareMode && (
         <div className="border-t border-gray-200 mx-2 mt-1 mb-2 pt-3 px-1 space-y-4">
           <div>
-            <h4 className="text-xs font-semibold mb-1.5 text-gray-600">
-              Details
-            </h4>
+            <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Details</h4>
             <div className="space-y-1.5 text-sm">
+              {hotspot.address && (
+                <p className="flex items-start">
+                  <MapPin size={14} className="mr-1.5 mt-0.5 text-gray-500 flex-shrink-0" />
+                  <span>{hotspot.address}</span>
+                </p>
+              )}
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                <div className="flex items-center">
-                  <Users
-                    size={14}
-                    className="mr-1.5 text-gray-500 flex-shrink-0"
-                  />
-                  <span className="text-gray-500 text-xs mr-1">
-                    Population:
-                  </span>
-                  <span>{hotspot.population || "N/A"}</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin
-                    size={14}
-                    className="mr-1.5 text-gray-500 flex-shrink-0"
-                  />
-                  <span className="text-gray-500 text-xs mr-1">Area Type:</span>
-                  <span>{hotspot.areaType || "N/A"}</span>
-                </div>
-                <div className="flex items-center col-span-2">
-                  <Users
-                    size={14}
-                    className="mr-1.5 text-gray-500 flex-shrink-0"
-                  />
-                  <span className="text-gray-500 text-xs mr-1">
-                    Demographics:
-                  </span>
-                  <span>{hotspot.dominantDemographics || "N/A"}</span>
-                </div>
+                {hotspot.areaType && (
+                  <div className="flex items-center">
+                    <span className="text-gray-500 text-xs mr-1">Type:</span>
+                    <span>{hotspot.areaType}</span>
+                  </div>
+                )}
+                {hotspot.population && (
+                  <div className="flex items-center">
+                    <Users size={14} className="mr-1.5 text-gray-500 flex-shrink-0" />
+                    <span className="text-gray-500 text-xs mr-1">Population:</span>
+                    <span>{hotspot.population}</span>
+                  </div>
+                )}
+                {hotspot.peakHour && (
+                  <div className="flex items-center">
+                    <span className="text-gray-500 text-xs mr-1">Peak Hour:</span>
+                    <span>{hotspot.peakHour}</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       )}
-
-      <Collapsible open={isTrafficOpen} onOpenChange={setIsTrafficOpen}>
+      
+      <Collapsible
+        open={isTrafficOpen && !isCompareMode}
+        onOpenChange={(open) => !isCompareMode && setIsTrafficOpen(open)}
+      >
         {isLoadingTraffic && (
           <div className="h-3 w-full flex items-center justify-center border-t mt-1.5 px-2 py-0.5">
-            <div className="animate-pulse text-[9px] text-gray-400">
-              Loading traffic...
-            </div>
+            <div className="animate-pulse text-[9px] text-gray-400">Loading traffic...</div>
           </div>
         )}
         {!isLoadingTraffic && footTrafficData.length > 0 && (
-          <CollapsibleTrigger
-            asChild
-            onClick={handleChartToggle}
-            data-collapsible-trigger
-          >
+          <CollapsibleTrigger asChild onClick={handleChartToggle} data-collapsible-trigger>
             <div className="flex items-center justify-between border-t mt-1.5 px-2 py-0.5 cursor-pointer hover:bg-gray-100 rounded-b-sm">
               <div className="flex items-center text-[9px] text-gray-500">
                 <BarChart2 size={10} className="mr-1" />
                 Foot Traffic
               </div>
               <div className="text-gray-400">
-                {isTrafficOpen ? (
-                  <ChevronUp className="h-3 w-3" />
-                ) : (
-                  <ChevronDown className="h-3 w-3" />
-                )}
+                {isTrafficOpen ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
               </div>
             </div>
           </CollapsibleTrigger>

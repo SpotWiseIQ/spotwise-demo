@@ -1,9 +1,24 @@
 import React, { useEffect, useRef } from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { EventCard } from "./EventCard";
+import { CompareToggle } from "./CompareToggle";
 
 export const EventsList: React.FC = () => {
-  const { events, selectedEvent, setSelectedEvent, setSelectedHotspot, loading, error, selectedDate } = useTampere();
+  const { 
+    events, 
+    selectedEvent, 
+    setSelectedEvent, 
+    setSelectedHotspot, 
+    loading, 
+    error, 
+    selectedDate,
+    isEventCompareMode,
+    setIsEventCompareMode,
+    isHotspotCompareMode,
+    setIsHotspotCompareMode,
+    selectedEventsForComparison,
+    toggleEventComparison
+  } = useTampere();
   const renderCount = useRef(0);
 
   // Track component renders
@@ -32,16 +47,21 @@ export const EventsList: React.FC = () => {
   }, [events, selectedDate, loading, error]);
 
   const handleEventClick = (event: (typeof events)[0]) => {
+    // If in compare mode, ignore clicks on the card itself
+    if (isEventCompareMode) {
+      return;
+    }
+
     // Enhanced logging with colors
     console.log(
-      `%c📅 CLICK EVENT: Event clicked - id=${event.id}, name=${event.name}`, 
+      `%c🎭 CLICK EVENT: Event clicked - id=${event.id}, name=${event.name}`, 
       'background: #2196f3; color: white; font-weight: bold; padding: 3px 5px; border-radius: 3px;'
     );
     
     // Log the action being taken
     console.log(
       `%c👉 ACTION: ${selectedEvent?.id === event.id ? 'Deselecting' : 'Selecting'} event`,
-      'background: #673ab7; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
+      'background: #009688; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
     );
     
     setSelectedHotspot(null);
@@ -49,9 +69,23 @@ export const EventsList: React.FC = () => {
     setSelectedEvent(selectedEvent?.id === event.id ? null : event);
   };
 
+  const handleCompareToggle = () => {
+    // When enabling event compare mode, disable hotspot compare mode
+    if (!isEventCompareMode) {
+      setIsHotspotCompareMode(false);
+    }
+    setIsEventCompareMode(!isEventCompareMode);
+  };
+
   return (
     <div className="mt-6">
-      <div className="mb-2 font-medium">Events</div>
+      <div className="mb-2 font-medium flex items-center justify-between">
+        <span>Events</span>
+        <CompareToggle 
+          isCompareMode={isEventCompareMode} 
+          onToggle={handleCompareToggle} 
+        />
+      </div>
       <div className="space-y-1.5 pr-2">
         {loading ? (
           <div className="text-gray-500 text-sm py-2">Loading events...</div>
@@ -64,8 +98,12 @@ export const EventsList: React.FC = () => {
             <EventCard
               key={event.id}
               event={event}
-              selected={selectedEvent?.id === event.id}
+              selected={isEventCompareMode 
+                ? selectedEventsForComparison.some(e => e.id === event.id)
+                : selectedEvent?.id === event.id}
               onClick={() => handleEventClick(event)}
+              isCompareMode={isEventCompareMode}
+              onCompareClick={() => toggleEventComparison(event)}
             />
           ))
         )}

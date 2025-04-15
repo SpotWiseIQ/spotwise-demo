@@ -11,5 +11,8 @@
     "backend:build": "cd backend && uv sync",
     "install:all": "cd frontend && npm install && cd ../backend && uv sync"
   },
-  "author": ""
+  "author": "",
+  "dependencies": {
+    "recharts": "^2.15.2"
+  }
 }

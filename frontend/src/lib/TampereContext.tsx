@@ -35,6 +35,15 @@ interface TampereContextType {
   loadEventFootTraffic: (eventId: string) => Promise<any>;
   loadHotspotDetailedMetrics: (hotspotId: string) => Promise<any>;
   loadEventDetailedMetrics: (eventId: string) => Promise<any>;
+  isHotspotCompareMode: boolean;
+  setIsHotspotCompareMode: (mode: boolean) => void;
+  isEventCompareMode: boolean;
+  setIsEventCompareMode: (mode: boolean) => void;
+  selectedHotspotsForComparison: Hotspot[];
+  selectedEventsForComparison: Event[];
+  toggleHotspotComparison: (hotspot: Hotspot) => void;
+  toggleEventComparison: (event: Event) => void;
+  clearComparisons: () => void;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -62,6 +71,12 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [pulse, setPulse] = useState<boolean>(false);
   const [timePeriod, setTimePeriod] = useState<'real-time' | 'daily' | 'weekly' | 'monthly'>('real-time');
+  
+  // Split compare mode into two separate states
+  const [isHotspotCompareMode, setIsHotspotCompareMode] = useState(false);
+  const [isEventCompareMode, setIsEventCompareMode] = useState(false);
+  const [selectedHotspotsForComparison, setSelectedHotspotsForComparison] = useState<Hotspot[]>([]);
+  const [selectedEventsForComparison, setSelectedEventsForComparison] = useState<Event[]>([]);
   
   // State for API data
   const [hotspots, setHotspots] = useState<Hotspot[]>([]);
@@ -110,6 +125,36 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
     
     setSelectedEvent(event);
+  };
+
+  // Toggle hotspot comparison
+  const toggleHotspotComparison = (hotspot: Hotspot) => {
+    setSelectedHotspotsForComparison(prev => {
+      const exists = prev.find(h => h.id === hotspot.id);
+      if (exists) {
+        return prev.filter(h => h.id !== hotspot.id);
+      }
+      return [...prev, hotspot];
+    });
+  };
+
+  // Toggle event comparison
+  const toggleEventComparison = (event: Event) => {
+    setSelectedEventsForComparison(prev => {
+      const exists = prev.find(e => e.id === event.id);
+      if (exists) {
+        return prev.filter(e => e.id !== event.id);
+      }
+      return [...prev, event];
+    });
+  };
+
+  // Clear all comparisons
+  const clearComparisons = () => {
+    setSelectedHotspotsForComparison([]);
+    setSelectedEventsForComparison([]);
+    setIsHotspotCompareMode(false);
+    setIsEventCompareMode(false);
   };
 
   // Fetch hotspots every time the date, time period, or timeline changes
@@ -294,7 +339,16 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         loadHotspotFootTraffic,
         loadEventFootTraffic,
         loadHotspotDetailedMetrics,
-        loadEventDetailedMetrics
+        loadEventDetailedMetrics,
+        isHotspotCompareMode,
+        setIsHotspotCompareMode,
+        isEventCompareMode,
+        setIsEventCompareMode,
+        selectedHotspotsForComparison,
+        selectedEventsForComparison,
+        toggleHotspotComparison,
+        toggleEventComparison,
+        clearComparisons
       }}
     >
       {children}

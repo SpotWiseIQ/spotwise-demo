@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Event } from "@/lib/types";
-import { Calendar, BarChart2, ChevronDown, ChevronUp, Clock, MapPin, Users } from "lucide-react";
+import { Calendar, BarChart2, ChevronDown, ChevronUp, Clock, MapPin, Users, Users2, ArrowLeftRight } from "lucide-react";
 import { format } from "date-fns";
 import { FootTrafficChart } from "./FootTrafficChart";
 import { useTampere } from "@/lib/TampereContext";
@@ -16,6 +16,8 @@ type EventCardProps = {
   onClick?: () => void;
   selected?: boolean;
   showDate?: boolean;
+  isCompareMode?: boolean;
+  onCompareClick?: () => void;
 };
 
 export const EventCard: React.FC<EventCardProps> = ({
@@ -23,6 +25,8 @@ export const EventCard: React.FC<EventCardProps> = ({
   onClick,
   selected,
   showDate = false,
+  isCompareMode = false,
+  onCompareClick,
 }) => {
   const { loadEventFootTraffic } = useTampere();
   const [footTrafficData, setFootTrafficData] = useState<any[]>([]);
@@ -63,7 +67,10 @@ export const EventCard: React.FC<EventCardProps> = ({
   }, [selected]);
 
   const handleCardClick = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest('[data-collapsible-trigger]')) {
+    // If in compare mode or clicking on specific elements, don't handle the click
+    if (isCompareMode || 
+        (e.target as HTMLElement).closest('[data-collapsible-trigger]') || 
+        (e.target as HTMLElement).closest('[data-compare-button]')) {
       return;
     }
     if (onClick) {
@@ -74,6 +81,13 @@ export const EventCard: React.FC<EventCardProps> = ({
   const handleChartToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsTrafficOpen(!isTrafficOpen);
+  };
+
+  const handleCompareClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onCompareClick) {
+      onCompareClick();
+    }
   };
 
   return (
@@ -93,17 +107,30 @@ export const EventCard: React.FC<EventCardProps> = ({
           <p className="text-sm font-medium truncate" title={event.name}>{event.name}</p>
           <p className="text-xs text-gray-500 truncate">{event.place || 'Location not specified'}</p>
         </div>
-        <div className="text-sm text-right pl-2 flex-shrink-0 min-w-[60px]">
-          {showDate && (
-            <p className="text-xs text-gray-500">
-              {format(new Date(event.date), "MMM d")}
-            </p>
+        <div className="flex items-center gap-2">
+          {isCompareMode && (
+            <Button
+              variant={selected ? "secondary" : "ghost"}
+              size="sm"
+              className="h-6 px-2 text-xs"
+              onClick={handleCompareClick}
+              data-compare-button
+            >
+              <ArrowLeftRight className="w-3 h-3" />
+            </Button>
           )}
-          <p className="font-medium text-tampere-red text-xs">{event.time}</p>
+          <div className="text-sm text-right pl-2 flex-shrink-0 min-w-[60px]">
+            {showDate && (
+              <p className="text-xs text-gray-500">
+                {format(new Date(event.date), "MMM d")}
+              </p>
+            )}
+            <p className="font-medium text-tampere-red text-xs">{event.time}</p>
+          </div>
         </div>
       </div>
 
-      {selected && (
+      {selected && !isCompareMode && (
         <div className="border-t border-gray-200 mx-2 mt-1 mb-2 pt-3 px-1 space-y-4">
            <div>
              <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Details</h4>
@@ -156,8 +183,8 @@ export const EventCard: React.FC<EventCardProps> = ({
       )}
       
       <Collapsible
-        open={isTrafficOpen}
-        onOpenChange={setIsTrafficOpen}
+        open={isTrafficOpen && !isCompareMode}
+        onOpenChange={(open) => !isCompareMode && setIsTrafficOpen(open)}
       >
         {isLoadingTraffic && (
           <div className="h-3 w-full flex items-center justify-center border-t mt-1.5 px-2 py-0.5">

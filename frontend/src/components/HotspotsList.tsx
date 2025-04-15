@@ -1,12 +1,28 @@
 import React from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { HotspotCard } from "./HotspotCard";
+import { CompareToggle } from "./CompareToggle";
 
 export const HotspotsList: React.FC = () => {
-  const { hotspots, selectedHotspot, setSelectedHotspot, setSelectedEvent } =
-    useTampere();
+  const { 
+    hotspots, 
+    selectedHotspot, 
+    setSelectedHotspot, 
+    setSelectedEvent,
+    isHotspotCompareMode,
+    setIsHotspotCompareMode,
+    isEventCompareMode,
+    setIsEventCompareMode,
+    selectedHotspotsForComparison,
+    toggleHotspotComparison
+  } = useTampere();
 
   const handleHotspotClick = (hotspot: (typeof hotspots)[0]) => {
+    // If in compare mode, ignore clicks on the card itself
+    if (isHotspotCompareMode) {
+      return;
+    }
+
     // Enhanced logging with colors
     console.log(
       `%c📍 CLICK EVENT: Hotspot clicked - id=${hotspot.id}, label=${hotspot.label}`, 
@@ -24,16 +40,34 @@ export const HotspotsList: React.FC = () => {
     setSelectedHotspot(selectedHotspot?.id === hotspot.id ? null : hotspot);
   };
 
+  const handleCompareToggle = () => {
+    // When enabling hotspot compare mode, disable event compare mode
+    if (!isHotspotCompareMode) {
+      setIsEventCompareMode(false);
+    }
+    setIsHotspotCompareMode(!isHotspotCompareMode);
+  };
+
   return (
     <div className="mt-6">
-      <div className="mb-2 font-medium">Hotspots</div>
+      <div className="mb-2 font-medium flex items-center justify-between">
+        <span>Hotspots</span>
+        <CompareToggle 
+          isCompareMode={isHotspotCompareMode} 
+          onToggle={handleCompareToggle} 
+        />
+      </div>
       <div className="space-y-1.5 pr-2">
         {hotspots.map((hotspot) => (
           <HotspotCard
             key={hotspot.id}
             hotspot={hotspot}
-            selected={selectedHotspot?.id === hotspot.id}
+            selected={isHotspotCompareMode 
+              ? selectedHotspotsForComparison.some(h => h.id === hotspot.id)
+              : selectedHotspot?.id === hotspot.id}
             onClick={() => handleHotspotClick(hotspot)}
+            isCompareMode={isHotspotCompareMode}
+            onCompareClick={() => toggleHotspotComparison(hotspot)}
           />
         ))}
       </div>
