@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { fetchTampereCenter } from "@/lib/api";
+import { useStaticBusiness } from "@/lib/StaticBusinessContext";
 import { Zone } from "./ZoneCard";
 import { sampleZones } from "./StaticBusinessSidebar";
+import { StaticBusinessLegend } from "./StaticBusinessLegend";
+import { StaticLocationMetrics } from "./StaticLocationMetrics";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -12,7 +15,6 @@ const debugLog = (message: string, data?: any) => {
 
 interface StaticBusinessMapProps {
   businessLocations?: any[];
-  selectedZone?: Zone | null;
 }
 
 // Define proper GeoJSON types
@@ -38,13 +40,43 @@ interface ZonesGeoJSON extends GeoJSON.FeatureCollection {
 }
 
 export const StaticBusinessMap: React.FC<StaticBusinessMapProps> = ({ 
-  selectedZone = null
+  businessLocations = []
 }) => {
+  const { selectedZone } = useStaticBusiness();
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
+  const markersRef = useRef<{ [key: string]: maplibregl.Marker }>({});
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
   const [tampereCenter, setTampereCenter] = useState<[number, number]>([23.761, 61.4978]); // Default center
+  const [isAnyCardExpanded, setIsAnyCardExpanded] = useState(false);
+
+  // Add ref to track container size changes
+  const prevShowDetails = useRef(!!selectedZone);
+  const prevIsExpanded = useRef(isAnyCardExpanded);
+
+  // Listen for container size changes and resize map correctly
+  useEffect(() => {
+    if (!map.current) return;
+    
+    // Only trigger resize when container size actually changes
+    if (prevShowDetails.current !== !!selectedZone || 
+        prevIsExpanded.current !== isAnyCardExpanded) {
+      
+      requestAnimationFrame(() => {
+        if (!map.current) return;
+        
+        setTimeout(() => {
+          if (!map.current) return;
+          map.current.resize();
+        }, 300);
+      });
+      
+      // Update refs for next comparison
+      prevShowDetails.current = !!selectedZone;
+      prevIsExpanded.current = isAnyCardExpanded;
+    }
+  }, [selectedZone, isAnyCardExpanded]);
 
   // Fetch Tampere center coordinates
   useEffect(() => {
@@ -64,6 +96,18 @@ export const StaticBusinessMap: React.FC<StaticBusinessMapProps> = ({
 
     getTampereCenter();
   }, []);
+
+  // Filter business locations based on the selected zone
+  const filteredBusinessLocations = selectedZone 
+    ? businessLocations.filter(business => {
+        // Calculate distance between business and zone center (approximate)
+        const latDiff = Math.abs(business.coordinates[1] - selectedZone.coordinates[1]);
+        const lngDiff = Math.abs(business.coordinates[0] - selectedZone.coordinates[0]);
+        const distance = Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
+        // Consider businesses within a small radius (roughly 1 km)
+        return distance < 0.01;
+      })
+    : businessLocations;
 
   // Initialize map
   useEffect(() => {
@@ -212,30 +256,46 @@ export const StaticBusinessMap: React.FC<StaticBusinessMapProps> = ({
       // Update the existing source
       (map.current.getSource('zones') as maplibregl.GeoJSONSource).setData(zonesGeoJSON);
     }
+  }, [selectedZone, mapLoaded, sampleZones]);
 
-    // If a zone is selected, fly to it
-    if (selectedZone) {
-      const lngLat: [number, number] = [
-        parseFloat(selectedZone.coordinates[0].toString()),
-        parseFloat(selectedZone.coordinates[1].toString())
-      ];
+  // Separate effect for handling map transitions
+  useEffect(() => {
+    if (!map.current || !mapLoaded || !selectedZone) return;
+
+    const coordinates = selectedZone.coordinates;
+    if (coordinates) {
+      // Calculate vertical offset based on container height
+      const containerHeight = mapContainer.current?.offsetHeight || 0;
       
-      debugLog(`Flying to selected zone ${selectedZone.name} at coordinates:`, lngLat);
+      // Increase the vertical offset to account for the metrics component at the bottom
+      const verticalOffset = containerHeight * 0.25;
       
+      // Calculate additional offset to compensate for the metrics panel at the bottom
+      // This shifts the focal point up to keep marker centered in the visible area
+      const bottomOffsetAdjustment = isAnyCardExpanded ? containerHeight * 0.15 : containerHeight * 0.1;
+
+      // Use a longer duration for smoother transitions
       map.current.flyTo({
-        center: lngLat,
+        center: coordinates,
         zoom: 14,
         essential: true,
-        duration: 1000
+        duration: 3000, // 3 second transition for extra smoothness
+        padding: {
+          top: 60,
+          bottom: verticalOffset + 80,
+          left: 50,
+          right: 50,
+        },
+        offset: [0, -bottomOffsetAdjustment]
       });
     }
-  }, [selectedZone, mapLoaded, sampleZones]);
+  }, [selectedZone, mapLoaded]);
 
   return (
     <div className="relative w-full h-full">
       <div
         ref={mapContainer}
-        className="w-full h-full rounded-lg overflow-hidden border border-gray-200 relative"
+        className="absolute inset-0"
       >
         {mapError && (
           <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-10">
@@ -247,10 +307,28 @@ export const StaticBusinessMap: React.FC<StaticBusinessMapProps> = ({
         )}
       </div>
       
+      {/* Legend - positioned in the left-center of visible map area */}
+      {selectedZone && (
+        <div className={`absolute left-4 z-10 transition-all duration-300 ${
+          isAnyCardExpanded 
+            ? 'top-[35%] -translate-y-1/2' 
+            : 'top-[40%] -translate-y-1/2'
+        }`}>
+          <StaticBusinessLegend key={selectedZone.id} />
+        </div>
+      )}
+      
       {/* Zone status indicator - only show when a zone is selected */}
       {selectedZone && (
         <div className="absolute top-4 left-4 bg-white p-2 rounded-md shadow-md z-10">
           <p className="text-sm font-medium">Viewing: {selectedZone.name}</p>
+        </div>
+      )}
+
+      {/* Metrics section - shown when a zone is selected */}
+      {selectedZone && (
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+          <StaticLocationMetrics onAnyCardExpanded={setIsAnyCardExpanded} />
         </div>
       )}
 

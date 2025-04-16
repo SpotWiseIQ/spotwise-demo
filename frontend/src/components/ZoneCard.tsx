@@ -1,5 +1,7 @@
 import React from "react";
-import { MapPin, Car, Clock, Users } from "lucide-react";
+import { MapPin, Car, Clock, Users, Scale } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useStaticBusiness } from "@/lib/StaticBusinessContext";
 
 export interface Zone {
   id: string;
@@ -9,7 +11,16 @@ export interface Zone {
   avgParkingTime: number;
   footTraffic: number;
   coordinates: [number, number];
-  trafficData?: { time: string; value: number }[];
+  trafficData: Array<{ time: string; value: number }>;
+  // Additional fields for metrics
+  population?: number;
+  areaType?: string;
+  dominantDemographics?: string;
+  nearbyBusinesses?: number;
+  competition: string;
+  revenuePotential: string;
+  growthIndex: string;
+  selected: boolean;
 }
 
 type ZoneCardProps = {
@@ -23,9 +34,27 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
   onClick,
   selected,
 }) => {
+  const { 
+    isZoneCompareMode, 
+    selectedZonesForComparison,
+    addZoneToComparison,
+    removeZoneFromComparison
+  } = useStaticBusiness();
+
   const handleCardClick = (e: React.MouseEvent) => {
-    if (onClick) {
+    if (onClick && !isZoneCompareMode) {
       onClick();
+    }
+  };
+
+  const isInComparison = selectedZonesForComparison.some(z => z.id === zone.id);
+
+  const handleCompareClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isInComparison) {
+      removeZoneFromComparison(zone.id);
+    } else {
+      addZoneToComparison(zone);
     }
   };
 
@@ -34,10 +63,12 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
       className={`flex flex-col my-1 bg-gray-50 rounded-lg border transition-all duration-200 ease-in-out ${
         selected
           ? "ring-2 ring-tampere-red border-tampere-red shadow-md"
+          : isInComparison
+          ? "ring-2 ring-blue-500 border-blue-500 shadow-md"
           : "border-gray-200 hover:shadow-sm"
       }`}
     >
-      <div className="p-2 cursor-pointer" onClick={handleCardClick}>
+      <div className={`p-2 ${!isZoneCompareMode ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
         <div className="flex items-start mb-2">
           <div className="text-tampere-red mt-1">
             <MapPin size={18} />
@@ -50,6 +81,17 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
               {zone.distance.toFixed(1)} km away
             </p>
           </div>
+          {isZoneCompareMode && (
+            <Button
+              variant={isInComparison ? "secondary" : "outline"}
+              size="sm"
+              className="ml-2"
+              onClick={handleCompareClick}
+            >
+              <Scale size={14} className="mr-1" />
+              {isInComparison ? "Remove" : "Compare"}
+            </Button>
+          )}
         </div>
         <div className="grid grid-cols-1 gap-y-2 pl-7">
           <div className="flex items-center justify-between">

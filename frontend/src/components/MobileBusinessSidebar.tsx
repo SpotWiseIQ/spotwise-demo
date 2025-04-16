@@ -4,6 +4,7 @@ import { DateSelector } from "./DateSelector";
 import { TimelineSlider } from "./TimelineSlider";
 import { HotspotsList } from "./HotspotsList";
 import { EventsList } from "./EventsList";
+import { LanguageSelector } from "./LanguageSelector";
 import {
   Select,
   SelectContent,
@@ -59,6 +60,9 @@ export const MobileBusinessSidebar: React.FC = () => {
               <span>Mobile Business Spots</span>
             </a>
           </h1>
+          <div className="ml-auto">
+            <LanguageSelector />
+          </div>
         </div>
         <div className="mb-2">
           <Select value={timePeriod} onValueChange={(value) => setTimePeriod(value as 'real-time' | 'daily' | 'weekly' | 'monthly')}>
