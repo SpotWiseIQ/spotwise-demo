@@ -69,7 +69,7 @@ export default function LandingPage(): JSX.Element {
   return (
     <div className="min-h-screen w-full bg-white flex items-center justify-center">
       <div className="max-w-4xl w-full px-4">
-        <h1 className="text-3xl font-bold text-center text-purple-700 drop-shadow-md mb-2">
+        <h1 className="text-3xl font-bold text-center text-[#29549a] drop-shadow-sm mb-2">
           Smart Location Insights for Business Planning
         </h1>
         <p className="text-center text-gray-600 mb-8">

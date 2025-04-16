@@ -17,7 +17,7 @@ export const MobileBusinessLegend: React.FC = () => {
   const trafficItems = [
     { color: "#4caf50", label: "Low traffic" },
     { color: "#ffc107", label: "Medium traffic" },
-    { color: "#ea384c", label: "High traffic" },
+    { color: "#c83e36", label: "High traffic" },
   ];
 
   return (

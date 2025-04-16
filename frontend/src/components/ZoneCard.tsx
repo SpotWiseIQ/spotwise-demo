@@ -9,6 +9,7 @@ export interface Zone {
   avgParkingTime: number;
   footTraffic: number;
   coordinates: [number, number];
+  trafficData?: { time: string; value: number }[];
 }
 
 type ZoneCardProps = {

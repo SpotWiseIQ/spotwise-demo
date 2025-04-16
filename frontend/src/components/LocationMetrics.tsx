@@ -132,8 +132,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
   ];
 
   const trafficImpactData = [
-    { name: 'Before', value: 65, fill: '#8884d8' },
-    { name: 'During', value: 90, fill: '#ff6b7d' },
+    { name: 'Before', value: 65, fill: '#29549a' },
+    { name: 'During', value: 90, fill: '#c83e36' },
     { name: 'After', value: 75, fill: '#82ca9d' },
   ];
 
@@ -143,7 +143,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
     { name: 'Available', value: 20 },
   ];
 
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#ff3d7f'];
+  const COLORS = ['#29549a', '#c83e36', '#FFBB28', '#FF8042', '#8884d8', '#ff3d7f'];
 
   // --- Render Chart Logic --- 
   const renderChart = () => {

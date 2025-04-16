@@ -359,3 +359,44 @@ export const fetchEventDetailedMetrics = async (eventId: string) => {
     throw error;
   }
 };
+
+export const fetchBusinessLocations = async (): Promise<any[]> => {
+  debugLog(`Fetching static business locations`);
+  
+  try {
+    const response = await fetch(buildUrl(`/api/business-locations`));
+    if (!response.ok) {
+      throw new Error('Failed to fetch business locations');
+    }
+    const data = await response.json();
+    debugLog(`Received ${data.length} business locations`);
+    return data;
+  } catch (error) {
+    console.error('Error fetching business locations:', error);
+    debugLog('Error fetching business locations, returning mock data');
+    
+    // Return mock business locations as fallback
+    return [
+      // Prisma Kaleva Zone businesses
+      { id: "kaleva-1", name: "Prisma Supermarket", coordinates: [23.8010, 61.5050], type: "business" },
+      { id: "kaleva-2", name: "Kaleva Electronics", coordinates: [23.8030, 61.5055], type: "business" },
+      { id: "kaleva-3", name: "Health & Beauty Shop", coordinates: [23.7995, 61.5045], type: "business" },
+      
+      // Hervanta Bypass Area businesses
+      { id: "hervanta-1", name: "Tech Campus Café", coordinates: [23.8450, 61.4450], type: "business" },
+      { id: "hervanta-2", name: "Innovation Hub", coordinates: [23.8470, 61.4455], type: "business" },
+      { id: "hervanta-3", name: "Student Restaurant", coordinates: [23.8430, 61.4440], type: "business" },
+      
+      // Lielahti Zone businesses
+      { id: "lielahti-1", name: "Furniture Outlet", coordinates: [23.6950, 61.5150], type: "business" },
+      { id: "lielahti-2", name: "Home Improvement Store", coordinates: [23.6970, 61.5155], type: "business" },
+      { id: "lielahti-3", name: "Garden Center", coordinates: [23.6935, 61.5145], type: "business" },
+      
+      // Ratina Mall Area businesses
+      { id: "ratina-1", name: "Ratina Shopping Center", coordinates: [23.7670, 61.4930], type: "business" },
+      { id: "ratina-2", name: "Waterfront Restaurant", coordinates: [23.7690, 61.4935], type: "business" },
+      { id: "ratina-3", name: "Fashion Boutique", coordinates: [23.7655, 61.4925], type: "business" },
+      { id: "ratina-4", name: "Sports Equipment Store", coordinates: [23.7665, 61.4920], type: "business" }
+    ];
+  }
+};

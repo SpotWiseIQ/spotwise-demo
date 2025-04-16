@@ -1,31 +1,69 @@
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useTampere } from "@/lib/TampereContext";
-import { PulseToggle } from "./PulseToggle";
-import { fetchMapItems, fetchTrafficData, fetchTampereCenter } from "@/lib/api";
-import { MapItem } from "@/lib/types";
-import { LocationMetrics } from "./LocationMetrics";
+import { fetchTampereCenter } from "@/lib/api";
+import { Zone } from "./ZoneCard";
+import { sampleZones } from "./StaticBusinessSidebar";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
   console.log(`%c🗺️ STATIC MAP DEBUG: ${message}`, 'background: #f0f0f0; color: #0066cc; font-weight: bold; padding: 2px 5px; border-radius: 3px;', data || '');
 };
 
-export const StaticBusinessMap: React.FC = () => {
-  const {
-    pulse,
-    setPulse,
-  } = useTampere();
+interface StaticBusinessMapProps {
+  businessLocations?: any[];
+  selectedZone?: Zone | null;
+}
 
+// Define proper GeoJSON types
+interface ZoneProperties {
+  id: string;
+  name: string;
+  carFlow: number;
+  footTraffic: number;
+  avgParkingTime: number;
+  selected: boolean;
+}
+
+interface ZoneFeature extends GeoJSON.Feature {
+  properties: ZoneProperties;
+  geometry: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+}
+
+interface ZonesGeoJSON extends GeoJSON.FeatureCollection {
+  features: ZoneFeature[];
+}
+
+export const StaticBusinessMap: React.FC<StaticBusinessMapProps> = ({ 
+  selectedZone = null
+}) => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
-  const markersRef = useRef<{ [key: string]: maplibregl.Marker }>({});
-
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
-  const [mapItems, setMapItems] = useState<MapItem[]>([]);
   const [tampereCenter, setTampereCenter] = useState<[number, number]>([23.761, 61.4978]); // Default center
+
+  // Fetch Tampere center coordinates
+  useEffect(() => {
+    debugLog("Fetching Tampere center coordinates");
+    const getTampereCenter = async () => {
+      try {
+        debugLog("API call: fetchTampereCenter");
+        const center = await fetchTampereCenter();
+        debugLog("Tampere center fetched successfully", center);
+        setTampereCenter(center);
+      } catch (error) {
+        console.error("Failed to fetch Tampere center:", error);
+        debugLog("Error fetching Tampere center, using default", tampereCenter);
+        // Keep using the default center
+      }
+    };
+
+    getTampereCenter();
+  }, []);
 
   // Initialize map
   useEffect(() => {
@@ -37,63 +75,161 @@ export const StaticBusinessMap: React.FC = () => {
         container: mapContainer.current,
         style: "https://tiles.openfreemap.org/styles/positron",
         center: tampereCenter,
-        zoom: 12,
+        zoom: 11,
       });
 
       map.current.on("load", () => {
         setMapLoaded(true);
         map.current?.addControl(new maplibregl.NavigationControl(), "top-right");
+        debugLog("Map loaded successfully");
       });
 
       map.current.on("error", (e) => {
         console.error("Map error:", e);
+        debugLog("Map ERROR event fired", e);
         setMapError("Failed to load the map. Please try again later.");
       });
     } catch (error) {
       console.error("Map initialization error:", error);
+      debugLog("CRITICAL ERROR during map initialization", error);
       setMapError("Failed to initialize the map. Please try again later.");
     }
 
     return () => {
+      debugLog("Cleaning up map instance");
       map.current?.remove();
       map.current = null;
     };
   }, [tampereCenter]);
 
-  // Update markers for static business locations
+  // Add zones as a GeoJSON source
   useEffect(() => {
-    if (!map.current || !mapLoaded) return;
+    if (!map.current || !mapLoaded) {
+      debugLog("Map not ready for zones layer");
+      return;
+    }
 
-    // Clear existing markers
-    Object.values(markersRef.current).forEach((marker) => marker.remove());
-    markersRef.current = {};
+    // Convert zones to GeoJSON format
+    const zonesGeoJSON: ZonesGeoJSON = {
+      type: "FeatureCollection",
+      features: sampleZones.map(zone => ({
+        type: "Feature",
+        properties: {
+          id: zone.id,
+          name: zone.name,
+          carFlow: zone.carFlow,
+          footTraffic: zone.footTraffic,
+          avgParkingTime: zone.avgParkingTime,
+          selected: selectedZone?.id === zone.id
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [
+            parseFloat(zone.coordinates[0].toString()),
+            parseFloat(zone.coordinates[1].toString())
+          ]
+        }
+      }))
+    };
 
-    // Add static business markers
-    mapItems.forEach((item: MapItem) => {
-      if (item.type === 'business') {
-        let markerElement = document.createElement("div");
-        markerElement.className = `map-icon-container text-orange-600`;
-        markerElement.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store">
-            <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path>
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-            <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
-            <path d="M2 7h20"></path>
-            <path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"></path>
-          </svg>
-        `;
+    debugLog("Adding GeoJSON source for zones", zonesGeoJSON);
 
-        const marker = new maplibregl.Marker({
-          element: markerElement,
-          anchor: "center",
-        })
-          .setLngLat(item.coordinates)
+    // Add source if it doesn't exist, update it if it does
+    if (!map.current.getSource('zones')) {
+      map.current.addSource('zones', {
+        type: 'geojson',
+        data: zonesGeoJSON
+      });
+
+      // Add a layer for the zone markers
+      map.current.addLayer({
+        id: 'zone-markers',
+        type: 'symbol',
+        source: 'zones',
+        layout: {
+          'icon-image': 'zone-icon',
+          'icon-size': 1,
+          'icon-allow-overlap': true,
+          'icon-anchor': 'bottom'
+        }
+      });
+
+      // Create a custom icon for the zones
+      const markerSvg = `
+        <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.38 0 0 5.38 0 12C0 20.5 12 36 12 36C12 36 24 20.5 24 12C24 5.38 18.62 0 12 0Z" fill="#ea384c"/>
+          <circle cx="12" cy="12" r="6" fill="white"/>
+        </svg>
+      `;
+
+      // Create a custom marker image
+      const createMarkerImage = () => {
+        const img = new Image(24, 36);
+        img.onload = () => {
+          if (map.current && !map.current.hasImage('zone-icon')) {
+            map.current.addImage('zone-icon', img);
+          }
+        };
+        img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(markerSvg)}`;
+      };
+      
+      createMarkerImage();
+
+      // Add a popup when hovering over the markers
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: [0, -10],
+        className: 'marker-tooltip'
+      });
+
+      // Mouse events for marker layer
+      map.current.on('mouseenter', 'zone-markers', (e) => {
+        if (!e.features || !e.features[0]) return;
+        
+        map.current!.getCanvas().style.cursor = 'pointer';
+        
+        const feature = e.features[0];
+        // Cast the feature to any to access coordinates safely
+        const coordinates = (feature.geometry as any).coordinates.slice() as [number, number];
+        const name = feature.properties.name;
+        
+        popup.setLngLat(coordinates)
+          .setHTML(`<div>${name}</div>`)
           .addTo(map.current!);
+      });
 
-        markersRef.current[`business-${item.id}`] = marker;
-      }
-    });
-  }, [mapItems, mapLoaded]);
+      map.current.on('mouseleave', 'zone-markers', () => {
+        map.current!.getCanvas().style.cursor = '';
+        popup.remove();
+      });
+
+      map.current.on('click', 'zone-markers', (e) => {
+        if (!e.features || !e.features[0]) return;
+        debugLog("Zone marker clicked", e.features[0].properties);
+      });
+    } else {
+      // Update the existing source
+      (map.current.getSource('zones') as maplibregl.GeoJSONSource).setData(zonesGeoJSON);
+    }
+
+    // If a zone is selected, fly to it
+    if (selectedZone) {
+      const lngLat: [number, number] = [
+        parseFloat(selectedZone.coordinates[0].toString()),
+        parseFloat(selectedZone.coordinates[1].toString())
+      ];
+      
+      debugLog(`Flying to selected zone ${selectedZone.name} at coordinates:`, lngLat);
+      
+      map.current.flyTo({
+        center: lngLat,
+        zoom: 14,
+        essential: true,
+        duration: 1000
+      });
+    }
+  }, [selectedZone, mapLoaded, sampleZones]);
 
   return (
     <div className="relative w-full h-full">
@@ -109,11 +245,26 @@ export const StaticBusinessMap: React.FC = () => {
             </div>
           </div>
         )}
-
-        <div className="absolute top-4 left-4 z-10">
-          <PulseToggle value={pulse} onChange={setPulse} />
-        </div>
       </div>
+      
+      {/* Zone status indicator - only show when a zone is selected */}
+      {selectedZone && (
+        <div className="absolute top-4 left-4 bg-white p-2 rounded-md shadow-md z-10">
+          <p className="text-sm font-medium">Viewing: {selectedZone.name}</p>
+        </div>
+      )}
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .marker-tooltip {
+          z-index: 10;
+          background: white;
+          border-radius: 4px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          padding: 6px 10px;
+          font-size: 12px;
+          font-weight: 500;
+        }
+      `}} />
     </div>
   );
 }; 

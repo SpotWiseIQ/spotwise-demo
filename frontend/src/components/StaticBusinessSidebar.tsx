@@ -1,82 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { Search, Building2, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ZoneCard, Zone } from "./ZoneCard";
 
 // Sample data for zones
-const sampleZones: Zone[] = [
+export const sampleZones: Zone[] = [
   {
     id: "1",
-    name: "Keskusta",
-    distance: 0.2,
-    carFlow: 450,
-    avgParkingTime: 45,
-    footTraffic: 25000,
-    coordinates: [23.7610, 61.4978],
+    name: "Prisma Kaleva Zone",
+    distance: 5.2,
+    carFlow: 13500,
+    avgParkingTime: 42,
+    footTraffic: 2200,
+    coordinates: [23.8214, 61.4911],
     trafficData: [
-      { time: "08:00", value: 150 },
-      { time: "10:00", value: 280 },
-      { time: "12:00", value: 400 },
-      { time: "14:00", value: 320 },
-      { time: "16:00", value: 500 },
-      { time: "18:00", value: 450 },
+      { time: "08:00", value: 8000 },
+      { time: "10:00", value: 10000 },
+      { time: "12:00", value: 13500 },
+      { time: "14:00", value: 12000 },
+      { time: "16:00", value: 13000 },
+      { time: "18:00", value: 11000 },
     ],
   },
   {
     id: "2",
-    name: "Tampella",
-    distance: 0.8,
-    carFlow: 280,
-    avgParkingTime: 60,
-    footTraffic: 15000,
-    coordinates: [23.7710, 61.5018],
+    name: "Hervanta Bypass Area",
+    distance: 3.1,
+    carFlow: 11500,
+    avgParkingTime: 36,
+    footTraffic: 1600,
+    coordinates: [23.8500, 61.4417],
     trafficData: [
-      { time: "08:00", value: 100 },
-      { time: "10:00", value: 180 },
-      { time: "12:00", value: 250 },
-      { time: "14:00", value: 220 },
-      { time: "16:00", value: 300 },
-      { time: "18:00", value: 280 },
+      { time: "08:00", value: 7000 },
+      { time: "10:00", value: 9000 },
+      { time: "12:00", value: 11500 },
+      { time: "14:00", value: 10000 },
+      { time: "16:00", value: 11000 },
+      { time: "18:00", value: 9500 },
     ],
   },
   {
     id: "3",
-    name: "Tammela",
-    distance: 1.2,
-    carFlow: 320,
-    avgParkingTime: 30,
-    footTraffic: 18000,
-    coordinates: [23.7810, 61.5038],
+    name: "Lielahti Zone",
+    distance: 5.2,
+    carFlow: 8500,
+    avgParkingTime: 62,
+    footTraffic: 8200,
+    coordinates: [23.6691, 61.5203],
     trafficData: [
-      { time: "08:00", value: 120 },
-      { time: "10:00", value: 200 },
-      { time: "12:00", value: 280 },
-      { time: "14:00", value: 250 },
-      { time: "16:00", value: 350 },
-      { time: "18:00", value: 300 },
+      { time: "08:00", value: 5000 },
+      { time: "10:00", value: 6500 },
+      { time: "12:00", value: 8500 },
+      { time: "14:00", value: 8000 },
+      { time: "16:00", value: 7500 },
+      { time: "18:00", value: 6000 },
     ],
   },
   {
     id: "4",
-    name: "Kaleva",
-    distance: 1.5,
-    carFlow: 380,
-    avgParkingTime: 40,
-    footTraffic: 12000,
-    coordinates: [23.7910, 61.5058],
+    name: "Ratina Mall Area",
+    distance: 0.2,
+    carFlow: 5500,
+    avgParkingTime: 15,
+    footTraffic: 9500, // Estimated value as it's not clearly visible in the image
+    coordinates: [23.7667, 61.4936],
     trafficData: [
-      { time: "08:00", value: 80 },
-      { time: "10:00", value: 150 },
-      { time: "12:00", value: 200 },
-      { time: "14:00", value: 180 },
-      { time: "16:00", value: 250 },
-      { time: "18:00", value: 220 },
+      { time: "08:00", value: 3000 },
+      { time: "10:00", value: 4500 },
+      { time: "12:00", value: 5500 },
+      { time: "14:00", value: 5200 },
+      { time: "16:00", value: 5000 },
+      { time: "18:00", value: 4000 },
     ],
   },
 ];
 
-export const StaticBusinessSidebar: React.FC = () => {
+interface StaticBusinessSidebarProps {
+  onZoneSelect?: (zone: Zone | null) => void;
+}
+
+export const StaticBusinessSidebar: React.FC<StaticBusinessSidebarProps> = ({ onZoneSelect }) => {
   const { } = useTampere();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -85,6 +89,14 @@ export const StaticBusinessSidebar: React.FC = () => {
   const filteredZones = sampleZones.filter(zone =>
     zone.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Effect to notify parent component when zone selection changes
+  useEffect(() => {
+    if (onZoneSelect) {
+      const zone = selectedZone ? sampleZones.find(z => z.id === selectedZone) || null : null;
+      onZoneSelect(zone);
+    }
+  }, [selectedZone, onZoneSelect]);
 
   return (
     <div className="p-6 h-full overflow-y-auto overflow-x-hidden">

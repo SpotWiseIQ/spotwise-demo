@@ -241,17 +241,16 @@ export const MobileBusinessMap: React.FC = () => {
               14, 0.7,    // Keep moderate intensity at high zoom
               16, 0.7     // Keep moderate intensity at max zoom
             ],
-            // Color gradient for the heatmap
+            // Color gradient for the heatmap with new colors
             'heatmap-color': [
               'interpolate',
               ['linear'],
               ['heatmap-density'],
-              0, 'rgba(0, 0, 0, 0)',        // Fully transparent start
-              0.2, 'rgba(76, 175, 80, 0)',  // Start green ramp transparently
-              0.35, 'rgba(173, 255, 47, 0.6)', // Shift to Yellow-Green (was green at 0.4)
-              0.55, 'rgba(255, 193, 7, 0.8)', // Yellow/Orange starts sooner (was 0.7)
-              0.75, 'rgba(234, 56, 76, 0.9)', // Red starts a bit sooner (was 0.8)
-              1, 'rgba(183, 28, 28, 1.0)'    // Fully opaque Red (Congested)
+              0, 'rgba(245, 245, 245, 0)',    // Transparent off-white
+              0.2, 'rgba(245, 245, 245, 0.7)', // Semi-transparent off-white
+              0.5, 'rgba(192, 163, 192, 0.8)', // Dusty lavender
+              0.8, 'rgba(255, 46, 46, 0.9)',   // Semi-transparent vivid red
+              1, 'rgba(255, 46, 46, 1.0)'      // Fully opaque vivid red
             ],
             // Adjust radius to maintain strong blending at high zoom levels
             'heatmap-radius': [
@@ -296,7 +295,7 @@ export const MobileBusinessMap: React.FC = () => {
               "moderate",
               "#ffc107",
               "congested",
-              "#ea384c",
+              "#c83e36",
               "#000000",
             ],
             "line-opacity": 0.7,
