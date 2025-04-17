@@ -118,12 +118,12 @@ def determine_traffic_status(
             min_distance = distance
             closest_hotspot = hotspot
 
-    # Debug logging for the closest hotspot
-    if closest_hotspot and min_distance < 200:  # Only log for very close roads
-        print(f"Road near hotspot '{closest_hotspot.name}':")
-        print(f"  Road midpoint: {road_midpoint}")
-        print(f"  Hotspot coords: {closest_hotspot.coordinates}")
-        print(f"  Distance: {min_distance:.2f}m")
+    # # Debug logging for the closest hotspot
+    # if closest_hotspot and min_distance < 200:  # Only log for very close roads
+    #     print(f"Road near hotspot '{closest_hotspot.name}':")
+    #     print(f"  Road midpoint: {road_midpoint}")
+    #     print(f"  Hotspot coords: {closest_hotspot.coordinates}")
+    #     print(f"  Distance: {min_distance:.2f}m")
 
     # Determine traffic status based on distance to nearest hotspot
     if min_distance < 100:  # Only very close streets get congested

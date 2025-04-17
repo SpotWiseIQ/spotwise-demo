@@ -8,6 +8,7 @@ import { fetchMapItems, fetchTrafficData, fetchTrafficPoints, fetchTampereCenter
 import { MapItem } from "@/lib/types";
 import { LocationMetrics } from "./LocationMetrics";
 import { ComparisonView } from "./ComparisonView";
+import { useTrafficData } from "@/hooks/useTrafficData";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -29,6 +30,7 @@ export const MobileBusinessMap: React.FC = () => {
     isEventCompareMode,
     selectedHotspotsForComparison,
     selectedEventsForComparison,
+    timelineRange,
   } = useTampere();
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -36,6 +38,7 @@ export const MobileBusinessMap: React.FC = () => {
   const markersRef = useRef<{ [key: string]: maplibregl.Marker }>({});
 
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapStyleLoaded, setMapStyleLoaded] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
   const [mapItems, setMapItems] = useState<MapItem[]>([]);
   const [tampereCenter, setTampereCenter] = useState<[number, number]>([23.761, 61.4978]); // Default center
@@ -48,6 +51,9 @@ export const MobileBusinessMap: React.FC = () => {
   
   // SEQUENCE FIX: Create a ref to track the latest coordinates for fly-to
   const pendingFlyToRef = useRef<[number, number] | null>(null);
+  
+  // Use the new traffic data hook
+  const { trafficData, trafficPoints, loading: trafficLoading } = useTrafficData(timelineRange);
   
   // Debug component mount
   useEffect(() => {
@@ -336,79 +342,236 @@ export const MobileBusinessMap: React.FC = () => {
     };
   }, [tampereCenter]);
 
-  // Update traffic data based on pulse state
+  // Track map style load
   useEffect(() => {
-    if (!map.current || !mapLoaded) {
-      debugLog("Map not ready for traffic data update");
+    if (!map.current) return;
+    const onStyleLoad = () => setMapStyleLoaded(true);
+    map.current.on("style.load", onStyleLoad);
+    return () => {
+      map.current?.off("style.load", onStyleLoad);
+    };
+  }, [mapLoaded]);
+
+  // Reset style loaded when map is re-initialized
+  useEffect(() => {
+    if (!mapLoaded) setMapStyleLoaded(false);
+  }, [mapLoaded]);
+
+  // Robustly update traffic data on the map when trafficPoints or trafficData or map readiness changes
+  useEffect(() => {
+    if (!map.current || !mapLoaded || !mapStyleLoaded) {
+      debugLog("Map not ready for traffic data update", { mapLoaded, mapStyleLoaded });
       return;
     }
 
-    // Automatically enable pulse when a selection is made
-    if ((selectedHotspot || selectedEvent) && !pulse) {
-      debugLog("Selection detected, enabling pulse");
-      setPulse(true);
-    } 
-    // Turn off pulse when nothing is selected
-    else if (!selectedHotspot && !selectedEvent && pulse) {
-      debugLog("No selection detected, disabling pulse");
-      setPulse(false);
+    const setupTrafficLayers = () => {
+      if (!map.current?.getSource('traffic-points')) {
+        debugLog("Setting up traffic points source");
+        map.current?.addSource("traffic-points", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [],
+          },
+        });
+
+        map.current?.addLayer({
+          id: "traffic-heatmap",
+          type: "heatmap",
+          source: "traffic-points",
+          paint: {
+            // Adjust weight based on traffic status
+            'heatmap-weight': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10,
+              ['match',
+                ['get', 'status'],
+                'congested', 1.0,
+                'moderate', 0.8,
+                'available', 0.1,
+                0
+              ],
+              15,
+              ['match',
+                ['get', 'status'],
+                'congested', 1.0,
+                'moderate', 0.8,
+                'available', 0.1,
+                0
+              ]
+            ],
+            // Adjust intensity based on zoom level
+            'heatmap-intensity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 0.5,    // Base intensity at low zoom
+              12, 0.6,    // Moderate increase
+              14, 0.7,    // Keep moderate intensity at high zoom
+              16, 0.7     // Keep moderate intensity at max zoom
+            ],
+            // Color gradient for the heatmap with new colors
+            'heatmap-color': [
+              'interpolate',
+              ['linear'],
+              ['heatmap-density'],
+              0, 'rgba(245, 245, 245, 0)',    // Transparent off-white
+              0.2, 'rgba(245, 245, 245, 0.7)', // Semi-transparent off-white
+              0.5, 'rgba(192, 163, 192, 0.8)', // Dusty lavender
+              0.8, 'rgba(255, 46, 46, 0.9)',   // Semi-transparent vivid red
+              1, 'rgba(255, 46, 46, 1.0)'      // Fully opaque vivid red
+            ],
+            // Adjust radius to maintain strong blending at high zoom levels
+            'heatmap-radius': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 10,     // Original radius at low zoom
+              12, 15,     // Moderate increase at medium-low zoom
+              14, 30,     // Larger radius at medium-high zoom
+              16, 60      // Very large radius at max zoom for complete blending
+            ],
+            // Adjust opacity to maintain consistent blend
+            'heatmap-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 0.6,    // Base opacity at low zoom
+              12, 0.7,    // Slight increase at medium zoom
+              14, 0.7,    // Keep consistent at high zoom
+              16, 0.7     // Keep consistent at max zoom
+            ]
+          }
+        });
+      }
+
+      if (!map.current?.getSource('traffic-lines')) {
+        debugLog("Setting up traffic lines source");
+        map.current?.addSource("traffic-lines", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [],
+          },
+        });
+
+        map.current?.addLayer({
+          id: "traffic-lines",
+          type: "line",
+          source: "traffic-lines",
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+            "visibility": "none"
+          },
+          paint: {
+            "line-width": 6,
+            "line-color": [
+              "match",
+              ["get", "status"],
+              "available",
+              "#4caf50",
+              "moderate",
+              "#ffc107",
+              "congested",
+              "#c83e36",
+              "#000000",
+            ],
+            "line-opacity": 0.7,
+          },
+        });
+      }
+    };
+
+    // Store timeout IDs for cleanup
+    const retryTimeoutsRef = { current: [] };
+
+    // Helper to robustly set data with retries
+    const setSourceDataWithRetry = (sourceId: string, data: any, label: string, maxRetries = 20, delay = 100, attempt = 0) => {
+      if (!map.current) return;
+      
+      try {
+        // Ensure source exists
+        if (!map.current.getSource(sourceId)) {
+          debugLog(`${label} source missing, attempting setup`);
+          setupTrafficLayers();
+        }
+
+        const source = map.current.getSource(sourceId);
+        if (source) {
+          debugLog(`Setting ${label} data (attempt ${attempt + 1})`, data);
+          (source as maplibregl.GeoJSONSource).setData(data);
+        } else if (attempt < maxRetries) {
+          debugLog(`${label} source still not ready, retrying in ${delay}ms (attempt ${attempt + 1})`);
+          const timeoutId = setTimeout(() => 
+            setSourceDataWithRetry(sourceId, data, label, maxRetries, delay, attempt + 1), 
+            delay
+          );
+          retryTimeoutsRef.current.push(timeoutId);
+        } else {
+          debugLog(`${label} source does not exist after ${maxRetries} attempts, giving up.`);
+        }
+      } catch (error) {
+        debugLog(`Error setting ${label} data:`, error);
+        if (attempt < maxRetries) {
+          const timeoutId = setTimeout(() => 
+            setSourceDataWithRetry(sourceId, data, label, maxRetries, delay, attempt + 1), 
+            delay
+          );
+          retryTimeoutsRef.current.push(timeoutId);
+        }
+      }
+    };
+
+    // Set traffic points (heatmap)
+    if (trafficPoints) {
+      setSourceDataWithRetry("traffic-points", trafficPoints, "traffic-points");
     }
-
-    // Fetch traffic points data for heatmap
-    debugLog("Fetching traffic points data for visualization");
-    fetchTrafficPoints()
-      .then((pointsData) => {
-        debugLog("Traffic points data loaded successfully");
-        if (map.current && map.current.getSource("traffic-points")) {
-          (
-            map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
-          ).setData(pointsData);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch traffic points data:", error);
-        debugLog("Error fetching traffic points data");
-      });
-
-    // Fetch traffic line data for pulse visualization
-    debugLog("Fetching traffic line data for visualization");
-    fetchTrafficData()
-      .then((trafficData) => {
-        debugLog("Traffic line data loaded successfully");
-        if (map.current && map.current.getSource("traffic-lines")) {
-          (
-            map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
-          ).setData(trafficData);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch traffic line data:", error);
-        debugLog("Error fetching traffic line data");
-      });
+    // Set traffic lines
+    if (trafficData) {
+      setSourceDataWithRetry("traffic-lines", trafficData, "traffic-lines");
+    }
 
     // Toggle visibility of traffic layers based on selection and pulse state
-    if (map.current) {
-      // Hide heatmap when a selection is made, show otherwise
-      map.current.setLayoutProperty(
-        "traffic-heatmap",
-        "visibility",
-        selectedHotspot || selectedEvent ? "none" : "visible"
-      );
+    if (map.current.isStyleLoaded()) {
+      const heatmapVisibility = selectedHotspot || selectedEvent ? "none" : "visible";
+      const linesVisibility = pulse ? "visible" : "none";
 
-      // Show traffic lines only when pulse is on
-      map.current.setLayoutProperty(
-        "traffic-lines",
-        "visibility",
-        pulse ? "visible" : "none"
-      );
+      try {
+        if (map.current.getLayer('traffic-heatmap')) {
+          map.current.setLayoutProperty(
+            "traffic-heatmap",
+            "visibility",
+            heatmapVisibility
+          );
+        }
+        if (map.current.getLayer('traffic-lines')) {
+          map.current.setLayoutProperty(
+            "traffic-lines",
+            "visibility",
+            linesVisibility
+          );
+        }
+      } catch (error) {
+        debugLog("Error setting layer visibility:", error);
+      }
     }
-  }, [pulse, mapLoaded, selectedHotspot, selectedEvent]);
+
+    // Cleanup: clear all pending timeouts on effect cleanup
+    return () => {
+      debugLog("Cleaning up traffic data retry timeouts");
+      retryTimeoutsRef.current.forEach(clearTimeout);
+      retryTimeoutsRef.current = [];
+    };
+  }, [trafficPoints, trafficData, pulse, mapLoaded, mapStyleLoaded, selectedHotspot, selectedEvent]);
 
   // Update map markers and traffic data for selected items
   useEffect(() => {
-    if (!map.current || !mapLoaded) {
+    if (!map.current || !mapLoaded || !mapStyleLoaded) {
       debugLog(
-        `Skipping markers update - Map ready: ${!!map.current}, Map loaded: ${mapLoaded}`
+        `Skipping markers update - Map ready: ${!!map.current}, Map loaded: ${mapLoaded}, Style loaded: ${mapStyleLoaded}`
       );
       return;
     }
@@ -579,11 +742,11 @@ export const MobileBusinessMap: React.FC = () => {
         markersRef.current[`${item.type}-${item.id}`] = marker;
       });
     }
-  }, [selectedHotspot, selectedEvent, mapItems, mapLoaded]);
+  }, [selectedHotspot, selectedEvent, mapItems, mapLoaded, mapStyleLoaded]);
 
   // Separate effect for overview markers when nothing is selected
   useEffect(() => {
-    if (!map.current || !mapLoaded || selectedHotspot || selectedEvent) {
+    if (!map.current || !mapLoaded || !mapStyleLoaded || selectedHotspot || selectedEvent) {
       return;
     }
 
@@ -678,7 +841,7 @@ export const MobileBusinessMap: React.FC = () => {
 
       markersRef.current[`event-${event.id}`] = marker;
     });
-  }, [hotspots, events, mapLoaded, selectedHotspot, selectedEvent]);
+  }, [hotspots, events, mapLoaded, mapStyleLoaded, selectedHotspot, selectedEvent]);
 
   // Helper function to get map item icon
   const getMapItemIcon = (type: string) => {
@@ -862,6 +1025,9 @@ export const MobileBusinessMap: React.FC = () => {
     return () => window.removeEventListener("resize", checkDimensions);
   }, []);
 
+  // Loading overlay logic
+  const showLoadingOverlay = !mapLoaded || !mapStyleLoaded || trafficLoading;
+
   return (
     <div className="relative w-full h-full">
       <div 
@@ -878,10 +1044,11 @@ export const MobileBusinessMap: React.FC = () => {
         </div>
       )}
 
-      {/* Hide PulseToggle while keeping it in the code */}
-      {/* <div className="absolute top-4 left-4 z-10">
-        <PulseToggle value={pulse} onChange={setPulse} />
-      </div> */}
+      {showLoadingOverlay && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-30">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-tampere-red"></div>
+        </div>
+      )}
       
       {/* ComparisonView will handle its own visibility */}
       <ComparisonView />
