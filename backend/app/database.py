@@ -1058,9 +1058,15 @@ def get_event_detailed_metrics(event_id: str) -> dict:
             },
         },
         "capacityBreakdown": {
-            "total": int(event.capacity)
-            if event.capacity and event.capacity.isdigit()
-            else random.randint(200, 1000),
+            "total": (
+                int(event.capacity)
+                if event.capacity
+                and (
+                    (isinstance(event.capacity, int))
+                    or (isinstance(event.capacity, str) and event.capacity.isdigit())
+                )
+                else random.randint(200, 1000)
+            ),
             "current": random.randint(50, 100),
         },
         "trafficImpact": {

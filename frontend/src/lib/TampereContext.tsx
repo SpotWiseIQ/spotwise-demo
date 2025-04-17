@@ -84,6 +84,45 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch events only on first load
+  const eventsLoaded = React.useRef(false);
+  useEffect(() => {
+    if (eventsLoaded.current) return;
+    eventsLoaded.current = true;
+
+    // Get YYYY-MM-DD format, but ensure we're using the actual selected date
+    // by creating a fixed version with consistent time (noon) to avoid timezone issues
+    const dateToFetch = new Date(selectedDate);
+    dateToFetch.setHours(12, 0, 0, 0);
+    const formattedDate = dateToFetch.toISOString().split('T')[0]; // YYYY-MM-DD format
+    // Use selected time from the timeline slider instead of system time
+    // Convert from percentage to hour (0-23)
+    const selectedTime = Math.round(timelineRange.start / 100 * 24);
+
+    debugLog(`🔎 START: Fetching events for date: ${formattedDate}, selectedTime: ${selectedTime} (from date ${selectedDate.toISOString()})`);
+
+    const getEvents = async () => {
+      setLoading(true);
+      try {
+        debugLog(`API call: fetchEvents(${formattedDate}, ${selectedTime})`);
+        const data = await fetchEvents(formattedDate, selectedTime);
+        debugLog(`🔎 FETCH RESULT: ${data.length} events for date ${formattedDate}`);
+        setEvents(data);
+        setError(null);
+      } catch (err) {
+        console.error("Failed to fetch events:", err);
+        debugLog("Error fetching events", err);
+        setError("Failed to fetch events. Please try again later.");
+        setEvents([]);
+      } finally {
+        setLoading(false);
+        debugLog("Finished loading events, loading state set to false");
+      }
+    };
+
+    getEvents();
+  }, []);
+
   // Handler for date changes that clears the selected event
   const handleDateChange = (newDate: Date) => {
     debugLog("Date changing", { 
@@ -186,48 +225,6 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     getHotspots();
   }, [selectedDate, timePeriod, timelineRange]);
-
-  // Fetch events only when date or timeline changes and no selection is active
-  useEffect(() => {
-    // Skip fetching if there's a selected item
-    if (selectedHotspot || selectedEvent) {
-      debugLog("Skipping events fetch - there is a selected item");
-      return;
-    }
-
-    // Get YYYY-MM-DD format, but ensure we're using the actual selected date
-    // by creating a fixed version with consistent time (noon) to avoid timezone issues
-    const dateToFetch = new Date(selectedDate);
-    dateToFetch.setHours(12, 0, 0, 0);
-    const formattedDate = dateToFetch.toISOString().split('T')[0]; // YYYY-MM-DD format
-    
-    // Use selected time from the timeline slider instead of system time
-    // Convert from percentage to hour (0-23)
-    const selectedTime = Math.round(timelineRange.start / 100 * 24);
-    
-    debugLog(`🔎 START: Fetching events for date: ${formattedDate}, selectedTime: ${selectedTime} (from date ${selectedDate.toISOString()})`);
-    
-    const getEvents = async () => {
-      setLoading(true);
-      try {
-        debugLog(`API call: fetchEvents(${formattedDate}, ${selectedTime})`);
-        const data = await fetchEvents(formattedDate, selectedTime);
-        debugLog(`🔎 FETCH RESULT: ${data.length} events for date ${formattedDate}`);
-        setEvents(data);
-        setError(null);
-      } catch (err) {
-        console.error("Failed to fetch events:", err);
-        debugLog("Error fetching events", err);
-        setError("Failed to fetch events. Please try again later.");
-        setEvents([]);
-      } finally {
-        setLoading(false);
-        debugLog("Finished loading events, loading state set to false");
-      }
-    };
-
-    getEvents();
-  }, [selectedDate, timelineRange, selectedHotspot, selectedEvent]);
 
   // Debug state changes
   useEffect(() => {

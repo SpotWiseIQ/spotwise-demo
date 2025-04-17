@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { DateSelector } from "./DateSelector";
 import { TimelineSlider } from "./TimelineSlider";
@@ -27,6 +27,14 @@ export const MobileBusinessSidebar: React.FC = () => {
     timePeriod,
     setTimePeriod
   } = useTampere();
+
+  // Local state for slider UI feedback
+  const [localTimelineRange, setLocalTimelineRange] = useState(timelineRange);
+
+  // Keep local state in sync with global timelineRange
+  useEffect(() => {
+    setLocalTimelineRange(timelineRange);
+  }, [timelineRange]);
 
   // Track view changes
   useEffect(() => {
@@ -84,8 +92,9 @@ export const MobileBusinessSidebar: React.FC = () => {
             </div>
             <div className="flex-1 min-w-0">
               <TimelineSlider
-                value={timelineRange}
-                onChange={setTimelineRange}
+                value={localTimelineRange}
+                onChange={setLocalTimelineRange}
+                onChangeCommitted={setTimelineRange}
                 label=""
               />
             </div>
@@ -99,8 +108,9 @@ export const MobileBusinessSidebar: React.FC = () => {
       {timePeriod !== 'real-time' && (
         <div className="mb-4 pr-2">
           <TimelineSlider
-            value={timelineRange}
-            onChange={setTimelineRange}
+            value={localTimelineRange}
+            onChange={setLocalTimelineRange}
+            onChangeCommitted={setTimelineRange}
             label="Timeline"
             compact={true}
           />

@@ -29,6 +29,8 @@ export const MobileBusinessMap: React.FC = () => {
     isEventCompareMode,
     selectedHotspotsForComparison,
     selectedEventsForComparison,
+    timelineRange,
+    selectedDate,
   } = useTampere();
 
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -40,6 +42,9 @@ export const MobileBusinessMap: React.FC = () => {
   const [mapItems, setMapItems] = useState<MapItem[]>([]);
   const [tampereCenter, setTampereCenter] = useState<[number, number]>([23.761, 61.4978]); // Default center
 
+  // Add refresh trigger for overview markers
+  const [markerRefreshTrigger, setMarkerRefreshTrigger] = useState(0);
+
   // Add new state for tracking expanded metrics
   const [isAnyCardExpanded, setIsAnyCardExpanded] = useState(false);
 
@@ -49,6 +54,29 @@ export const MobileBusinessMap: React.FC = () => {
   // SEQUENCE FIX: Create a ref to track the latest coordinates for fly-to
   const pendingFlyToRef = useRef<[number, number] | null>(null);
   
+  // --- Traffic Data Caching and Hour Change Logic ---
+  const trafficDataCache = useRef<{ [key: string]: any }>({});
+  const trafficPointsCache = useRef<{ [key: string]: any }>({});
+  const prevSliderHour = useRef<number | null>(null);
+  const prevSystemHour = useRef<number | null>(null);
+  const isFirstLoad = useRef(true);
+  
+  // Track if pulse was manually toggled to preserve user preference
+  const pulseManuallyToggled = useRef(false);
+
+  // Helper to get hour from timelineRange.start (0-100) and selectedDate
+  function getSliderHour() {
+    // Convert slider percentage to hour (0-23)
+    return Math.round((timelineRange?.start ?? 0) / 100 * 24);
+  }
+  function getSystemHour() {
+    const now = new Date();
+    return now.getHours();
+  }
+  function getDateKey(date: Date) {
+    return date.toISOString().split('T')[0];
+  }
+
   // Debug component mount
   useEffect(() => {
     debugLog("TampereMap component mounted");
@@ -343,48 +371,66 @@ export const MobileBusinessMap: React.FC = () => {
       return;
     }
 
-    // Automatically enable pulse when a selection is made
-    if ((selectedHotspot || selectedEvent) && !pulse) {
-      debugLog("Selection detected, enabling pulse");
-      setPulse(true);
-    } 
-    // Turn off pulse when nothing is selected
-    else if (!selectedHotspot && !selectedEvent && pulse) {
-      debugLog("No selection detected, disabling pulse");
-      setPulse(false);
+    const sliderHour = getSliderHour();
+    const systemHour = getSystemHour();
+    const dateKey = getDateKey(selectedDate);
+    const cacheKey = `${dateKey}-${sliderHour}`;
+
+    let shouldFetch = false;
+
+    // First load
+    if (isFirstLoad.current) {
+      shouldFetch = true;
+      isFirstLoad.current = false;
+    }
+    // Slider hour changed
+    else if (prevSliderHour.current !== sliderHour) {
+      shouldFetch = true;
+    }
+    // System hour changed
+    else if (prevSystemHour.current !== systemHour) {
+      shouldFetch = true;
     }
 
-    // Fetch traffic points data for heatmap
-    debugLog("Fetching traffic points data for visualization");
-    fetchTrafficPoints()
-      .then((pointsData) => {
-        debugLog("Traffic points data loaded successfully");
+    prevSliderHour.current = sliderHour;
+    prevSystemHour.current = systemHour;
+
+    if (shouldFetch) {
+      debugLog(`Fetching traffic data for hour ${sliderHour} (cacheKey=${cacheKey})`);
+      // Fetch and cache traffic points
+      fetchTrafficPoints().then((pointsData) => {
+        trafficPointsCache.current[cacheKey] = pointsData;
         if (map.current && map.current.getSource("traffic-points")) {
           (
             map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
           ).setData(pointsData);
         }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch traffic points data:", error);
-        debugLog("Error fetching traffic points data");
       });
-
-    // Fetch traffic line data for pulse visualization
-    debugLog("Fetching traffic line data for visualization");
-    fetchTrafficData()
-      .then((trafficData) => {
-        debugLog("Traffic line data loaded successfully");
+      // Fetch and cache traffic data
+      fetchTrafficData().then((trafficData) => {
+        trafficDataCache.current[cacheKey] = trafficData;
         if (map.current && map.current.getSource("traffic-lines")) {
           (
             map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
           ).setData(trafficData);
         }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch traffic line data:", error);
-        debugLog("Error fetching traffic line data");
       });
+    } else {
+      // Use cached data if available
+      debugLog(`Using cached traffic data for hour ${sliderHour} (cacheKey=${cacheKey})`);
+      const cachedPoints = trafficPointsCache.current[cacheKey];
+      const cachedTraffic = trafficDataCache.current[cacheKey];
+      if (cachedPoints && map.current && map.current.getSource("traffic-points")) {
+        (
+          map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
+        ).setData(cachedPoints);
+      }
+      if (cachedTraffic && map.current && map.current.getSource("traffic-lines")) {
+        (
+          map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
+        ).setData(cachedTraffic);
+      }
+    }
 
     // Toggle visibility of traffic layers based on selection and pulse state
     if (map.current) {
@@ -402,7 +448,7 @@ export const MobileBusinessMap: React.FC = () => {
         pulse ? "visible" : "none"
       );
     }
-  }, [pulse, mapLoaded, selectedHotspot, selectedEvent]);
+  }, [pulse, mapLoaded, selectedHotspot, selectedEvent, timelineRange, selectedDate]);
 
   // Update map markers and traffic data for selected items
   useEffect(() => {
@@ -678,7 +724,7 @@ export const MobileBusinessMap: React.FC = () => {
 
       markersRef.current[`event-${event.id}`] = marker;
     });
-  }, [hotspots, events, mapLoaded, selectedHotspot, selectedEvent]);
+  }, [hotspots, events, mapLoaded, selectedHotspot, selectedEvent, markerRefreshTrigger]);
 
   // Helper function to get map item icon
   const getMapItemIcon = (type: string) => {
@@ -789,11 +835,15 @@ export const MobileBusinessMap: React.FC = () => {
         id: selectedHotspot.id, 
         coordinates: selectedHotspot.coordinates 
       });
+      // Reset manual toggle tracking when a new selection is made
+      pulseManuallyToggled.current = false;
     } else if (selectedEvent) {
       debugLog("Selection changed to event", { 
         id: selectedEvent.id, 
         coordinates: selectedEvent.coordinates 
       });
+      // Reset manual toggle tracking when a new selection is made
+      pulseManuallyToggled.current = false;
     } else {
       debugLog("Selection cleared");
     }
@@ -862,6 +912,32 @@ export const MobileBusinessMap: React.FC = () => {
     return () => window.removeEventListener("resize", checkDimensions);
   }, []);
 
+  // Add this effect to trigger a refresh when deselection happens
+  useEffect(() => {
+    // When both are null (deselected), trigger a refresh
+    if (selectedHotspot === null && selectedEvent === null) {
+      // Increment to create a new value and trigger effect
+      setMarkerRefreshTrigger(prev => prev + 1);
+    }
+  }, [selectedHotspot, selectedEvent]);
+
+  // Control pulse/traffic lines visibility based on selection state
+  useEffect(() => {
+    // If manually toggled, don't override user preference
+    if (pulseManuallyToggled.current) {
+      return;
+    }
+    
+    // Turn on when a card is selected
+    if (selectedHotspot || selectedEvent) {
+      setPulse(true);
+    } 
+    // Turn off when deselected
+    else {
+      setPulse(false);
+    }
+  }, [selectedHotspot, selectedEvent, setPulse]);
+
   return (
     <div className="relative w-full h-full">
       <div 
@@ -878,10 +954,14 @@ export const MobileBusinessMap: React.FC = () => {
         </div>
       )}
 
-      {/* Hide PulseToggle while keeping it in the code */}
-      {/* <div className="absolute top-4 left-4 z-10">
-        <PulseToggle value={pulse} onChange={setPulse} />
-      </div> */}
+      {/* Uncomment PulseToggle to restore functionality */}
+      <div className="absolute top-4 left-4 z-10">
+        <PulseToggle value={pulse} onChange={(newValue) => {
+          // Mark that the pulse was manually toggled
+          pulseManuallyToggled.current = true;
+          setPulse(newValue);
+        }} />
+      </div>
       
       {/* ComparisonView will handle its own visibility */}
       <ComparisonView />

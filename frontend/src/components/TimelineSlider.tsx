@@ -5,6 +5,7 @@ import { TimelineRange } from "@/lib/types";
 export type TimelineSliderProps = {
   value: TimelineRange;
   onChange: (value: TimelineRange) => void;
+  onChangeCommitted?: (value: TimelineRange) => void;
   label?: string;
   compact?: boolean;
   loading?: boolean;
@@ -13,6 +14,7 @@ export type TimelineSliderProps = {
 export const TimelineSlider: React.FC<TimelineSliderProps> = ({
   value,
   onChange,
+  onChangeCommitted,
   label = "Timeline",
   compact = false,
   loading = false,
@@ -62,6 +64,15 @@ export const TimelineSlider: React.FC<TimelineSliderProps> = ({
     }
   };
 
+  const handleValueCommit = (newValue: number[]) => {
+    if (onChangeCommitted && newValue && newValue.length > 0) {
+      onChangeCommitted({
+        ...value,
+        start: newValue[0]
+      });
+    }
+  };
+
   return (
     <div className={`${compact ? 'w-full max-w-xs' : 'w-full'}`}>
       <div className={`${compact ? 'space-y-1' : 'space-y-2'}`}>
@@ -72,6 +83,7 @@ export const TimelineSlider: React.FC<TimelineSliderProps> = ({
             className="relative flex w-full touch-none select-none items-center"
             value={[value.start]}
             onValueChange={handleValueChange}
+            onValueCommit={handleValueCommit}
             max={100}
             step={0.069} // 1 minute steps (100/1440 minutes in a day)
             aria-label={label}
