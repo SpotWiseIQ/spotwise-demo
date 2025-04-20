@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Event } from "@/lib/types";
-import { Calendar, BarChart2, ChevronDown, ChevronUp, Clock, MapPin, Users, Users2, ArrowLeftRight } from "lucide-react";
-import { format } from "date-fns";
+import { Event, UnifiedHotspot } from "@/lib/types";
+import { BarChart2, ChevronDown, ChevronUp, Clock, MapPin, Users, ArrowLeftRight, Footprints, Cloud, Sun, Wind, CloudRain } from "lucide-react";
+import { format, parseISO } from "date-fns";
 import { FootTrafficChart } from "./FootTrafficChart";
 import { useTampere } from "@/lib/TampereContext";
 import { 
@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 
-type EventCardProps = {
-  event: Event;
+type EventHotspotCardProps = {
+  event: Event | UnifiedHotspot;
   onClick?: () => void;
   selected?: boolean;
   showDate?: boolean;
@@ -20,7 +20,7 @@ type EventCardProps = {
   onCompareClick?: () => void;
 };
 
-export const EventCard: React.FC<EventCardProps> = ({
+export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
   event,
   onClick,
   selected,
@@ -32,6 +32,43 @@ export const EventCard: React.FC<EventCardProps> = ({
   const [footTrafficData, setFootTrafficData] = useState<any[]>([]);
   const [isLoadingTraffic, setIsLoadingTraffic] = useState(false);
   const [isTrafficOpen, setIsTrafficOpen] = useState(false);
+  
+  // Get current hour to ensure proper alignment in the chart
+  const currentHour = new Date().getHours();
+
+  // Format display time from start_time and end_time
+  const getFormattedTime = () => {
+    if (typeof event.start_time === "string" && typeof event.end_time === "string") {
+      const startDate = parseISO(event.start_time);
+      const endDate = parseISO(event.end_time);
+      return `${format(startDate, "HH:mm")} - ${format(endDate, "HH:mm")}`;
+    } else if (event.time) {
+      // Fallback to old time field if available
+      return event.time;
+    }
+    return "Time not specified";
+  };
+
+  // Format display date from start_time
+  const getFormattedDate = () => {
+    if (typeof event.start_time === "string") {
+      return format(parseISO(event.start_time), "MMM d");
+    } else if (typeof event.date === "string") {
+      // Fallback to old date field if available
+      return format(new Date(event.date), "MMM d");
+    }
+    return "Date not specified";
+  };
+
+  // Get the label from UnifiedHotspot
+  const getEventLabel = () => {
+    // Check if event is actually a UnifiedHotspot with a label
+    if ('label' in event && typeof event.label === 'string') {
+      return event.label;
+    }
+    // No label if not available
+    return "";
+  };
 
   useEffect(() => {
     // Always fetch foot traffic data regardless of selection
@@ -46,7 +83,8 @@ export const EventCard: React.FC<EventCardProps> = ({
         }
         
         // Otherwise, load it via the context (which now prioritizes pre-loaded data)
-        const data = await loadEventFootTraffic(event.id);
+        // Pass the current hour to ensure data is correctly generated
+        const data = await loadEventFootTraffic(event.id, currentHour);
         setFootTrafficData(data);
       } catch (error) {
         console.error("Error loading event foot traffic data:", error);
@@ -57,7 +95,7 @@ export const EventCard: React.FC<EventCardProps> = ({
     };
 
     fetchData();
-  }, [event.id, event.footTraffic, loadEventFootTraffic]);
+  }, [event.id, event.footTraffic, loadEventFootTraffic, currentHour]);
 
   // Reset traffic panel when deselected
   useEffect(() => {
@@ -90,6 +128,27 @@ export const EventCard: React.FC<EventCardProps> = ({
     }
   };
 
+  // Add weather icon logic
+  const getWeatherIcon = (weather: string) => {
+    switch (weather) {
+      case "sunny":
+        return { icon: Sun, color: "bg-yellow-500", label: "sunny" };
+      case "cloudy":
+        return { icon: Cloud, color: "bg-gray-500", label: "cloudy" };
+      case "windy":
+        return { icon: Wind, color: "bg-blue-400", label: "windy" };
+      case "rainy":
+        return { icon: CloudRain, color: "bg-blue-600", label: "rainy" };
+      default:
+        return { icon: Cloud, color: "bg-gray-500", label: "unknown" };
+    }
+  };
+  const weatherInfo = getWeatherIcon((event as any).weather?.toLowerCase() || "unknown");
+  const WeatherIcon = weatherInfo.icon;
+
+  const displayTime = getFormattedTime();
+  const displayDate = getFormattedDate();
+
   return (
     <div
       className={`flex flex-col my-1 bg-gray-50 rounded-lg border transition-all duration-200 ease-in-out ${
@@ -97,15 +156,18 @@ export const EventCard: React.FC<EventCardProps> = ({
       }`}
     >
       <div
-        className={`flex items-start p-2 ${selected ? 'pb-1' : 'pb-0'} cursor-pointer`}
+        className={`flex items-center p-2 ${selected ? 'pb-1' : 'pb-0'} cursor-pointer`}
         onClick={handleCardClick}
       >
-        <div className="text-tampere-red mt-1">
-          <Calendar size={18} />
+        <div
+          className="event-hotspot-card !h-6 !w-6 !text-xs !flex !items-center !justify-center"
+        >
+          {getEventLabel()}
         </div>
-        <div className="ml-3 flex-grow min-w-0">
-          <p className="text-sm font-medium truncate" title={event.name}>{event.name}</p>
-          <p className="text-xs text-gray-500 truncate">{event.place || 'Location not specified'}</p>
+        <div className="ml-3 flex-grow h-[20px] flex items-center overflow-hidden">
+          <p className="text-sm font-medium truncate" title={event.event_name || event.name}>
+            {event.event_name || event.name}
+          </p>
         </div>
         <div className="flex items-center gap-2">
           {isCompareMode && (
@@ -119,21 +181,51 @@ export const EventCard: React.FC<EventCardProps> = ({
               <ArrowLeftRight className="w-3 h-3" />
             </Button>
           )}
-          <div className="text-sm text-right pl-2 flex-shrink-0 min-w-[60px]">
-            {showDate && (
-              <p className="text-xs text-gray-500">
-                {format(new Date(event.date), "MMM d")}
-              </p>
-            )}
-            <p className="font-medium text-tampere-red text-xs">{event.time}</p>
+          <div className="flex flex-col min-w-[110px]">
+            <div className="grid grid-cols-2 gap-x-5">
+              <div className="flex flex-col items-center">
+                <div className="w-6 h-6 bg-orange-500 rounded-md flex items-center justify-center text-white">
+                  <Footprints className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] mt-0.5 text-gray-500 text-center w-10">traffic</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className={`w-6 h-6 ${weatherInfo.color} rounded-md flex items-center justify-center text-white`}>
+                  <WeatherIcon className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] mt-0.5 text-gray-500 text-center w-10">{weatherInfo.label}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
+      <div className="text-xs text-gray-500 px-2 pb-1 -mt-1">
+        <span className="font-medium text-tampere-red">{displayTime}</span>
+        {/* Only show place if it's different from the event name */}
+        {event.place && event.place !== event.name && (
+          <span> &middot; {event.place}</span>
+        )}
+        {(!event.place || event.place === event.name) && event.address && (
+          <span> &middot; {event.address}</span>
+        )}
+        {(!event.place || event.place === event.name) && !event.address && (
+          <span> &middot; Location not specified</span>
+        )}
+      </div>
+
+      {showDate && (
+        <div className="text-right px-2 pb-1">
+          <p className="text-xs text-gray-500">
+            {displayDate}
+          </p>
+        </div>
+      )}
+
       {selected && !isCompareMode && (
         <div className="border-t border-gray-200 mx-2 mt-1 mb-2 pt-3 px-1 space-y-4">
            <div>
-             <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Details</h4>
+             <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Event Hotspot Details</h4>
              <div className="space-y-1.5 text-sm">
                {event.address && (
                  <p className="flex items-start">
@@ -142,31 +234,31 @@ export const EventCard: React.FC<EventCardProps> = ({
                  </p>
                )}
                <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                 {event.type && (
+                 {(event.event_type || event.type) && (
                    <div className="flex items-center">
                      <span className="text-gray-500 text-xs mr-1">Type:</span>
-                     <span>{event.type}</span>
+                     <span>{event.event_type || event.type || "Event Hotspot"}</span>
                    </div>
                  )}
-                 {event.duration && (
+                 {(event.start_time && event.end_time) && (
+                   <div className="flex items-center">
+                     <Clock size={14} className="mr-1.5 text-gray-500 flex-shrink-0" />
+                     <span className="text-gray-500 text-xs mr-1">Duration:</span>
+                     <span>{displayTime}</span>
+                   </div>
+                 )}
+                 {event.duration && !event.start_time && (
                    <div className="flex items-center">
                      <Clock size={14} className="mr-1.5 text-gray-500 flex-shrink-0" />
                      <span className="text-gray-500 text-xs mr-1">Duration:</span>
                      <span>{event.duration}</span>
                    </div>
                  )}
-                 {event.time && (
-                   <div className="flex items-center">
-                     <Clock size={14} className="mr-1.5 text-gray-500 flex-shrink-0" />
-                     <span className="text-gray-500 text-xs mr-1">Time:</span>
-                     <span>{event.time}</span>
-                   </div>
-                 )}
-                 {event.capacity && (
+                 {(event.expected_attendance || event.capacity) && (
                    <div className="flex items-center">
                      <Users size={14} className="mr-1.5 text-gray-500 flex-shrink-0" />
-                     <span className="text-gray-500 text-xs mr-1">Capacity:</span>
-                     <span>{event.capacity}</span>
+                     <span className="text-gray-500 text-xs mr-1">Expected Attendance:</span>
+                     <span>{event.expected_attendance || event.capacity}</span>
                    </div>
                  )}
                  {event.demographics && (
@@ -177,6 +269,11 @@ export const EventCard: React.FC<EventCardProps> = ({
                    </div>
                  )}
                </div>
+               {event.description && (
+                 <div className="mt-2 text-xs text-gray-600">
+                   <p>{event.description}</p>
+                 </div>
+               )}
              </div>
            </div>
         </div>
@@ -209,7 +306,7 @@ export const EventCard: React.FC<EventCardProps> = ({
             <div className="text-[10px] text-gray-500 mb-0.5 flex justify-end">
               <span className="text-tampere-red">Live + Forecast</span>
             </div>
-            <FootTrafficChart data={footTrafficData} />
+            <FootTrafficChart data={footTrafficData} currentHour={currentHour} />
           </div>
         </CollapsibleContent>
       </Collapsible>

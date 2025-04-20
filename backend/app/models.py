@@ -22,6 +22,11 @@ class FootTrafficType(str, Enum):
     PREDICTED = "predicted"
 
 
+class HotspotType(str, Enum):
+    NATURAL = "natural"
+    EVENT = "event"
+
+
 class FootTrafficData(BaseModel):
     hour: int
     value: int
@@ -48,10 +53,12 @@ class Hotspot(BaseModel):
 class Event(BaseModel):
     id: str
     name: str
-    time: str
-    place: str
     coordinates: Tuple[float, float]  # [longitude, latitude]
-    date: str
+
+    # Original fields (some made optional)
+    time: Optional[str] = None
+    place: Optional[str] = None
+    date: Optional[str] = None
     address: Optional[str] = None
     type: Optional[str] = None
     duration: Optional[str] = None
@@ -59,7 +66,50 @@ class Event(BaseModel):
     demographics: Optional[str] = None
     peakTrafficImpact: Optional[str] = None
     ticketStatus: Optional[str] = None
+
+    # New fields from updated model
+    location_id: Optional[str] = None
+    start_time: Optional[str] = None
+    end_time: Optional[str] = None
+    event_type: Optional[str] = None
+    expected_attendance: Optional[int] = None
+    description: Optional[str] = None
+    event_id: Optional[str] = None
+
     footTraffic: Optional[List[FootTrafficData]] = None
+
+
+class Location(BaseModel):
+    id: str
+    name: str
+    type: HotspotType  # natural-hotspot or event-hotspot
+    label: str  # A, B, C, etc. based on traffic
+    address: str
+    trafficLevel: TrafficLevel
+    weather: WeatherType
+    coordinates: Tuple[float, float]  # [longitude, latitude]
+
+    # Common fields for both types
+    footTraffic: Optional[List[FootTrafficData]] = None
+
+    # Natural-hotspot specific fields
+    population: Optional[str] = None
+    areaType: Optional[str] = None
+    peakHour: Optional[str] = None
+    avgDailyTraffic: Optional[str] = None
+    dominantDemographics: Optional[str] = None
+    nearbyBusinesses: Optional[str] = None
+
+    # Event-hotspot specific fields
+    location_id: Optional[str] = None
+    place: Optional[str] = None
+    event_name: Optional[str] = None  # Event name, different from location name
+    start_time: Optional[str] = None
+    end_time: Optional[str] = None
+    event_type: Optional[str] = None
+    expected_attendance: Optional[int] = None
+    description: Optional[str] = None
+    event_id: Optional[str] = None  # Reference to the original event
 
 
 class MapItemType(str, Enum):

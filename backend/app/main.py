@@ -14,6 +14,7 @@ from app.models import (
     BusinessIntent,
     BusinessRequirementRequest,
     BusinessPreferences,
+    Location,
 )
 from app.database import (
     get_all_hotspots,
@@ -27,8 +28,12 @@ from app.database import (
     get_hotspot_detailed_metrics,
     get_event_detailed_metrics,
     TAMPERE_CENTER,
+    get_all_locations,
+    get_location_by_id,
+    get_location_detailed_metrics,
 )
 from app.fetch_tampere_roads import generate_traffic_points
+from app.business_requirements import get_business_requirements_response
 
 # Configure logging
 logging.basicConfig(
@@ -71,7 +76,75 @@ async def get_tampere_center():
     return TAMPERE_CENTER
 
 
-@api_router.get("/hotspots", response_model=List[Hotspot])
+@api_router.get("/locations", response_model=List[Location])
+async def read_locations(
+    time_period: Optional[str] = Query(
+        None, description="Time period: real-time, daily, weekly, monthly"
+    ),
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
+):
+    """
+    Get all locations as hotspots (natural and event types).
+    Returns locations with their foot traffic data, ordered by current traffic level.
+    """
+    logger.info(
+        f"Locations requested with filters: time_period={time_period}, date={date}, time={time}"
+    )
+
+    # Use current date/time if not provided
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
+    if time is None:
+        time = datetime.now().hour
+
+    # Get locations with traffic data
+    locations = get_all_locations(date, time)
+    logger.info(f"Retrieved {len(locations)} locations")
+    return locations
+
+
+@api_router.get("/locations/{location_id}", response_model=Location)
+async def read_location(
+    location_id: str,
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
+):
+    """Get a specific location by ID with all its data."""
+    logger.info(
+        f"Location requested with ID: {location_id}, date: {date}, time: {time}"
+    )
+
+    # Use current date/time if not provided
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
+    if time is None:
+        time = datetime.now().hour
+
+    location = get_location_by_id(location_id, date, time)
+    if not location:
+        logger.warning(f"Location with ID {location_id} not found")
+        raise HTTPException(status_code=404, detail="Location not found")
+    return location
+
+
+@api_router.get("/locations/{location_id}/detailed-metrics")
+async def read_location_detailed_metrics(location_id: str):
+    """Get detailed metrics for a specific location"""
+    logger.info(f"Detailed metrics requested for location ID: {location_id}")
+    detailed_metrics = get_location_detailed_metrics(location_id)
+    if "error" in detailed_metrics:
+        logger.warning(f"Location with ID {location_id} not found")
+        raise HTTPException(status_code=404, detail="Location not found")
+    logger.info(f"Retrieved detailed metrics for location ID: {location_id}")
+    return detailed_metrics
+
+
+@api_router.get("/hotspots", response_model=List[Location])
 async def read_hotspots(
     time_period: Optional[str] = Query(
         None, description="Time period: real-time, daily, weekly, monthly"
@@ -83,7 +156,7 @@ async def read_hotspots(
 ):
     """
     Get all hotspots with optional filtering by time period, date, and time.
-    Returns hotspots with their foot traffic data, ordered by current traffic level.
+    Now returns unified Location objects instead of separate Hotspot objects.
     """
     # Log the request parameters
     logger.info(
@@ -96,13 +169,14 @@ async def read_hotspots(
     if time is None:
         time = datetime.now().hour
 
-    # Get hotspots with dynamic foot traffic data
-    hotspots = get_all_hotspots(date, time)
-    logger.info(f"Retrieved {len(hotspots)} hotspots")
-    return hotspots
+    # Get locations with traffic data (filtered to natural hotspots)
+    locations = get_all_locations(date, time)
+    natural_hotspots = [loc for loc in locations if loc.type == "natural"]
+    logger.info(f"Retrieved {len(natural_hotspots)} natural hotspots")
+    return natural_hotspots
 
 
-@api_router.get("/hotspots/{hotspot_id}", response_model=Hotspot)
+@api_router.get("/hotspots/{hotspot_id}", response_model=Location)
 async def read_hotspot(
     hotspot_id: str,
     date: Optional[str] = Query(
@@ -119,53 +193,53 @@ async def read_hotspot(
     if time is None:
         time = datetime.now().hour
 
-    hotspot = get_hotspot_by_id(hotspot_id, date, time)
-    if not hotspot:
+    location = get_location_by_id(hotspot_id, date, time)
+    if not location or location.type != "natural":
         logger.warning(f"Hotspot with ID {hotspot_id} not found")
         raise HTTPException(status_code=404, detail="Hotspot not found")
-    return hotspot
+    return location
 
 
-@api_router.get("/events", response_model=List[Event])
+@api_router.get("/events", response_model=List[Location])
 async def read_events(
-    date: Optional[str] = None,
-    current_time: Optional[int] = Query(
-        None,
-        description="Current hour (0-23) to filter events starting after this time",
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
     ),
 ):
     """
-    Get all events or filter by date and current time
-
-    - date: YYYY-MM-DD (e.g., 2025-03-26)
-    - current_time: Current hour (0-23), only events starting after this time will be returned
-
-    For now, returns the same hardcoded events filtered only by date
+    Get all events for a specific date.
+    Now returns unified Location objects instead of separate Event objects.
     """
-    # Log the request parameters
-    logger.info(
-        f"Events requested with filters: date={date}, current_time={current_time}"
-    )
+    logger.info(f"Events requested for date: {date}")
 
-    if date:
-        logger.info(
-            f"Events filtered by date: {date} and time: {current_time if current_time is not None else 'all'}"
-        )
-        return get_events_by_date(date, current_time)
+    # Use current date if not provided
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
 
-    logger.info("All events requested")
-    return get_all_events()
+    # Get all locations with traffic data (filtered to event hotspots)
+    locations = get_all_locations(date)
+    event_hotspots = [loc for loc in locations if loc.type == "event"]
+    logger.info(f"Retrieved {len(event_hotspots)} event hotspots for date {date}")
+    return event_hotspots
 
 
-@api_router.get("/events/{event_id}", response_model=Event)
+@api_router.get("/events/{event_id}", response_model=Location)
 async def read_event(event_id: str):
-    """Get a specific event by ID"""
+    """Get a specific event by ID.
+    Now returns a unified Location object instead of an Event object.
+    """
     logger.info(f"Event requested with ID: {event_id}")
-    event = get_event_by_id(event_id)
-    if not event:
-        logger.warning(f"Event with ID {event_id} not found")
-        raise HTTPException(status_code=404, detail="Event not found")
-    return event
+
+    # Get all locations
+    locations = get_all_locations()
+
+    # Find the event with the matching event_id
+    for location in locations:
+        if location.type == "event" and location.event_id == event_id:
+            return location
+
+    logger.warning(f"Event with ID {event_id} not found")
+    raise HTTPException(status_code=404, detail="Event not found")
 
 
 @api_router.get("/map-items", response_model=List[MapItem])
@@ -226,15 +300,21 @@ async def read_hotspot_foot_traffic(
 
 
 @api_router.get("/events/{event_id}/foot-traffic", response_model=List[FootTrafficData])
-async def read_event_foot_traffic(event_id: str):
+async def read_event_foot_traffic(
+    event_id: str,
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
+):
     """Get foot traffic data for a specific event"""
-    logger.info(f"Foot traffic data requested for event ID: {event_id}")
+    logger.info(f"Foot traffic data requested for event ID: {event_id} at hour: {time}")
+
     event = get_event_by_id(event_id)
     if not event:
         logger.warning(f"Event with ID {event_id} not found")
         raise HTTPException(status_code=404, detail="Event not found")
 
-    foot_traffic = get_event_foot_traffic(event_id)
+    # Use the time parameter if provided, otherwise it will use the current hour
+    foot_traffic = get_event_foot_traffic(event_id, time)
+
     logger.info(
         f"Retrieved {len(foot_traffic)} foot traffic data points for event ID: {event_id}"
     )
@@ -260,12 +340,10 @@ async def analyze_business_requirement(requirement: BusinessRequirementRequest):
 async def read_hotspot_detailed_metrics(hotspot_id: str):
     """Get detailed metrics for a specific hotspot"""
     logger.info(f"Detailed metrics requested for hotspot ID: {hotspot_id}")
-    hotspot = get_hotspot_by_id(hotspot_id)
-    if not hotspot:
+    detailed_metrics = get_location_detailed_metrics(hotspot_id)
+    if "error" in detailed_metrics:
         logger.warning(f"Hotspot with ID {hotspot_id} not found")
         raise HTTPException(status_code=404, detail="Hotspot not found")
-
-    detailed_metrics = get_hotspot_detailed_metrics(hotspot_id)
     logger.info(f"Retrieved detailed metrics for hotspot ID: {hotspot_id}")
     return detailed_metrics
 
@@ -274,12 +352,22 @@ async def read_hotspot_detailed_metrics(hotspot_id: str):
 async def read_event_detailed_metrics(event_id: str):
     """Get detailed metrics for a specific event"""
     logger.info(f"Detailed metrics requested for event ID: {event_id}")
-    event = get_event_by_id(event_id)
-    if not event:
+
+    # Get all locations
+    locations = get_all_locations()
+
+    # Find the event with the matching event_id
+    location_id = None
+    for location in locations:
+        if location.type == "event" and location.event_id == event_id:
+            location_id = location.id
+            break
+
+    if not location_id:
         logger.warning(f"Event with ID {event_id} not found")
         raise HTTPException(status_code=404, detail="Event not found")
 
-    detailed_metrics = get_event_detailed_metrics(event_id)
+    detailed_metrics = get_location_detailed_metrics(location_id)
     logger.info(f"Retrieved detailed metrics for event ID: {event_id}")
     return detailed_metrics
 
@@ -306,6 +394,15 @@ async def read_traffic_points(
     # Convert traffic lines to points
     points_data = generate_traffic_points(traffic_data)
     return points_data
+
+
+@api_router.post("/business-requirements")
+async def get_business_requirements(request: BusinessRequirementRequest):
+    """Get business requirements response based on user input"""
+    logger.info(f"Business requirements requested with text: {request.text[:50]}...")
+    response = get_business_requirements_response(request.text)
+    logger.info(f"Generated business requirements response")
+    return response
 
 
 # Include the API router in the main app

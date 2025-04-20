@@ -58,11 +58,13 @@ export const FootTrafficChart: React.FC<FootTrafficChartProps> = ({
     return hour % 3 === 0 ? `${hour}:00` : '';
   };
   
-  // Simple transformation for recharts - map data to the format needed by the chart
+  // Improved transformation for recharts that respects the currentHour parameter
   const chartData = sortedData.map(item => ({
     hour: item.hour,
-    pastValue: item.type === 'past' || item.type === 'current' ? item.value : undefined,
-    predictedValue: item.type === 'predicted' || item.type === 'current' ? item.value : undefined
+    pastValue: item.hour <= currentHour ? item.value : undefined,
+    predictedValue: item.hour >= currentHour ? item.value : undefined,
+    // Store the original type for debugging
+    originalType: item.type
   }));
   
   // Debug logging for chart data

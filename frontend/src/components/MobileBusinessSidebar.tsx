@@ -3,7 +3,6 @@ import { useTampere } from "@/lib/TampereContext";
 import { DateSelector } from "./DateSelector";
 import { TimelineSlider } from "./TimelineSlider";
 import { HotspotsList } from "./HotspotsList";
-import { EventsList } from "./EventsList";
 import { LanguageSelector } from "./LanguageSelector";
 import {
   Select,
@@ -20,13 +19,25 @@ export const MobileBusinessSidebar: React.FC = () => {
     setSelectedDate, 
     timelineRange, 
     setTimelineRange,
-    selectedEvent,
-    setSelectedEvent,
-    selectedHotspot,
-    setSelectedHotspot,
+    selectedLocation,
+    setSelectedLocation,
     timePeriod,
-    setTimePeriod
+    setTimePeriod,
+    locations
   } = useTampere();
+
+  // Derived state for backward compatibility
+  const selectedEvent = selectedLocation?.type === 'event' ? selectedLocation : null;
+  const selectedHotspot = selectedLocation?.type === 'natural' ? selectedLocation : null;
+  
+  // Helper functions to maintain compatibility
+  const setSelectedEvent = (event: any) => {
+    setSelectedLocation(event);
+  };
+  
+  const setSelectedHotspot = (hotspot: any) => {
+    setSelectedLocation(hotspot);
+  };
 
   // Local state for slider UI feedback
   const [localTimelineRange, setLocalTimelineRange] = useState(timelineRange);
@@ -117,7 +128,6 @@ export const MobileBusinessSidebar: React.FC = () => {
         </div>
       )}
       <HotspotsList />
-      <EventsList />
     </div>
   );
 }; 

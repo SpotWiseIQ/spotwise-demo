@@ -88,6 +88,37 @@
   box-shadow: 0 0 0 2px white;
 }
 
+/* Event hotspot card styling - calendar shape */
+.event-hotspot-card {
+  width: 1.6rem;
+  height: 1.8rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  background-color: #ea384c;
+  overflow: hidden;
+  padding-top: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+}
+
+/* Calendar header at the top */
+.event-hotspot-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.32rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
 .hotspot-card.high {
   background-color: #ea384c;
 }
@@ -120,17 +151,43 @@
   height: 1.8rem !important;
 }
 
+/* Map event marker styles */
 .event-marker {
+  width: 1.6rem;
+  height: 1.8rem;
+  border-radius: 0.2rem;
+  color: white;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ea384c;
-  background-color: white;
-  border-radius: 50%;
-  padding: 2px;
-  box-shadow: 0 0 0 2px #ea384c;
-  width: 1.8rem !important;
-  height: 1.8rem !important;
+  flex-shrink: 0;
+  background-color: rgba(234, 56, 76, 0.7);
+  overflow: hidden;
+  padding-top: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+  font-size: 0.7rem;
+  transform-origin: center center;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Calendar header for map event marker */
+.event-marker::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.32rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Selected event marker */
+.event-marker.selected {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+  z-index: 2;
 }
 
 .bg-traffic-high {
@@ -296,16 +353,6 @@
 
 /* Map icon styles */
 .map-icon-container {
-  background-color: rgba(255, 255, 255, 0.85);
-  border-radius: 50%;
-  padding: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 1.8rem !important;
-  height: 1.8rem !important;
-}
-
-/* Event marker styles */
-.event-marker {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 50%;
   padding: 4px;

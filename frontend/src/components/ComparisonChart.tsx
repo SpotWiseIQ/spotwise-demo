@@ -82,15 +82,34 @@ export const ComparisonChart: React.FC<ComparisonChartProps> = ({ data, type, me
       switch (metricType) {
         case 'opportunity':
           // Calculate opportunity score (example algorithm)
-          const capacityFactor = event.capacity ? parseInt(event.capacity) / 1000 : 0.5;
-          const durationFactor = event.duration ? 
-                                 parseInt(event.duration.replace(/[^\d]/g, '')) / 8 : 0.5;
-          const typeFactor = event.type === 'Music' ? 0.8 : 
+          const capacityFactor = event.expected_attendance ? parseInt(String(event.expected_attendance)) / 1000 : 
+                                 event.capacity ? parseInt(event.capacity) / 1000 : 0.5;
+          
+          // Calculate duration factor from start_time and end_time if available
+          let durationFactor = 0.5;
+          if (event.start_time && event.end_time) {
+            try {
+              const startDate = new Date(event.start_time);
+              const endDate = new Date(event.end_time);
+              const durationHours = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
+              durationFactor = durationHours / 8;
+            } catch (e) {
+              console.error("Error calculating duration:", e);
+            }
+          } else if (event.duration) {
+            durationFactor = parseInt(event.duration.replace(/[^\d]/g, '')) / 8;
+          }
+          
+          const typeFactor = event.event_type === 'Music' ? 0.8 : 
+                            event.event_type === 'Cultural' ? 0.7 : 
+                            event.type === 'Music' ? 0.8 : 
                             event.type === 'Cultural' ? 0.7 : 0.6;
+          
           value = Math.min(0.95, (capacityFactor + durationFactor + typeFactor) / 3);
           break;
         case 'capacity':
-          rawValue = event.capacity ? parseInt(event.capacity) : 800;
+          rawValue = event.expected_attendance ? parseInt(String(event.expected_attendance)) : 
+                    event.capacity ? parseInt(event.capacity) : 800;
           value = rawValue / 2000;
           break;
         case 'duration':

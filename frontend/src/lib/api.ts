@@ -1,4 +1,4 @@
-import { Event, Hotspot, MapItem, TimelineRange } from './types';
+import { Event, Hotspot, MapItem, TimelineRange, UnifiedHotspot } from './types';
 import { API_BASE_URL } from '../config';
 
 // Debug logger function
@@ -6,14 +6,15 @@ const debugLog = (message: string, data?: any) => {
   console.log(`🔄 API DEBUG: ${message}`, data || '');
 };
 
-// Helper function to build API URLs
-const buildUrl = (path: string) => `${API_BASE_URL}${path}`;
+// Helper to build URLs with the base URL
+const buildUrl = (path: string) => `${API_BASE_URL}${path.startsWith('/api/') ? path : `/api${path}`}`;
 
-export const fetchHotspots = async (
+// New function to fetch all locations (unified hotspots)
+export const fetchLocations = async (
   timePeriod?: string,
   date?: string,
   timelineRange?: TimelineRange
-): Promise<Hotspot[]> => {
+): Promise<UnifiedHotspot[]> => {
   // Build query parameters
   const params = new URLSearchParams();
   
@@ -44,167 +45,100 @@ export const fetchHotspots = async (
     }
   }
   
-  const url = buildUrl(`/api/hotspots?${params}`);
+  const url = buildUrl(`/locations?${params}`);
   debugLog(`GET ${url}`);
   
   try {
     const response = await fetch(url);
     if (!response.ok) {
       const errorText = await response.text();
-      debugLog(`Error fetching hotspots: ${response.status} ${response.statusText}`, errorText);
-      throw new Error('Failed to fetch hotspots');
+      debugLog(`Error fetching locations: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch locations');
     }
     const data = await response.json();
-    debugLog(`Hotspots response received`, { 
+    debugLog(`Locations response received`, { 
       count: data.length,
+      natural: data.filter((h: UnifiedHotspot) => h.type === 'natural').length,
+      event: data.filter((h: UnifiedHotspot) => h.type === 'event').length,
       timePeriod,
       date,
       selectedTime: timelineRange ? Math.round(timelineRange.start / 100 * 24) : undefined
     });
     return data;
   } catch (error) {
+    debugLog(`Exception in fetchLocations`, error);
+    throw error;
+  }
+};
+
+export const fetchHotspots = async (
+  timePeriod?: string,
+  date?: string,
+  timelineRange?: TimelineRange
+): Promise<UnifiedHotspot[]> => {
+  try {
+    // Use the locations endpoint with filtering on the client side
+    const allLocations = await fetchLocations(timePeriod, date, timelineRange);
+    const naturalHotspots = allLocations.filter(location => location.type === 'natural');
+    
+    debugLog(`Filtered ${naturalHotspots.length} natural hotspots from ${allLocations.length} locations`);
+    return naturalHotspots;
+  } catch (error) {
     debugLog(`Exception in fetchHotspots`, error);
     throw error;
   }
 };
 
-export const fetchEvents = async (
-  date?: string,
-  currentTime?: number
-): Promise<Event[]> => {
+export const fetchEvents = async (date?: string): Promise<UnifiedHotspot[]> => {
+  try {
+    // Use the locations endpoint with filtering on the client side
+    const allLocations = await fetchLocations('real-time', date);
+    const eventHotspots = allLocations.filter(location => location.type === 'event');
+    
+    debugLog(`Filtered ${eventHotspots.length} event hotspots from ${allLocations.length} locations`);
+    return eventHotspots;
+  } catch (error) {
+    debugLog(`Exception in fetchEvents`, error);
+    throw error;
+  }
+};
+
+export const fetchMapItems = async (
+  lat: number,
+  lng: number,
+  radius: number,
+  types?: string[]
+): Promise<MapItem[]> => {
   // Build query parameters
   const params = new URLSearchParams();
+  params.append('lat', lat.toString());
+  params.append('lng', lng.toString());
+  params.append('radius', radius.toString());
   
   // Add cache-busting timestamp
   const timestamp = new Date().getTime();
   params.append('_', timestamp.toString());
   
-  // Add filtering parameters if provided
-  if (date) {
-    params.append('date', date);
+  // Add types if provided
+  if (types && types.length > 0) {
+    types.forEach(type => params.append('types', type));
   }
   
-  if (currentTime !== undefined) {
-    params.append('current_time', currentTime.toString());
-  }
-  
-  const url = buildUrl(`/api/events?${params}`);
-  console.log(`🔌 API: FETCH_EVENTS START for date=${date || 'all'}, currentTime=${currentTime}`);
+  const url = buildUrl(`/map-items?${params}`);
   debugLog(`GET ${url}`);
   
   try {
     const response = await fetch(url);
     if (!response.ok) {
       const errorText = await response.text();
-      debugLog(`Error fetching events: ${response.status} ${response.statusText}`, errorText);
-      throw new Error('Failed to fetch events');
-    }
-    
-    const data = await response.json();
-    console.log(`🔌 API: FETCH_EVENTS COMPLETED for date=${date || 'all'}, received ${data.length} events:`);
-    data.forEach((event: Event, index: number) => {
-      console.log(`  API Event ${index+1}: id=${event.id}, name=${event.name}, date=${event.date}`);
-    });
-    
-    debugLog(`Events response received`, { 
-      count: data.length, 
-      date, 
-      currentTime,
-      data 
-    });
-    
-    // Additional validation to ensure we got events
-    if (!Array.isArray(data)) {
-      debugLog(`Invalid events data received`, data);
-      throw new Error('Invalid events data format');
-    }
-    
-    return data;
-  } catch (error) {
-    console.log(`🔌 API: FETCH_EVENTS ERROR for date=${date || 'all'}`, error);
-    debugLog(`Exception in fetchEvents`, error);
-    throw error;
-  }
-};
-
-export const fetchMapItems = async (lat: number, lng: number, radius: number = 500, types?: string[]): Promise<MapItem[]> => {
-  debugLog(`Fetching map items for area: lat=${lat}, lng=${lng}, radius=${radius}m`);
-  
-  const params = new URLSearchParams({
-    lat: lat.toString(),
-    lng: lng.toString(),
-    radius: radius.toString()
-  });
-  
-  if (types && types.length > 0) {
-    types.forEach(type => params.append('types', type));
-  }
-
-  try {
-    const response = await fetch(buildUrl(`/api/map-items?${params}`));
-    if (!response.ok) {
+      debugLog(`Error fetching map items: ${response.status} ${response.statusText}`, errorText);
       throw new Error('Failed to fetch map items');
     }
     const data = await response.json();
-    debugLog(`Received ${data.length} map items`);
+    debugLog(`Map items response received`, { count: data.length, types });
     return data;
   } catch (error) {
-    console.error('Error fetching map items:', error);
-    debugLog('Error fetching map items');
-    return [];
-  }
-};
-
-export const fetchTrafficData = async (useHotspots: boolean = true) => {
-  debugLog(`GET /api/traffic?use_hotspots=${useHotspots}`);
-  try {
-    const response = await fetch(buildUrl(`/api/traffic?use_hotspots=${useHotspots}`));
-    if (!response.ok) {
-      const errorText = await response.text();
-      debugLog(`Error fetching traffic data: ${response.status} ${response.statusText}`, errorText);
-      throw new Error('Failed to fetch traffic data');
-    }
-    const data = await response.json();
-    debugLog(`Traffic data response received with useHotspots=${useHotspots}`);
-    return data;
-  } catch (error) {
-    debugLog(`Exception in fetchTrafficData`, error);
-    throw error;
-  }
-};
-
-export const fetchTrafficPoints = async (useHotspots: boolean = true) => {
-  debugLog(`GET /api/traffic/points?use_hotspots=${useHotspots}`);
-  try {
-    const response = await fetch(buildUrl(`/api/traffic/points?use_hotspots=${useHotspots}`));
-    if (!response.ok) {
-      const errorText = await response.text();
-      debugLog(`Error fetching traffic points data: ${response.status} ${response.statusText}`, errorText);
-      throw new Error('Failed to fetch traffic points data');
-    }
-    const data = await response.json();
-    debugLog(`Traffic points data response received with useHotspots=${useHotspots}`);
-    return data;
-  } catch (error) {
-    debugLog(`Exception in fetchTrafficPoints`, error);
-    throw error;
-  }
-};
-
-export const fetchTampereCenter = async (): Promise<[number, number]> => {
-  debugLog(`GET /api/tampere-center`);
-  try {
-    const response = await fetch(buildUrl(`/api/tampere-center`));
-    if (!response.ok) {
-      const errorText = await response.text();
-      debugLog(`Error fetching Tampere center: ${response.status} ${response.statusText}`, errorText);
-      throw new Error('Failed to fetch Tampere center coordinates');
-    }
-    const data = await response.json();
-    debugLog(`Tampere center response received`, data);
-    return [data[0], data[1]];
-  } catch (error) {
-    debugLog(`Exception in fetchTampereCenter`, error);
+    debugLog(`Exception in fetchMapItems`, error);
     throw error;
   }
 };
@@ -212,12 +146,15 @@ export const fetchTampereCenter = async (): Promise<[number, number]> => {
 // Function to fetch foot traffic data for a hotspot
 // Now deprecated - foot traffic is included in the hotspot data
 // Keeping for backward compatibility
-export const fetchHotspotFootTraffic = async (hotspotId: string) => {
+export const fetchHotspotFootTraffic = async (hotspotId: string, timeHour?: number) => {
   debugLog(`DEPRECATED: Using fetchHotspotFootTraffic is no longer needed as foot traffic data is included in the hotspot data`);
   const timestamp = new Date().getTime();
-  const url = buildUrl(`/api/hotspots/${hotspotId}/foot-traffic?_=${timestamp}`);
   
-  console.log(`🔌 API: FETCH_FOOT_TRAFFIC START for hotspotId=${hotspotId}`);
+  // Add the time parameter if provided
+  const timeParam = timeHour !== undefined ? `&time=${timeHour}` : '';
+  const url = buildUrl(`/locations/${hotspotId}/foot-traffic?_=${timestamp}${timeParam}`);
+  
+  console.log(`🔌 API: FETCH_FOOT_TRAFFIC START for hotspotId=${hotspotId}${timeHour !== undefined ? `, hour=${timeHour}` : ''}`);
   debugLog(`GET ${url}`);
   
   try {
@@ -240,15 +177,18 @@ export const fetchHotspotFootTraffic = async (hotspotId: string) => {
   }
 };
 
-// Function to fetch foot traffic data for an event
+// Function to fetch foot traffic data for a specific event
 // Now deprecated - foot traffic is included in the event data
 // Keeping for backward compatibility
-export const fetchEventFootTraffic = async (eventId: string) => {
+export const fetchEventFootTraffic = async (eventId: string, timeHour?: number) => {
   debugLog(`DEPRECATED: Using fetchEventFootTraffic is no longer needed as foot traffic data is included in the event data`);
   const timestamp = new Date().getTime();
-  const url = buildUrl(`/api/events/${eventId}/foot-traffic?_=${timestamp}`);
   
-  console.log(`🔌 API: FETCH_EVENT_FOOT_TRAFFIC START for eventId=${eventId}`);
+  // Add the time parameter if provided
+  const timeParam = timeHour !== undefined ? `&time=${timeHour}` : '';
+  const url = buildUrl(`/events/${eventId}/foot-traffic?_=${timestamp}${timeParam}`);
+  
+  console.log(`🔌 API: FETCH_EVENT_FOOT_TRAFFIC START for eventId=${eventId}${timeHour !== undefined ? `, hour=${timeHour}` : ''}`);
   debugLog(`GET ${url}`);
   
   try {
@@ -271,43 +211,66 @@ export const fetchEventFootTraffic = async (eventId: string) => {
   }
 };
 
-export interface BusinessPreferences {
-  business_type: string;
-  business: string;
-  location: string;
-  intent: string;
-}
-
-export const analyzeBusiness = async (text: string): Promise<BusinessPreferences> => {
-  debugLog(`POST /api/analyze-business`);
+// Function to fetch traffic data
+export const fetchTrafficData = async (useHotspots: boolean = true) => {
+  const timestamp = new Date().getTime();
+  const url = buildUrl(`/traffic?use_hotspots=${useHotspots}&_=${timestamp}`);
+  
+  console.log(`🔌 API: FETCH_TRAFFIC_DATA START with useHotspots=${useHotspots}`);
+  debugLog(`GET ${url}`);
+  
   try {
-    const response = await fetch(buildUrl(`/api/analyze-business`), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text }),
-    });
-    
+    const response = await fetch(url);
     if (!response.ok) {
       const errorText = await response.text();
-      debugLog(`Error analyzing business: ${response.status} ${response.statusText}`, errorText);
-      throw new Error('Failed to analyze business requirement');
+      debugLog(`Error fetching traffic data: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch traffic data');
     }
     
     const data = await response.json();
-    debugLog(`Business analysis response received`, data);
+    console.log(`🔌 API: FETCH_TRAFFIC_DATA COMPLETED`);
+    
+    debugLog(`Traffic data received`, { featureCount: data.features.length });
     return data;
   } catch (error) {
-    debugLog(`Exception in analyzeBusiness`, error);
+    console.log(`🔌 API: FETCH_TRAFFIC_DATA ERROR`, error);
+    debugLog(`Exception in fetchTrafficData`, error);
     throw error;
   }
 };
 
-// Function to fetch detailed metrics data for a hotspot
+// Function to fetch traffic points data
+export const fetchTrafficPoints = async (useHotspots: boolean = true) => {
+  const timestamp = new Date().getTime();
+  const url = buildUrl(`/traffic/points?use_hotspots=${useHotspots}&_=${timestamp}`);
+  
+  console.log(`🔌 API: FETCH_TRAFFIC_POINTS START with useHotspots=${useHotspots}`);
+  debugLog(`GET ${url}`);
+  
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error fetching traffic points: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch traffic points');
+    }
+    
+    const data = await response.json();
+    console.log(`🔌 API: FETCH_TRAFFIC_POINTS COMPLETED`);
+    
+    debugLog(`Traffic points received`, { points: data.length });
+    return data;
+  } catch (error) {
+    console.log(`🔌 API: FETCH_TRAFFIC_POINTS ERROR`, error);
+    debugLog(`Exception in fetchTrafficPoints`, error);
+    throw error;
+  }
+};
+
+// Function to fetch detailed metrics for a specific hotspot
 export const fetchHotspotDetailedMetrics = async (hotspotId: string) => {
   const timestamp = new Date().getTime();
-  const url = buildUrl(`/api/hotspots/${hotspotId}/detailed-metrics?_=${timestamp}`);
+  const url = buildUrl(`/locations/${hotspotId}/detailed-metrics?_=${timestamp}`);
   
   console.log(`🔌 API: FETCH_HOTSPOT_DETAILED_METRICS START for hotspotId=${hotspotId}`);
   debugLog(`GET ${url}`);
@@ -332,10 +295,10 @@ export const fetchHotspotDetailedMetrics = async (hotspotId: string) => {
   }
 };
 
-// Function to fetch detailed metrics data for an event
+// Function to fetch detailed metrics for a specific event
 export const fetchEventDetailedMetrics = async (eventId: string) => {
   const timestamp = new Date().getTime();
-  const url = buildUrl(`/api/events/${eventId}/detailed-metrics?_=${timestamp}`);
+  const url = buildUrl(`/events/${eventId}/detailed-metrics?_=${timestamp}`);
   
   console.log(`🔌 API: FETCH_EVENT_DETAILED_METRICS START for eventId=${eventId}`);
   debugLog(`GET ${url}`);
@@ -398,5 +361,79 @@ export const fetchBusinessLocations = async (): Promise<any[]> => {
       { id: "ratina-3", name: "Fashion Boutique", coordinates: [23.7655, 61.4925], type: "business" },
       { id: "ratina-4", name: "Sports Equipment Store", coordinates: [23.7665, 61.4920], type: "business" }
     ];
+  }
+};
+
+/**
+ * Fetches the center coordinates of Tampere for map initialization
+ * @returns {Promise<[number, number]>} The longitude and latitude coordinates for Tampere's center
+ */
+export const fetchTampereCenter = async (): Promise<[number, number]> => {
+  debugLog(`Fetching Tampere center coordinates`);
+  
+  // Default Tampere coordinates (longitude, latitude) as a fallback
+  const defaultCoordinates: [number, number] = [23.7609, 61.4978];
+  
+  try {
+    // Try to fetch from the API if it's implemented server-side
+    const response = await fetch(buildUrl(`/api/tampere-center`));
+    if (response.ok) {
+      const data = await response.json();
+      debugLog(`Received Tampere center coordinates from API`, data);
+      
+      // Validate the coordinates
+      if (data && 
+          typeof data.longitude === 'number' && !isNaN(data.longitude) && 
+          typeof data.latitude === 'number' && !isNaN(data.latitude)) {
+        return [data.longitude, data.latitude];
+      } else {
+        debugLog('Invalid coordinates received from API, using default', defaultCoordinates);
+        return defaultCoordinates;
+      }
+    } else {
+      throw new Error('API endpoint not available');
+    }
+  } catch (error) {
+    // Fallback to hardcoded coordinates for Tampere center
+    debugLog('Error fetching Tampere center, using default coordinates', error);
+    return defaultCoordinates;
+  }
+};
+
+/**
+ * Analyzes business requirements text and returns business preferences
+ * @param {string} text - The business requirements text to analyze
+ * @returns {Promise<any>} Business preferences object
+ */
+export const analyzeBusiness = async (text: string): Promise<any> => {
+  debugLog(`Analyzing business requirements: ${text.substring(0, 50)}...`);
+  
+  try {
+    const response = await fetch(buildUrl(`/api/analyze-business`), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text }),
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error analyzing business requirements: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to analyze business requirements');
+    }
+    
+    const data = await response.json();
+    debugLog(`Business requirements analysis completed`, data);
+    return data;
+  } catch (error) {
+    debugLog(`Exception in analyzeBusiness`, error);
+    // Fallback to mock data
+    return {
+      business_type: "Static",
+      business: "Coffee Shop",
+      location: "Tampere Center",
+      intent: "Research"
+    };
   }
 };

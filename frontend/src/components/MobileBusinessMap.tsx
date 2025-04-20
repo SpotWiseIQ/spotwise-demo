@@ -15,23 +15,33 @@ const debugLog = (message: string, data?: any) => {
 };
 
 export const MobileBusinessMap: React.FC = () => {
-  const {
-    hotspots,
-    events,
-    selectedHotspot,
-    selectedEvent,
-    pulse,
-    loading,
-    setPulse,
-    setSelectedHotspot,
-    setSelectedEvent,
-    isHotspotCompareMode,
-    isEventCompareMode,
-    selectedHotspotsForComparison,
-    selectedEventsForComparison,
-    timelineRange,
-    selectedDate,
-  } = useTampere();
+  const context = useTampere();
+  
+  // Derived state for backward compatibility
+  const hotspots = context.locations ? context.locations.filter(loc => loc.type === 'natural') : [];
+  const events = context.locations ? context.locations.filter(loc => loc.type === 'event') : [];
+  const selectedHotspot = context.selectedLocation?.type === 'natural' ? context.selectedLocation : null;
+  const selectedEvent = context.selectedLocation?.type === 'event' ? context.selectedLocation : null;
+  const pulse = context.pulse;
+  const loading = context.loading;
+  const timelineRange = context.timelineRange;
+  const selectedDate = context.selectedDate;
+  
+  // Helper functions to maintain compatibility
+  const setPulse = context.setPulse;
+  const setSelectedHotspot = (hotspot: any) => {
+    context.setSelectedLocation(hotspot);
+  };
+  
+  const setSelectedEvent = (event: any) => {
+    context.setSelectedLocation(event);
+  };
+  
+  // Derived state for comparison modes
+  const isHotspotCompareMode = context.isCompareMode && context.selectedLocationsForComparison.some(loc => loc.type === 'natural');
+  const isEventCompareMode = context.isCompareMode && context.selectedLocationsForComparison.some(loc => loc.type === 'event');
+  const selectedHotspotsForComparison = context.selectedLocationsForComparison.filter(loc => loc.type === 'natural');
+  const selectedEventsForComparison = context.selectedLocationsForComparison.filter(loc => loc.type === 'event');
 
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
@@ -93,16 +103,36 @@ export const MobileBusinessMap: React.FC = () => {
         debugLog("API call: fetchTampereCenter");
         const center = await fetchTampereCenter();
         debugLog("Tampere center fetched successfully", center);
-        setTampereCenter(center);
+        
+        // Validate coordinates before setting them
+        if (Array.isArray(center) && center.length === 2 && 
+            !isNaN(center[0]) && !isNaN(center[1])) {
+          setTampereCenter(center);
+        } else {
+          throw new Error('Invalid coordinates returned');
+        }
       } catch (error) {
         console.error("Failed to fetch Tampere center:", error);
-        debugLog("Error fetching Tampere center, using default", tampereCenter);
+        debugLog("Error fetching Tampere center, using default", [23.7609, 61.4978]);
         // Keep using the default center
       }
     };
 
     getTampereCenter();
   }, []);
+
+  // Make sure tampereCenter has valid coordinates
+  useEffect(() => {
+    // Set default coordinates if tampereCenter is invalid
+    if (!tampereCenter || 
+        !Array.isArray(tampereCenter) || 
+        tampereCenter.length !== 2 ||
+        isNaN(tampereCenter[0]) || 
+        isNaN(tampereCenter[1])) {
+      debugLog("Invalid tampereCenter detected, resetting to default coordinates");
+      setTampereCenter([23.7609, 61.4978]);
+    }
+  }, [tampereCenter]);
 
   // Add immediate fly-to effect that runs as soon as selection changes
   useEffect(() => {
@@ -177,12 +207,22 @@ export const MobileBusinessMap: React.FC = () => {
     getMapItems();
   }, [selectedHotspot, selectedEvent]);
 
+  // Update map initialization to wait for tampereCenter to be set
   useEffect(() => {
     debugLog("Map initialization effect triggered");
     debugLog(`Map container exists: ${!!mapContainer.current}`);
     debugLog(`Map instance exists: ${!!map.current}`);
+    debugLog("Using tampereCenter: ", tampereCenter);
 
+    // Don't initialize if container is missing, map already exists, or tampereCenter is invalid
     if (!mapContainer.current || map.current) return;
+    
+    // Make extra sure we have valid coordinates
+    if (isNaN(tampereCenter[0]) || isNaN(tampereCenter[1])) {
+      console.error("Invalid coordinates for map initialization:", tampereCenter);
+      debugLog("Invalid tampereCenter coordinates, cannot initialize map");
+      return;
+    }
 
     debugLog("Initializing map with center", tampereCenter);
     debugLog("Map container dimensions", {
@@ -373,7 +413,7 @@ export const MobileBusinessMap: React.FC = () => {
 
     const sliderHour = getSliderHour();
     const systemHour = getSystemHour();
-    const dateKey = getDateKey(selectedDate);
+    const dateKey = getDateKey(selectedDate || new Date());
     const cacheKey = `${dateKey}-${sliderHour}`;
 
     let shouldFetch = false;
@@ -399,21 +439,28 @@ export const MobileBusinessMap: React.FC = () => {
       debugLog(`Fetching traffic data for hour ${sliderHour} (cacheKey=${cacheKey})`);
       // Fetch and cache traffic points
       fetchTrafficPoints().then((pointsData) => {
+        if (!pointsData) return;
         trafficPointsCache.current[cacheKey] = pointsData;
         if (map.current && map.current.getSource("traffic-points")) {
           (
             map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
           ).setData(pointsData);
         }
+      }).catch(err => {
+        console.error("Error fetching traffic points:", err);
       });
+      
       // Fetch and cache traffic data
       fetchTrafficData().then((trafficData) => {
+        if (!trafficData) return;
         trafficDataCache.current[cacheKey] = trafficData;
         if (map.current && map.current.getSource("traffic-lines")) {
           (
             map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
           ).setData(trafficData);
         }
+      }).catch(err => {
+        console.error("Error fetching traffic data:", err);
       });
     } else {
       // Use cached data if available
@@ -463,7 +510,7 @@ export const MobileBusinessMap: React.FC = () => {
       markersCount: Object.keys(markersRef.current).length,
       hasSelectedHotspot: !!selectedHotspot,
       hasSelectedEvent: !!selectedEvent,
-      mapItems: mapItems.length
+      mapItems: mapItems?.length || 0
     });
     
     // Remove all existing markers
@@ -473,7 +520,7 @@ export const MobileBusinessMap: React.FC = () => {
     markersRef.current = {};
 
     // Add markers based on selection state
-    if (selectedHotspot) {
+    if (selectedHotspot && map.current) {
       // Add selected hotspot marker
       const markerElement = document.createElement("div");
       const trafficClass = selectedHotspot.trafficLevel || "medium";
@@ -513,61 +560,61 @@ export const MobileBusinessMap: React.FC = () => {
       markersRef.current[`hotspot-${selectedHotspot.id}`] = marker;
 
       // Add additional map items with tooltips
-      mapItems.forEach((item: MapItem) => {
-        let markerElement = document.createElement("div");
-        markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
-        markerElement.innerHTML = getMapItemIcon(item.type);
+      if (mapItems && mapItems.length > 0) {
+        mapItems.forEach((item: MapItem) => {
+          if (!item || !item.coordinates) return;
+          
+          let markerElement = document.createElement("div");
+          markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
+          markerElement.innerHTML = getMapItemIcon(item.type);
 
-        // Create popup for hover effect
-        const popup = new maplibregl.Popup({
-          closeButton: false,
-          closeOnClick: false,
-          offset: [0, -8],
-          className: 'marker-tooltip',
-          anchor: 'bottom'
-        }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+          // Create popup for hover effect
+          const popup = new maplibregl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+            offset: [0, -8],
+            className: 'marker-tooltip',
+            anchor: 'bottom'
+          }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
 
-        markerElement.addEventListener("mouseenter", () => {
-          popup.addTo(map.current!);
+          markerElement.addEventListener("mouseenter", () => {
+            popup.addTo(map.current!);
+          });
+
+          markerElement.addEventListener("mouseleave", () => {
+            popup.remove();
+          });
+
+          const marker = new maplibregl.Marker({
+            element: markerElement,
+            anchor: "center",
+          })
+            .setLngLat(item.coordinates)
+            .setPopup(popup)
+            .addTo(map.current!);
+
+          markersRef.current[`${item.type}-${item.id}`] = marker;
         });
-
-        markerElement.addEventListener("mouseleave", () => {
-          popup.remove();
-        });
-
-        const marker = new maplibregl.Marker({
-          element: markerElement,
-          anchor: "center",
-        })
-          .setLngLat(item.coordinates)
-          .setPopup(popup)
-          .addTo(map.current!);
-
-        markersRef.current[`${item.type}-${item.id}`] = marker;
-      });
-    } else if (selectedEvent) {
+      }
+    } else if (selectedEvent && map.current) {
       // Add selected event marker
       const markerElement = document.createElement("div");
-      markerElement.innerHTML = `
-        <div class="event-marker selected">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
-            <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
-            <path d="M16 2v4"></path>
-            <path d="M8 2v4"></path>
-            <path d="M3 10h18"></path>
-            <circle cx="18" cy="18" r="4"></circle>
-            <path d="M18 16.5v1.5h1.5"></path>
-          </svg>
-        </div>
-      `;
+      const eventId = selectedEvent.id || selectedEvent.event_id;
+      const eventLabel = 'label' in selectedEvent ? selectedEvent.label : '';
+      const eventName = selectedEvent.name || selectedEvent.event_name || '';
+      const eventCoordinates = selectedEvent.coordinates;
+      // Always use the same base class, add 'highlighted' if selected
+      markerElement.className = "event-marker" + (selectedEvent && (selectedEvent.id || selectedEvent.event_id) === eventId ? " highlighted" : "");
+      markerElement.textContent = eventLabel;
 
       // Create popup for hover effect
       const popup = new maplibregl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: 15,
-        className: 'marker-tooltip'
-      }).setText(selectedEvent.name);
+        offset: [0, -8],
+        className: 'marker-tooltip',
+        anchor: 'bottom'
+      }).setText(eventName);
 
       markerElement.addEventListener("mouseenter", () => {
         popup.addTo(map.current!);
@@ -578,58 +625,64 @@ export const MobileBusinessMap: React.FC = () => {
       });
 
       markerElement.addEventListener("click", () => {
-        debugLog(`Selected event marker clicked: ${selectedEvent.id}`);
-        setSelectedEvent(null);
+        debugLog(`Event marker clicked: ${eventId}`);
+        setSelectedEvent(selectedEvent);
       });
 
       const marker = new maplibregl.Marker({
         element: markerElement,
         anchor: "center",
+        offset: [0, -12], // Custom offset for visual centering
       })
-        .setLngLat(selectedEvent.coordinates)
+        .setLngLat(eventCoordinates)
         .setPopup(popup)
         .addTo(map.current!);
 
-      markersRef.current[`event-${selectedEvent.id}`] = marker;
+      markersRef.current[`event-${eventId}`] = marker;
 
       // Add additional map items with tooltips
-      mapItems.forEach((item: MapItem) => {
-        let markerElement = document.createElement("div");
-        markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
-        markerElement.innerHTML = getMapItemIcon(item.type);
+      if (mapItems && mapItems.length > 0) {
+        mapItems.forEach((item: MapItem) => {
+          if (!item || !item.coordinates) return;
+          
+          let markerElement = document.createElement("div");
+          markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
+          markerElement.innerHTML = getMapItemIcon(item.type);
 
-        // Create popup for hover effect
-        const popup = new maplibregl.Popup({
-          closeButton: false,
-          closeOnClick: false,
-          offset: 15,
-          className: 'marker-tooltip'
-        }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+          // Create popup for hover effect
+          const popup = new maplibregl.Popup({
+            closeButton: false,
+            closeOnClick: false,
+            offset: [0, -8],
+            className: 'marker-tooltip',
+            anchor: 'bottom'
+          }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
 
-        markerElement.addEventListener("mouseenter", () => {
-          popup.addTo(map.current!);
+          markerElement.addEventListener("mouseenter", () => {
+            popup.addTo(map.current!);
+          });
+
+          markerElement.addEventListener("mouseleave", () => {
+            popup.remove();
+          });
+
+          const marker = new maplibregl.Marker({
+            element: markerElement,
+            anchor: "center",
+          })
+            .setLngLat(item.coordinates)
+            .setPopup(popup)
+            .addTo(map.current!);
+
+          markersRef.current[`${item.type}-${item.id}`] = marker;
         });
-
-        markerElement.addEventListener("mouseleave", () => {
-          popup.remove();
-        });
-
-        const marker = new maplibregl.Marker({
-          element: markerElement,
-          anchor: "center",
-        })
-          .setLngLat(item.coordinates)
-          .setPopup(popup)
-          .addTo(map.current!);
-
-        markersRef.current[`${item.type}-${item.id}`] = marker;
-      });
+      }
     }
   }, [selectedHotspot, selectedEvent, mapItems, mapLoaded]);
 
   // Separate effect for overview markers when nothing is selected
   useEffect(() => {
-    if (!map.current || !mapLoaded || selectedHotspot || selectedEvent) {
+    if (!map.current || !mapLoaded || selectedHotspot || selectedEvent || !hotspots || !events) {
       return;
     }
 
@@ -640,7 +693,10 @@ export const MobileBusinessMap: React.FC = () => {
     markersRef.current = {};
 
     // Show all hotspots and events as unselected markers
-    hotspots.forEach((hotspot) => {
+    const sortedHotspots = [...hotspots].sort((a, b) => a.id.localeCompare(b.id));
+    const sortedEvents = [...events].sort((a, b) => a.id.localeCompare(b.id));
+
+    sortedHotspots.forEach((hotspot) => {
       const markerElement = document.createElement("div");
       const trafficClass = hotspot.trafficLevel || "medium";
       markerElement.className = `hotspot-card ${trafficClass} map-hotspot-marker`;
@@ -678,28 +734,24 @@ export const MobileBusinessMap: React.FC = () => {
       markersRef.current[`hotspot-${hotspot.id}`] = marker;
     });
 
-    events.forEach((event) => {
+    sortedEvents.forEach((event) => {
+      const eventId = event.id || event.event_id;
+      const eventLabel = 'label' in event ? event.label : '';
+      const eventName = event.name || event.event_name || '';
+      const eventCoordinates = event.coordinates;
+      // Always use the same base class, add 'highlighted' if selected
       const markerElement = document.createElement("div");
-      markerElement.innerHTML = `
-        <div class="event-marker">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-clock">
-            <path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path>
-            <path d="M16 2v4"></path>
-            <path d="M8 2v4"></path>
-            <path d="M3 10h18"></path>
-            <circle cx="18" cy="18" r="4"></circle>
-            <path d="M18 16.5v1.5h1.5"></path>
-          </svg>
-        </div>
-      `;
+      markerElement.className = "event-marker" + (selectedEvent && (selectedEvent.id || selectedEvent.event_id) === eventId ? " highlighted" : "");
+      markerElement.textContent = eventLabel;
 
       // Create popup for hover effect
       const popup = new maplibregl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: 15,
-        className: 'marker-tooltip'
-      }).setText(event.name);
+        offset: [0, -8],
+        className: 'marker-tooltip',
+        anchor: 'bottom'
+      }).setText(eventName);
 
       markerElement.addEventListener("mouseenter", () => {
         popup.addTo(map.current!);
@@ -710,19 +762,20 @@ export const MobileBusinessMap: React.FC = () => {
       });
 
       markerElement.addEventListener("click", () => {
-        debugLog(`Event marker clicked: ${event.id}`);
+        debugLog(`Event marker clicked: ${eventId}`);
         setSelectedEvent(event);
       });
 
       const marker = new maplibregl.Marker({
         element: markerElement,
         anchor: "center",
+        offset: [0, -12], // Custom offset for visual centering
       })
-        .setLngLat(event.coordinates)
+        .setLngLat(eventCoordinates)
         .setPopup(popup)
         .addTo(map.current!);
 
-      markersRef.current[`event-${event.id}`] = marker;
+      markersRef.current[`event-${eventId}`] = marker;
     });
   }, [hotspots, events, mapLoaded, selectedHotspot, selectedEvent, markerRefreshTrigger]);
 

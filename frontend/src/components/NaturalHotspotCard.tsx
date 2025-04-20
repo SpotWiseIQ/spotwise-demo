@@ -42,6 +42,9 @@ export const NaturalHotspotCard: React.FC<NaturalHotspotCardProps> = ({
   const [isLoadingTraffic, setIsLoadingTraffic] = useState(false);
   const [isTrafficOpen, setIsTrafficOpen] = useState(false);
 
+  // Get current hour for proper chart alignment
+  const currentHour = new Date().getHours();
+
   useEffect(() => {
     // Always fetch foot traffic data regardless of selection
     const fetchData = async () => {
@@ -55,7 +58,8 @@ export const NaturalHotspotCard: React.FC<NaturalHotspotCardProps> = ({
         }
         
         // Otherwise, load it via the context (which now prioritizes pre-loaded data)
-        const data = await loadHotspotFootTraffic(hotspot.id);
+        // Pass the current hour to ensure data is correctly generated
+        const data = await loadHotspotFootTraffic(hotspot.id, currentHour);
         setFootTrafficData(data);
       } catch (error) {
         console.error("Error loading hotspot foot traffic data:", error);
@@ -66,7 +70,7 @@ export const NaturalHotspotCard: React.FC<NaturalHotspotCardProps> = ({
     };
 
     fetchData();
-  }, [hotspot.id, hotspot.footTraffic, loadHotspotFootTraffic]);
+  }, [hotspot.id, hotspot.footTraffic, loadHotspotFootTraffic, currentHour]);
 
   // Reset traffic panel when deselected
   useEffect(() => {
@@ -290,7 +294,7 @@ export const NaturalHotspotCard: React.FC<NaturalHotspotCardProps> = ({
             <div className="text-[10px] text-gray-500 mb-0.5 flex justify-end">
               <span className="text-tampere-red">Live + Forecast</span>
             </div>
-            <FootTrafficChart data={footTrafficData} />
+            <FootTrafficChart data={footTrafficData} currentHour={currentHour} />
           </div>
         </CollapsibleContent>
       </Collapsible>

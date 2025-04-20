@@ -15,6 +15,8 @@ from app.models import (
     TrafficData,
     FootTrafficType,
     FootTrafficData,
+    HotspotType,
+    Location,
 )
 from typing import List, Dict, Callable, Optional
 from datetime import datetime, timedelta
@@ -25,6 +27,13 @@ import math
 
 # Tampere center coordinates
 TAMPERE_CENTER = (23.7610, 61.4978)
+
+# Global cache for foot traffic distributions by date/location
+foot_traffic_cache = {}
+# Caches for API responses
+events_cache = {}
+date_events_cache = {}
+location_cache = {}
 
 # Fixed hotspot locations and characteristics
 HOTSPOT_TEMPLATES = [
@@ -81,10 +90,6 @@ HOTSPOT_TEMPLATES = [
         "traffic_pattern": "entertainment",  # High in evenings and weekends
     },
 ]
-
-# Cache for dynamically generated events
-events_cache = {}
-date_events_cache = {}
 
 # Mock map items data
 map_items: List[MapItem] = [
@@ -475,17 +480,43 @@ def get_events_by_date(date_str: str, current_hour: int = None) -> List[Event]:
     # Generate mock events for the specified date
     daily_events = generate_mock_events_for_date(date_str)
 
-    # Filter by current_hour if provided
+    # Filter events based on date and current hour
     if current_hour is not None:
-        try:
-            daily_events = [
-                event
-                for event in daily_events
-                if int(event.time.split(":")[0]) >= current_hour
-            ]
-        except (ValueError, AttributeError, IndexError):
-            # If there's any error parsing the time, don't filter
-            pass
+        filtered_events = []
+        for event in daily_events:
+            # Check if the event starts in the future on the same date
+            event_hour = None
+
+            # Try to get hour from start_time field first
+            if event.start_time:
+                try:
+                    if "T" in event.start_time:
+                        # ISO format
+                        dt = datetime.fromisoformat(
+                            event.start_time.replace("Z", "+00:00")
+                        )
+                        event_hour = dt.hour
+                    else:
+                        # Simple time format
+                        event_hour = int(event.start_time.split(":")[0])
+                except (ValueError, IndexError):
+                    pass
+
+            # Fall back to legacy time field
+            if event_hour is None and event.time:
+                try:
+                    event_hour = int(event.time.split(":")[0])
+                except (ValueError, IndexError):
+                    continue
+
+            # Skip if we couldn't parse time
+            if event_hour is None:
+                continue
+
+            # Add event if it starts after the current hour
+            if event_hour >= current_hour:
+                filtered_events.append(event)
+        daily_events = filtered_events
 
     # Add foot traffic data to each filtered event
     for event in daily_events:
@@ -876,13 +907,20 @@ def generate_foot_traffic(
     return data
 
 
-def get_event_foot_traffic(event_id: str) -> List[FootTrafficData]:
+def get_event_foot_traffic(
+    event_id: str, target_hour: int = None
+) -> List[FootTrafficData]:
     """Generate foot traffic data for a specific event.
 
     Similar to hotspot foot traffic, but with a different pattern that peaks around event time.
     """
-    current_hour = datetime.now().hour
-    data = []
+    if target_hour is None:
+        target_hour = datetime.now().hour
+
+    # Create a cache key that includes the hour
+    cache_key = f"event_{event_id}_{target_hour}"
+    if cache_key in foot_traffic_cache:
+        return foot_traffic_cache[cache_key]
 
     # Generate a seed based on the event ID to ensure consistent data for the same event
     seed = sum(ord(c) for c in event_id)
@@ -896,13 +934,23 @@ def get_event_foot_traffic(event_id: str) -> List[FootTrafficData]:
     # Parse event time to get hour
     event_hour = 12  # Default to noon if we can't parse
     try:
-        if event.time and ":" in event.time:
+        if event.start_time and ":" in event.start_time:
+            # Try parsing from start_time first
+            if "T" in event.start_time:
+                # ISO format like "2024-01-01T14:00:00+02:00"
+                dt = datetime.fromisoformat(event.start_time.replace("Z", "+00:00"))
+                event_hour = dt.hour
+            else:
+                # Simple time format like "14:00"
+                event_hour = int(event.start_time.split(":")[0])
+        elif event.time and ":" in event.time:
+            # Fall back to legacy time field
             event_hour = int(event.time.split(":")[0])
     except Exception:
         pass
 
     # Generate values for all hours with peak around event time
-    hour_values = {}
+    data = []
     for hour in range(0, 24):
         # Base traffic is low
         base_value = random.randint(5, 20)
@@ -920,29 +968,20 @@ def get_event_foot_traffic(event_id: str) -> List[FootTrafficData]:
         elif hours_to_event <= 4:  # Up to 4 hours before/after
             time_factor = 1.5
 
-        hour_values[hour] = int(base_value * time_factor)
+        value = int(base_value * time_factor)
 
-    # Generate past data (0 to current hour)
-    for hour in range(0, current_hour + 1):
-        data.append(
-            FootTrafficData(
-                hour=hour,
-                value=hour_values[hour],
-                type=FootTrafficType.PAST,
-            )
-        )
+        # Set data type based on current hour
+        if hour < target_hour:
+            data_type = FootTrafficType.PAST
+        elif hour > target_hour:
+            data_type = FootTrafficType.PREDICTED
+        else:
+            data_type = FootTrafficType.CURRENT
 
-    # Generate predicted data (current hour to 23)
-    # Note: current hour is included in both past and predicted
-    for hour in range(current_hour, 24):
-        data.append(
-            FootTrafficData(
-                hour=hour,
-                value=hour_values[hour],
-                type=FootTrafficType.PREDICTED,
-            )
-        )
+        data.append(FootTrafficData(hour=hour, value=value, type=data_type))
 
+    # Cache the data with the hour-specific key
+    foot_traffic_cache[cache_key] = data
     return data
 
 
@@ -1059,7 +1098,9 @@ def get_event_detailed_metrics(event_id: str) -> dict:
         },
         "capacityBreakdown": {
             "total": (
-                int(event.capacity)
+                int(event.expected_attendance)
+                if event.expected_attendance
+                else int(event.capacity)
                 if event.capacity
                 and (
                     (isinstance(event.capacity, int))
@@ -1090,17 +1131,377 @@ def get_event_detailed_metrics(event_id: str) -> dict:
         "basic": {
             "id": event.id,
             "name": event.name,
-            "place": event.place,
-            "date": event.date,
             "coordinates": event.coordinates,
+            "timeInfo": {
+                "startTime": event.start_time or event.time or "N/A",
+                "endTime": event.end_time or "N/A",
+                "duration": event.duration or "N/A",
+            },
+            "place": event.place or "N/A",
+            "type": event.event_type or event.type or "N/A",
+            "capacity": event.expected_attendance or event.capacity or "N/A",
+            "description": event.description or "N/A",
         },
         "metrics": {
-            "type": event.type,
-            "time": event.time,
+            "type": event.event_type or event.type,
+            "startTime": event.start_time or event.time,
+            "endTime": event.end_time,
             "duration": event.duration,
-            "capacity": event.capacity,
+            "capacity": event.expected_attendance or event.capacity,
             "demographics": event.demographics,
             "address": event.address,
         },
         "detailed": event_data,
+    }
+
+
+def load_locations_data():
+    """Load location data from locations_data.json"""
+    try:
+        with open("mock_data/locations_data.json", "r") as f:
+            locations = json.load(f)
+        return locations
+    except FileNotFoundError:
+        print(f"Error: Could not find locations_data.json in mock_data directory")
+        return []
+
+
+def load_demographics_data():
+    """Load demographics data from demographics-2.json"""
+    try:
+        with open("mock_data/demographics-2.json", "r") as f:
+            demographics = json.load(f)
+        return demographics
+    except FileNotFoundError:
+        print(f"Error: Could not find demographics-2.json in mock_data directory")
+        return []
+
+
+def get_location_poi(location_id):
+    """Get POIs for a specific location"""
+    try:
+        with open(f"mock_data/{location_id}_poi.json", "r") as f:
+            pois = json.load(f)
+        return pois
+    except FileNotFoundError:
+        return []
+
+
+def get_location_companies(location_id):
+    """Get companies for a specific location"""
+    try:
+        with open(f"mock_data/{location_id}_company_finances.json", "r") as f:
+            companies = json.load(f)
+        return companies
+    except FileNotFoundError:
+        return []
+
+
+def get_location_events(location_id):
+    """Get events for a specific location"""
+    try:
+        with open(f"mock_data/{location_id}_events.json", "r") as f:
+            events = json.load(f)
+        return events
+    except FileNotFoundError:
+        return []
+
+
+def load_all_events():
+    """Load all events from consolidated_events.json"""
+    try:
+        with open("mock_data/consolidated_events.json", "r") as f:
+            events = json.load(f)
+        return events
+    except FileNotFoundError:
+        print(f"Error: Could not find consolidated_events.json in mock_data directory")
+        return []
+
+
+def generate_location_foot_traffic(location_id, target_date, target_hour):
+    """Generate foot traffic data for a location based on the date."""
+    # Create a cache key that includes the hour to ensure fresh data when hour changes
+    cache_key = f"{location_id}_{target_date}_{target_hour}"
+
+    # Check if we have a cached distribution
+    if cache_key in foot_traffic_cache:
+        return foot_traffic_cache[cache_key]
+
+    # Create a seed from the date and location ID
+    date_seed = sum(ord(c) for c in f"{target_date}_{location_id}")
+    random.seed(date_seed)
+
+    # Create a new distribution
+    traffic_data = []
+    for hour in range(24):
+        # Base traffic value
+        base_value = random.randint(30, 200)
+
+        # Adjust for time of day - morning peak (8-9am), lunch (12-1pm), evening peak (5-6pm)
+        time_factor = 1.0
+        if 7 <= hour <= 9:
+            time_factor = 1.5  # Morning peak
+        elif 11 <= hour <= 13:
+            time_factor = 1.3  # Lunch peak
+        elif 16 <= hour <= 18:
+            time_factor = 1.7  # Evening peak
+        elif 22 <= hour <= 23 or 0 <= hour <= 5:
+            time_factor = 0.4  # Night low
+
+        # Generate value for this hour
+        value = int(base_value * time_factor)
+
+        # Randomize slightly
+        value = max(10, int(value * random.uniform(0.8, 1.2)))
+
+        # Set data type - ensure there's a clear distinction at the current hour
+        if hour < target_hour:
+            data_type = FootTrafficType.PAST
+        elif hour > target_hour:
+            data_type = FootTrafficType.PREDICTED
+        else:
+            data_type = FootTrafficType.CURRENT
+
+        # Add the data point
+        traffic_data.append(FootTrafficData(hour=hour, value=value, type=data_type))
+
+    # Cache the distribution with the hour-specific key
+    foot_traffic_cache[cache_key] = traffic_data
+    return traffic_data
+
+
+def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
+    """Get all locations as hotspots (natural or event), sorted by foot traffic."""
+    # Cache key for this request
+    cache_key = f"locations_{target_date}_{target_hour}"
+    if cache_key in location_cache:
+        return location_cache[cache_key]
+
+    if target_date is None:
+        target_date = datetime.now().strftime("%Y-%m-%d")
+    if target_hour is None:
+        target_hour = datetime.now().hour
+
+    # Load all locations
+    locations_data = load_locations_data()
+    demographics_data = load_demographics_data()
+
+    # Match demographics with locations
+    location_demographics = {}
+    for demo in demographics_data:
+        location_id = demo["location_id"]
+        if location_id not in location_demographics:
+            location_demographics[location_id] = []
+        location_demographics[location_id].append(demo)
+
+    # Load all location events
+    all_events = {}
+    consolidated_events = load_all_events()
+    for event in consolidated_events:
+        location_id = event["location_id"]
+        if location_id not in all_events:
+            all_events[location_id] = []
+        all_events[location_id].append(event)
+
+    # Create locations list with traffic data
+    locations_with_traffic = []
+
+    for location in locations_data:
+        location_id = location["location_id"]
+
+        # Generate foot traffic for this location
+        foot_traffic = generate_location_foot_traffic(
+            location_id, target_date, target_hour
+        )
+
+        # Get the current hour's traffic
+        current_traffic = next(
+            (ft.value for ft in foot_traffic if ft.type == FootTrafficType.CURRENT), 0
+        )
+
+        # Traffic level based on current value
+        traffic_level = (
+            TrafficLevel.HIGH
+            if current_traffic > 150
+            else TrafficLevel.MEDIUM
+            if current_traffic > 80
+            else TrafficLevel.LOW
+        )
+
+        # Get demographics for this location, if available
+        demo = None
+        if location_id in location_demographics and location_demographics[location_id]:
+            demo = location_demographics[location_id][
+                0
+            ]  # Take the first one for simplicity
+
+        # Default to natural hotspot
+        location_obj = Location(
+            id=location_id,
+            name=location["name"],
+            type=HotspotType.NATURAL,
+            label="",  # Will be assigned after sorting
+            address=f"{location['name']}, Tampere",
+            trafficLevel=traffic_level,
+            weather=random.choice(list(WeatherType)),
+            coordinates=(location["longitude"], location["latitude"]),
+            footTraffic=foot_traffic,
+            population=f"{demo['population'] if demo else random.randint(5000, 15000)}",
+            areaType="Commercial" if random.random() < 0.5 else "Residential",
+            peakHour=f"{8 + random.randint(0, 10):02d}:00",
+            avgDailyTraffic=f"{random.randint(2000, 10000)}",
+            dominantDemographics=f"{20 + random.randint(0, 30)}-{40 + random.randint(0, 30)}",
+            nearbyBusinesses=f"{random.randint(10, 60)}+",
+        )
+
+        locations_with_traffic.append((location_obj, current_traffic))
+
+    # Sort locations by current traffic in descending order
+    locations_with_traffic.sort(key=lambda x: x[1], reverse=True)
+
+    # Assign labels A, B, C, etc. based on traffic order
+    import string
+
+    labels = list(string.ascii_uppercase)  # A-Z
+    locations = []
+
+    for i, (location, _) in enumerate(locations_with_traffic):
+        if i < len(labels):
+            location.label = labels[i]
+        else:
+            location.label = f"A{i - len(labels) + 1}"  # A1, A2, etc. after Z
+
+        # Randomly upgrade some locations to event hotspots
+        # This simulates events happening at some locations
+        if (
+            random.random() < 0.3
+            and location.id in all_events
+            and all_events[location.id]
+        ):
+            # Pick a random event for this location
+            event = random.choice(all_events[location.id])
+
+            # Format the event time (assuming ISO format)
+            event_time = "N/A"
+            if "start_time" in event:
+                try:
+                    if (
+                        isinstance(event["start_time"], str)
+                        and "T" in event["start_time"]
+                    ):
+                        # Parse ISO format
+                        dt = datetime.fromisoformat(
+                            event["start_time"].replace("Z", "+00:00")
+                        )
+                        event_time = dt.strftime("%H:%M")
+                    elif (
+                        isinstance(event["start_time"], str)
+                        and len(event["start_time"]) > 10
+                    ):
+                        # Try to parse other common formats
+                        parts = event["start_time"].split(" ")
+                        if len(parts) > 1:
+                            time_part = parts[1]
+                            hours_mins = time_part.split(":")
+                            if len(hours_mins) >= 2:
+                                event_time = f"{hours_mins[0]}:{hours_mins[1]}"
+                except Exception:
+                    pass  # Keep default if parsing fails
+
+            # Convert to event hotspot
+            location.type = HotspotType.EVENT
+            location.start_time = event.get("start_time", "")
+            location.end_time = event.get("end_time", "")
+            location.place = event.get("place", location.name)
+            location.event_name = event.get("name", "Unknown Event")
+            location.event_type = event.get("event_type", "Event")
+            location.expected_attendance = event.get(
+                "expected_attendance", random.randint(200, 2000)
+            )
+            location.description = event.get("description", "")
+            location.location_id = event.get("location_id", "")
+            location.event_id = event.get("event_id", "")
+
+        locations.append(location)
+
+    # Cache the results
+    location_cache[cache_key] = locations
+
+    return locations
+
+
+def get_location_by_id(
+    location_id: str, target_date=None, target_hour=None
+) -> Optional[Location]:
+    """Get a specific location by ID"""
+    locations = get_all_locations(target_date, target_hour)
+    for location in locations:
+        if location.id == location_id:
+            return location
+    return None
+
+
+def get_location_detailed_metrics(location_id: str) -> dict:
+    """Get detailed metrics for a specific location"""
+    location = get_location_by_id(location_id)
+    if not location:
+        return {"error": "Location not found"}
+
+    # Get POIs and companies for this location
+    pois = get_location_poi(location_id)
+    companies = get_location_companies(location_id)
+
+    # Basic info about location
+    location_data = {
+        "pois": pois[:5],  # Just include top 5 POIs
+        "companies": companies[:5],  # Just include top 5 companies
+        "demographics": {},
+    }
+
+    # Add demographics if available
+    try:
+        demographics = load_demographics_data()
+        for demo in demographics:
+            if demo["location_id"] == location_id:
+                location_data["demographics"] = {
+                    "population": demo.get("population", "N/A"),
+                    "median_age": demo.get("median_age", "N/A"),
+                    "avg_household_size": demo.get("avg_household_size", "N/A"),
+                    "income_distribution": {
+                        "Low": demo.get("Low", "N/A"),
+                        "Medium": demo.get("Medium", "N/A"),
+                        "High": demo.get("High", "N/A"),
+                    },
+                    "age_distribution": {
+                        "0-17": demo.get("0-17", "N/A"),
+                        "18-25": demo.get("18-25", "N/A"),
+                        "26-35": demo.get("26-35", "N/A"),
+                        "36-45": demo.get("36-45", "N/A"),
+                        "46-60": demo.get("46-60", "N/A"),
+                        "61-75": demo.get("61-75", "N/A"),
+                        "76+": demo.get("76+", "N/A"),
+                    },
+                }
+                break
+    except Exception as e:
+        print(f"Error loading demographics: {e}")
+
+    # Return combined data
+    return {
+        "basic": {
+            "id": location.id,
+            "name": location.name,
+            "address": location.address,
+            "coordinates": location.coordinates,
+            "type": location.type,
+        },
+        "metrics": {
+            "population": location.population,
+            "areaType": location.areaType,
+            "peakHour": location.peakHour,
+            "avgDailyTraffic": location.avgDailyTraffic,
+            "dominantDemographics": location.dominantDemographics,
+            "nearbyBusinesses": location.nearbyBusinesses,
+        },
+        "detailed": location_data,
     }
