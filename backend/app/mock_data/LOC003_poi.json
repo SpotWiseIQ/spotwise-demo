@@ -1,0 +1,92 @@
+[
+  {
+    "poi_id":"POI001",
+    "name":"Tampere University Hervanta Campus",
+    "location_id":"LOC003",
+    "latitude":61.446268,
+    "longitude":23.856215,
+    "category":"University Campus",
+    "description":"A modern university campus bustling with students and innovative research facilities."
+  },
+  {
+    "poi_id":"POI002",
+    "name":"Hervanta Tech Park",
+    "location_id":"LOC003",
+    "latitude":61.445757,
+    "longitude":23.869744,
+    "category":"Tech Hub",
+    "description":"A contemporary tech hub hosting startups and research labs, popular among students and entrepreneurs."
+  },
+  {
+    "poi_id":"POI003",
+    "name":"Café Metso",
+    "location_id":"LOC003",
+    "latitude":61.44515,
+    "longitude":23.819241,
+    "category":"Cafe",
+    "description":"A cozy modern cafe attracting students and families for coffee and light meals all day."
+  },
+  {
+    "poi_id":"POI004",
+    "name":"Lounasravintola Lukema",
+    "location_id":"LOC003",
+    "latitude":61.448528,
+    "longitude":23.854224,
+    "category":"Cafe",
+    "description":"A bright student-friendly cafe serving fresh lunches and snacks in a lively atmosphere."
+  },
+  {
+    "poi_id":"POI005",
+    "name":"Hervanta City Park",
+    "location_id":"LOC003",
+    "latitude":61.445991,
+    "longitude":23.858092,
+    "category":"Park",
+    "description":"A modern green park offering open spaces and walking trails, ideal for families and students."
+  },
+  {
+    "poi_id":"POI006",
+    "name":"Hervanta Campus Bus Stop",
+    "location_id":"LOC003",
+    "latitude":61.449369,
+    "longitude":23.885273,
+    "category":"Bus Stop",
+    "description":"A convenient bus stop serving the university campus and vibrant tech district, frequented by students."
+  },
+  {
+    "poi_id":"POI007",
+    "name":"Hervanta Center Bus Stop",
+    "location_id":"LOC003",
+    "latitude":61.45199,
+    "longitude":23.859163,
+    "category":"Bus Stop",
+    "description":"A busy bus stop connecting residential areas with campus and downtown, used daily by families and students."
+  },
+  {
+    "poi_id":"POI008",
+    "name":"Hervanta Campus Parking",
+    "location_id":"LOC003",
+    "latitude":61.43805,
+    "longitude":23.832428,
+    "category":"Parking",
+    "description":"A spacious parking area adjacent to the campus, popular with families and visitors for convenience."
+  },
+  {
+    "poi_id":"POI009",
+    "name":"Duo Center Parking",
+    "location_id":"LOC003",
+    "latitude":61.449636,
+    "longitude":23.889989,
+    "category":"Parking",
+    "description":"A modern parking facility serving the local shopping and educational district, widely used by students."
+  },
+  {
+    "poi_id":"POI010",
+    "name":"Tampere City Service Point Hervanta",
+    "location_id":"LOC003",
+    "latitude":61.446764,
+    "longitude":23.856958,
+    "category":"Government Office",
+    "description":"A modern government service point offering municipal services, frequently visited by residents and students."
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "location_id": "LOC001",
+    "name": "Keskustori",
+    "latitude": 61.4981,
+    "longitude": 23.7608,
+    "avg_rent_price": 42.5,
+    "crime_rate": 23.7,
+    "description": "City center with high commercial activity, many offices, shops, and restaurants.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC002",
+    "name": "Tammela",
+    "latitude": 61.5052,
+    "longitude": 23.7785,
+    "avg_rent_price": 22.3,
+    "crime_rate": 21.2,
+    "description": "A quiet, residential area characterized by family homes and green spaces.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC003",
+    "name": "Hervanta",
+    "latitude": 61.4467,
+    "longitude": 23.8573,
+    "avg_rent_price": 17.9,
+    "crime_rate": 20.1,
+    "description": "A modern residential area popular among students and families.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC004",
+    "name": "Kaleva",
+    "latitude": 61.4995,
+    "longitude": 23.7982,
+    "avg_rent_price": 31.2,
+    "crime_rate": 22.5,
+    "description": "A mixed-use district featuring both commercial offices and residential units.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC005",
+    "name": "Pyynikki",
+    "latitude": 61.496641,
+    "longitude": 23.730602,
+    "avg_rent_price": 24.8,
+    "crime_rate": 20.3,
+    "description": "A scenic district known for its park and cultural heritage.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC006",
+    "name": "Pispala",
+    "latitude": 61.504794,
+    "longitude": 23.707935,
+    "avg_rent_price": 25.6,
+    "crime_rate": 21.1,
+    "description": "A historic neighborhood with charming, steep streets and traditional homes.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC007",
+    "name": "Hatanpää",
+    "latitude": 61.483198,
+    "longitude": 23.762444,
+    "avg_rent_price": 23.1,
+    "crime_rate": 20.7,
+    "description": "A residential area near a large park and historic manor.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC008",
+    "name": "Lielahti",
+    "latitude": 61.518326,
+    "longitude": 23.665339,
+    "avg_rent_price": 34.7,
+    "crime_rate": 22.0,
+    "description": "A growing commercial zone with an industrial heritage.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC009",
+    "name": "Järvensivu",
+    "latitude": 61.489239,
+    "longitude": 23.80331,
+    "avg_rent_price": 21.5,
+    "crime_rate": 20.2,
+    "description": "A peaceful residential area surrounded by nature.",
+    "last_update": "2024-01-01 00:00:00"
+  },
+  {
+    "location_id": "LOC010",
+    "name": "Kaukajärvi",
+    "latitude": 61.469472,
+    "longitude": 23.871656,
+    "avg_rent_price": 19.7,
+    "crime_rate": 21.0,
+    "description": "A suburban area with modern amenities and a strong community feel.",
+    "last_update": "2024-01-01 00:00:00"
+  }
+]

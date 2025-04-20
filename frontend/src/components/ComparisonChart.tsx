@@ -189,6 +189,99 @@ export const ComparisonChart: React.FC<ComparisonChartProps> = ({ data, type, me
     return null;
   };
 
+  // MOCK DATA FOR HOTSPOT DETAILED METRICS
+  const mockPopulationData = [
+    { year: 2020, h1: 950, h2: 1200, h3: 1100 },
+    { year: 2021, h1: 1050, h2: 1250, h3: 1150 },
+    { year: 2022, h1: 1120, h2: 1300, h3: 1200 },
+    { year: 2023, h1: 1250, h2: 1350, h3: 1300 },
+    { year: 2024, h1: 1300, h2: 1400, h3: 1350 },
+  ];
+  const mockAreaTypeData = [
+    { subject: 'Residential', h1: 90, h2: 40, h3: 60 },
+    { subject: 'Commercial', h1: 40, h2: 90, h3: 50 },
+    { subject: 'Industrial', h1: 20, h2: 10, h3: 30 },
+    { subject: 'Leisure', h1: 60, h2: 30, h3: 80 },
+    { subject: 'Green Space', h1: 45, h2: 60, h3: 55 },
+  ];
+  const mockFootTrafficHourData = [
+    { hour: 0, h1: 10, h2: 5, h3: 8 },
+    { hour: 4, h1: 5, h2: 8, h3: 6 },
+    { hour: 8, h1: 90, h2: 70, h3: 80 },
+    { hour: 12, h1: 60, h2: 80, h3: 70 },
+    { hour: 16, h1: 80, h2: 90, h3: 85 },
+    { hour: 17, h1: 110, h2: 100, h3: 120 },
+    { hour: 18, h1: 95, h2: 110, h3: 100 },
+    { hour: 20, h1: 40, h2: 60, h3: 50 },
+  ];
+  const mockAvgDailyTrafficData = [
+    { day: 'Mon', h1: 2200, h2: 2000, h3: 2400 },
+    { day: 'Tue', h1: 2300, h2: 2100, h3: 2600 },
+    { day: 'Wed', h1: 2400, h2: 2200, h3: 2700 },
+    { day: 'Thu', h1: 2500, h2: 2300, h3: 2800 },
+    { day: 'Fri', h1: 2600, h2: 2400, h3: 3000 },
+    { day: 'Sat', h1: 1400, h2: 1800, h3: 2200 },
+    { day: 'Sun', h1: 1200, h2: 1600, h3: 1800 },
+  ];
+  const mockDemoData = [
+    { group: '18-24', h1: 33, h2: 25, h3: 20 },
+    { group: '25-34', h1: 25, h2: 30, h3: 25 },
+    { group: '35-44', h1: 25, h2: 20, h3: 30 },
+    { group: '45+', h1: 17, h2: 25, h3: 25 },
+  ];
+  const mockBusinessData = [
+    { type: 'Retail', h1: 12, h2: 10, h3: 15 },
+    { type: 'Food', h1: 8, h2: 12, h3: 10 },
+    { type: 'Services', h1: 15, h2: 18, h3: 12 },
+    { type: 'Entertainment', h1: 5, h2: 7, h3: 8 },
+    { type: 'Other', h1: 10, h2: 8, h3: 9 },
+  ];
+
+  // MOCK DATA FOR EVENT DETAILED METRICS
+  const mockEventCapacityData = [
+    { year: 2020, e1: 800, e2: 1200, e3: 1000 },
+    { year: 2021, e1: 900, e2: 1300, e3: 1100 },
+    { year: 2022, e1: 950, e2: 1400, e3: 1200 },
+    { year: 2023, e1: 1000, e2: 1500, e3: 1300 },
+    { year: 2024, e1: 1100, e2: 1600, e3: 1400 },
+  ];
+  const mockEventTypeData = [
+    { type: 'Music', e1: 80, e2: 40, e3: 60 },
+    { type: 'Sports', e1: 40, e2: 90, e3: 50 },
+    { type: 'Cultural', e1: 20, e2: 10, e3: 30 },
+    { type: 'Food', e1: 60, e2: 30, e3: 80 },
+    { type: 'Other', e1: 45, e2: 60, e3: 55 },
+  ];
+  const mockEventFootTrafficImpactData = [
+    { hour: -2, e1: 10, e2: 8, e3: 12 },
+    { hour: -1, e1: 20, e2: 18, e3: 22 },
+    { hour: 0, e1: 90, e2: 70, e3: 80 },
+    { hour: 1, e1: 60, e2: 80, e3: 70 },
+    { hour: 2, e1: 80, e2: 90, e3: 85 },
+  ];
+  const mockEventAvgDailyTrafficData = [
+    { day: 'Mon', e1: 2200, e2: 2000, e3: 2400 },
+    { day: 'Tue', e1: 2300, e2: 2100, e3: 2600 },
+    { day: 'Wed', e1: 2400, e2: 2200, e3: 2700 },
+    { day: 'Thu', e1: 2500, e2: 2300, e3: 2800 },
+    { day: 'Fri', e1: 2600, e2: 2400, e3: 3000 },
+    { day: 'Sat', e1: 1400, e2: 1800, e3: 2200 },
+    { day: 'Sun', e1: 1200, e2: 1600, e3: 1800 },
+  ];
+  const mockEventDemoData = [
+    { group: '18-24', e1: 33, e2: 25, e3: 20 },
+    { group: '25-34', e1: 25, e2: 30, e3: 25 },
+    { group: '35-44', e1: 25, e2: 20, e3: 30 },
+    { group: '45+', e1: 17, e2: 25, e3: 25 },
+  ];
+  const mockEventBusinessData = [
+    { type: 'Retail', e1: 12, e2: 10, e3: 15 },
+    { type: 'Food', e1: 8, e2: 12, e3: 10 },
+    { type: 'Services', e1: 15, e2: 18, e3: 12 },
+    { type: 'Entertainment', e1: 5, e2: 7, e3: 8 },
+    { type: 'Other', e1: 10, e2: 8, e3: 9 },
+  ];
+
   // Choose the appropriate chart type based on the metric
   const renderChart = () => {
     // Common chart props
@@ -215,67 +308,82 @@ export const ComparisonChart: React.FC<ComparisonChartProps> = ({ data, type, me
     if (type === 'hotspot') {
       switch (metricType) {
         case 'population':
-          // Area chart for population like in LocationMetrics
+          // Multi-line LineChart for population
           return (
-            <AreaChart {...commonProps}>
-              <defs>
-                <linearGradient id="colorPopulation" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
+            <LineChart data={mockPopulationData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis {...xAxisProps} />
-              <YAxis {...yAxisProps} />
-              <Tooltip content={<CustomTooltip />} />
-              <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorPopulation)" />
-            </AreaChart>
-          );
-          
-        case 'footTraffic':
-          // Line chart for foot traffic
-          return (
-            <LineChart {...commonProps}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis {...xAxisProps} />
-              <YAxis {...yAxisProps} />
-              <Tooltip content={<CustomTooltip />} />
-              <Line type="monotone" dataKey="value" stroke="#82ca9d" strokeWidth={2} dot={true} />
+              <XAxis dataKey="year" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="h1" stroke="#FF6B7D" name="Hotspot 1" dot={false} />
+              <Line type="monotone" dataKey="h2" stroke="#FF8E61" name="Hotspot 2" dot={false} />
+              <Line type="monotone" dataKey="h3" stroke="#FFA849" name="Hotspot 3" dot={false} />
             </LineChart>
           );
-          
-        case 'peakHour':
-          // Bar chart with different color for peak hour
+        case 'areaType':
+          // Multi-series RadarChart for area type
           return (
-            <BarChart {...commonProps}>
+            <RadarChart outerRadius={60} width={300} height={180} data={mockAreaTypeData}>
+              <PolarGrid />
+              <PolarAngleAxis dataKey="subject" fontSize={10} />
+              <Radar name="Hotspot 1" dataKey="h1" stroke="#FF6B7D" fill="#FF6B7D" fillOpacity={0.2} />
+              <Radar name="Hotspot 2" dataKey="h2" stroke="#FF8E61" fill="#FF8E61" fillOpacity={0.2} />
+              <Radar name="Hotspot 3" dataKey="h3" stroke="#FFA849" fill="#FFA849" fillOpacity={0.2} />
+              <Tooltip />
+            </RadarChart>
+          );
+        case 'peakHour':
+          // Multi-line LineChart for peak foot traffic hour
+          return (
+            <LineChart data={mockFootTrafficHourData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis {...xAxisProps} />
-              <YAxis {...yAxisProps} />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="#8884d8" radius={[4, 4, 0, 0]}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Bar>
+              <XAxis dataKey="hour" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="h1" stroke="#FF6B7D" name="Hotspot 1" dot={false} />
+              <Line type="monotone" dataKey="h2" stroke="#FF8E61" name="Hotspot 2" dot={false} />
+              <Line type="monotone" dataKey="h3" stroke="#FFA849" name="Hotspot 3" dot={false} />
+            </LineChart>
+          );
+        case 'footTraffic':
+          // Multi-line LineChart for avg daily traffic (by day of week)
+          return (
+            <LineChart data={mockAvgDailyTrafficData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="h1" stroke="#FF6B7D" name="Hotspot 1" dot={false} />
+              <Line type="monotone" dataKey="h2" stroke="#FF8E61" name="Hotspot 2" dot={false} />
+              <Line type="monotone" dataKey="h3" stroke="#FFA849" name="Hotspot 3" dot={false} />
+            </LineChart>
+          );
+        case 'demographics':
+          // Stacked BarChart for dominant demographics
+          return (
+            <BarChart data={mockDemoData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="group" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Bar dataKey="h1" stackId="a" fill="#FF6B7D" name="Hotspot 1" />
+              <Bar dataKey="h2" stackId="a" fill="#FF8E61" name="Hotspot 2" />
+              <Bar dataKey="h3" stackId="a" fill="#FFA849" name="Hotspot 3" />
             </BarChart>
           );
-          
         case 'nearbyBusinesses':
-          // Scatter chart for businesses
+          // Multi-line LineChart for nearby businesses by type
           return (
-            <ScatterChart {...commonProps}>
+            <LineChart data={mockBusinessData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis {...xAxisProps} />
-              <YAxis {...yAxisProps} />
-              <Tooltip content={<CustomTooltip />} />
-              <Scatter name="Businesses" dataKey="value" fill="#8884d8">
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Scatter>
-            </ScatterChart>
+              <XAxis dataKey="type" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="h1" stroke="#FF6B7D" name="Hotspot 1" dot={false} />
+              <Line type="monotone" dataKey="h2" stroke="#FF8E61" name="Hotspot 2" dot={false} />
+              <Line type="monotone" dataKey="h3" stroke="#FFA849" name="Hotspot 3" dot={false} />
+            </LineChart>
           );
-          
         default:
           // Default to bar chart for opportunity score
           return (
@@ -296,82 +404,82 @@ export const ComparisonChart: React.FC<ComparisonChartProps> = ({ data, type, me
       // Event charts
       switch (metricType) {
         case 'capacity':
-          // Bar chart for capacity
+          // Multi-line LineChart for capacity
           return (
-            <BarChart {...commonProps}>
+            <LineChart data={mockEventCapacityData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis {...xAxisProps} />
-              <YAxis {...yAxisProps} />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="#8884d8" radius={[4, 4, 0, 0]}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Bar>
-            </BarChart>
+              <XAxis dataKey="year" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="e1" stroke="#FF6B7D" name="Event 1" dot={false} />
+              <Line type="monotone" dataKey="e2" stroke="#FF8E61" name="Event 2" dot={false} />
+              <Line type="monotone" dataKey="e3" stroke="#FFA849" name="Event 3" dot={false} />
+            </LineChart>
           );
-          
-        case 'duration':
-          // Horizontal bar chart for duration
+        case 'eventType':
+          // Multi-series RadarChart for event type
           return (
-            <BarChart {...commonProps} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" {...yAxisProps} />
-              <YAxis dataKey="shortName" type="category" width={80} />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="#8884d8" radius={[0, 4, 4, 0]}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Bar>
-            </BarChart>
+            <RadarChart outerRadius={60} width={300} height={180} data={mockEventTypeData}>
+              <PolarGrid />
+              <PolarAngleAxis dataKey="type" fontSize={10} />
+              <Radar name="Event 1" dataKey="e1" stroke="#FF6B7D" fill="#FF6B7D" fillOpacity={0.2} />
+              <Radar name="Event 2" dataKey="e2" stroke="#FF8E61" fill="#FF8E61" fillOpacity={0.2} />
+              <Radar name="Event 3" dataKey="e3" stroke="#FFA849" fill="#FFA849" fillOpacity={0.2} />
+              <Tooltip />
+            </RadarChart>
           );
-          
         case 'footTrafficImpact':
-          // Composed chart for impact
+          // Multi-line LineChart for peak foot traffic impact
           return (
-            <ComposedChart {...commonProps}>
+            <LineChart data={mockEventFootTrafficImpactData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis {...xAxisProps} />
-              <YAxis {...yAxisProps} />
-              <Tooltip content={<CustomTooltip />} />
-              <Bar dataKey="value" fill="#8884d8" radius={[4, 4, 0, 0]}>
-                {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Bar>
-              <Line type="monotone" dataKey="value" stroke="#ff7300" strokeWidth={2} dot={false} />
-            </ComposedChart>
+              <XAxis dataKey="hour" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="e1" stroke="#FF6B7D" name="Event 1" dot={false} />
+              <Line type="monotone" dataKey="e2" stroke="#FF8E61" name="Event 2" dot={false} />
+              <Line type="monotone" dataKey="e3" stroke="#FFA849" name="Event 3" dot={false} />
+            </LineChart>
           );
-          
+        case 'footTraffic':
+          // Multi-line LineChart for avg daily traffic (by day of week)
+          return (
+            <LineChart data={mockEventAvgDailyTrafficData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="day" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="e1" stroke="#FF6B7D" name="Event 1" dot={false} />
+              <Line type="monotone" dataKey="e2" stroke="#FF8E61" name="Event 2" dot={false} />
+              <Line type="monotone" dataKey="e3" stroke="#FFA849" name="Event 3" dot={false} />
+            </LineChart>
+          );
         case 'demographics':
-          // Radar chart for demographics
-          if (chartData.length <= 5) {
-            return (
-              <RadarChart width={300} height={180} cx="50%" cy="50%" outerRadius={80} data={chartData}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="shortName" fontSize={8} />
-                <Tooltip content={<CustomTooltip />} />
-                <Radar name="Demographics" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-              </RadarChart>
-            );
-          } else {
-            // Fallback to bar chart if too many items for radar
-            return (
-              <BarChart {...commonProps}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis {...xAxisProps} />
-                <YAxis {...yAxisProps} />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="value" fill="#8884d8" radius={[4, 4, 0, 0]}>
-                  {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            );
-          }
-          
+          // Stacked BarChart for expected crowd/demographics
+          return (
+            <BarChart data={mockEventDemoData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="group" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Bar dataKey="e1" stackId="a" fill="#FF6B7D" name="Event 1" />
+              <Bar dataKey="e2" stackId="a" fill="#FF8E61" name="Event 2" />
+              <Bar dataKey="e3" stackId="a" fill="#FFA849" name="Event 3" />
+            </BarChart>
+          );
+        case 'nearbyBusinesses':
+          // Multi-line LineChart for nearby businesses by type
+          return (
+            <LineChart data={mockEventBusinessData} margin={{ top: 5, right: 5, bottom: 25, left: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="type" fontSize={10} />
+              <YAxis fontSize={10} />
+              <Tooltip />
+              <Line type="monotone" dataKey="e1" stroke="#FF6B7D" name="Event 1" dot={false} />
+              <Line type="monotone" dataKey="e2" stroke="#FF8E61" name="Event 2" dot={false} />
+              <Line type="monotone" dataKey="e3" stroke="#FFA849" name="Event 3" dot={false} />
+            </LineChart>
+          );
         default:
           // Default to bar chart for opportunity
           return (

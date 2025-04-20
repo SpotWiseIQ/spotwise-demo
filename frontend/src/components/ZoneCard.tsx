@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Car, Clock, Users, Scale } from "lucide-react";
+import { MapPin, Car, Clock, Users, Scale, ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useStaticBusiness } from "@/lib/StaticBusinessContext";
 
@@ -83,13 +83,13 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
           </div>
           {isZoneCompareMode && (
             <Button
-              variant={isInComparison ? "secondary" : "outline"}
+              variant={isInComparison ? "secondary" : "ghost"}
               size="sm"
-              className="ml-2"
+              className="h-6 px-2 text-xs ml-2"
               onClick={handleCompareClick}
+              data-compare-button
             >
-              <Scale size={14} className="mr-1" />
-              {isInComparison ? "Remove" : "Compare"}
+              <ArrowLeftRight className="w-3 h-3" />
             </Button>
           )}
         </div>

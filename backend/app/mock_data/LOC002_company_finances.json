@@ -1,0 +1,67 @@
+[
+  {
+    "company_id":"COMP006",
+    "name":"K-Market Tammela",
+    "location_id":"LOC002",
+    "latitude":61.5042,
+    "longitude":23.7761,
+    "revenue":2100000,
+    "profit":315000,
+    "employees":25,
+    "industry":"Grocery",
+    "description":"A well-stocked neighborhood grocery store offering fresh produce, baked goods, and daily essentials.",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP007",
+    "name":"Cafe & Bakery Mimosa",
+    "location_id":"LOC002",
+    "latitude":61.5063,
+    "longitude":23.7789,
+    "revenue":950000,
+    "profit":142500,
+    "employees":18,
+    "industry":"Restaurant",
+    "description":"Popular local caf\u00e9 known for artisan pastries, great coffee, and a cozy atmosphere.",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP008",
+    "name":"Studio Beauty Tammela (approx.)",
+    "location_id":"LOC002",
+    "latitude":61.5038,
+    "longitude":23.7724,
+    "revenue":640000,
+    "profit":83200,
+    "employees":12,
+    "industry":"Salon",
+    "description":"Modern beauty salon providing haircuts, coloring, and skincare treatments. (approx.)",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP009",
+    "name":"Apteekki Tammela",
+    "location_id":"LOC002",
+    "latitude":61.5057,
+    "longitude":23.7749,
+    "revenue":3200000,
+    "profit":448000,
+    "employees":40,
+    "industry":"Pharmacy",
+    "description":"Trusted local pharmacy with a wide selection of medical and wellness products.",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP010",
+    "name":"Tammelan Kielikeskus (approx.)",
+    "location_id":"LOC002",
+    "latitude":61.5076,
+    "longitude":23.7795,
+    "revenue":2800000,
+    "profit":392000,
+    "employees":30,
+    "industry":"Education",
+    "description":"Language learning center offering Finnish, English, and Swedish classes. (approx.)",
+    "last_update":"2024-01-01 00:00:00"
+  }
+]

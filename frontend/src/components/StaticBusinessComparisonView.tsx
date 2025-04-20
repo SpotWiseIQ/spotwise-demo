@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useStaticBusiness } from '@/lib/StaticBusinessContext';
-import { X, ChevronDown } from 'lucide-react';
+import { X, ChevronDown, Car, Footprints, Clock, Users, Building } from 'lucide-react';
 import {
   ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
   YAxis,
-  Tooltip,
+  Tooltip as RechartsTooltip,
   CartesianGrid,
   RadarChart,
   PolarGrid,
@@ -15,6 +15,7 @@ import {
   Radar,
   PolarRadiusAxis
 } from 'recharts';
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 // Add global CSS for scrollbar hiding
 const hideScrollbarStyles = `
@@ -29,28 +30,79 @@ const hideScrollbarStyles = `
 
 export const StaticBusinessComparisonCard: React.FC<{ zone: any }> = ({ zone }) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-3 min-w-[280px] max-w-[280px] border border-gray-200">
-      <h3 className="font-medium text-sm mb-2">{zone.name}</h3>
-      <div className="space-y-2 text-sm">
-        <div className="flex justify-between">
-          <span className="text-gray-600">Car Flow:</span>
-          <span className="font-medium">{zone.carFlow.toLocaleString()}/day</span>
+    <div className="bg-white rounded-lg shadow border border-gray-200 w-[170px] flex-shrink-0 flex flex-col h-[330px]">
+      <div className="p-2 border-b border-gray-200 flex flex-col justify-center min-h-[60px]">
+        <div className="flex items-center mb-1">
+          <div className="w-4 h-4 mr-2 flex-shrink-0 flex items-center justify-center">
+            <Car className="w-4 h-4 text-tampere-red" />
+          </div>
+          <h3 className="text-sm font-medium truncate">{zone.name}</h3>
         </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Foot Traffic:</span>
-          <span className="font-medium">{zone.footTraffic.toLocaleString()}/day</span>
+      </div>
+      <div className="p-2 flex-grow flex flex-col">
+        <div className="grid grid-cols-2 gap-2 text-xs py-2 border-b border-gray-100 h-[60px]">
+          <div className="flex flex-col items-center justify-center h-full">
+            <p className="text-gray-500 mb-0.5 whitespace-nowrap">Car Flow</p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="font-medium w-full overflow-hidden text-ellipsis whitespace-nowrap text-center cursor-pointer">{zone.carFlow?.toLocaleString() || 'N/A'}/day</p>
+              </TooltipTrigger>
+              <TooltipContent>{zone.carFlow?.toLocaleString() || 'N/A'}/day</TooltipContent>
+            </Tooltip>
+          </div>
+          <div className="flex flex-col items-center justify-center h-full">
+            <p className="text-gray-500 mb-0.5 whitespace-nowrap">Foot Traffic</p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="font-medium w-full overflow-hidden text-ellipsis whitespace-nowrap text-center cursor-pointer">{zone.footTraffic?.toLocaleString() || 'N/A'}/day</p>
+              </TooltipTrigger>
+              <TooltipContent>{zone.footTraffic?.toLocaleString() || 'N/A'}/day</TooltipContent>
+            </Tooltip>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Avg Parking:</span>
-          <span className="font-medium">{zone.avgParkingTime} min</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Population:</span>
-          <span className="font-medium">{zone.population?.toLocaleString() || 'N/A'}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Area Type:</span>
-          <span className="font-medium">{zone.areaType || 'N/A'}</span>
+        <div className="flex-grow flex flex-col">
+          <div className="flex items-center py-2 border-b border-gray-100 h-[40px]">
+            <div className="w-4 h-4 mr-1.5 flex-shrink-0">
+              <Clock className="w-4 h-4 text-tampere-red" />
+            </div>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Avg Parking:</span>
+                  <span className="font-medium">{zone.avgParkingTime || 'N/A'} min</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{zone.avgParkingTime || 'N/A'} min</TooltipContent>
+            </Tooltip>
+          </div>
+          <div className="flex items-center py-2 border-b border-gray-100 h-[40px]">
+            <div className="w-4 h-4 mr-1.5 flex-shrink-0">
+              <Users className="w-4 h-4 text-tampere-red" />
+            </div>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Population:</span>
+                  <span className="font-medium">{zone.population?.toLocaleString() || 'N/A'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{zone.population?.toLocaleString() || 'N/A'}</TooltipContent>
+            </Tooltip>
+          </div>
+          <div className="flex items-center py-2 h-[40px]">
+            <div className="w-4 h-4 mr-1.5 flex-shrink-0">
+              <Building className="w-4 h-4 text-tampere-red" />
+            </div>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Area Type:</span>
+                  <span className="font-medium">{zone.areaType || 'N/A'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{zone.areaType || 'N/A'}</TooltipContent>
+            </Tooltip>
+          </div>
         </div>
       </div>
     </div>
@@ -178,7 +230,7 @@ export const StaticBusinessComparisonView: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" tick={{ fontSize: 10 }} />
                   <YAxis tick={{ fontSize: 10 }} />
-                  <Tooltip />
+                  <RechartsTooltip contentStyle={{ padding: '2px 8px', fontSize: '11px', borderRadius: '4px' }} />
                   <Bar dataKey="value" fill="#ea384c" />
                 </BarChart>
               </ResponsiveContainer>
@@ -201,7 +253,7 @@ export const StaticBusinessComparisonView: React.FC = () => {
                       fillOpacity={0.3}
                     />
                   ))}
-                  <Tooltip />
+                  <RechartsTooltip contentStyle={{ padding: '2px 8px', fontSize: '11px', borderRadius: '4px' }} />
                 </RadarChart>
               </ResponsiveContainer>
             </div>

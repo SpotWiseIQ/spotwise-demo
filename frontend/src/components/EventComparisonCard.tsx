@@ -2,6 +2,7 @@ import React from 'react';
 import { Calendar, Clock, Users, MapPin, Tag } from 'lucide-react';
 import { Event } from '@/lib/types';
 import { format } from 'date-fns';
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 type EventComparisonCardProps = {
   event: Event;
@@ -19,14 +20,24 @@ export const EventComparisonCard: React.FC<EventComparisonCardProps> = ({ event 
       </div>
       
       <div className="p-2 flex-grow flex flex-col">
-        <div className="grid grid-cols-2 gap-2 text-xs py-2 border-b border-gray-100 min-h-[60px]">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-gray-500 mb-0.5">Date</p>
-            <p className="font-medium">{format(new Date(event.date), 'MMM d')}</p>
+        <div className="grid grid-cols-2 gap-2 text-xs py-2 border-b border-gray-100 h-[60px]">
+          <div className="flex flex-col items-center justify-center h-full">
+            <p className="text-gray-500 mb-0.5 whitespace-nowrap">Date</p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="font-medium w-full overflow-hidden text-ellipsis whitespace-nowrap text-center cursor-pointer">{format(new Date(event.date), 'MMM d')}</p>
+              </TooltipTrigger>
+              <TooltipContent>{format(new Date(event.date), 'MMM d')}</TooltipContent>
+            </Tooltip>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-gray-500 mb-0.5">Time</p>
-            <p className="font-medium">{event.time || 'TBD'}</p>
+          <div className="flex flex-col items-center justify-center h-full">
+            <p className="text-gray-500 mb-0.5 whitespace-nowrap">Time</p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="font-medium w-full overflow-hidden text-ellipsis whitespace-nowrap text-center cursor-pointer">{event.time || 'TBD'}</p>
+              </TooltipTrigger>
+              <TooltipContent>{event.time || 'TBD'}</TooltipContent>
+            </Tooltip>
           </div>
         </div>
 
@@ -35,50 +46,75 @@ export const EventComparisonCard: React.FC<EventComparisonCardProps> = ({ event 
             <div className="w-4 h-4 mr-1.5 flex-shrink-0">
               <Users className="w-4 h-4 text-tampere-red" />
             </div>
-            <p className="text-xs">
-              <span className="text-gray-500 mr-1">Capacity:</span>
-              <span className="font-medium">{event.capacity || 'N/A'}</span>
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Capacity:</span>
+                  <span className="font-medium">{event.capacity || 'N/A'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{event.capacity || 'N/A'}</TooltipContent>
+            </Tooltip>
           </div>
           
           <div className="flex items-center py-2 border-b border-gray-100 h-[40px]">
             <div className="w-4 h-4 mr-1.5 flex-shrink-0">
               <Clock className="w-4 h-4 text-tampere-red" />
             </div>
-            <p className="text-xs">
-              <span className="text-gray-500 mr-1">Duration:</span>
-              <span className="font-medium">{event.duration || 'N/A'}</span>
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Duration:</span>
+                  <span className="font-medium">{event.duration || 'N/A'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{event.duration || 'N/A'}</TooltipContent>
+            </Tooltip>
           </div>
           
           <div className="flex items-center py-2 border-b border-gray-100 h-[40px]">
             <div className="w-4 h-4 mr-1.5 flex-shrink-0">
               <Users className="w-4 h-4 text-tampere-red" />
             </div>
-            <p className="text-xs">
-              <span className="text-gray-500 mr-1">Demographics:</span>
-              <span className="font-medium">{event.demographics || 'All ages'}</span>
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Demographics:</span>
+                  <span className="font-medium">{event.demographics || 'All ages'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{event.demographics || 'All ages'}</TooltipContent>
+            </Tooltip>
           </div>
           
           <div className="flex items-center py-2 border-b border-gray-100 h-[40px]">
             <div className="w-4 h-4 mr-1.5 flex-shrink-0">
               <Tag className="w-4 h-4 text-tampere-red" />
             </div>
-            <p className="text-xs">
-              <span className="text-gray-500 mr-1">Type:</span>
-              <span className="font-medium">{event.type || 'N/A'}</span>
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Type:</span>
+                  <span className="font-medium">{event.type || 'N/A'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{event.type || 'N/A'}</TooltipContent>
+            </Tooltip>
           </div>
           
           <div className="flex items-center py-2 h-[40px]">
             <div className="w-4 h-4 mr-1.5 flex-shrink-0">
               <MapPin className="w-4 h-4 text-tampere-red" />
             </div>
-            <p className="text-xs">
-              <span className="text-gray-500 mr-1">Address:</span>
-              <span className="font-medium text-ellipsis overflow-hidden">{event.address || event.place || 'N/A'}</span>
-            </p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <p className="text-xs w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer">
+                  <span className="text-gray-500 mr-1">Address:</span>
+                  <span className="font-medium">{event.address || event.place || 'N/A'}</span>
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>{event.address || event.place || 'N/A'}</TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>

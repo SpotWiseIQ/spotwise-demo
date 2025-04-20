@@ -1,0 +1,67 @@
+[
+    {
+        "company_id": "COMP016",
+        "name": "Kalevan Kirjakauppa (approx.)",
+        "location_id": "LOC004",
+        "latitude": 61.5,
+        "longitude": 23.8,
+        "revenue": 1000000,
+        "profit": 150000,
+        "employees": 30,
+        "industry": "Retail",
+        "description": "Local bookstore offering a curated selection of Finnish literature and academic textbooks. (approx.)",
+        "last_update": "2024-01-01 00:00:00"
+    },
+    {
+        "company_id": "COMP017",
+        "name": "Plevna Brewery & Restaurant (approx.)",
+        "location_id": "LOC004",
+        "latitude": 61.4982,
+        "longitude": 23.7739,
+        "revenue": 3600000,
+        "profit": 648000,
+        "employees": 90,
+        "industry": "Hospitality",
+        "description": "Brewery and restaurant featuring traditional Finnish beers brewed on-site. (approx.)",
+        "last_update": "2024-01-01 00:00:00"
+    },
+    {
+        "company_id": "COMP018",
+        "name": "Smart City Innovations Oy (approx.)",
+        "location_id": "LOC004",
+        "latitude": 61.5052,
+        "longitude": 23.8176,
+        "revenue": 2200000,
+        "profit": 264000,
+        "employees": 45,
+        "industry": "Technology",
+        "description": "Tech startup developing IoT solutions for urban infrastructure monitoring. (approx.)",
+        "last_update": "2024-01-01 00:00:00"
+    },
+    {
+        "company_id": "COMP019",
+        "name": "Tampere Real Estate Services Oy (approx.)",
+        "location_id": "LOC004",
+        "latitude": 61.4953,
+        "longitude": 23.8054,
+        "revenue": 5500000,
+        "profit": 1100000,
+        "employees": 75,
+        "industry": "Real Estate",
+        "description": "Property management firm overseeing residential and commercial buildings in Tampere. (approx.)",
+        "last_update": "2024-01-01 00:00:00"
+    },
+    {
+        "company_id": "COMP020",
+        "name": "Kaleva Bistro (approx.)",
+        "location_id": "LOC004",
+        "latitude": 61.5025,
+        "longitude": 23.8021,
+        "revenue": 850000,
+        "profit": 93500,
+        "employees": 25,
+        "industry": "Hospitality",
+        "description": "Cozy bistro serving modern Finnish cuisine with locally sourced ingredients. (approx.)",
+        "last_update": "2024-01-01 00:00:00"
+    }
+]

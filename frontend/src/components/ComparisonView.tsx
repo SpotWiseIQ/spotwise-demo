@@ -49,17 +49,21 @@ export const ComparisonView: React.FC = () => {
   const hotspotMetrics = [
     { id: 'opportunity', label: 'Opportunity Score' },
     { id: 'population', label: 'Population' },
-    { id: 'footTraffic', label: 'Foot Traffic' },
-    { id: 'peakHour', label: 'Peak Hour' },
+    { id: 'areaType', label: 'Area Type' },
+    { id: 'footTraffic', label: 'Avg. Daily Traffic' },
+    { id: 'peakHour', label: 'Peak Foot Traffic Hour' },
+    { id: 'demographics', label: 'Dominant Demographics' },
     { id: 'nearbyBusinesses', label: 'Nearby Businesses' }
   ];
 
   const eventMetrics = [
     { id: 'opportunity', label: 'Opportunity Score' },
     { id: 'capacity', label: 'Expected Capacity' },
-    { id: 'duration', label: 'Duration' },
-    { id: 'footTrafficImpact', label: 'Foot Traffic Impact' },
-    { id: 'demographics', label: 'Demographics' }
+    { id: 'eventType', label: 'Event Type' },
+    { id: 'footTrafficImpact', label: 'Peak Foot Traffic Impact' },
+    { id: 'footTraffic', label: 'Avg. Daily Traffic' },
+    { id: 'demographics', label: 'Expected Crowd' },
+    { id: 'nearbyBusinesses', label: 'Nearby Businesses' }
   ];
 
   const availableMetrics = isHotspotComparing ? hotspotMetrics : eventMetrics;
@@ -115,7 +119,7 @@ export const ComparisonView: React.FC = () => {
                   {availableMetrics.map(metric => (
                     <button
                       key={metric.id}
-                      className={`block w-full text-left px-4 py-2 text-xs ${selectedMetric === metric.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+                      className={`block w-full text-left px-4 py-1 text-[11px] ${selectedMetric === metric.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
                       onClick={() => {
                         setSelectedMetric(metric.id);
                         setIsDropdownOpen(false);

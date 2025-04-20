@@ -1,0 +1,92 @@
+[
+  {
+    "poi_id": "POI001",
+    "name": "Pyynikki Observation Tower",
+    "category": "Scenic Spot",
+    "description": "A historic observation tower offering panoramic scenic views of Lake Pyhäjärvi and the forested ridge.",
+    "latitude": 61.498299,
+    "longitude": 23.737097,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI002",
+    "name": "Pyynikki Nature Reserve",
+    "category": "Park",
+    "description": "A serene nature reserve showcasing ancient pine forests and tranquil walking trails along the scenic ridge.",
+    "latitude": 61.500598,
+    "longitude": 23.767066,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI003",
+    "name": "Wäinö Aaltonen Museum",
+    "category": "Museum",
+    "description": "A museum dedicated to Finnish art and heritage, featuring works that celebrate Tampere’s cultural history.",
+    "latitude": 61.500404,
+    "longitude": 23.716436,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI004",
+    "name": "Pyynikki Winter War Fortifications",
+    "category": "Historic Site",
+    "description": "An outdoor historic site preserving Winter War fortifications, reflecting Pyynikki’s heritage and defensive nature.",
+    "latitude": 61.484867,
+    "longitude": 23.741253,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI005",
+    "name": "Pyynikki Café Bakery",
+    "category": "Café",
+    "description": "A charming café bakery renowned for traditional Finnish pastries and nature-inspired treats in a cozy setting.",
+    "latitude": 61.49569,
+    "longitude": 23.730166,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI006",
+    "name": "Café Majakka",
+    "category": "Café",
+    "description": "A popular café overlooking the ridge, offering scenic views and artisanal coffee in a heritage atmosphere.",
+    "latitude": 61.503378,
+    "longitude": 23.677604,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI007",
+    "name": "Ravintola Pingviini",
+    "category": "Restaurant",
+    "description": "A local restaurant specializing in Nordic cuisine, blending contemporary flavors with a rustic nature-inspired ambiance.",
+    "latitude": 61.507301,
+    "longitude": 23.741329,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI008",
+    "name": "Pyynikki Observation Tower Stop",
+    "category": "Bus Stop",
+    "description": "A bus stop serving visitors to the observation tower, situated amidst scenic woodlands and nature trails.",
+    "latitude": 61.492669,
+    "longitude": 23.736116,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI009",
+    "name": "Pyynikki Park Parking",
+    "category": "Parking",
+    "description": "A parking area conveniently located near the park entrance, nestled in the peaceful forested landscape.",
+    "latitude": 61.480459,
+    "longitude": 23.702859,
+    "location_id": "LOC005"
+  },
+  {
+    "poi_id": "POI010",
+    "name": "Pyynikki Nature Reserve Stop",
+    "category": "Bus Stop",
+    "description": "A bus stop near the nature reserve entrance, offering access to scenic trails and heritage viewpoints.",
+    "latitude": 61.504774,
+    "longitude": 23.699054,
+    "location_id": "LOC005"
+  }
+]

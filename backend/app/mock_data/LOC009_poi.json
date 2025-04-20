@@ -1,0 +1,92 @@
+[
+  {
+    "poi_id": "POI001",
+    "name": "Järvensivu Riverside Park",
+    "location_id": "LOC009",
+    "latitude": "61.493000",
+    "longitude": "23.807000",
+    "category": "Park",
+    "description": "A tranquil riverside park with walking trails, picnic areas, and lush greenery offering a peaceful retreat for families and nature enthusiasts."
+  },
+  {
+    "poi_id": "POI002",
+    "name": "Rieväkallio Nature Trail",
+    "location_id": "LOC009",
+    "latitude": "61.488000",
+    "longitude": "23.795000",
+    "category": "Nature Trail",
+    "description": "A serene nature trail winding through dense woodland and scenic overlooks, perfect for peaceful strolls and family-friendly outdoor exploration."
+  },
+  {
+    "poi_id": "POI003",
+    "name": "Kantapirtti Playground",
+    "location_id": "LOC009",
+    "latitude": "61.492500",
+    "longitude": "23.801000",
+    "category": "Playground",
+    "description": "A family-friendly playground nestled among trees, featuring slides, swings, and soft play areas for a peaceful afternoon outdoors."
+  },
+  {
+    "poi_id": "POI004",
+    "name": "Järvensivu Community Café",
+    "location_id": "LOC009",
+    "latitude": "61.487000",
+    "longitude": "23.805500",
+    "category": "Café",
+    "description": "A cozy café with indoor and outdoor seating, offering artisanal coffee and light snacks in a peaceful, family-friendly setting surrounded by greenery."
+  },
+  {
+    "poi_id": "POI005",
+    "name": "Järvensivu Youth Center",
+    "location_id": "LOC009",
+    "latitude": "61.490000",
+    "longitude": "23.798000",
+    "category": "Community Center",
+    "description": "A vibrant community center hosting family-friendly events and workshops, with spacious halls and peaceful garden areas for relaxation and social gatherings."
+  },
+  {
+    "poi_id": "POI006",
+    "name": "Järvensivu Primary School",
+    "location_id": "LOC009",
+    "latitude": "61.485500",
+    "longitude": "23.804000",
+    "category": "School",
+    "description": "A welcoming primary school campus with safe play areas and green courtyards, fostering a peaceful learning environment for families and children."
+  },
+  {
+    "poi_id": "POI007",
+    "name": "Järvensivu Bus Stop A",
+    "location_id": "LOC009",
+    "latitude": "61.489800",
+    "longitude": "23.810000",
+    "category": "Bus Stop",
+    "description": "A peaceful bus stop with sheltered seating and clear signage, surrounded by greenery for a calm and family-friendly transit experience."
+  },
+  {
+    "poi_id": "POI008",
+    "name": "Järvensivu Bus Stop B",
+    "location_id": "LOC009",
+    "latitude": "61.491200",
+    "longitude": "23.806500",
+    "category": "Bus Stop",
+    "description": "A family-friendly bus stop with benches and schedule information, set amidst trees and offering a peaceful waiting area for commuters."
+  },
+  {
+    "poi_id": "POI009",
+    "name": "Järvensivu Parking Lot 1",
+    "location_id": "LOC009",
+    "latitude": "61.486800",
+    "longitude": "23.797500",
+    "category": "Parking",
+    "description": "A convenient parking lot with easy access to nearby trails and parks, offering a peaceful environment and family-friendly proximity to outdoor activities."
+  },
+  {
+    "poi_id": "POI010",
+    "name": "Järvensivu Residential Complex",
+    "location_id": "LOC009",
+    "latitude": "61.493500",
+    "longitude": "23.804800",
+    "category": "Residential Complex",
+    "description": "A serene residential complex surrounded by landscaped gardens and walking paths, creating a peaceful and family-friendly living environment."
+  }
+]

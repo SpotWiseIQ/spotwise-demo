@@ -1,0 +1,67 @@
+[
+  {
+    "company_id":"COMP001",
+    "name":"Tampereen Teatteri",
+    "latitude":61.4987,
+    "longitude":23.7609,
+    "revenue":5400000,
+    "profit":810000,
+    "employees":120,
+    "industry":"Hospitality",
+    "description":"A historic theater in the heart of Tampere offering a diverse program of plays and cultural events.",
+    "location_id":"LOC001",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP002",
+    "name":"Pella\u2019s Cafe",
+    "latitude":61.4983,
+    "longitude":23.7611,
+    "revenue":2100000,
+    "profit":315000,
+    "employees":45,
+    "industry":"Food",
+    "description":"Popular downtown caf\u00e9 known for its cozy atmosphere, brunches, and homemade pastries.",
+    "location_id":"LOC001",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP003",
+    "name":"S\u00e4rm\u00e4 Software Oy",
+    "latitude":61.4991,
+    "longitude":23.7622,
+    "revenue":8300000,
+    "profit":1660000,
+    "employees":220,
+    "industry":"Technology",
+    "description":"Tech firm developing smart-city analytics platforms for urban innovation (approx.).",
+    "location_id":"LOC001",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP004",
+    "name":"Verkkokauppa Pirkanmaa",
+    "latitude":61.4975,
+    "longitude":23.7593,
+    "revenue":7200000,
+    "profit":1080000,
+    "employees":180,
+    "industry":"Retail",
+    "description":"Regional electronics retailer with a strong online presence and a flagship store near Keskustori (approx.).",
+    "location_id":"LOC001",
+    "last_update":"2024-01-01 00:00:00"
+  },
+  {
+    "company_id":"COMP005",
+    "name":"Solo Sokos Hotel Tammer",
+    "latitude":61.5002,
+    "longitude":23.7658,
+    "revenue":9700000,
+    "profit":1455000,
+    "employees":310,
+    "industry":"Hospitality",
+    "description":"Upscale hotel with classic style and modern amenities, located a short walk from Keskustori.",
+    "location_id":"LOC001",
+    "last_update":"2024-01-01 00:00:00"
+  }
+]

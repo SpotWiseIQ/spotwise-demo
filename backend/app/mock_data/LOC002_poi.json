@@ -1,0 +1,92 @@
+[
+  {
+    "poi_id": "POI001",
+    "name": "Sorsapuisto",
+    "location_id": "LOC002",
+    "latitude": 61.503112,
+    "longitude": 23.781234,
+    "category": "Park",
+    "description": "A spacious duck park offering serene walking paths around a tranquil pond, surrounded by lush greenery perfect for a quiet family afternoon."
+  },
+  {
+    "poi_id": "POI002",
+    "name": "Osmonpuisto Playground",
+    "location_id": "LOC002",
+    "latitude": 61.5045,
+    "longitude": 23.775,
+    "category": "Park",
+    "description": "A leafy playground nestled within a quiet green oasis, where families can enjoy gentle swings, picnic benches, and safe open spaces for children to explore."
+  },
+  {
+    "poi_id": "POI003",
+    "name": "Cafe Kaisuli",
+    "location_id": "LOC002",
+    "latitude": 61.5042,
+    "longitude": 23.7761,
+    "category": "Cafe",
+    "description": "A charming cafe set amid verdant surroundings, offering home‑baked delights and a cozy patio where families can savor quiet moments over warm drinks."
+  },
+  {
+    "poi_id": "POI004",
+    "name": "Café Tammela",
+    "location_id": "LOC002",
+    "latitude": 61.5058,
+    "longitude": 23.7789,
+    "category": "Cafe",
+    "description": "A family-friendly cafe tucked beside a green courtyard, serving local comfort food in a tranquil setting ideal for quiet gatherings."
+  },
+  {
+    "poi_id": "POI005",
+    "name": "Tammelantori Stop",
+    "location_id": "LOC002",
+    "latitude": 61.5034,
+    "longitude": 23.7769,
+    "category": "Bus Stop",
+    "description": "A quiet bus stop shaded by mature trees, offering a green respite for families commuting in a calm neighborhood setting."
+  },
+  {
+    "poi_id": "POI006",
+    "name": "Kirjasto Stop",
+    "location_id": "LOC002",
+    "latitude": 61.498,
+    "longitude": 23.7805,
+    "category": "Bus Stop",
+    "description": "A serene bus stop adjacent to a leafy library park, providing families a peaceful waiting spot amidst gentle greenery."
+  },
+  {
+    "poi_id": "POI007",
+    "name": "Aimo Park Tammelan stadion",
+    "location_id": "LOC002",
+    "latitude": 61.504,
+    "longitude": 23.776,
+    "category": "Parking",
+    "description": "A well‑maintained parking facility surrounded by leafy avenues, offering families easy access and a quiet, secure place for vehicles."
+  },
+  {
+    "poi_id": "POI008",
+    "name": "Kauppakeskus Duo Hall",
+    "location_id": "LOC002",
+    "latitude": 61.4995,
+    "longitude": 23.78,
+    "category": "Parking",
+    "description": "A spacious parking hall nestled beneath a green boulevard, providing families a secure and quiet spot to park before leisure strolls."
+  },
+  {
+    "poi_id": "POI009",
+    "name": "Tammelantori Square",
+    "location_id": "LOC002",
+    "latitude": 61.5042,
+    "longitude": 23.7767,
+    "category": "Market",
+    "description": "A bustling market square lined with seasonal stalls, set against a backdrop of green trees where families can browse in a relaxed, quiet atmosphere."
+  },
+  {
+    "poi_id": "POI010",
+    "name": "Metso Main Library",
+    "location_id": "LOC002",
+    "latitude": 61.498,
+    "longitude": 23.7802,
+    "category": "Library",
+    "description": "A grand library enveloped by leafy parkland, offering families a quiet green retreat to explore books and share peaceful reading time."
+  }
+]

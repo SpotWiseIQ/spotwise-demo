@@ -1,0 +1,92 @@
+[
+  {
+    "poi_id": "POI001",
+    "name": "Kauppakeskus Like",
+    "location_id": "LOC008",
+    "latitude": 61.527568,
+    "longitude": 23.705771,
+    "category": "Retail Store",
+    "description": "A bustling retail center blending modern commerce with Lielahti’s industrial heritage, featuring shops, services, and community spaces."
+  },
+  {
+    "poi_id": "POI002",
+    "name": "Lounaskahvila Ståhlberg Lielahti",
+    "location_id": "LOC008",
+    "latitude": 61.516981,
+    "longitude": 23.657261,
+    "category": "Café",
+    "description": "A cozy café in the heart of Lielahti, offering daily lunches and artisan coffee amid industrial historic surroundings."
+  },
+  {
+    "poi_id": "POI003",
+    "name": "Ravintola Ninan Keittiö Tampere Lielahti",
+    "location_id": "LOC008",
+    "latitude": 61.537933,
+    "longitude": 23.670298,
+    "category": "Restaurant",
+    "description": "A vibrant restaurant serving quality lunches and traditional dishes in a repurposed industrial space, reflecting Lielahti’s commercial growth."
+  },
+  {
+    "poi_id": "POI004",
+    "name": "Lielahti Innovation Hub",
+    "location_id": "LOC008",
+    "latitude": 61.537061,
+    "longitude": 23.687847,
+    "category": "Tech Park",
+    "description": "A modern tech park fostering startups and innovation in renovated factory buildings, showcasing Lielahti’s dynamic blend of heritage and progress."
+  },
+  {
+    "poi_id": "POI005",
+    "name": "Lielahti Manor",
+    "location_id": "LOC008",
+    "latitude": 61.533701,
+    "longitude": 23.652781,
+    "category": "Museum (Industrial Heritage)",
+    "description": "A restored stately home turned cultural center, celebrating Lielahti’s industrial heritage with exhibitions, events, and community initiatives."
+  },
+  {
+    "poi_id": "POI006",
+    "name": "Lielahti Sports Park",
+    "location_id": "LOC008",
+    "latitude": 61.519265,
+    "longitude": 23.698743,
+    "category": "Park",
+    "description": "A rejuvenated park featuring sports fields, outdoor gym, and playground, integrating leisure facilities within Lielahti’s historic industrial landscape."
+  },
+  {
+    "poi_id": "POI007",
+    "name": "Possijärvenkatu 1 Business Center",
+    "location_id": "LOC008",
+    "latitude": 61.533598,
+    "longitude": 23.660532,
+    "category": "Office",
+    "description": "A contemporary office complex offering flexible workspaces at Possijärvenkatu 1, embodying Lielahti’s shift from factories to modern commerce."
+  },
+  {
+    "poi_id": "POI008",
+    "name": "Lielahtikeskus A",
+    "location_id": "LOC008",
+    "latitude": 61.512807,
+    "longitude": 23.666539,
+    "category": "Bus Stop",
+    "description": "A busy bus stop providing convenient transit connections across Tampere, linking Lielahti’s commercial and industrial districts."
+  },
+  {
+    "poi_id": "POI009",
+    "name": "Lielahti B",
+    "location_id": "LOC008",
+    "latitude": 61.525458,
+    "longitude": 23.652485,
+    "category": "Bus Stop",
+    "description": "A key bus stop in the heart of Lielahti, serving commuters and linking industrial heritage sites with expanding commerce zones."
+  },
+  {
+    "poi_id": "POI010",
+    "name": "Like Shopping Center Parking Lot",
+    "location_id": "LOC008",
+    "latitude": 61.506888,
+    "longitude": 23.661538,
+    "category": "Parking",
+    "description": "A large parking facility adjacent to Like center, accommodating vehicles and supporting Lielahti’s flourishing retail and cultural activities."
+  }
+]

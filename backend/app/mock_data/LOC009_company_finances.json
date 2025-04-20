@@ -1,0 +1,72 @@
+[
+  {
+    "company_id": "COMP081",
+    "name": "Kahvila Metsäpuu",
+    "location_id": "LOC009",
+    "latitude": 61.4885,
+    "longitude": 23.805,
+    "revenue": 450000,
+    "profit": 67500,
+    "employees": 8,
+    "industry": "Café",
+    "description": "Cosy family-run café offering freshly baked pastries and locally roasted coffee. Popular with residents for its warm atmosphere and free Wi-Fi.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  },
+  {
+    "company_id": "COMP082",
+    "name": "Järvensivu K-Market",
+    "location_id": "LOC009",
+    "latitude": 61.49,
+    "longitude": 23.8,
+    "revenue": 1200000,
+    "profit": 180000,
+    "employees": 15,
+    "industry": "Grocery",
+    "description": "Small neighborhood grocery store stocking everyday essentials and local Finnish products. Known for its friendly staff and convenient hours.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  },
+  {
+    "company_id": "COMP083",
+    "name": "Luonto-Kampaamo",
+    "location_id": "LOC009",
+    "latitude": 61.492,
+    "longitude": 23.81,
+    "revenue": 350000,
+    "profit": 42000,
+    "employees": 6,
+    "industry": "Salon",
+    "description": "Modern hair salon specializing in eco-friendly treatments and personalized styling. Clients rave about its relaxing ambiance and professional stylists.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  },
+  {
+    "company_id": "COMP084",
+    "name": "Järven Hyvinvointi",
+    "location_id": "LOC009",
+    "latitude": 61.485,
+    "longitude": 23.795,
+    "revenue": 800000,
+    "profit": 120000,
+    "employees": 12,
+    "industry": "Wellness",
+    "description": "Wellness studio offering yoga, pilates, and mindfulness workshops in a serene lakeside setting. Instructors are certified and classes cater to all levels.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  },
+  {
+    "company_id": "COMP085",
+    "name": "Järvensivu Opisto",
+    "location_id": "LOC009",
+    "latitude": 61.5,
+    "longitude": 23.82,
+    "revenue": 600000,
+    "profit": 90000,
+    "employees": 20,
+    "industry": "Education",
+    "description": "Community education center providing art, language, and technology courses for all ages. Highly regarded for its diverse program and experienced instructors.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  }
+]

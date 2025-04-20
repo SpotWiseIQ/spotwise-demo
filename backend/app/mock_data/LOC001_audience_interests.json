@@ -1,0 +1,30 @@
+[
+  {
+    "interest_id":"I001",
+    "location_id":"LOC001",
+    "event_id":"",
+    "interest_category":"Culture",
+    "interest_level":0.9
+  },
+  {
+    "interest_id":"I002",
+    "location_id":"LOC001",
+    "event_id":"",
+    "interest_category":"Food",
+    "interest_level":0.36
+  },
+  {
+    "interest_id":"I003",
+    "location_id":"LOC001",
+    "event_id":"",
+    "interest_category":"Shopping",
+    "interest_level":0.36
+  },
+  {
+    "interest_id":"I004",
+    "location_id":"LOC001",
+    "event_id":"",
+    "interest_category":"Technology",
+    "interest_level":0.24
+  }
+]

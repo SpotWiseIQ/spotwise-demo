@@ -1,0 +1,92 @@
+[
+  {
+    "poi_id": "POI001",
+    "name": "Kaukajärvi Community Hub",
+    "location_id": "LOC010",
+    "latitude": 61.46035,
+    "longitude": 23.821212,
+    "category": "Community Center",
+    "description": "A modern community center offering classes, events, and social spaces for all ages in a vibrant suburban setting."
+  },
+  {
+    "poi_id": "POI002",
+    "name": "Kaukajärvi Shopping Center",
+    "location_id": "LOC010",
+    "latitude": 61.453048,
+    "longitude": 23.88522,
+    "category": "Shopping Mall",
+    "description": "A contemporary shopping mall featuring local shops, services, and modern amenities, fostering community engagement in a lively suburban district."
+  },
+  {
+    "poi_id": "POI003",
+    "name": "Kaukajärvi Park",
+    "location_id": "LOC010",
+    "latitude": 61.465585,
+    "longitude": 23.876525,
+    "category": "Suburban Park",
+    "description": "A spacious suburban park with walking paths, playgrounds, and modern amenities designed for community recreation in a tranquil suburban environment."
+  },
+  {
+    "poi_id": "POI004",
+    "name": "Kaukajärvi Nature Trail",
+    "location_id": "LOC010",
+    "latitude": 61.482751,
+    "longitude": 23.85813,
+    "category": "Nature Trail",
+    "description": "An immersive nature trail winding through lush forests, providing suburban residents with outdoor activities and access to modern amenities and scenic views."
+  },
+  {
+    "poi_id": "POI005",
+    "name": "Kaukajärvi Café & Bakery",
+    "location_id": "LOC010",
+    "latitude": 61.474497,
+    "longitude": 23.868712,
+    "category": "Café",
+    "description": "A cozy café serving artisan coffees, pastries, and light meals in a warm community atmosphere with modern amenities in a suburban locale."
+  },
+  {
+    "poi_id": "POI006",
+    "name": "Lakeview Restaurant",
+    "location_id": "LOC010",
+    "latitude": 61.473442,
+    "longitude": 23.821199,
+    "category": "Restaurant",
+    "description": "A stylish restaurant offering international cuisine, community gatherings, and modern amenities within a friendly suburban neighborhood setting."
+  },
+  {
+    "poi_id": "POI007",
+    "name": "Kaukajärvi Elementary School",
+    "location_id": "LOC010",
+    "latitude": 61.459643,
+    "longitude": 23.823361,
+    "category": "School",
+    "description": "A modern suburban school providing quality education, community programs, and state-of-the-art amenities in a supportive learning environment."
+  },
+  {
+    "poi_id": "POI008",
+    "name": "Kaukajärvi East Bus Stop",
+    "location_id": "LOC010",
+    "latitude": 61.464603,
+    "longitude": 23.900639,
+    "category": "Bus Stop",
+    "description": "A community-focused bus stop with real-time information displays, sheltered seating, and modern amenities catering to suburban commuters."
+  },
+  {
+    "poi_id": "POI009",
+    "name": "Kaukajärvi West Bus Stop",
+    "location_id": "LOC010",
+    "latitude": 61.466567,
+    "longitude": 23.853921,
+    "category": "Bus Stop",
+    "description": "A suburban bus stop featuring digital schedule boards, covered seating, and modern amenities to enhance the community transit experience."
+  },
+  {
+    "poi_id": "POI010",
+    "name": "Kaukajärvi Central Parking",
+    "location_id": "LOC010",
+    "latitude": 61.478075,
+    "longitude": 23.90709,
+    "category": "Parking",
+    "description": "A secure parking facility with modern amenities, clear signage, and convenient access supporting community activities in the suburban area."
+  }
+]

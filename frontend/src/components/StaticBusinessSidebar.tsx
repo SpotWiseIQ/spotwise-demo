@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ZoneCard, Zone } from "./ZoneCard";
 import { LanguageSelector } from "./LanguageSelector";
 import { Button } from "@/components/ui/button";
+import { CompareToggle } from "./CompareToggle";
 
 // Sample data for zones
 export const sampleZones: Zone[] = [
@@ -173,15 +174,10 @@ export const StaticBusinessSidebar: React.FC = () => {
             className="pl-8 h-8 text-sm"
           />
         </div>
-        <Button
-          variant={isZoneCompareMode ? "secondary" : "outline"}
-          size="sm"
-          className="whitespace-nowrap"
-          onClick={handleCompareToggle}
-        >
-          <Scale size={16} className="mr-1" />
-          {isZoneCompareMode ? `Selected (${selectedZonesForComparison.length})` : "Compare"}
-        </Button>
+        <CompareToggle
+          isCompareMode={isZoneCompareMode}
+          onToggle={handleCompareToggle}
+        />
       </div>
 
       {/* Zone Cards */}

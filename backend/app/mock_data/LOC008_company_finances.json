@@ -1,0 +1,72 @@
+[
+  {
+    "company_id":"COMP046",
+    "name":"Lielahti Logistics Oy",
+    "location_id":"LOC008",
+    "latitude":61.5235,
+    "longitude":23.675,
+    "revenue":5200000,
+    "profit":780000,
+    "employees":120,
+    "industry":"Logistics",
+    "description":"Lielahti Logistics Oy offers efficient freight transport and warehousing solutions, known for reliable delivery schedules.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP047",
+    "name":"Tampere Foundry Oy",
+    "location_id":"LOC008",
+    "latitude":61.5321,
+    "longitude":23.6592,
+    "revenue":3800000,
+    "profit":836000,
+    "employees":80,
+    "industry":"Manufacturing",
+    "description":"Tampere Foundry Oy specializes in high-quality cast metal parts for industrial clients, maintaining modern production standards.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP048",
+    "name":"Lielahti Retail Center",
+    "location_id":"LOC008",
+    "latitude":61.517,
+    "longitude":23.69,
+    "revenue":2400000,
+    "profit":288000,
+    "employees":50,
+    "industry":"Retail",
+    "description":"Lielahti Retail Center hosts a variety of local boutiques and cafes, offering a friendly shopping experience.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP049",
+    "name":"Nordic Tech Solutions",
+    "location_id":"LOC008",
+    "latitude":61.55,
+    "longitude":23.64,
+    "revenue":6500000,
+    "profit":1170000,
+    "employees":200,
+    "industry":"Tech",
+    "description":"Nordic Tech Solutions delivers innovative software and IoT applications, with a focus on smart city integrations.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP050",
+    "name":"Hotel Lielahti Inn",
+    "location_id":"LOC008",
+    "latitude":61.51,
+    "longitude":23.68,
+    "revenue":1200000,
+    "profit":120000,
+    "employees":40,
+    "industry":"Hospitality",
+    "description":"Hotel Lielahti Inn provides cozy accommodations and conference facilities, popular among business travelers.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  }
+]

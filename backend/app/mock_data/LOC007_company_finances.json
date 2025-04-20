@@ -1,0 +1,72 @@
+[
+  {
+    "company_id":"COMP041",
+    "name":"Park View Caf\u00e9",
+    "location_id":"LOC007",
+    "latitude":61.485123,
+    "longitude":23.772456,
+    "revenue":1200000,
+    "profit":180000,
+    "employees":15,
+    "industry":"Cafe",
+    "description":"Cozy caf\u00e9 offering specialty coffees and homemade pastries with views of Hatanp\u00e4\u00e4 park. Popular spot for locals and visitors alike.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP042",
+    "name":"Hatanp\u00e4\u00e4n Kauneusstudio",
+    "location_id":"LOC007",
+    "latitude":61.490987,
+    "longitude":23.755321,
+    "revenue":800000,
+    "profit":160000,
+    "employees":12,
+    "industry":"Salon",
+    "description":"Modern beauty studio providing hair and skincare services in a relaxed atmosphere. Known for personalized treatments and professional staff.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP043",
+    "name":"Luontaistuotekauppa Hatanp\u00e4\u00e4",
+    "location_id":"LOC007",
+    "latitude":61.472345,
+    "longitude":23.78321,
+    "revenue":600000,
+    "profit":72000,
+    "employees":10,
+    "industry":"Grocery",
+    "description":"Local grocery specializing in natural and organic products, including fresh produce and health supplements. Family-run store with friendly service.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP044",
+    "name":"Hatanp\u00e4\u00e4n Jooga & Wellness",
+    "location_id":"LOC007",
+    "latitude":61.500456,
+    "longitude":23.732123,
+    "revenue":1500000,
+    "profit":270000,
+    "employees":20,
+    "industry":"Wellness",
+    "description":"Full-service wellness studio offering yoga, pilates, and mindfulness classes. Spacious studio with experienced instructors for all levels.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  },
+  {
+    "company_id":"COMP045",
+    "name":"Tampereen Kielikoulu",
+    "location_id":"LOC007",
+    "latitude":61.495678,
+    "longitude":23.787654,
+    "revenue":2500000,
+    "profit":550000,
+    "employees":50,
+    "industry":"Education",
+    "description":"Language school providing Finnish and English courses for adults and children. Highly rated for engaging teaching methods and small class sizes.",
+    "last_update":"2024-01-01 00:00:00",
+    "data_quality":"approx"
+  }
+]

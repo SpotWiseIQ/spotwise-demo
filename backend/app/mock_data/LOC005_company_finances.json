@@ -1,0 +1,72 @@
+[
+  {
+    "company_id": "COMP031",
+    "name": "Pyynikin Panimo",
+    "location_id": "LOC005",
+    "latitude": 61.4948,
+    "longitude": 23.741,
+    "revenue": 5200000.0,
+    "profit": 780000.0,
+    "employees": 75,
+    "industry": "Food",
+    "description": "A craft brewery offering a variety of beers in a historic building near Pyynikki Ridge.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "real"
+  },
+  {
+    "company_id": "COMP032",
+    "name": "Pyynikin Munkkikahvila",
+    "location_id": "LOC005",
+    "latitude": 61.4995,
+    "longitude": 23.7315,
+    "revenue": 1200000.0,
+    "profit": 120000.0,
+    "employees": 25,
+    "industry": "Hospitality",
+    "description": "A historic caf\u00e9 known for its delicious donuts and panoramic views from the ridge.",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "real"
+  },
+  {
+    "company_id": "COMP033",
+    "name": "Pyynikki Observation Tower Gift Shop",
+    "location_id": "LOC005",
+    "latitude": 61.497,
+    "longitude": 23.731,
+    "revenue": 1500000.0,
+    "profit": 180000.0,
+    "employees": 30,
+    "industry": "Retail",
+    "description": "A gift shop located inside the historic Pyynikki Observation Tower, offering souvenirs and local crafts. (approx.)",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  },
+  {
+    "company_id": "COMP034",
+    "name": "Pyynikki Outdoor Gear Rental",
+    "location_id": "LOC005",
+    "latitude": 61.493,
+    "longitude": 23.735,
+    "revenue": 2500000.0,
+    "profit": 500000.0,
+    "employees": 40,
+    "industry": "Retail",
+    "description": "A seasonal outdoor equipment rental service offering skating and skiing gear near the park entrance. (approx.)",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  },
+  {
+    "company_id": "COMP035",
+    "name": "Pyynikki Adult Education Center",
+    "location_id": "LOC005",
+    "latitude": 61.495,
+    "longitude": 23.732,
+    "revenue": 3800000.0,
+    "profit": 684000.0,
+    "employees": 100,
+    "industry": "Education",
+    "description": "An adult education center offering courses in arts and crafts in a historic Pyynikki facility. (approx.)",
+    "last_update": "2024-01-01 00:00:00",
+    "data_quality": "approx"
+  }
+]
