@@ -18,13 +18,9 @@ const hideScrollbarStyles = `
 
 export const ComparisonView: React.FC = () => {
   const {
-    isHotspotCompareMode,
-    isEventCompareMode,
-    selectedHotspotsForComparison,
-    selectedEventsForComparison,
-    clearComparisons,
-    setIsHotspotCompareMode,
-    setIsEventCompareMode
+    isCompareMode,
+    selectedLocationsForComparison,
+    clearComparisons
   } = useTampere();
   
   // State for the selected metric to compare
@@ -32,14 +28,14 @@ export const ComparisonView: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Don't render if not in compare mode or no items selected
-  if ((!isHotspotCompareMode && !isEventCompareMode) || 
-      (isHotspotCompareMode && selectedHotspotsForComparison.length === 0) ||
-      (isEventCompareMode && selectedEventsForComparison.length === 0)) {
+  if (!isCompareMode || selectedLocationsForComparison.length === 0) {
     return null;
   }
 
-  const isHotspotComparing = isHotspotCompareMode && selectedHotspotsForComparison.length > 0;
-  const isEventComparing = isEventCompareMode && selectedEventsForComparison.length > 0;
+  // Determine the type of locations being compared (all items will be the same type)
+  const locationType = selectedLocationsForComparison[0]?.type || null;
+  const isHotspotComparing = locationType === 'natural';
+  const isEventComparing = locationType === 'event';
 
   const handleClose = () => {
     clearComparisons();
@@ -92,12 +88,12 @@ export const ComparisonView: React.FC = () => {
           {/* Scrollable cards container */}
           <div className="overflow-x-auto overflow-y-hidden hide-scrollbar" style={{ maxHeight: '370px' }}>
             <div className="flex space-x-3 pb-2 min-w-max">
-              {isHotspotComparing && selectedHotspotsForComparison.map(hotspot => (
-                <HotspotComparisonCard key={hotspot.id} hotspot={hotspot} />
+              {isHotspotComparing && selectedLocationsForComparison.map(location => (
+                <HotspotComparisonCard key={location.id} hotspot={location} />
               ))}
               
-              {isEventComparing && selectedEventsForComparison.map(event => (
-                <EventComparisonCard key={event.id} event={event} />
+              {isEventComparing && selectedLocationsForComparison.map(location => (
+                <EventComparisonCard key={location.id} event={location} />
               ))}
             </div>
           </div>
@@ -137,9 +133,7 @@ export const ComparisonView: React.FC = () => {
           
           <div className="bg-white rounded-lg shadow-sm p-2">
             <ComparisonChart 
-              data={isHotspotComparing 
-                ? selectedHotspotsForComparison 
-                : selectedEventsForComparison}
+              data={selectedLocationsForComparison}
               type={isHotspotComparing ? 'hotspot' : 'event'}
               metricType={selectedMetric}
             />

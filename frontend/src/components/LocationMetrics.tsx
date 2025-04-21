@@ -52,7 +52,6 @@ const MetricCard: React.FC<MetricCardProps> = ({
   isLoadingTraffic = false 
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { selectedHotspot, selectedEvent } = useTampere();
 
   // Notify parent component when expanded state changes
   useEffect(() => {
@@ -356,7 +355,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
         );
         break;
         
-      case "Expected Capacity":
+      case "Expected Attendance":
         // Radial gauge chart
         const max = 1000; // Example maximum
         const percentage = Math.min(100, (capacityValue / max) * 100);
@@ -448,32 +447,27 @@ export interface LocationMetricsProps {
 }
 
 export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpanded }) => {
-  const { 
-    selectedHotspot, 
-    selectedEvent, 
-    loadHotspotFootTraffic, 
+  const {
+    selectedLocation,
+    loadHotspotFootTraffic,
     loadEventFootTraffic,
     loadHotspotDetailedMetrics,
-    loadEventDetailedMetrics 
+    loadEventDetailedMetrics,
+    detailedMetrics
   } = useTampere();
-  
+
   const [expandedCardCount, setExpandedCardCount] = useState(0);
-  const [hotspotFootTrafficData, setHotspotFootTrafficData] = useState<any[]>([]);
-  const [eventFootTrafficData, setEventFootTrafficData] = useState<any[]>([]);
-  const [isLoadingHotspotData, setIsLoadingHotspotData] = useState(false);
-  const [isLoadingEventData, setIsLoadingEventData] = useState(false);
-  
-  // New states for detailed metrics
-  const [hotspotDetailedMetrics, setHotspotDetailedMetrics] = useState<any>(null);
-  const [eventDetailedMetrics, setEventDetailedMetrics] = useState<any>(null);
-  const [loadingHotspotDetailedMetrics, setLoadingHotspotDetailedMetrics] = useState(false);
-  const [loadingEventDetailedMetrics, setLoadingEventDetailedMetrics] = useState(false);
-  
+  const [footTrafficData, setFootTrafficData] = useState<any[]>([]);
+  const [isLoadingData, setIsLoadingData] = useState(false);
+
+  const isHotspot = selectedLocation?.type === 'natural';
+  const isEvent = selectedLocation?.type === 'event';
+
   // Track when any card is expanded
   const handleCardExpandToggle = (expanded: boolean) => {
     setExpandedCardCount(prev => expanded ? prev + 1 : Math.max(0, prev - 1));
   };
-  
+
   // Notify parent component if any card is expanded
   useEffect(() => {
     if (onAnyCardExpanded) {
@@ -481,116 +475,37 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
     }
   }, [expandedCardCount, onAnyCardExpanded]);
 
-  // Load hotspot foot traffic data when a hotspot is selected
+  // Load foot traffic data when a location is selected
   useEffect(() => {
-    const loadHotspotData = async () => {
-      if (selectedHotspot) {
-        setIsLoadingHotspotData(true);
+    const loadData = async () => {
+      if (selectedLocation) {
+        setIsLoadingData(true);
         try {
-          // Use pre-loaded foot traffic data if available
-          if (selectedHotspot.footTraffic) {
-            setHotspotFootTrafficData(selectedHotspot.footTraffic);
-          } else {
-            const data = await loadHotspotFootTraffic(selectedHotspot.id);
-            if (data) {
-              setHotspotFootTrafficData(data);
-            }
+          if (selectedLocation.footTraffic) {
+            setFootTrafficData(selectedLocation.footTraffic);
+          } else if (isHotspot) {
+            const data = await loadHotspotFootTraffic(selectedLocation.id);
+            if (data) setFootTrafficData(data);
+          } else if (isEvent) {
+            const data = await loadEventFootTraffic(selectedLocation.id);
+            if (data) setFootTrafficData(data);
           }
         } catch (error) {
-          console.error("Error loading hotspot foot traffic data:", error);
+          console.error('Error loading foot traffic data:', error);
         } finally {
-          setIsLoadingHotspotData(false);
+          setIsLoadingData(false);
         }
       } else {
-        setHotspotFootTrafficData([]);
+        setFootTrafficData([]);
       }
     };
-
-    loadHotspotData();
-  }, [selectedHotspot, loadHotspotFootTraffic]);
-
-  // Load detailed metrics for hotspot when selected
-  useEffect(() => {
-    const loadHotspotDetailedData = async () => {
-      if (selectedHotspot) {
-        setLoadingHotspotDetailedMetrics(true);
-        try {
-          const data = await loadHotspotDetailedMetrics(selectedHotspot.id);
-          if (data) {
-            setHotspotDetailedMetrics(data);
-          }
-        } catch (error) {
-          console.error("Error loading hotspot detailed metrics:", error);
-        } finally {
-          setLoadingHotspotDetailedMetrics(false);
-        }
-      } else {
-        setHotspotDetailedMetrics(null);
-      }
-    };
-
-    loadHotspotDetailedData();
-  }, [selectedHotspot, loadHotspotDetailedMetrics]);
-
-  // Load event foot traffic data when an event is selected
-  useEffect(() => {
-    const loadEventData = async () => {
-      if (selectedEvent) {
-        setIsLoadingEventData(true);
-        try {
-          // Use pre-loaded foot traffic data if available
-          if (selectedEvent.footTraffic) {
-            setEventFootTrafficData(selectedEvent.footTraffic);
-          } else {
-            const data = await loadEventFootTraffic(selectedEvent.id);
-            if (data) {
-              setEventFootTrafficData(data);
-            }
-          }
-        } catch (error) {
-          console.error("Error loading event foot traffic data:", error);
-        } finally {
-          setIsLoadingEventData(false);
-        }
-      } else {
-        setEventFootTrafficData([]);
-      }
-    };
-
-    loadEventData();
-  }, [selectedEvent, loadEventFootTraffic]);
-  
-  // Load detailed metrics for event when selected
-  useEffect(() => {
-    const loadEventDetailedData = async () => {
-      if (selectedEvent) {
-        setLoadingEventDetailedMetrics(true);
-        try {
-          const data = await loadEventDetailedMetrics(selectedEvent.id);
-          if (data) {
-            setEventDetailedMetrics(data);
-          }
-        } catch (error) {
-          console.error("Error loading event detailed metrics:", error);
-        } finally {
-          setLoadingEventDetailedMetrics(false);
-        }
-      } else {
-        setEventDetailedMetrics(null);
-      }
-    };
-
-    loadEventDetailedData();
-  }, [selectedEvent, loadEventDetailedMetrics]);
+    loadData();
+  }, [selectedLocation, loadHotspotFootTraffic, loadEventFootTraffic, isHotspot, isEvent]);
 
   // Calculate the peak hour from foot traffic data
   const findPeakHour = (data: any[]) => {
     if (!data || data.length === 0) return null;
-    
-    return data.reduce(
-      (max, item) => item.value > max.value ? item : max,
-      { hour: 0, value: 0 }
-    ).hour;
+    return data.reduce((max, item) => item.value > max.value ? item : max, { hour: 0, value: 0 }).hour;
   };
 
   // Format hour to display format (e.g., "17:00")
@@ -599,128 +514,168 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
     return `${hour}:00`;
   };
 
-  // Get peak hours
-  const hotspotPeakHour = findPeakHour(hotspotFootTrafficData);
-  const eventPeakHour = findPeakHour(eventFootTrafficData);
+  const peakHour = findPeakHour(footTrafficData);
+
+  // Helper to get detailed data safely
+  const getDetailed = (key: string) => detailedMetrics?.detailed?.[key];
 
   return (
     <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 h-full">
-      {selectedHotspot && (
+      {selectedLocation && isHotspot && (
         <>
           <ChatBox className="col-span-1 h-full" onExpandToggle={handleCardExpandToggle} />
           <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '100%' }}>
             <div className="grid grid-cols-2 gap-4">
               <MetricCard
                 title="Population (Est.)"
-                value={selectedHotspot.population || "N/A"}
+                value={selectedLocation.population || detailedMetrics?.metrics?.population || "N/A"}
                 icon={<Users size={18} />}
                 vs="in this zone"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={hotspotFootTrafficData}
-                isLoadingTraffic={isLoadingHotspotData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Area Type"
-                value={selectedHotspot.areaType || "N/A"}
+                value={selectedLocation.areaType || detailedMetrics?.metrics?.areaType || "N/A"}
                 icon={<Building size={18} />}
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={hotspotFootTrafficData}
-                isLoadingTraffic={isLoadingHotspotData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Peak Foot Traffic Hour"
-                value={isLoadingHotspotData ? "Loading..." : formatHour(hotspotPeakHour) || selectedHotspot.peakHour || "17:00"}
+                value={isLoadingData ? "Loading..." : formatHour(peakHour) || selectedLocation.peakHour || detailedMetrics?.metrics?.peakHour || "17:00"}
                 icon={<Clock size={18} />}
                 vs="estimated daily peak"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={hotspotFootTrafficData}
-                isLoadingTraffic={isLoadingHotspotData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Avg. Daily Traffic"
-                value={selectedHotspot.avgDailyTraffic || "~2,500"}
+                value={selectedLocation.avgDailyTraffic || detailedMetrics?.metrics?.avgDailyTraffic || "~2,500"}
                 icon={<TrendingUp size={18} />}
                 vs="people/day"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={hotspotFootTrafficData}
-                isLoadingTraffic={isLoadingHotspotData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Dominant Demo."
-                value={selectedHotspot.dominantDemographics || "N/A"}
+                value={selectedLocation.dominantDemographics || detailedMetrics?.metrics?.dominantDemographics || "N/A"}
                 icon={<Users2 size={18} />}
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={hotspotFootTrafficData}
-                isLoadingTraffic={isLoadingHotspotData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Nearby Businesses"
-                value={selectedHotspot.nearbyBusinesses || "15+"}
+                value={selectedLocation.nearbyBusinesses || detailedMetrics?.metrics?.nearbyBusinesses || "15+"}
                 icon={<Wallet size={18} />}
                 vs="within 500m"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={hotspotFootTrafficData}
-                isLoadingTraffic={isLoadingHotspotData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
             </div>
           </div>
         </>
       )}
-
-      {selectedEvent && (
+      {selectedLocation && isEvent && (
         <>
           <ChatBox className="col-span-1 h-full" onExpandToggle={handleCardExpandToggle} />
           <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '100%' }}>
             <div className="grid grid-cols-2 gap-4">
               <MetricCard
                 title="Event Type"
-                value={selectedEvent.type || "N/A"}
+                value={
+                  selectedLocation.event_type ||
+                  selectedLocation.type_info ||
+                  selectedLocation.type ||
+                  detailedMetrics?.metrics?.type ||
+                  "N/A"
+                }
                 icon={<Calendar size={18} />}
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={eventFootTrafficData}
-                isLoadingTraffic={isLoadingEventData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Duration"
-                value={selectedEvent.duration || "N/A"}
+                value={
+                  selectedLocation.duration ||
+                  (selectedLocation.start_time && selectedLocation.end_time
+                    ? (() => {
+                        // Try to calculate duration in hours/minutes
+                        const start = new Date(selectedLocation.start_time);
+                        const end = new Date(selectedLocation.end_time);
+                        if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
+                          const diffMs = end.getTime() - start.getTime();
+                          const diffH = Math.floor(diffMs / (1000 * 60 * 60));
+                          const diffM = Math.floor((diffMs / (1000 * 60)) % 60);
+                          return `${diffH}h${diffM > 0 ? ` ${diffM}m` : ''}`;
+                        }
+                        return "N/A";
+                      })()
+                    : detailedMetrics?.metrics?.duration || "N/A")
+                }
                 icon={<Clock size={18} />}
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={eventFootTrafficData}
-                isLoadingTraffic={isLoadingEventData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
-                title="Expected Capacity"
-                value={selectedEvent.capacity ? String(selectedEvent.capacity) : "N/A"}
+                title="Expected Attendance"
+                value={
+                  (selectedLocation.expected_attendance !== undefined
+                    ? selectedLocation.expected_attendance.toString()
+                    : selectedLocation.capacity?.toString()) ||
+                  detailedMetrics?.metrics?.capacity ||
+                  "N/A"
+                }
                 icon={<Users size={18} />}
                 vs="max attendees"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={eventFootTrafficData}
-                isLoadingTraffic={isLoadingEventData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Expected Crowd"
-                value={selectedEvent.demographics || "N/A"}
+                value={
+                  (getDetailed('expected_crowd') && getDetailed('expected_crowd').primary_demographic) ||
+                  selectedLocation.demographics ||
+                  detailedMetrics?.metrics?.demographics ||
+                  "N/A"
+                }
                 icon={<Users2 size={18} />}
                 vs="primary demographic"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={eventFootTrafficData}
-                isLoadingTraffic={isLoadingEventData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
               <MetricCard
                 title="Peak Foot Traffic Impact"
-                value={isLoadingEventData ? "Loading..." : (eventPeakHour !== null ? `+${eventPeakHour}:00` : selectedEvent.peakTrafficImpact || "+40%")}
+                value={
+                  isLoadingData
+                    ? "Loading..."
+                    : (peakHour !== null
+                        ? `+${peakHour}:00`
+                        : selectedLocation.peakTrafficImpact ||
+                          detailedMetrics?.metrics?.peakTrafficImpact ||
+                          "+40%")
+                }
                 icon={<TrendingUp size={18} />}
                 vs="around event time"
                 onExpandToggle={handleCardExpandToggle}
-                footTrafficData={eventFootTrafficData}
-                isLoadingTraffic={isLoadingEventData}
+                footTrafficData={footTrafficData}
+                isLoadingTraffic={isLoadingData}
               />
             </div>
           </div>
         </>
       )}
-
-      {!selectedHotspot && !selectedEvent && (
+      {!selectedLocation && (
         <div className="col-span-3 text-center text-gray-500 pt-10">
           Select a hotspot or event on the map or list to see details.
         </div>

@@ -231,12 +231,6 @@ export const NaturalHotspotCard: React.FC<NaturalHotspotCardProps> = ({
           <div>
             <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Natural Hotspot Details</h4>
             <div className="space-y-1.5 text-sm">
-              {hotspot.address && (
-                <p className="flex items-start">
-                  <MapPin size={14} className="mr-1.5 mt-0.5 text-gray-500 flex-shrink-0" />
-                  <span>{hotspot.address}</span>
-                </p>
-              )}
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
                 {hotspot.areaType && (
                   <div className="flex items-center">

@@ -17,7 +17,6 @@ export const HotspotComparisonCard: React.FC<HotspotComparisonCardProps> = ({ ho
           </div>
           <h3 className="text-sm font-medium truncate">{hotspot.name}</h3>
         </div>
-        <p className="text-xs text-gray-500 truncate">{hotspot.address || 'No address'}</p>
       </div>
       
       <div className="p-2 flex-grow flex flex-col">

@@ -2,9 +2,25 @@ import React from "react";
 import { CircleDot, CalendarDays, Bus, Train, Store, SquareParking } from "lucide-react";
 import { useTampere } from "@/lib/TampereContext";
 
+// Helper to map POI category to icon
+const getPOIIcon = (category: string) => {
+  switch (category) {
+    case "Parking":
+      return <SquareParking className="text-blue-800" size={16} />;
+    case "Bus Stop":
+      return <Bus className="text-blue-600" size={16} />;
+    case "Tram Stop":
+      return <Train className="text-purple-700" size={16} />;
+    case "Business":
+      return <Store className="text-orange-600" size={16} />;
+    default:
+      return <Store className="text-gray-400" size={16} />;
+  }
+};
+
 export const MobileBusinessLegend: React.FC = () => {
   const { pulse } = useTampere();
-  
+
   const mapItems = [
     { icon: <CircleDot className="text-green-600" size={16} />, label: "Available" },
     { icon: <CalendarDays className="text-red-500" size={16} />, label: "Events" },
@@ -21,8 +37,9 @@ export const MobileBusinessLegend: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white bg-opacity-90 rounded-md shadow-sm p-2 border border-gray-100 max-w-[150px]">
+    <div className="bg-white bg-opacity-90 rounded-md shadow-sm p-2 border border-gray-100 max-w-[200px]">
       <div className="flex flex-col gap-y-1">
+        {/* Legend */}
         {mapItems.map((item, index) => (
           <div key={`item-${index}`} className="flex items-center gap-2">
             <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center">

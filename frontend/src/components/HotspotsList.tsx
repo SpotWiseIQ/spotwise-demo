@@ -14,29 +14,35 @@ export const HotspotsList: React.FC = () => {
     selectedLocationsForComparison,
     toggleLocationComparison,
     loading,
-    error
+    error,
+    loadHotspotDetailedMetrics,
+    loadEventDetailedMetrics,
+    setDetailedMetrics
   } = useTampere();
 
-  const handleLocationClick = (location: (typeof locations)[0]) => {
-    // If in compare mode, ignore clicks on the card itself
+  const handleLocationClick = async (location: (typeof locations)[0]) => {
     if (isCompareMode) {
       return;
     }
-
     // Enhanced logging with colors
     console.log(
-      `%c📍 CLICK EVENT: Location clicked - id=${location.id}, label=${location.label}, type=${location.type}`, 
+      `%c📍 CLICK EVENT: Location clicked - id=${location.id}, label=${location.label}, type=${location.type}`,
       'background: #e91e63; color: white; font-weight: bold; padding: 3px 5px; border-radius: 3px;'
     );
-    
-    // Log the action being taken
     console.log(
       `%c👉 ACTION: ${selectedLocation?.id === location.id ? 'Deselecting' : 'Selecting'} location`,
       'background: #673ab7; color: white; font-weight: bold; padding: 2px 5px; border-radius: 3px;'
     );
-    
     // If the clicked location is already selected, deselect it (toggle behavior)
-    setSelectedLocation(selectedLocation?.id === location.id ? null : location);
+    if (selectedLocation?.id === location.id) {
+      setSelectedLocation(null);
+      setDetailedMetrics(null);
+    } else {
+      setSelectedLocation(location);
+      // Always fetch detailed metrics from the locations endpoint
+      const metrics = await loadHotspotDetailedMetrics(location.id);
+      setDetailedMetrics(metrics);
+    }
   };
 
   const handleCompareToggle = () => {

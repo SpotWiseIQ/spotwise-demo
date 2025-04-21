@@ -223,7 +223,7 @@ export const StaticBusinessMap: React.FC<StaticBusinessMapProps> = ({
       const popup = new maplibregl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: [0, -10],
+        offset: [0, -30],
         className: 'marker-tooltip'
       });
 

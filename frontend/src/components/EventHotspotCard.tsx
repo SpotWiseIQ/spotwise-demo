@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Event, UnifiedHotspot } from "@/lib/types";
 import { BarChart2, ChevronDown, ChevronUp, Clock, MapPin, Users, ArrowLeftRight, Footprints, Cloud, Sun, Wind, CloudRain } from "lucide-react";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, isValid } from "date-fns";
 import { FootTrafficChart } from "./FootTrafficChart";
 import { useTampere } from "@/lib/TampereContext";
 import { 
@@ -39,9 +39,19 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
   // Format display time from start_time and end_time
   const getFormattedTime = () => {
     if (typeof event.start_time === "string" && typeof event.end_time === "string") {
-      const startDate = parseISO(event.start_time);
-      const endDate = parseISO(event.end_time);
-      return `${format(startDate, "HH:mm")} - ${format(endDate, "HH:mm")}`;
+      try {
+        const startDate = parseISO(event.start_time);
+        const endDate = parseISO(event.end_time);
+        
+        if (!isValid(startDate) || !isValid(endDate)) {
+          return event.time || "Time not specified";
+        }
+        
+        return `${format(startDate, "HH:mm")} - ${format(endDate, "HH:mm")}`;
+      } catch (error) {
+        console.error("Error parsing start/end time:", error);
+        return event.time || "Time not specified";
+      }
     } else if (event.time) {
       // Fallback to old time field if available
       return event.time;
@@ -52,10 +62,24 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
   // Format display date from start_time
   const getFormattedDate = () => {
     if (typeof event.start_time === "string") {
-      return format(parseISO(event.start_time), "MMM d");
+      try {
+        const startDate = parseISO(event.start_time);
+        if (!isValid(startDate)) return "Date not specified";
+        return format(startDate, "MMM d");
+      } catch (error) {
+        console.error("Error parsing start_time:", error);
+        return "Date not specified";
+      }
     } else if (typeof event.date === "string") {
       // Fallback to old date field if available
-      return format(new Date(event.date), "MMM d");
+      try {
+        const eventDate = new Date(event.date);
+        if (!isValid(eventDate)) return "Date not specified";
+        return format(eventDate, "MMM d");
+      } catch (error) {
+        console.error("Error formatting event.date:", error);
+        return "Date not specified";
+      }
     }
     return "Date not specified";
   };
@@ -202,14 +226,14 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
 
       <div className="text-xs text-gray-500 px-2 pb-1 -mt-1">
         <span className="font-medium text-tampere-red">{displayTime}</span>
-        {/* Only show place if it's different from the event name */}
-        {event.place && event.place !== event.name && (
-          <span> &middot; {event.place}</span>
+        {/* Only show venue if it's different from the event name */}
+        {event.venue && event.venue !== event.name && (
+          <span> &middot; {event.venue}</span>
         )}
-        {(!event.place || event.place === event.name) && event.address && (
-          <span> &middot; {event.address}</span>
+        {(!event.venue || event.venue === event.name) && event.venue_address && (
+          <span> &middot; {event.venue_address}</span>
         )}
-        {(!event.place || event.place === event.name) && !event.address && (
+        {(!event.venue || event.venue === event.name) && !event.venue_address && (
           <span> &middot; Location not specified</span>
         )}
       </div>
@@ -225,12 +249,12 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
       {selected && !isCompareMode && (
         <div className="border-t border-gray-200 mx-2 mt-1 mb-2 pt-3 px-1 space-y-4">
            <div>
-             <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Event Hotspot Details</h4>
+             <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Event Details</h4>
              <div className="space-y-1.5 text-sm">
-               {event.address && (
+               {event.venue_address && (
                  <p className="flex items-start">
                    <MapPin size={14} className="mr-1.5 mt-0.5 text-gray-500 flex-shrink-0" />
-                   <span>{event.address}</span>
+                   <span>{event.venue_address}</span>
                  </p>
                )}
                <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">

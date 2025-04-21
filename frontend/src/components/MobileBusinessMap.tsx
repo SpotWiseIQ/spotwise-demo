@@ -14,6 +14,11 @@ const debugLog = (message: string, data?: any) => {
   console.log(`%c🗺️ MAP DEBUG: ${message}`, 'background: #f0f0f0; color: #0066cc; font-weight: bold; padding: 2px 5px; border-radius: 3px;', data || '');
 };
 
+// Add specialized debug function for fetch operations
+const debugFetch = (message: string, data?: any) => {
+  console.log(`%c🔍 FETCH DEBUG: ${message}`, 'background: #fff0f0; color: #cc0066; font-weight: bold; padding: 2px 5px; border-radius: 3px;', data || '');
+};
+
 export const MobileBusinessMap: React.FC = () => {
   const context = useTampere();
   
@@ -174,38 +179,263 @@ export const MobileBusinessMap: React.FC = () => {
       hasSelectedHotspot: !!selectedHotspot,
       hasSelectedEvent: !!selectedEvent
     });
-    
-    const getMapItems = async () => {
+
+    let isMounted = true;
+    const { detailedMetrics, loadHotspotDetailedMetrics, loadEventDetailedMetrics } = context;
+
+    const getMapItemsFromMetrics = (metrics: any): MapItem[] => {
+      if (!metrics) {
+        debugLog('No metrics data provided');
+        return [];
+      }
+
+      // Debug the entire metrics object to see its structure
+      debugLog('Detailed metrics structure', {
+        hasPlacesForRent: !!metrics.places_for_rent,
+        placesForRentLength: metrics.places_for_rent?.length,
+        hasPlacesOfInterest: !!metrics.places_of_interest,
+        placesOfInterestLength: metrics.places_of_interest?.length,
+        hasPois: !!metrics.pois,
+        poisLength: metrics.pois?.length,
+        hasCompanies: !!metrics.companies,
+        companiesLength: metrics.companies?.length,
+        metricsKeys: Object.keys(metrics)
+      });
+
+      // Combined items array
+      const items: MapItem[] = [];
+      
+      // Handle places_for_rent (all mapped to "available" type)
+      if (metrics.places_for_rent && Array.isArray(metrics.places_for_rent)) {
+        debugLog('Raw places_for_rent data', metrics.places_for_rent);
+        
+        const placesForRent = metrics.places_for_rent.map((place: any, index: number) => {
+          // Extract coordinates, handling different possible formats
+          let coordinates: [number, number] | null = null;
+          
+          if (Array.isArray(place.coordinates) && place.coordinates.length === 2) {
+            coordinates = place.coordinates as [number, number];
+          } else if (place.longitude !== undefined && place.latitude !== undefined) {
+            coordinates = [parseFloat(place.longitude), parseFloat(place.latitude)];
+          }
+          
+          // Skip if no valid coordinates
+          if (!coordinates || coordinates.some(c => isNaN(c))) {
+            debugLog(`Invalid coordinates for place_for_rent at index ${index}`, place);
+            return null;
+          }
+          
+          return {
+            type: 'available',
+            id: place.id || `rent-${index}`,
+            coordinates,
+            label: place.name || 'Available Space',
+          };
+        }).filter(Boolean) as MapItem[];
+        
+        items.push(...placesForRent);
+        debugLog(`Added ${placesForRent.length} places_for_rent items`);
+      } else {
+        debugLog('No places_for_rent data found or not in expected format');
+      }
+
+      // Handle places_of_interest or pois (mapped based on category)
+      const poisData = metrics.places_of_interest || metrics.pois || [];
+      
+      if (Array.isArray(poisData) && poisData.length > 0) {
+        debugLog('Raw POIs data', poisData);
+        
+        const placesOfInterest = poisData.map((poi: any, index: number) => {
+          // Extract coordinates, handling different possible formats
+          let coordinates: [number, number] | null = null;
+          
+          if (Array.isArray(poi.coordinates) && poi.coordinates.length === 2) {
+            coordinates = poi.coordinates as [number, number];
+          } else if (poi.longitude !== undefined && poi.latitude !== undefined) {
+            coordinates = [parseFloat(poi.longitude), parseFloat(poi.latitude)];
+          }
+          
+          // Skip if no valid coordinates
+          if (!coordinates || coordinates.some(c => isNaN(c))) {
+            debugLog(`Invalid coordinates for POI at index ${index}`, poi);
+            return null;
+          }
+          
+          // Map category to icon type
+          const type = mapCategoryToIconType(poi.category);
+          return {
+            type,
+            id: poi.id || poi.poi_id || `poi-${index}`,
+            coordinates,
+            label: poi.name || poi.category || 'Point of Interest',
+          };
+        }).filter(Boolean) as MapItem[];
+        
+        items.push(...placesOfInterest);
+        debugLog(`Added ${placesOfInterest.length} POI items`);
+      } else {
+        debugLog('No POI data found or not in expected format');
+      }
+      
+      // Handle companies as business points if available
+      if (metrics.companies && Array.isArray(metrics.companies) && metrics.companies.length > 0) {
+        debugLog('Raw companies data', metrics.companies);
+        
+        const companies = metrics.companies.map((company: any, index: number) => {
+          // Extract coordinates, handling different possible formats
+          let coordinates: [number, number] | null = null;
+          
+          if (Array.isArray(company.coordinates) && company.coordinates.length === 2) {
+            coordinates = company.coordinates as [number, number];
+          } else if (company.longitude !== undefined && company.latitude !== undefined) {
+            coordinates = [parseFloat(company.longitude), parseFloat(company.latitude)];
+          }
+          
+          // Skip if no valid coordinates
+          if (!coordinates || coordinates.some(c => isNaN(c))) {
+            debugLog(`Invalid coordinates for company at index ${index}`, company);
+            return null;
+          }
+          
+          return {
+            type: 'business',
+            id: company.id || company.company_id || `company-${index}`,
+            coordinates,
+            label: company.name || 'Business',
+          };
+        }).filter(Boolean) as MapItem[];
+        
+        items.push(...companies);
+        debugLog(`Added ${companies.length} company items`);
+      }
+      
+      // If no items found and in development, add mock data for testing
+      if (items.length === 0 && process.env.NODE_ENV === 'development') {
+        const mockItems: MapItem[] = [
+          {
+            type: 'available',
+            id: 'mock-rent-1',
+            coordinates: [23.8020, 61.5055], // Offset from the center
+            label: 'Mock Available Spot'
+          },
+          {
+            type: 'parking',
+            id: 'mock-parking-1',
+            coordinates: [23.8030, 61.5045], // Offset from the center
+            label: 'Mock Parking'
+          },
+          {
+            type: 'bus',
+            id: 'mock-bus-1',
+            coordinates: [23.8010, 61.5040], // Offset from the center
+            label: 'Mock Bus Stop'
+          }
+        ];
+        items.push(...mockItems);
+        debugLog('Added mock map items for testing', mockItems);
+      }
+      
+      // Final validation of all items
+      const validItems = items.filter(item => {
+        const isValid = item && 
+                        item.coordinates && 
+                        Array.isArray(item.coordinates) && 
+                        item.coordinates.length === 2 && 
+                        !item.coordinates.some(isNaN);
+        
+        if (!isValid) {
+          debugLog('Filtering out invalid map item', item);
+        }
+        
+        return isValid;
+      });
+      
+      debugLog(`Final map items count: ${validItems.length}`);
+      return validItems;
+    };
+
+    // Helper function to map POI category to icon type
+    const mapCategoryToIconType = (category: string): string => {
+      if (!category) return 'business';
+      
+      const categoryLower = category.toLowerCase();
+      
+      if (categoryLower.includes('parking')) return 'parking';
+      if (categoryLower.includes('bus') || categoryLower.includes('bus stop')) return 'bus';
+      if (categoryLower.includes('tram') || categoryLower.includes('tram stop')) return 'tram';
+      if (categoryLower.includes('available') || categoryLower.includes('for rent')) return 'available';
+      
+      // Default to business for any other category
+      return 'business';
+    };
+
+    const fetchAndSetMetrics = async (location: any, isHotspot: boolean) => {
       setLoadingMapItems(true);
       try {
-        if (selectedHotspot || selectedEvent) {
-          const coordinates = selectedHotspot
-            ? selectedHotspot.coordinates
-            : selectedEvent!.coordinates;
-
-          // Request all types in a single API call
-          const availableTypes = ["bus", "tram", "business", "parking", "available"];
-          debugLog("API call: fetchMapItems for selected location with all types");
-          const items = await fetchMapItems(coordinates[1], coordinates[0], 400, availableTypes);
-          debugLog("Map items fetched successfully", items);
-          setMapItems(items);
+        let metrics = null;
+        if (isHotspot) {
+          debugFetch(`Loading hotspot detailed metrics for ${location.id}`);
+          metrics = await loadHotspotDetailedMetrics(location.id);
         } else {
-          // Clear map items when nothing is selected
-          setMapItems([]);
-          debugLog("Fetch map items cleared");
+          debugFetch(`Loading event detailed metrics for ${location.id}`);
+          metrics = await loadEventDetailedMetrics(location.id);
+        }
+        
+        // Check if metrics has detailed property (new API format)
+        if (metrics && metrics.detailed) {
+          debugFetch("Found 'detailed' property in metrics response", metrics.detailed);
+          // Move POIs and companies into the main metrics object to maintain backward compatibility
+          if (metrics.detailed.pois) {
+            metrics.pois = metrics.detailed.pois;
+            debugFetch(`Found ${metrics.pois.length} POIs in detailed.pois`);
+          }
+          if (metrics.detailed.places_for_rent) {
+            metrics.places_for_rent = metrics.detailed.places_for_rent;
+            debugFetch(`Found ${metrics.places_for_rent.length} places for rent in detailed.places_for_rent`);
+          }
+          if (metrics.detailed.companies) {
+            metrics.companies = metrics.detailed.companies;
+            debugFetch(`Found ${metrics.companies.length} companies in detailed.companies`);
+          }
+        }
+        
+        // Do NOT setDetailedMetrics here; let the card selection logic handle it
+        if (isMounted) {
+          const mapItemsResult = getMapItemsFromMetrics(metrics);
+          debugFetch(`Setting ${mapItemsResult.length} map items from metrics`);
+          setMapItems(mapItemsResult);
+          debugLog("Map items set from freshly loaded detailed metrics (local only)", metrics);
         }
       } catch (error) {
-        console.error("Failed to fetch map items:", error);
-        debugLog("Error fetching map items", error);
-        setMapItems([]);
-        debugLog("Fetch map items error", { error });
+        if (isMounted) {
+          setMapItems([]);
+          debugLog("Error loading detailed metrics for map items", error);
+          console.error("Failed to load detailed metrics:", error);
+        }
       } finally {
-        setLoadingMapItems(false);
+        if (isMounted) setLoadingMapItems(false);
       }
     };
 
-    getMapItems();
-  }, [selectedHotspot, selectedEvent]);
+    if (selectedHotspot || selectedEvent) {
+      const selected = selectedHotspot || selectedEvent;
+      const isHotspot = !!selectedHotspot;
+      // Only fetch if context.detailedMetrics is null or for a different location
+      if (!context.detailedMetrics || context.detailedMetrics.id !== selected.id) {
+        fetchAndSetMetrics(selected, isHotspot);
+      } else {
+        setMapItems(getMapItemsFromMetrics(context.detailedMetrics));
+        debugLog("Map items set from cached detailed metrics", context.detailedMetrics);
+      }
+    } else {
+      setMapItems([]);
+      debugLog("Fetch map items cleared");
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedHotspot, selectedEvent, context.detailedMetrics]);
 
   // Update map initialization to wait for tampereCenter to be set
   useEffect(() => {
@@ -235,7 +465,7 @@ export const MobileBusinessMap: React.FC = () => {
         container: mapContainer.current,
         style: "https://tiles.openfreemap.org/styles/positron",
         center: tampereCenter,
-        zoom: 13.5,
+        zoom: 11,
       });
 
       debugLog("Map instance created successfully");
@@ -531,7 +761,7 @@ export const MobileBusinessMap: React.FC = () => {
       const popup = new maplibregl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: [0, -8],
+        offset: [0, -30],
         className: 'marker-tooltip',
         anchor: 'bottom'
       }).setText(selectedHotspot.name || `${selectedHotspot.label} Zone`);
@@ -564,7 +794,9 @@ export const MobileBusinessMap: React.FC = () => {
         mapItems.forEach((item: MapItem) => {
           if (!item || !item.coordinates) return;
           
+          // Create marker element without position:relative
           let markerElement = document.createElement("div");
+          // The maplibregl-marker wrapper will handle positioning
           markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
           markerElement.innerHTML = getMapItemIcon(item.type);
 
@@ -572,10 +804,10 @@ export const MobileBusinessMap: React.FC = () => {
           const popup = new maplibregl.Popup({
             closeButton: false,
             closeOnClick: false,
-            offset: [0, -8],
+            offset: [0, -30],
             className: 'marker-tooltip',
             anchor: 'bottom'
-          }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+          }).setText(item.label || (item.type.charAt(0).toUpperCase() + item.type.slice(1)));
 
           markerElement.addEventListener("mouseenter", () => {
             popup.addTo(map.current!);
@@ -585,6 +817,7 @@ export const MobileBusinessMap: React.FC = () => {
             popup.remove();
           });
 
+          // Let MapLibre handle the absolute positioning
           const marker = new maplibregl.Marker({
             element: markerElement,
             anchor: "center",
@@ -593,7 +826,11 @@ export const MobileBusinessMap: React.FC = () => {
             .setPopup(popup)
             .addTo(map.current!);
 
+          // Store reference for cleanup
           markersRef.current[`${item.type}-${item.id}`] = marker;
+          
+          // Debug log for verification
+          debugLog(`Added marker for ${item.type}: ${item.label || item.id} at [${item.coordinates}]`);
         });
       }
     } else if (selectedEvent && map.current) {
@@ -611,10 +848,10 @@ export const MobileBusinessMap: React.FC = () => {
       const popup = new maplibregl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: [0, -8],
+        offset: [0, -30],
         className: 'marker-tooltip',
         anchor: 'bottom'
-      }).setText(eventName);
+      }).setText(selectedEvent.event_name || selectedEvent.name || '');
 
       markerElement.addEventListener("mouseenter", () => {
         popup.addTo(map.current!);
@@ -645,7 +882,9 @@ export const MobileBusinessMap: React.FC = () => {
         mapItems.forEach((item: MapItem) => {
           if (!item || !item.coordinates) return;
           
+          // Create marker element without position:relative
           let markerElement = document.createElement("div");
+          // The maplibregl-marker wrapper will handle positioning
           markerElement.className = `map-icon-container ${getMapItemColor(item.type)}`;
           markerElement.innerHTML = getMapItemIcon(item.type);
 
@@ -653,10 +892,10 @@ export const MobileBusinessMap: React.FC = () => {
           const popup = new maplibregl.Popup({
             closeButton: false,
             closeOnClick: false,
-            offset: [0, -8],
+            offset: [0, -30],
             className: 'marker-tooltip',
             anchor: 'bottom'
-          }).setText(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+          }).setText(item.label || (item.type.charAt(0).toUpperCase() + item.type.slice(1)));
 
           markerElement.addEventListener("mouseenter", () => {
             popup.addTo(map.current!);
@@ -666,6 +905,7 @@ export const MobileBusinessMap: React.FC = () => {
             popup.remove();
           });
 
+          // Let MapLibre handle the absolute positioning
           const marker = new maplibregl.Marker({
             element: markerElement,
             anchor: "center",
@@ -674,7 +914,11 @@ export const MobileBusinessMap: React.FC = () => {
             .setPopup(popup)
             .addTo(map.current!);
 
+          // Store reference for cleanup
           markersRef.current[`${item.type}-${item.id}`] = marker;
+          
+          // Debug log for verification
+          debugLog(`Added marker for ${item.type}: ${item.label || item.id} at [${item.coordinates}]`);
         });
       }
     }
@@ -748,10 +992,10 @@ export const MobileBusinessMap: React.FC = () => {
       const popup = new maplibregl.Popup({
         closeButton: false,
         closeOnClick: false,
-        offset: [0, -8],
+        offset: [0, -30],
         className: 'marker-tooltip',
         anchor: 'bottom'
-      }).setText(eventName);
+      }).setText(event.event_name || event.name || '');
 
       markerElement.addEventListener("mouseenter", () => {
         popup.addTo(map.current!);
@@ -784,7 +1028,7 @@ export const MobileBusinessMap: React.FC = () => {
     switch (type) {
       case "bus":
         return `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bus">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bus">
             <path d="M19 17h2l.64-2.54c.24-.959.24-1.962 0-2.92l-1.07-4.27A3 3 0 0 0 17.66 5H4a2 2 0 0 0-2 2v10h2"></path>
             <path d="M14 17H9"></path>
             <circle cx="6.5" cy="17.5" r="2.5"></circle>
@@ -793,7 +1037,7 @@ export const MobileBusinessMap: React.FC = () => {
         `;
       case "tram":
         return `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-train">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-train">
             <rect x="4" y="3" width="16" height="16" rx="2"></rect>
             <path d="M4 11h16"></path>
             <path d="M12 3v8"></path>
@@ -805,7 +1049,7 @@ export const MobileBusinessMap: React.FC = () => {
         `;
       case "business":
         return `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store">
             <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"></path>
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
             <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"></path>
@@ -815,14 +1059,14 @@ export const MobileBusinessMap: React.FC = () => {
         `;
       case "parking":
         return `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-parking">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-parking">
             <rect width="18" height="18" x="3" y="3" rx="2"></rect>
             <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
           </svg>
         `;
       case "available":
         return `
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dot">
             <circle cx="12" cy="12" r="10"></circle>
             <circle cx="12" cy="12" r="1"></circle>
           </svg>
@@ -1015,6 +1259,13 @@ export const MobileBusinessMap: React.FC = () => {
           setPulse(newValue);
         }} />
       </div>
+      
+      {/* Show the legend only when a hotspot or event is selected */}
+      {showDetails && (
+        <div className="absolute left-4 top-1/3 z-10 transform -translate-y-1/2">
+          <MobileBusinessLegend />
+        </div>
+      )}
       
       {/* ComparisonView will handle its own visibility */}
       <ComparisonView />

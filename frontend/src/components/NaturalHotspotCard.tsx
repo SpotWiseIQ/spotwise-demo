@@ -230,43 +230,6 @@ export const NaturalHotspotCard: React.FC<NaturalHotspotCardProps> = ({
         </div>
       </div>
 
-      {selected && !isCompareMode && (
-        <div className="border-t border-gray-200 mx-2 mt-1 mb-2 pt-3 px-1 space-y-4">
-          <div>
-            <h4 className="text-xs font-semibold mb-1.5 text-gray-600">Natural Hotspot Details</h4>
-            <div className="space-y-1.5 text-sm">
-              {hotspot.address && (
-                <p className="flex items-start">
-                  <MapPin size={14} className="mr-1.5 mt-0.5 text-gray-500 flex-shrink-0" />
-                  <span>{hotspot.address}</span>
-                </p>
-              )}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                {hotspot.areaType && (
-                  <div className="flex items-center">
-                    <span className="text-gray-500 text-xs mr-1">Type:</span>
-                    <span>Natural Hotspot</span>
-                  </div>
-                )}
-                {hotspot.population && (
-                  <div className="flex items-center">
-                    <Users size={14} className="mr-1.5 text-gray-500 flex-shrink-0" />
-                    <span className="text-gray-500 text-xs mr-1">Population:</span>
-                    <span>{hotspot.population}</span>
-                  </div>
-                )}
-                {hotspot.peakHour && (
-                  <div className="flex items-center">
-                    <span className="text-gray-500 text-xs mr-1">Peak Hour:</span>
-                    <span>{hotspot.peakHour}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      
       <Collapsible
         open={isTrafficOpen && !isCompareMode}
         onOpenChange={(open) => !isCompareMode && setIsTrafficOpen(open)}

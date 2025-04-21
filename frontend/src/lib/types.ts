@@ -12,7 +12,6 @@ export interface Hotspot {
   id: string;
   label: string;
   name: string;
-  address: string;
   trafficLevel: TrafficLevel;
   weather: WeatherType;
   coordinates: [number, number]; // [longitude, latitude]
@@ -29,10 +28,8 @@ export interface Event {
   id: string;
   name: string;
   time?: string;
-  place?: string;
   coordinates: [number, number]; // [longitude, latitude]
   date?: string;
-  address?: string;
   type?: string;
   duration?: string;
   capacity?: string;
@@ -50,6 +47,8 @@ export interface Event {
   event_name?: string;
   
   footTraffic?: FootTrafficData[];
+  venue?: string;
+  venue_address?: string;
 }
 
 export interface UnifiedHotspot {
@@ -57,7 +56,6 @@ export interface UnifiedHotspot {
   name: string;
   type: HotspotType;
   label: string;
-  address: string;
   trafficLevel: TrafficLevel;
   weather: WeatherType;
   coordinates: [number, number]; // [longitude, latitude]
@@ -73,7 +71,6 @@ export interface UnifiedHotspot {
   
   // Event-hotspot specific fields
   time?: string;
-  place?: string;
   date?: string;
   type_info?: string;
   duration?: string;
@@ -91,6 +88,8 @@ export interface UnifiedHotspot {
   expected_attendance?: number;
   description?: string;
   event_name?: string;
+  venue?: string;
+  venue_address?: string;
 }
 
 export interface MapItem {

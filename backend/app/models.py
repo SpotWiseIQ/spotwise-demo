@@ -84,7 +84,6 @@ class Location(BaseModel):
     name: str
     type: HotspotType  # natural-hotspot or event-hotspot
     label: str  # A, B, C, etc. based on traffic
-    address: str
     trafficLevel: TrafficLevel
     weather: WeatherType
     coordinates: Tuple[float, float]  # [longitude, latitude]
@@ -102,7 +101,6 @@ class Location(BaseModel):
 
     # Event-hotspot specific fields
     location_id: Optional[str] = None
-    place: Optional[str] = None
     event_name: Optional[str] = None  # Event name, different from location name
     start_time: Optional[str] = None
     end_time: Optional[str] = None
@@ -110,6 +108,8 @@ class Location(BaseModel):
     expected_attendance: Optional[int] = None
     description: Optional[str] = None
     event_id: Optional[str] = None  # Reference to the original event
+    venue: Optional[str] = None  # Venue name for event-hotspots
+    venue_address: Optional[str] = None  # Venue address for event-hotspots
 
 
 class MapItemType(str, Enum):

@@ -1272,15 +1272,23 @@ def generate_location_foot_traffic(location_id, target_date, target_hour):
 
 def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
     """Get all locations as hotspots (natural or event), sorted by foot traffic."""
-    # Cache key for this request
-    cache_key = f"locations_{target_date}_{target_hour}"
-    if cache_key in location_cache:
-        return location_cache[cache_key]
-
+    # Set defaults for target_date and target_hour
     if target_date is None:
         target_date = datetime.now().strftime("%Y-%m-%d")
     if target_hour is None:
         target_hour = datetime.now().hour
+
+    # Get current system time for cache invalidation
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    current_hour = datetime.now().hour
+
+    # Cache key includes current date and hour to ensure hourly regeneration
+    cache_key = (
+        f"locations_{target_date}_{target_hour}_sys_{current_date}_{current_hour}"
+    )
+
+    if cache_key in location_cache:
+        return location_cache[cache_key]
 
     # Load all locations
     locations_data = load_locations_data()
@@ -1341,7 +1349,6 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
             name=location["name"],
             type=HotspotType.NATURAL,
             label="",  # Will be assigned after sorting
-            address=f"{location['name']}, Tampere",
             trafficLevel=traffic_level,
             weather=random.choice(list(WeatherType)),
             coordinates=(location["longitude"], location["latitude"]),
@@ -1374,7 +1381,7 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
         # Randomly upgrade some locations to event hotspots
         # This simulates events happening at some locations
         if (
-            random.random() < 0.3
+            random.random() < 0.4
             and location.id in all_events
             and all_events[location.id]
         ):
@@ -1412,7 +1419,8 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
             location.type = HotspotType.EVENT
             location.start_time = event.get("start_time", "")
             location.end_time = event.get("end_time", "")
-            location.place = event.get("place", location.name)
+            location.venue = event.get("venue", None)
+            location.venue_address = event.get("venue_address", None)
             location.event_name = event.get("name", "Unknown Event")
             location.event_type = event.get("event_type", "Event")
             location.expected_attendance = event.get(
@@ -1424,20 +1432,80 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
 
         locations.append(location)
 
-    # Cache the results
-    location_cache[cache_key] = locations
+    # Cache the results (top 6 locations)
+    location_cache[cache_key] = locations[:6]
 
-    return locations
+    # Return only the first 6 locations, regardless of type
+    return locations[:6]
 
 
 def get_location_by_id(
     location_id: str, target_date=None, target_hour=None
 ) -> Optional[Location]:
     """Get a specific location by ID"""
-    locations = get_all_locations(target_date, target_hour)
-    for location in locations:
-        if location.id == location_id:
-            return location
+    # Set defaults
+    if target_date is None:
+        target_date = datetime.now().strftime("%Y-%m-%d")
+    if target_hour is None:
+        target_hour = datetime.now().hour
+
+    # Get current system time for cache key
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    current_hour = datetime.now().hour
+
+    # Check if location is in the top locations cache
+    cache_key = (
+        f"locations_{target_date}_{target_hour}_sys_{current_date}_{current_hour}"
+    )
+    if cache_key in location_cache:
+        # Check if the location is in the top 6
+        for location in location_cache[cache_key]:
+            if location.id == location_id:
+                return location
+
+    # If not found in top locations or cache doesn't exist, look it up from source data
+    locations_data = load_locations_data()
+    for location_data in locations_data:
+        if location_data["location_id"] == location_id:
+            # Found the location, now create a Location object with traffic data
+            # Generate foot traffic for this location
+            foot_traffic = generate_location_foot_traffic(
+                location_id, target_date, target_hour
+            )
+
+            # Get the current hour's traffic
+            current_traffic = next(
+                (ft.value for ft in foot_traffic if ft.type == FootTrafficType.CURRENT),
+                0,
+            )
+
+            # Traffic level based on current value
+            traffic_level = (
+                TrafficLevel.HIGH
+                if current_traffic > 150
+                else TrafficLevel.MEDIUM
+                if current_traffic > 80
+                else TrafficLevel.LOW
+            )
+
+            # Create a basic Location object
+            return Location(
+                id=location_id,
+                name=location_data["name"],
+                type=HotspotType.NATURAL,  # Default to natural type
+                label="Z",  # Not in top locations, so give it a Z label
+                trafficLevel=traffic_level,
+                weather=random.choice(list(WeatherType)),
+                coordinates=(location_data["longitude"], location_data["latitude"]),
+                footTraffic=foot_traffic,
+                population=f"{random.randint(5000, 15000)}",
+                areaType="Commercial" if random.random() < 0.5 else "Residential",
+                peakHour=f"{8 + random.randint(0, 10):02d}:00",
+                avgDailyTraffic=f"{random.randint(2000, 10000)}",
+                dominantDemographics=f"{20 + random.randint(0, 30)}-{40 + random.randint(0, 30)}",
+                nearbyBusinesses=f"{random.randint(10, 60)}+",
+            )
+
     return None
 
 
@@ -1447,61 +1515,93 @@ def get_location_detailed_metrics(location_id: str) -> dict:
     if not location:
         return {"error": "Location not found"}
 
+    # Generate mock places available for rent (near a street)
+    def generate_places_for_rent(base_coords, count=2):
+        # Just create a couple of mock places with slightly offset coordinates
+        lat, lng = base_coords if isinstance(base_coords, (list, tuple)) else (0, 0)
+        return [
+            {
+                "name": f"Rental Spot {i + 1}",
+                "address": f"{100 + i} Main St",
+                "coordinates": [lat + 0.0005 * (i + 1), lng + 0.0005 * (i + 1)],
+            }
+            for i in range(count)
+        ]
+
     # Get POIs and companies for this location
     pois = get_location_poi(location_id)
     companies = get_location_companies(location_id)
+    places_for_rent = generate_places_for_rent(location.coordinates)
 
-    # Basic info about location
+    # Default structure
     location_data = {
-        "pois": pois[:5],  # Just include top 5 POIs
-        "companies": companies[:5],  # Just include top 5 companies
-        "demographics": {},
+        "places_for_rent": places_for_rent,
+        "pois": pois,
     }
 
-    # Add demographics if available
-    try:
-        demographics = load_demographics_data()
-        for demo in demographics:
-            if demo["location_id"] == location_id:
-                location_data["demographics"] = {
-                    "population": demo.get("population", "N/A"),
-                    "median_age": demo.get("median_age", "N/A"),
-                    "avg_household_size": demo.get("avg_household_size", "N/A"),
-                    "income_distribution": {
-                        "Low": demo.get("Low", "N/A"),
-                        "Medium": demo.get("Medium", "N/A"),
-                        "High": demo.get("High", "N/A"),
-                    },
-                    "age_distribution": {
-                        "0-17": demo.get("0-17", "N/A"),
-                        "18-25": demo.get("18-25", "N/A"),
-                        "26-35": demo.get("26-35", "N/A"),
-                        "36-45": demo.get("36-45", "N/A"),
-                        "46-60": demo.get("46-60", "N/A"),
-                        "61-75": demo.get("61-75", "N/A"),
-                        "76+": demo.get("76+", "N/A"),
-                    },
-                }
-                break
-    except Exception as e:
-        print(f"Error loading demographics: {e}")
+    # Add logic for natural vs event hotspot
+    if getattr(location, "type", None) == "natural":
+        # Natural hotspot: add companies and demographics
+        location_data["companies"] = companies[:5]
+        # Add demographics if available
+        location_data["demographics"] = {}
+        try:
+            demographics = load_demographics_data()
+            for demo in demographics:
+                if demo["location_id"] == location_id:
+                    location_data["demographics"] = {
+                        "population": demo.get("population", "N/A"),
+                        "median_age": demo.get("median_age", "N/A"),
+                        "avg_household_size": demo.get("avg_household_size", "N/A"),
+                        "income_distribution": {
+                            "Low": demo.get("Low", "N/A"),
+                            "Medium": demo.get("Medium", "N/A"),
+                            "High": demo.get("High", "N/A"),
+                        },
+                        "age_distribution": {
+                            "0-17": demo.get("0-17", "N/A"),
+                            "18-25": demo.get("18-25", "N/A"),
+                            "26-35": demo.get("26-35", "N/A"),
+                            "36-45": demo.get("36-45", "N/A"),
+                            "46-60": demo.get("46-60", "N/A"),
+                            "61-75": demo.get("61-75", "N/A"),
+                            "76+": demo.get("76+", "N/A"),
+                        },
+                    }
+                    break
+        except Exception as e:
+            print(f"Error loading demographics: {e}")
+    elif getattr(location, "type", None) == "event":
+        # Event hotspot: add expected crowd (mock/heuristic)
+        # Heuristic: use event size, time, or just random for now
+        import random
+
+        expected_crowd = {
+            "primary_demographic": random.choice(
+                ["18-25", "26-35", "36-45", "All Ages"]
+            ),
+            "estimated_size": random.randint(100, 1000),
+            "notes": "Estimate based on event type and time",
+        }
+        location_data["expected_crowd"] = expected_crowd
 
     # Return combined data
     return {
         "basic": {
             "id": location.id,
             "name": location.name,
-            "address": location.address,
+            # Only include address if present (for event-hotspots)
+            "address": getattr(location, "venue_address", None),
             "coordinates": location.coordinates,
             "type": location.type,
         },
         "metrics": {
-            "population": location.population,
-            "areaType": location.areaType,
-            "peakHour": location.peakHour,
-            "avgDailyTraffic": location.avgDailyTraffic,
-            "dominantDemographics": location.dominantDemographics,
-            "nearbyBusinesses": location.nearbyBusinesses,
+            "population": getattr(location, "population", None),
+            "areaType": getattr(location, "areaType", None),
+            "peakHour": getattr(location, "peakHour", None),
+            "avgDailyTraffic": getattr(location, "avgDailyTraffic", None),
+            "dominantDemographics": getattr(location, "dominantDemographics", None),
+            "nearbyBusinesses": getattr(location, "nearbyBusinesses", None),
         },
         "detailed": location_data,
     }

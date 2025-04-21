@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { UnifiedHotspot, TimelineRange } from "./types";
 import { 
   fetchLocations,
@@ -44,6 +44,21 @@ interface TampereContextType {
   clearComparisons: () => void;
   pulse: boolean;
   setPulse: (pulse: boolean) => void;
+
+  // Add detailed metrics state
+  detailedMetrics: any | null;
+  setDetailedMetrics: (metrics: any | null) => void;
+
+  // Add detailed metrics cache and in-flight requests
+  getDetailedMetrics: (locationId: string, type: 'hotspot' | 'event') => Promise<any>;
+  
+  // Legacy comparison properties for backward compatibility
+  isHotspotCompareMode: boolean;
+  isEventCompareMode: boolean;
+  selectedHotspotsForComparison: UnifiedHotspot[];
+  selectedEventsForComparison: UnifiedHotspot[];
+  setIsHotspotCompareMode: (mode: boolean) => void;
+  setIsEventCompareMode: (mode: boolean) => void;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -78,6 +93,42 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [timePeriod, setTimePeriod] = useState<'real-time' | 'daily' | 'weekly' | 'monthly'>('real-time');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Add detailed metrics state
+  const [detailedMetrics, setDetailedMetrics] = useState<any | null>(null);
+
+  // Add detailed metrics cache and in-flight requests
+  const [detailedMetricsCache, setDetailedMetricsCache] = useState<{ [key: string]: any }>({});
+  const inFlightRequests = useRef<{ [key: string]: Promise<any> }>({});
+
+  // Unified function to get detailed metrics (with cache and in-flight tracking)
+  const getDetailedMetrics = async (locationId: string, type: 'hotspot' | 'event') => {
+    // 1. Return from cache if available
+    if (detailedMetricsCache[locationId]) {
+      debugLog(`Cache hit for detailed metrics: ${locationId}`);
+      return detailedMetricsCache[locationId];
+    }
+    // 2. If a request is in-flight, return its promise
+    if (inFlightRequests.current[locationId]) {
+      debugLog(`In-flight request for detailed metrics: ${locationId}`);
+      return inFlightRequests.current[locationId];
+    }
+    // 3. Otherwise, start a new request
+    debugLog(`Fetching detailed metrics from API: ${locationId} (${type})`);
+    const fetchFn = type === 'hotspot' ? fetchHotspotDetailedMetrics : fetchEventDetailedMetrics;
+    const promise = fetchFn(locationId)
+      .then(data => {
+        setDetailedMetricsCache(prev => ({ ...prev, [locationId]: data }));
+        delete inFlightRequests.current[locationId];
+        return data;
+      })
+      .catch(err => {
+        delete inFlightRequests.current[locationId];
+        throw err;
+      });
+    inFlightRequests.current[locationId] = promise;
+    return promise;
+  };
 
   // Fetch locations (both natural and event hotspots)
   useEffect(() => {
@@ -134,10 +185,19 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const toggleLocationComparison = (location: UnifiedHotspot) => {
     setSelectedLocationsForComparison(prev => {
       const exists = prev.find(l => l.id === location.id);
+      
       if (exists) {
         return prev.filter(l => l.id !== location.id);
       }
-      return [...prev, location];
+      
+      // If we're starting a new comparison, or all items are of the same type as the new one
+      if (prev.length === 0 || prev[0].type === location.type) {
+        return [...prev, location];
+      }
+      
+      // If trying to add a different type, replace current selection with the new one
+      debugLog(`Comparison type changed from ${prev[0].type} to ${location.type}`);
+      return [location];
     });
   };
 
@@ -196,31 +256,34 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   };
 
-  // Function to load detailed metrics for a specific hotspot
+  // Update legacy functions to use the cache-aware function
   const loadHotspotDetailedMetrics = async (hotspotId: string) => {
-    debugLog(`Loading detailed metrics for hotspot ${hotspotId}`);
-    try {
-      const data = await fetchHotspotDetailedMetrics(hotspotId);
-      debugLog(`Fetched detailed metrics for hotspot ${hotspotId}`, data);
-      return data;
-    } catch (err) {
-      console.error(`Failed to fetch detailed metrics for hotspot ${hotspotId}:`, err);
-      debugLog(`Error fetching detailed metrics for hotspot ${hotspotId}`, err);
-      throw new Error("Failed to fetch hotspot detailed metrics.");
-    }
+    return getDetailedMetrics(hotspotId, 'hotspot');
   };
 
-  // Function to load detailed metrics for a specific event
   const loadEventDetailedMetrics = async (eventId: string) => {
-    debugLog(`Loading detailed metrics for event ${eventId}`);
-    try {
-      const data = await fetchEventDetailedMetrics(eventId);
-      debugLog(`Fetched detailed metrics for event ${eventId}`, data);
-      return data;
-    } catch (err) {
-      console.error(`Failed to fetch detailed metrics for event ${eventId}:`, err);
-      debugLog(`Error fetching detailed metrics for event ${eventId}`, err);
-      throw new Error("Failed to fetch event detailed metrics.");
+    return getDetailedMetrics(eventId, 'event');
+  };
+
+  // Legacy comparison properties for backward compatibility
+  const isHotspotCompareMode = isCompareMode && selectedLocationsForComparison.some(loc => loc.type === 'natural');
+  const isEventCompareMode = isCompareMode && selectedLocationsForComparison.some(loc => loc.type === 'event');
+  const selectedHotspotsForComparison = selectedLocationsForComparison.filter(loc => loc.type === 'natural');
+  const selectedEventsForComparison = selectedLocationsForComparison.filter(loc => loc.type === 'event');
+  
+  const setIsHotspotCompareMode = (mode: boolean) => {
+    setIsCompareMode(mode);
+    // If turning off hotspot compare mode, clear all hotspots from comparison
+    if (!mode) {
+      setSelectedLocationsForComparison(prev => prev.filter(loc => loc.type !== 'natural'));
+    }
+  };
+  
+  const setIsEventCompareMode = (mode: boolean) => {
+    setIsCompareMode(mode);
+    // If turning off event compare mode, clear all events from comparison
+    if (!mode) {
+      setSelectedLocationsForComparison(prev => prev.filter(loc => loc.type !== 'event'));
     }
   };
 
@@ -254,6 +317,18 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         clearComparisons,
         pulse,
         setPulse,
+        detailedMetrics,
+        setDetailedMetrics,
+        // Expose the cache-aware getter for future use
+        getDetailedMetrics,
+        
+        // Legacy comparison properties for backward compatibility
+        isHotspotCompareMode,
+        isEventCompareMode,
+        selectedHotspotsForComparison,
+        selectedEventsForComparison,
+        setIsHotspotCompareMode,
+        setIsEventCompareMode,
       }}
     >
       {children}
