@@ -9,7 +9,9 @@
     "end_time": "2024-01-01 23:07:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1049,
-    "description": "The Keskustori January Festival features interactive workshops in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori January Festival features interactive workshops in the heart of Tampere for an unforgettable experience.",
+    "venue": "Keskustori Central Square",
+    "venue_address": "Keskustori, 33100 Tampere, Finland"
   },
   {
     "event_id": "E002",
@@ -21,7 +23,9 @@
     "end_time": "2024-01-12 22:59:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1090,
-    "description": "The Keskustori January Festival features traditional crafts in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori January Festival features traditional crafts in the heart of Tampere for an unforgettable experience.",
+    "venue": "Keskustori Central Square",
+    "venue_address": "Keskustori, 33100 Tampere, Finland"
   },
   {
     "event_id": "E003",
@@ -33,7 +37,9 @@
     "end_time": "2024-01-14 19:11:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1041,
-    "description": "The Keskustori January Festival features local artisans in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori January Festival features local artisans in the heart of Tampere for an unforgettable experience.",
+    "venue": "Keskustori Central Square",
+    "venue_address": "Keskustori, 33100 Tampere, Finland"
   },
   {
     "event_id": "E004",
@@ -45,7 +51,9 @@
     "end_time": "2024-01-22 01:34:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 955,
-    "description": "The Keskustori January Cultural features family-friendly activities in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori January Cultural features family-friendly activities in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E005",
@@ -57,7 +65,9 @@
     "end_time": "2024-01-26 03:26:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1340,
-    "description": "The Keskustori January Festival features local artisans in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori January Festival features local artisans in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Exhibition and Sports Centre",
+    "venue_address": "Ilmailunkatu 20, 33900 Tampere, Finland"
   },
   {
     "event_id": "E006",
@@ -69,7 +79,9 @@
     "end_time": "2024-02-06 17:14:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 823,
-    "description": "The Keskustori February Cultural features live music in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori February Cultural features live music in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E007",
@@ -81,7 +93,9 @@
     "end_time": "2024-02-05 00:10:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1363,
-    "description": "The Keskustori February Festival features interactive workshops in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori February Festival features interactive workshops in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E008",
@@ -93,7 +107,9 @@
     "end_time": "2024-02-12 23:25:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 509,
-    "description": "The Keskustori February Expo features traditional crafts in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori February Expo features traditional crafts in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere, Finland"
   },
   {
     "event_id": "E009",
@@ -105,7 +121,9 @@
     "end_time": "2024-02-18 08:29:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1174,
-    "description": "The Keskustori February Concert features local artisans in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori February Concert features local artisans in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E010",
@@ -117,7 +135,9 @@
     "end_time": "2024-02-21 13:30:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 779,
-    "description": "The Keskustori February Cultural features culinary delights in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori February Cultural features culinary delights in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E011",
@@ -129,7 +149,9 @@
     "end_time": "2024-03-02 21:29:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1294,
-    "description": "The Keskustori March Concert features local artisans in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori March Concert features local artisans in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E012",
@@ -141,7 +163,9 @@
     "end_time": "2024-03-11 00:12:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 583,
-    "description": "The Keskustori March Expo features traditional crafts in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori March Expo features traditional crafts in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere, Finland"
   },
   {
     "event_id": "E013",
@@ -153,7 +177,9 @@
     "end_time": "2024-03-11 17:08:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 584,
-    "description": "The Keskustori March Expo features culinary delights in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori March Expo features culinary delights in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E014",
@@ -165,7 +191,9 @@
     "end_time": "2024-03-22 03:56:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 529,
-    "description": "The Keskustori March Expo features family-friendly activities in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori March Expo features family-friendly activities in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E015",
@@ -177,7 +205,9 @@
     "end_time": "2024-03-24 18:50:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1010,
-    "description": "The Keskustori March Concert features local artisans in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori March Concert features local artisans in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E016",
@@ -189,7 +219,9 @@
     "end_time": "2024-04-03 18:57:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1444,
-    "description": "The Keskustori April Festival features live music in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori April Festival features live music in the heart of Tampere for an unforgettable experience.",
+    "venue": "Keskustori Central Square",
+    "venue_address": "Keskustori, 33100 Tampere, Finland"
   },
   {
     "event_id": "E017",
@@ -201,7 +233,9 @@
     "end_time": "2024-04-11 09:46:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1187,
-    "description": "The Keskustori April Festival features international cuisine in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori April Festival features international cuisine in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere, Finland"
   },
   {
     "event_id": "E020",
@@ -213,7 +247,9 @@
     "end_time": "2024-04-07 06:50:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 688,
-    "description": "The Keskustori April Expo features cultural showcases in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori April Expo features cultural showcases in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Exhibition and Sports Centre",
+    "venue_address": "Ilmailunkatu 20, 33900 Tampere, Finland"
   },
   {
     "event_id": "E018",
@@ -225,7 +261,9 @@
     "end_time": "2024-04-13 03:13:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 658,
-    "description": "The Keskustori April Cultural features street performances in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori April Cultural features street performances in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E019",
@@ -237,7 +275,9 @@
     "end_time": "2024-04-16 06:36:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 888,
-    "description": "The Keskustori April Concert features cultural showcases in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori April Concert features cultural showcases in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E021",
@@ -249,7 +289,9 @@
     "end_time": "2024-05-02 23:07:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 865,
-    "description": "The Keskustori May Concert features traditional crafts in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori May Concert features traditional crafts in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E022",
@@ -261,7 +303,9 @@
     "end_time": "2024-05-08 17:37:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 768,
-    "description": "The Keskustori May Cultural features art exhibitions in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori May Cultural features art exhibitions in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E023",
@@ -273,7 +317,9 @@
     "end_time": "2024-05-17 15:07:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 606,
-    "description": "The Keskustori May Cultural features international cuisine in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori May Cultural features international cuisine in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere, Finland"
   },
   {
     "event_id": "E024",
@@ -285,7 +331,9 @@
     "end_time": "2024-05-17 21:46:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1162,
-    "description": "The Keskustori May Festival features live music in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori May Festival features live music in the heart of Tampere for an unforgettable experience.",
+    "venue": "Keskustori Central Square",
+    "venue_address": "Keskustori, 33100 Tampere, Finland"
   },
   {
     "event_id": "E025",
@@ -297,7 +345,9 @@
     "end_time": "2024-05-28 04:50:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 788,
-    "description": "The Keskustori May Expo features art exhibitions in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori May Expo features art exhibitions in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere, Finland"
   },
   {
     "event_id": "E026",
@@ -309,7 +359,9 @@
     "end_time": "2024-06-01 22:01:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 813,
-    "description": "The Keskustori June Cultural features local artisans in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori June Cultural features local artisans in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E027",
@@ -321,7 +373,9 @@
     "end_time": "2024-06-09 00:42:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 602,
-    "description": "The Keskustori June Cultural features family-friendly activities in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori June Cultural features family-friendly activities in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E028",
@@ -333,7 +387,9 @@
     "end_time": "2024-06-09 22:31:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1224,
-    "description": "The Keskustori June Concert features culinary delights in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori June Concert features culinary delights in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E029",
@@ -345,7 +401,9 @@
     "end_time": "2024-06-25 19:32:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 691,
-    "description": "The Keskustori June Expo features interactive workshops in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori June Expo features interactive workshops in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Exhibition and Sports Centre",
+    "venue_address": "Ilmailunkatu 20, 33900 Tampere, Finland"
   },
   {
     "event_id": "E030",
@@ -357,7 +415,9 @@
     "end_time": "2024-06-19 21:34:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 673,
-    "description": "The Keskustori June Expo features street performances in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori June Expo features street performances in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E031",
@@ -369,7 +429,9 @@
     "end_time": "2024-07-03 02:08:00+02:00",
     "event_type": "Market",
     "expected_attendance": 919,
-    "description": "The Keskustori July Market features live music in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori July Market features live music in the heart of Tampere for an unforgettable experience.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere, Finland"
   },
   {
     "event_id": "E032",
@@ -381,7 +443,9 @@
     "end_time": "2024-07-13 10:20:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 816,
-    "description": "The Keskustori July Concert features live music in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori July Concert features live music in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E033",
@@ -393,7 +457,9 @@
     "end_time": "2024-07-15 06:31:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1165,
-    "description": "The Keskustori July Concert features international cuisine in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori July Concert features international cuisine in the heart of Tampere for an unforgettable experience.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E034",
@@ -405,7 +471,9 @@
     "end_time": "2024-07-20 01:14:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 984,
-    "description": "The Keskustori July Cultural features international cuisine in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori July Cultural features international cuisine in the heart of Tampere for an unforgettable experience.",
+    "venue": "Culture House Laikku",
+    "venue_address": "Keskustori 4, 33100 Tampere, Finland"
   },
   {
     "event_id": "E035",
@@ -417,7 +485,9 @@
     "end_time": "2024-07-24 09:23:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1014,
-    "description": "The Keskustori July Festival features cultural showcases in the heart of Tampere for an unforgettable experience."
+    "description": "The Keskustori July Festival features cultural showcases in the heart of Tampere for an unforgettable experience.",
+    "venue": "Keskustori Central Square",
+    "venue_address": "Keskustori, 33100 Tampere, Finland"
   },
   {
     "event_id": "E001",
@@ -429,7 +499,9 @@
     "end_time": "2024-01-03 22:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 900,
-    "description": "An intimate acoustic concert highlighting emerging solo artists in the Tammela neighborhood."
+    "description": "An intimate acoustic concert highlighting emerging solo artists in the Tammela neighborhood.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E002",
@@ -441,7 +513,9 @@
     "end_time": "2024-01-10 10:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1300,
-    "description": "A three-day winter festival celebrating local traditions, performances, and artisan crafts across Tammela district."
+    "description": "A three-day winter festival celebrating local traditions, performances, and artisan crafts across Tammela district.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E003",
@@ -453,7 +527,9 @@
     "end_time": "2024-01-10 19:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 800,
-    "description": "A curated market featuring handmade food products from local producers in the heart of Tammela."
+    "description": "A curated market featuring handmade food products from local producers in the heart of Tammela.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E004",
@@ -465,7 +541,9 @@
     "end_time": "2024-01-16 20:30:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 650,
-    "description": "An expo showcasing innovative technology startups and digital solutions emerging from Tampere region."
+    "description": "An expo showcasing innovative technology startups and digital solutions emerging from Tampere region.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E005",
@@ -477,7 +555,9 @@
     "end_time": "2024-01-23 21:30:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 700,
-    "description": "An engaging evening of traditional storytelling and cultural performances celebrating Tammela’s heritage."
+    "description": "An engaging evening of traditional storytelling and cultural performances celebrating Tammela’s heritage.",
+    "venue": "Youth Culture Centre Monitoimitalo 13",
+    "venue_address": "Satakunnankatu 13, 33100 Tampere, Finland"
   },
   {
     "event_id": "E006",
@@ -489,7 +569,9 @@
     "end_time": "2024-02-03 00:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1000,
-    "description": "A romantic jazz performance featuring local and visiting artists for the Valentine’s season."
+    "description": "A romantic jazz performance featuring local and visiting artists for the Valentine’s season.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E007",
@@ -501,7 +583,9 @@
     "end_time": "2024-02-08 11:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1400,
-    "description": "A multi-day film festival screening independent and international films across venues in Tammela."
+    "description": "A multi-day film festival screening independent and international films across venues in Tammela.",
+    "venue": "Finnkino Plevna",
+    "venue_address": "Itäinenkatu 4, 33210 Tampere, Finland"
   },
   {
     "event_id": "E008",
@@ -513,7 +597,9 @@
     "end_time": "2024-02-08 18:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 950,
-    "description": "A market offering fresh organic produce and sustainable goods directly from local farmers."
+    "description": "A market offering fresh organic produce and sustainable goods directly from local farmers.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E009",
@@ -525,7 +611,9 @@
     "end_time": "2024-02-15 17:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 700,
-    "description": "An expo focused on health, wellness products, and fitness demonstrations for community well-being."
+    "description": "An expo focused on health, wellness products, and fitness demonstrations for community well-being.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E010",
@@ -537,7 +625,9 @@
     "end_time": "2024-02-22 21:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 650,
-    "description": "An intimate poetry reading event showcasing Finnish poets and open-mic opportunities for attendees."
+    "description": "An intimate poetry reading event showcasing Finnish poets and open-mic opportunities for attendees.",
+    "venue": "Youth Culture Centre Monitoimitalo 13",
+    "venue_address": "Satakunnankatu 13, 33100 Tampere, Finland"
   },
   {
     "event_id": "E011",
@@ -549,7 +639,9 @@
     "end_time": "2024-03-01 23:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 850,
-    "description": "A cozy evening of acoustic performances welcoming the start of spring in Tammela."
+    "description": "A cozy evening of acoustic performances welcoming the start of spring in Tammela.",
+    "venue": "G Livelab Tampere",
+    "venue_address": "Puutarhakatu 1, 33210 Tampere, Finland"
   },
   {
     "event_id": "E012",
@@ -561,7 +653,9 @@
     "end_time": "2024-03-11 12:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1200,
-    "description": "A vibrant festival celebrating St. Patrick’s Day with music, dance, and cultural showcases."
+    "description": "A vibrant festival celebrating St. Patrick’s Day with music, dance, and cultural showcases.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E013",
@@ -573,7 +667,9 @@
     "end_time": "2024-03-15 17:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 800,
-    "description": "A seasonal flower market selling spring blooms and gardening workshops for enthusiasts."
+    "description": "A seasonal flower market selling spring blooms and gardening workshops for enthusiasts.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E014",
@@ -585,7 +681,9 @@
     "end_time": "2024-03-22 19:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 750,
-    "description": "An expo highlighting innovative designs and creative installations by local and national artists."
+    "description": "An expo highlighting innovative designs and creative installations by local and national artists.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E015",
@@ -597,7 +695,9 @@
     "end_time": "2024-03-29 21:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 800,
-    "description": "A showcase of traditional folk dances performed by community groups and heritage organizations."
+    "description": "A showcase of traditional folk dances performed by community groups and heritage organizations.",
+    "venue": "Tammela Stadium",
+    "venue_address": "Tammelankatu 25, 33500 Tampere, Finland"
   },
   {
     "event_id": "E016",
@@ -609,7 +709,9 @@
     "end_time": "2024-04-04 01:30:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 900,
-    "description": "An energetic indie rock concert featuring emerging bands from Tampere music scene."
+    "description": "An energetic indie rock concert featuring emerging bands from Tampere music scene.",
+    "venue": "YO-talo",
+    "venue_address": "Kauppakatu 10, 33210 Tampere, Finland"
   },
   {
     "event_id": "E017",
@@ -621,7 +723,9 @@
     "end_time": "2024-04-13 09:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1100,
-    "description": "A week-long arts festival showcasing visual arts, performances, and interactive installations throughout Tammela."
+    "description": "A week-long arts festival showcasing visual arts, performances, and interactive installations throughout Tammela.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E018",
@@ -633,7 +737,9 @@
     "end_time": "2024-04-14 16:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 1000,
-    "description": "A charming market offering vintage clothing, antiques, and collectibles from local vendors."
+    "description": "A charming market offering vintage clothing, antiques, and collectibles from local vendors.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E019",
@@ -645,7 +751,9 @@
     "end_time": "2024-04-17 18:30:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 600,
-    "description": "An expo presenting educational programs, workshops, and resources for students and families."
+    "description": "An expo presenting educational programs, workshops, and resources for students and families.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E020",
@@ -657,7 +765,9 @@
     "end_time": "2024-04-24 22:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 750,
-    "description": "An outdoor theatre performance of classic and contemporary plays under the evening sky."
+    "description": "An outdoor theatre performance of classic and contemporary plays under the evening sky.",
+    "venue": "Sorsapuisto Park",
+    "venue_address": "Lähteenkatu, 33100 Tampere, Finland"
   },
   {
     "event_id": "E021",
@@ -669,7 +779,9 @@
     "end_time": "2024-05-02 22:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1200,
-    "description": "A vibrant pop music concert featuring chart-topping hits and engaging stage performances."
+    "description": "A vibrant pop music concert featuring chart-topping hits and engaging stage performances.",
+    "venue": "Tammela Stadium",
+    "venue_address": "Tammelankatu 25, 33500 Tampere, Finland"
   },
   {
     "event_id": "E022",
@@ -681,7 +793,9 @@
     "end_time": "2024-05-07 08:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1500,
-    "description": "A festive May Day celebration with live music, parades, and community activities in Tammela."
+    "description": "A festive May Day celebration with live music, parades, and community activities in Tammela.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E023",
@@ -693,7 +807,9 @@
     "end_time": "2024-05-12 00:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 1100,
-    "description": "An evening market featuring food stalls, crafts, and live street performances under lantern lights."
+    "description": "An evening market featuring food stalls, crafts, and live street performances under lantern lights.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E024",
@@ -705,7 +821,9 @@
     "end_time": "2024-05-17 18:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 800,
-    "description": "An expo highlighting new startup ventures, investor pitches, and networking opportunities."
+    "description": "An expo highlighting new startup ventures, investor pitches, and networking opportunities.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E025",
@@ -717,7 +835,9 @@
     "end_time": "2024-05-23 21:30:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 650,
-    "description": "A curated series of film screenings spotlighting independent directors and unique storytelling styles."
+    "description": "A curated series of film screenings spotlighting independent directors and unique storytelling styles.",
+    "venue": "Finnkino Plevna",
+    "venue_address": "Itäinenkatu 4, 33210 Tampere, Finland"
   },
   {
     "event_id": "E026",
@@ -729,7 +849,9 @@
     "end_time": "2024-06-02 23:30:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1000,
-    "description": "An evening of traditional folk music performances featuring local and regional artists."
+    "description": "An evening of traditional folk music performances featuring local and regional artists.",
+    "venue": "Tammela Stadium",
+    "venue_address": "Tammelankatu 25, 33500 Tampere, Finland"
   },
   {
     "event_id": "E027",
@@ -741,7 +863,9 @@
     "end_time": "2024-06-13 16:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1450,
-    "description": "A Midsummer celebration with bonfires, folk dances, and outdoor cultural activities across Tammela."
+    "description": "A Midsummer celebration with bonfires, folk dances, and outdoor cultural activities across Tammela.",
+    "venue": "Sorsapuisto Park",
+    "venue_address": "Lähteenkatu, 33100 Tampere, Finland"
   },
   {
     "event_id": "E028",
@@ -753,7 +877,9 @@
     "end_time": "2024-06-11 16:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 900,
-    "description": "A market showcasing handmade crafts, artwork, and artisan goods by local creators."
+    "description": "A market showcasing handmade crafts, artwork, and artisan goods by local creators.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E029",
@@ -765,7 +891,9 @@
     "end_time": "2024-06-18 18:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 700,
-    "description": "An expo exploring sustainable energy solutions, workshops, and green technology demonstrations."
+    "description": "An expo exploring sustainable energy solutions, workshops, and green technology demonstrations.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E030",
@@ -777,7 +905,9 @@
     "end_time": "2024-06-24 17:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 900,
-    "description": "A community storytelling festival featuring oral history, traditional tales, and performance art."
+    "description": "A community storytelling festival featuring oral history, traditional tales, and performance art.",
+    "venue": "Youth Culture Centre Monitoimitalo 13",
+    "venue_address": "Satakunnankatu 13, 33100 Tampere, Finland"
   },
   {
     "event_id": "E031",
@@ -789,7 +919,9 @@
     "end_time": "2024-07-01 21:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 800,
-    "description": "A refined classical music performance featuring local orchestra ensembles in Tammela."
+    "description": "A refined classical music performance featuring local orchestra ensembles in Tammela.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E032",
@@ -801,7 +933,9 @@
     "end_time": "2024-07-17 12:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1500,
-    "description": "A week-long street festival with live music, food trucks, art installations, and community parades."
+    "description": "A week-long street festival with live music, food trucks, art installations, and community parades.",
+    "venue": "Sorsapuisto Park",
+    "venue_address": "Lähteenkatu, 33100 Tampere, Finland"
   },
   {
     "event_id": "E033",
@@ -813,7 +947,9 @@
     "end_time": "2024-07-14 14:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 1200,
-    "description": "A morning market featuring fresh seafood, local fishers, and culinary demonstrations by chefs."
+    "description": "A morning market featuring fresh seafood, local fishers, and culinary demonstrations by chefs.",
+    "venue": "Tammelantori Square",
+    "venue_address": "Tammelanpuistokatu, 33500 Tampere, Finland"
   },
   {
     "event_id": "E034",
@@ -825,7 +961,9 @@
     "end_time": "2024-07-17 20:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 800,
-    "description": "An expo showcasing cutting-edge innovations and prototypes from tech companies and research labs."
+    "description": "An expo showcasing cutting-edge innovations and prototypes from tech companies and research labs.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere, Finland"
   },
   {
     "event_id": "E035",
@@ -837,7 +975,9 @@
     "end_time": "2024-07-23 23:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 950,
-    "description": "An evening dedicated to folklore music and storytelling traditions under the summer sky."
+    "description": "An evening dedicated to folklore music and storytelling traditions under the summer sky.",
+    "venue": "Sorsapuisto Park",
+    "venue_address": "Lähteenkatu, 33100 Tampere, Finland"
   },
   {
     "event_id": "E001",
@@ -849,7 +989,9 @@
     "end_time": "2024-01-07 12:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1200,
-    "description": "A lively outdoor winter festival featuring local bands and art vendors set against the snowy city landscape."
+    "description": "A lively outdoor winter festival featuring local bands and art vendors set against the snowy city landscape.",
+    "venue": "Kuusikkopuisto",
+    "venue_address": "Kuusikkopuisto, Hervanta, Tampere, Finland"
   },
   {
     "event_id": "E002",
@@ -861,7 +1003,9 @@
     "end_time": "2024-01-10 19:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 550,
-    "description": "Innovative startups showcase cutting-edge technologies and interactive demos in the modern expo hall near the city center."
+    "description": "Innovative startups showcase cutting-edge technologies and interactive demos in the modern expo hall near the city center.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E003",
@@ -873,7 +1017,9 @@
     "end_time": "2024-01-16 21:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 900,
-    "description": "An intimate acoustic concert under the stars, highlighting talented singer-songwriters in a cozy outdoor amphitheater."
+    "description": "An intimate acoustic concert under the stars, highlighting talented singer-songwriters in a cozy outdoor amphitheater.",
+    "venue": "Hervanta Amphitheatre",
+    "venue_address": "Lindforsinkatu 7, 33720 Tampere, Finland"
   },
   {
     "event_id": "E004",
@@ -885,7 +1031,9 @@
     "end_time": "2024-01-22 16:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 800,
-    "description": "A bustling farmers market offering fresh produce, artisanal breads, and homemade jams in the lively community square."
+    "description": "A bustling farmers market offering fresh produce, artisanal breads, and homemade jams in the lively community square.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E005",
@@ -897,7 +1045,9 @@
     "end_time": "2024-01-28 19:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 650,
-    "description": "An open-air film screening featuring classic and contemporary movies against the backdrop of historic brick buildings."
+    "description": "An open-air film screening featuring classic and contemporary movies against the backdrop of historic brick buildings.",
+    "venue": "Tehdasaukio Square",
+    "venue_address": "Tehdasaukio, 33400 Tampere, Finland"
   },
   {
     "event_id": "E006",
@@ -909,7 +1059,9 @@
     "end_time": "2024-02-05 10:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 700,
-    "description": "A multi-day technology expo showcasing industry leaders, emerging startups, and hands-on workshops in a spacious convention center."
+    "description": "A multi-day technology expo showcasing industry leaders, emerging startups, and hands-on workshops in a spacious convention center.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E007",
@@ -921,7 +1073,9 @@
     "end_time": "2024-02-09 23:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1000,
-    "description": "Experience an energetic jazz night with smooth tunes, talented musicians, and cozy seating at the popular lakeside pavilion."
+    "description": "Experience an energetic jazz night with smooth tunes, talented musicians, and cozy seating at the popular lakeside pavilion.",
+    "venue": "Hervanta Amphitheatre",
+    "venue_address": "Lindforsinkatu 7, 33720 Tampere, Finland"
   },
   {
     "event_id": "E008",
@@ -933,7 +1087,9 @@
     "end_time": "2024-02-15 17:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 750,
-    "description": "A vibrant night market featuring street food stalls, live performances, and handcrafted goods under festive lantern lights."
+    "description": "A vibrant night market featuring street food stalls, live performances, and handcrafted goods under festive lantern lights.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E009",
@@ -945,7 +1101,9 @@
     "end_time": "2024-02-21 20:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 700,
-    "description": "A community dance evening inviting residents to learn traditional moves and enjoy folk music in the town hall courtyard."
+    "description": "A community dance evening inviting residents to learn traditional moves and enjoy folk music in the town hall courtyard.",
+    "venue": "Hervanta Amphitheatre",
+    "venue_address": "Lindforsinkatu 7, 33720 Tampere, Finland"
   },
   {
     "event_id": "E010",
@@ -957,7 +1115,9 @@
     "end_time": "2024-02-27 20:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1100,
-    "description": "A lively festival celebrating local culture with music stages, food trucks, and interactive art installations in the park."
+    "description": "A lively festival celebrating local culture with music stages, food trucks, and interactive art installations in the park.",
+    "venue": "Kuusikkopuisto",
+    "venue_address": "Kuusikkopuisto, Hervanta, Tampere, Finland"
   },
   {
     "event_id": "E011",
@@ -969,7 +1129,9 @@
     "end_time": "2024-03-08 14:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1300,
-    "description": "A sprawling spring arts festival hosting painters, sculptors, and performers across multiple indoor and outdoor venues downtown."
+    "description": "A sprawling spring arts festival hosting painters, sculptors, and performers across multiple indoor and outdoor venues downtown.",
+    "venue": "Hervanta Leisure Centre",
+    "venue_address": "Lindforsinkatu 5, 33720 Tampere, Finland"
   },
   {
     "event_id": "E012",
@@ -981,7 +1143,9 @@
     "end_time": "2024-03-10 16:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 600,
-    "description": "Local startups and innovators display creative prototypes in a compact expo space adjacent to the university campus."
+    "description": "Local startups and innovators display creative prototypes in a compact expo space adjacent to the university campus.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E013",
@@ -993,7 +1157,9 @@
     "end_time": "2024-03-16 23:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1200,
-    "description": "A high-energy rock concert featuring top bands on a large outdoor stage with advanced lighting and sound effects."
+    "description": "A high-energy rock concert featuring top bands on a large outdoor stage with advanced lighting and sound effects.",
+    "venue": "Kuusikkopuisto",
+    "venue_address": "Kuusikkopuisto, Hervanta, Tampere, Finland"
   },
   {
     "event_id": "E014",
@@ -1005,7 +1171,9 @@
     "end_time": "2024-03-22 16:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 850,
-    "description": "A charming vintage market offering unique antiques, handcrafted jewelry, and retro clothing beneath open-air galleries."
+    "description": "A charming vintage market offering unique antiques, handcrafted jewelry, and retro clothing beneath open-air galleries.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E015",
@@ -1017,7 +1185,9 @@
     "end_time": "2024-03-28 17:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 900,
-    "description": "An evening of poetry readings by local authors set in a cozy library room with warm ambient lighting and tea service."
+    "description": "An evening of poetry readings by local authors set in a cozy library room with warm ambient lighting and tea service.",
+    "venue": "Hervanta Library",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E016",
@@ -1029,7 +1199,9 @@
     "end_time": "2024-04-07 11:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 600,
-    "description": "An expansive spring innovation expo featuring keynotes, panel discussions, and startup showcases at the tech hub auditorium."
+    "description": "An expansive spring innovation expo featuring keynotes, panel discussions, and startup showcases at the tech hub auditorium.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E017",
@@ -1041,7 +1213,9 @@
     "end_time": "2024-04-10 22:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1200,
-    "description": "A vibrant cultural festival celebrating traditional dance, music, and local cuisine in the city’s historic market square."
+    "description": "A vibrant cultural festival celebrating traditional dance, music, and local cuisine in the city’s historic market square.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E018",
@@ -1053,7 +1227,9 @@
     "end_time": "2024-04-16 22:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 950,
-    "description": "An enchanting classical concert featuring symphony orchestra performances in the grand concert hall with superior acoustics."
+    "description": "An enchanting classical concert featuring symphony orchestra performances in the grand concert hall with superior acoustics.",
+    "venue": "Hervanta Church",
+    "venue_address": "Lindforsinkatu 7, 33720 Tampere, Finland"
   },
   {
     "event_id": "E019",
@@ -1065,7 +1241,9 @@
     "end_time": "2024-04-22 17:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 900,
-    "description": "A local art market showcasing painters, ceramicists, and photographers along charming cobblestone streets near the riverbank."
+    "description": "A local art market showcasing painters, ceramicists, and photographers along charming cobblestone streets near the riverbank.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E020",
@@ -1077,7 +1255,9 @@
     "end_time": "2024-04-28 17:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 800,
-    "description": "An open-air theatre performance presenting classic plays beneath the stars in a historic outdoor amphitheater setting."
+    "description": "An open-air theatre performance presenting classic plays beneath the stars in a historic outdoor amphitheater setting.",
+    "venue": "Hervanta Amphitheatre",
+    "venue_address": "Lindforsinkatu 7, 33720 Tampere, Finland"
   },
   {
     "event_id": "E021",
@@ -1089,7 +1269,9 @@
     "end_time": "2024-05-09 13:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1400,
-    "description": "An immersive spring cultural festival offering interactive workshops, live music, art installations, and food tastings across multiple venues."
+    "description": "An immersive spring cultural festival offering interactive workshops, live music, art installations, and food tastings across multiple venues.",
+    "venue": "Hervanta Leisure Centre",
+    "venue_address": "Lindforsinkatu 5, 33720 Tampere, Finland"
   },
   {
     "event_id": "E022",
@@ -1101,7 +1283,9 @@
     "end_time": "2024-05-10 19:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 650,
-    "description": "International businesses display trade innovations and networking opportunities in the spacious convention hall with exhibition booths."
+    "description": "International businesses display trade innovations and networking opportunities in the spacious convention hall with exhibition booths.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E023",
@@ -1113,7 +1297,9 @@
     "end_time": "2024-05-16 22:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1100,
-    "description": "A lively pop concert featuring chart-topping artists, dynamic stage production, and audience interaction in the open-air park."
+    "description": "A lively pop concert featuring chart-topping artists, dynamic stage production, and audience interaction in the open-air park.",
+    "venue": "Kuusikkopuisto",
+    "venue_address": "Kuusikkopuisto, Hervanta, Tampere, Finland"
   },
   {
     "event_id": "E024",
@@ -1125,7 +1311,9 @@
     "end_time": "2024-05-22 16:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 900,
-    "description": "A vibrant handcrafted goods market featuring local artisans, handmade ceramics, textiles, and jewelry under tents in the plaza."
+    "description": "A vibrant handcrafted goods market featuring local artisans, handmade ceramics, textiles, and jewelry under tents in the plaza.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E025",
@@ -1137,7 +1325,9 @@
     "end_time": "2024-05-28 20:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 800,
-    "description": "A contemporary art exhibition showcasing multimedia installations and photography in the modern gallery space near the waterfront."
+    "description": "A contemporary art exhibition showcasing multimedia installations and photography in the modern gallery space near the waterfront.",
+    "venue": "Hervanta Library",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E026",
@@ -1149,7 +1339,9 @@
     "end_time": "2024-06-06 10:30:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 750,
-    "description": "A major summer business expo hosting corporate showcases, industry seminars, and networking lounges in the expo center."
+    "description": "A major summer business expo hosting corporate showcases, industry seminars, and networking lounges in the expo center.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E027",
@@ -1161,7 +1353,9 @@
     "end_time": "2024-06-10 21:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1000,
-    "description": "A lively midsummer festival celebrating local folklore, traditional costumes, and outdoor performances beside the lake."
+    "description": "A lively midsummer festival celebrating local folklore, traditional costumes, and outdoor performances beside the lake.",
+    "venue": "Kuusikkopuisto",
+    "venue_address": "Kuusikkopuisto, Hervanta, Tampere, Finland"
   },
   {
     "event_id": "E028",
@@ -1173,7 +1367,9 @@
     "end_time": "2024-06-16 23:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1050,
-    "description": "An energetic electronic concert featuring innovative light shows, DJ sets, and immersive audiovisual experiences in the nightclub."
+    "description": "An energetic electronic concert featuring innovative light shows, DJ sets, and immersive audiovisual experiences in the nightclub.",
+    "venue": "Tavara-asema",
+    "venue_address": "Ratapihankatu 33, 33100 Tampere, Finland"
   },
   {
     "event_id": "E029",
@@ -1185,7 +1381,9 @@
     "end_time": "2024-06-22 18:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 1000,
-    "description": "A summer street market with food trucks, craft stalls, and live street performances lining the bustling pedestrian boulevard."
+    "description": "A summer street market with food trucks, craft stalls, and live street performances lining the bustling pedestrian boulevard.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E030",
@@ -1197,7 +1395,9 @@
     "end_time": "2024-06-28 18:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 750,
-    "description": "A guided heritage walk exploring historic landmarks, architectural gems, and local stories narrated by passionate volunteers."
+    "description": "A guided heritage walk exploring historic landmarks, architectural gems, and local stories narrated by passionate volunteers.",
+    "venue": "Hervanta Heritage Trail",
+    "venue_address": "Various locations, Hervanta, Tampere, Finland"
   },
   {
     "event_id": "E031",
@@ -1209,7 +1409,9 @@
     "end_time": "2024-07-09 12:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1100,
-    "description": "A vibrant July heritage festival featuring folk music, traditional crafts, and local food stalls across the city’s cultural district."
+    "description": "A vibrant July heritage festival featuring folk music, traditional crafts, and local food stalls across the city’s cultural district.",
+    "venue": "Hervanta Leisure Centre",
+    "venue_address": "Lindforsinkatu 5, 33720 Tampere, Finland"
   },
   {
     "event_id": "E032",
@@ -1221,7 +1423,9 @@
     "end_time": "2024-07-10 18:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 700,
-    "description": "A tourism expo presenting regional travel destinations, tour operators, and immersive virtual reality safari experiences."
+    "description": "A tourism expo presenting regional travel destinations, tour operators, and immersive virtual reality safari experiences.",
+    "venue": "Technopolis Hermia",
+    "venue_address": "Hermiankatu 1, 33720 Tampere, Finland"
   },
   {
     "event_id": "E033",
@@ -1233,7 +1437,9 @@
     "end_time": "2024-07-16 23:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 850,
-    "description": "A charming folk concert showcasing traditional melodies performed by local ensembles in the intimate community hall."
+    "description": "A charming folk concert showcasing traditional melodies performed by local ensembles in the intimate community hall.",
+    "venue": "Hervanta Community Hall",
+    "venue_address": "Lindforsinkatu 8, 33720 Tampere, Finland"
   },
   {
     "event_id": "E034",
@@ -1245,7 +1451,9 @@
     "end_time": "2024-07-22 16:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 950,
-    "description": "A morning food market featuring fresh pastries, specialty coffee, and seasonal produce set against the riverside walk."
+    "description": "A morning food market featuring fresh pastries, specialty coffee, and seasonal produce set against the riverside walk.",
+    "venue": "Hervanta Market Square",
+    "venue_address": "Insinöörinkatu 38, 33720 Tampere, Finland"
   },
   {
     "event_id": "E035",
@@ -1257,7 +1465,9 @@
     "end_time": "2024-07-28 20:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 900,
-    "description": "An engaging symposium exploring local history, expert talks, panel debates, and interactive exhibits in the cultural center."
+    "description": "An engaging symposium exploring local history, expert talks, panel debates, and interactive exhibits in the cultural center.",
+    "venue": "Hervanta Cultural Center",
+    "venue_address": "Lindforsinkatu 5, 33720 Tampere, Finland"
   },
   {
     "event_id": "E002",
@@ -1269,7 +1479,9 @@
     "end_time": "2024-01-06T16:45:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 939,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E003",
@@ -1281,7 +1493,9 @@
     "end_time": "2024-01-10T21:45:00+02:00",
     "event_type": "Market",
     "expected_attendance": 839,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E004",
@@ -1293,7 +1507,9 @@
     "end_time": "2024-01-16T20:45:00+02:00",
     "event_type": "Market",
     "expected_attendance": 993,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E005",
@@ -1305,7 +1521,9 @@
     "end_time": "2024-01-20T15:45:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 786,
-    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E001",
@@ -1317,7 +1535,9 @@
     "end_time": "2024-02-03T09:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 915,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E007",
@@ -1329,7 +1549,9 @@
     "end_time": "2024-02-04T00:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1157,
-    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E008",
@@ -1341,7 +1563,9 @@
     "end_time": "2024-02-07T17:15:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 597,
-    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E009",
@@ -1353,7 +1577,9 @@
     "end_time": "2024-02-16T04:45:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 632,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E010",
@@ -1365,7 +1591,9 @@
     "end_time": "2024-02-19T16:30:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 813,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E006",
@@ -1377,7 +1605,9 @@
     "end_time": "2024-02-27T11:15:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 721,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E011",
@@ -1389,7 +1619,9 @@
     "end_time": "2024-03-08T09:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 841,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E012",
@@ -1401,7 +1633,9 @@
     "end_time": "2024-03-16T19:15:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 593,
-    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E013",
@@ -1413,7 +1647,9 @@
     "end_time": "2024-03-17T22:30:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 724,
-    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E014",
@@ -1425,7 +1661,9 @@
     "end_time": "2024-03-20T20:45:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1285,
-    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E015",
@@ -1437,7 +1675,9 @@
     "end_time": "2024-03-31T16:45:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1254,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E016",
@@ -1449,7 +1689,9 @@
     "end_time": "2024-04-07T13:15:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1029,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E017",
@@ -1461,7 +1703,9 @@
     "end_time": "2024-04-13T22:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 739,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E018",
@@ -1473,7 +1717,9 @@
     "end_time": "2024-04-18T04:45:00+03:00",
     "event_type": "Market",
     "expected_attendance": 1179,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E019",
@@ -1485,7 +1731,9 @@
     "end_time": "2024-04-19T17:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 687,
-    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Industry professionals gather to present the latest innovations. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E020",
@@ -1497,7 +1745,9 @@
     "end_time": "2024-04-29T21:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1338,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E022",
@@ -1509,7 +1759,9 @@
     "end_time": "2024-05-05T21:30:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 993,
-    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E023",
@@ -1521,7 +1773,9 @@
     "end_time": "2024-05-11T13:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 791,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E024",
@@ -1533,7 +1787,9 @@
     "end_time": "2024-05-16T01:30:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1269,
-    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E021",
@@ -1545,7 +1801,9 @@
     "end_time": "2024-05-26T07:45:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 650,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E025",
@@ -1557,7 +1815,9 @@
     "end_time": "2024-05-25T21:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 756,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E026",
@@ -1569,7 +1829,9 @@
     "end_time": "2024-06-08T12:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1375,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E028",
@@ -1581,7 +1843,9 @@
     "end_time": "2024-06-16T01:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 670,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E027",
@@ -1593,7 +1857,9 @@
     "end_time": "2024-06-16T01:15:00+03:00",
     "event_type": "Market",
     "expected_attendance": 740,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E029",
@@ -1605,7 +1871,9 @@
     "end_time": "2024-06-25T00:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 720,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E030",
@@ -1617,7 +1885,9 @@
     "end_time": "2024-06-28T17:45:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 985,
-    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Live music performance showcasing local and international talent. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Hall",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E032",
@@ -1629,7 +1899,9 @@
     "end_time": "2024-07-07T09:30:00+03:00",
     "event_type": "Market",
     "expected_attendance": 887,
-    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district."
+    "description": "A variety of vendors offering local goods in a lively plaza. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Tampere Market Hall",
+    "venue_address": "Hämeenkatu 19, 33200 Tampere"
   },
   {
     "event_id": "E033",
@@ -1641,7 +1913,9 @@
     "end_time": "2024-07-09T21:45:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 821,
-    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Celebration of heritage through performances, exhibits, and workshops. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Church",
+    "venue_address": "Liisanpuisto 1, 33500 Tampere"
   },
   {
     "event_id": "E034",
@@ -1653,7 +1927,9 @@
     "end_time": "2024-07-16T21:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1001,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E035",
@@ -1665,7 +1941,9 @@
     "end_time": "2024-07-20T23:45:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1078,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E031",
@@ -1677,7 +1955,9 @@
     "end_time": "2024-08-02T08:45:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1410,
-    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district."
+    "description": "Outdoor celebration with entertainment, food, and community spirit. Enjoy a vibrant experience in the Kaleva district.",
+    "venue": "Kaleva Sports Park",
+    "venue_address": "Salhojankatu 35, 33540 Tampere"
   },
   {
     "event_id": "E005",
@@ -1689,7 +1969,9 @@
     "end_time": "2024-01-03T22:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 800,
-    "description": "An open-air celebration highlighting Pyynikki’s community spirit and natural beauty."
+    "description": "An open-air celebration highlighting Pyynikki’s community spirit and natural beauty.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E003",
@@ -1701,7 +1983,9 @@
     "end_time": "2024-01-14T02:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 634,
-    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park."
+    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park.",
+    "venue": "Marianpuisto",
+    "venue_address": "Mariankatu / Pyynikintie / Laiskolankuja, 33200 Tampere"
   },
   {
     "event_id": "E001",
@@ -1713,7 +1997,9 @@
     "end_time": "2024-01-19T07:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1018,
-    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park."
+    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E004",
@@ -1725,7 +2011,9 @@
     "end_time": "2024-01-26T23:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1500,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E002",
@@ -1737,7 +2025,9 @@
     "end_time": "2024-01-30T03:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 1096,
-    "description": "Enjoy interactive exhibits and workshops with a view of Pyynikki ridge."
+    "description": "Enjoy interactive exhibits and workshops with a view of Pyynikki ridge.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E009",
@@ -1749,7 +2039,9 @@
     "end_time": "2024-02-08T00:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1122,
-    "description": "A lakeside evening with lights, music, and joyful gathering."
+    "description": "A lakeside evening with lights, music, and joyful gathering.",
+    "venue": "Pyynikki Summer Theatre",
+    "venue_address": "Jalkasaarentie 3, 33230 Tampere"
   },
   {
     "event_id": "E010",
@@ -1761,7 +2053,9 @@
     "end_time": "2024-02-10T23:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1285,
-    "description": "A lakeside evening with lights, music, and joyful gathering."
+    "description": "A lakeside evening with lights, music, and joyful gathering.",
+    "venue": "Pyynikki Summer Theatre",
+    "venue_address": "Jalkasaarentie 3, 33230 Tampere"
   },
   {
     "event_id": "E006",
@@ -1773,7 +2067,9 @@
     "end_time": "2024-02-15T13:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 709,
-    "description": "Enjoy interactive exhibits and workshops with a view of Pyynikki ridge."
+    "description": "Enjoy interactive exhibits and workshops with a view of Pyynikki ridge.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E007",
@@ -1785,7 +2081,9 @@
     "end_time": "2024-02-19T04:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 780,
-    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees."
+    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E008",
@@ -1797,7 +2095,9 @@
     "end_time": "2024-02-25T22:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 1169,
-    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park."
+    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E011",
@@ -1809,7 +2109,9 @@
     "end_time": "2024-03-05T11:00:00+02:00",
     "event_type": "Market",
     "expected_attendance": 872,
-    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees."
+    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E015",
@@ -1821,7 +2123,9 @@
     "end_time": "2024-03-06T22:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 592,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E014",
@@ -1833,7 +2137,9 @@
     "end_time": "2024-03-17T20:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1270,
-    "description": "Celebrate tradition and modern flair in the heart of Pyynikki."
+    "description": "Celebrate tradition and modern flair in the heart of Pyynikki.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E013",
@@ -1845,7 +2151,9 @@
     "end_time": "2024-03-20T05:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 981,
-    "description": "A lakeside evening with lights, music, and joyful gathering."
+    "description": "A lakeside evening with lights, music, and joyful gathering.",
+    "venue": "Pyynikki Summer Theatre",
+    "venue_address": "Jalkasaarentie 3, 33230 Tampere"
   },
   {
     "event_id": "E012",
@@ -1857,7 +2165,9 @@
     "end_time": "2024-03-26T00:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1035,
-    "description": "An inviting event with crafts, food, and music by the lakeside."
+    "description": "An inviting event with crafts, food, and music by the lakeside.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E019",
@@ -1869,7 +2179,9 @@
     "end_time": "2024-04-01T15:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 534,
-    "description": "Celebrate tradition and modern flair in the heart of Pyynikki."
+    "description": "Celebrate tradition and modern flair in the heart of Pyynikki.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E017",
@@ -1881,7 +2193,9 @@
     "end_time": "2024-04-04T15:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 943,
-    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park."
+    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E016",
@@ -1893,7 +2207,9 @@
     "end_time": "2024-04-11T10:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 744,
-    "description": "Celebrate tradition and modern flair in the heart of Pyynikki."
+    "description": "Celebrate tradition and modern flair in the heart of Pyynikki.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E020",
@@ -1905,7 +2221,9 @@
     "end_time": "2024-04-20T13:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1231,
-    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park."
+    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park.",
+    "venue": "Marianpuisto",
+    "venue_address": "Mariankatu / Pyynikintie / Laiskolankuja, 33200 Tampere"
   },
   {
     "event_id": "E018",
@@ -1917,7 +2235,9 @@
     "end_time": "2024-04-25T22:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 667,
-    "description": "A serene setting for a cultural immersion in Pyynikki’s heritage."
+    "description": "A serene setting for a cultural immersion in Pyynikki’s heritage.",
+    "venue": "Pyynikki Church Park",
+    "venue_address": "Pyynikintie 13, 33230 Tampere"
   },
   {
     "event_id": "E024",
@@ -1929,7 +2249,9 @@
     "end_time": "2024-05-10T01:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1291,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E023",
@@ -1941,7 +2263,9 @@
     "end_time": "2024-05-12T04:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 792,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E021",
@@ -1953,7 +2277,9 @@
     "end_time": "2024-05-21T16:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1334,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E022",
@@ -1965,7 +2291,9 @@
     "end_time": "2024-05-23T17:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1087,
-    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park."
+    "description": "Vendors, performers, and families unite in Pyynikki’s welcoming park.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E025",
@@ -1977,7 +2305,9 @@
     "end_time": "2024-05-29T22:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1097,
-    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees."
+    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E026",
@@ -1989,7 +2319,9 @@
     "end_time": "2024-06-02T20:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 928,
-    "description": "An open-air celebration highlighting Pyynikki’s community spirit and natural beauty."
+    "description": "An open-air celebration highlighting Pyynikki’s community spirit and natural beauty.",
+    "venue": "Pyynikki Summer Theatre",
+    "venue_address": "Jalkasaarentie 3, 33230 Tampere"
   },
   {
     "event_id": "E027",
@@ -2001,7 +2333,9 @@
     "end_time": "2024-06-18T02:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 552,
-    "description": "An inviting event with crafts, food, and music by the lakeside."
+    "description": "An inviting event with crafts, food, and music by the lakeside.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E029",
@@ -2013,7 +2347,9 @@
     "end_time": "2024-06-20T23:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1373,
-    "description": "Enjoy interactive exhibits and workshops with a view of Pyynikki ridge."
+    "description": "Enjoy interactive exhibits and workshops with a view of Pyynikki ridge.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E030",
@@ -2025,7 +2361,9 @@
     "end_time": "2024-06-21T15:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 790,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E028",
@@ -2037,7 +2375,9 @@
     "end_time": "2024-06-28T00:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1462,
-    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki."
+    "description": "A vibrant gathering showcasing local talent and the charm of Pyynikki.",
+    "venue": "Pyynikki Ridge",
+    "venue_address": "Näkötornintie / Pyynikintie, 33230 Tampere"
   },
   {
     "event_id": "E031",
@@ -2049,7 +2389,9 @@
     "end_time": "2024-07-22T12:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 788,
-    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees."
+    "description": "A day of music, art, and heritage under the canopy of Pyynikki trees.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E033",
@@ -2061,7 +2403,9 @@
     "end_time": "2024-07-21T18:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 885,
-    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park."
+    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park.",
+    "venue": "Pyynikki Summer Theatre",
+    "venue_address": "Jalkasaarentie 3, 33230 Tampere"
   },
   {
     "event_id": "E034",
@@ -2073,7 +2417,9 @@
     "end_time": "2024-07-22T21:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 1108,
-    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park."
+    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park.",
+    "venue": "Pyynikki Athletics Field",
+    "venue_address": "Koulukatu 5, 33230 Tampere"
   },
   {
     "event_id": "E035",
@@ -2085,7 +2431,9 @@
     "end_time": "2024-07-27T00:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 547,
-    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park."
+    "description": "Experience cultural diversity in the heart of Pyynikki’s scenic park.",
+    "venue": "Emil Aaltonen Museum",
+    "venue_address": "Mariankatu 40, 33200 Tampere"
   },
   {
     "event_id": "E032",
@@ -2097,7 +2445,9 @@
     "end_time": "2024-07-28T20:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 728,
-    "description": "An open-air celebration highlighting Pyynikki’s community spirit and natural beauty."
+    "description": "An open-air celebration highlighting Pyynikki’s community spirit and natural beauty.",
+    "venue": "Pyynikki Observation Tower & Café",
+    "venue_address": "Näkötornintie 20, 33230 Tampere"
   },
   {
     "event_id": "E001",
@@ -2109,7 +2459,9 @@
     "end_time": "2024-01-07T08:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 1037,
-    "description": "From sunrise to sunset, enjoy events inspired by Pispala’s historic beauty and creative soul."
+    "description": "From sunrise to sunset, enjoy events inspired by Pispala’s historic beauty and creative soul.",
+    "venue": "Pispalan Pulteri",
+    "venue_address": "Pispalan valtatie 23, 33250 Tampere"
   },
   {
     "event_id": "E005",
@@ -2121,7 +2473,9 @@
     "end_time": "2024-01-10T16:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1250,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Pispala Sound",
+    "venue_address": "Kannaksenkatu 8, 33250 Tampere"
   },
   {
     "event_id": "E002",
@@ -2133,7 +2487,9 @@
     "end_time": "2024-01-11T01:15:00+02:00",
     "event_type": "Market",
     "expected_attendance": 892,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Vaakon Nakki",
+    "venue_address": "Pispalan valtatie 37, 33250 Tampere"
   },
   {
     "event_id": "E003",
@@ -2145,7 +2501,9 @@
     "end_time": "2024-01-18T20:45:00+02:00",
     "event_type": "Market",
     "expected_attendance": 877,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Pizpala",
+    "venue_address": "Pispalan valtatie 45, 33250 Tampere"
   },
   {
     "event_id": "E004",
@@ -2157,7 +2515,9 @@
     "end_time": "2024-01-23T06:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1264,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Rajaportti Sauna",
+    "venue_address": "Pispalan valtatie 9, 33250 Tampere"
   },
   {
     "event_id": "E010",
@@ -2169,7 +2529,9 @@
     "end_time": "2024-02-13T22:15:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1019,
-    "description": "An immersive experience in the heart of Pispala’s iconic hillside neighborhood."
+    "description": "An immersive experience in the heart of Pispala’s iconic hillside neighborhood.",
+    "venue": "Café Pispala",
+    "venue_address": "Pispankatu 30, 33240 Tampere"
   },
   {
     "event_id": "E009",
@@ -2181,7 +2543,9 @@
     "end_time": "2024-02-17T03:45:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 1132,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Pispala Church",
+    "venue_address": "Pispalan valtatie 16, 33250 Tampere"
   },
   {
     "event_id": "E007",
@@ -2193,7 +2557,9 @@
     "end_time": "2024-02-18T04:30:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 732,
-    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales."
+    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales.",
+    "venue": "Pispala Library",
+    "venue_address": "Tahmelankatu 14, 33240 Tampere"
   },
   {
     "event_id": "E006",
@@ -2205,7 +2571,9 @@
     "end_time": "2024-02-22T16:00:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 713,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Lauri Viita Museum",
+    "venue_address": "Harjuntekijänkatu 4, 33250 Tampere"
   },
   {
     "event_id": "E008",
@@ -2217,7 +2585,9 @@
     "end_time": "2024-02-28T06:15:00+02:00",
     "event_type": "Market",
     "expected_attendance": 984,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Pispalan Pulteri",
+    "venue_address": "Pispalan valtatie 23, 33250 Tampere"
   },
   {
     "event_id": "E015",
@@ -2229,7 +2599,9 @@
     "end_time": "2024-03-04T20:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 1405,
-    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills."
+    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills.",
+    "venue": "Rajaportti Sauna",
+    "venue_address": "Pispalan valtatie 9, 33250 Tampere"
   },
   {
     "event_id": "E012",
@@ -2241,7 +2613,9 @@
     "end_time": "2024-03-06T23:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 682,
-    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales."
+    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales.",
+    "venue": "Hirvitalo",
+    "venue_address": "Hirvikatu 10, 33240 Tampere"
   },
   {
     "event_id": "E014",
@@ -2253,7 +2627,9 @@
     "end_time": "2024-03-09T02:45:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 849,
-    "description": "An immersive experience in the heart of Pispala’s iconic hillside neighborhood."
+    "description": "An immersive experience in the heart of Pispala’s iconic hillside neighborhood.",
+    "venue": "Pispala Sound",
+    "venue_address": "Kannaksenkatu 8, 33250 Tampere"
   },
   {
     "event_id": "E013",
@@ -2265,7 +2641,9 @@
     "end_time": "2024-03-17T03:15:00+02:00",
     "event_type": "Market",
     "expected_attendance": 716,
-    "description": "Experience the charm of Pispala with interactive exhibits and neighborhood flair."
+    "description": "Experience the charm of Pispala with interactive exhibits and neighborhood flair.",
+    "venue": "Vaakon Nakki",
+    "venue_address": "Pispalan valtatie 37, 33250 Tampere"
   },
   {
     "event_id": "E011",
@@ -2277,7 +2655,9 @@
     "end_time": "2024-03-31T01:30:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 621,
-    "description": "From sunrise to sunset, enjoy events inspired by Pispala’s historic beauty and creative soul."
+    "description": "From sunrise to sunset, enjoy events inspired by Pispala’s historic beauty and creative soul.",
+    "venue": "Pispala Library",
+    "venue_address": "Tahmelankatu 14, 33240 Tampere"
   },
   {
     "event_id": "E017",
@@ -2289,7 +2669,9 @@
     "end_time": "2024-04-03T18:15:00+03:00",
     "event_type": "Market",
     "expected_attendance": 966,
-    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales."
+    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales.",
+    "venue": "Pizpala",
+    "venue_address": "Pispalan valtatie 45, 33250 Tampere"
   },
   {
     "event_id": "E016",
@@ -2301,7 +2683,9 @@
     "end_time": "2024-04-09T03:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1022,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Pispala Church",
+    "venue_address": "Pispalan valtatie 16, 33250 Tampere"
   },
   {
     "event_id": "E019",
@@ -2313,7 +2697,9 @@
     "end_time": "2024-04-12T19:30:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 502,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Hirvitalo",
+    "venue_address": "Hirvikatu 10, 33240 Tampere"
   },
   {
     "event_id": "E018",
@@ -2325,7 +2711,9 @@
     "end_time": "2024-04-15T00:45:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 677,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Pispala Library",
+    "venue_address": "Tahmelankatu 14, 33240 Tampere"
   },
   {
     "event_id": "E020",
@@ -2337,7 +2725,9 @@
     "end_time": "2024-04-21T18:15:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1061,
-    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills."
+    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills.",
+    "venue": "Pispala Sound",
+    "venue_address": "Kannaksenkatu 8, 33250 Tampere"
   },
   {
     "event_id": "E021",
@@ -2349,7 +2739,9 @@
     "end_time": "2024-05-02T00:15:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 824,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Pispala Church",
+    "venue_address": "Pispalan valtatie 16, 33250 Tampere"
   },
   {
     "event_id": "E025",
@@ -2361,7 +2753,9 @@
     "end_time": "2024-05-05T18:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 1269,
-    "description": "Experience the charm of Pispala with interactive exhibits and neighborhood flair."
+    "description": "Experience the charm of Pispala with interactive exhibits and neighborhood flair.",
+    "venue": "Pispala Sound",
+    "venue_address": "Kannaksenkatu 8, 33250 Tampere"
   },
   {
     "event_id": "E023",
@@ -2373,7 +2767,9 @@
     "end_time": "2024-05-16T20:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 925,
-    "description": "Join the locals in a festive gathering amidst the slopes and scenic streets of Pispala."
+    "description": "Join the locals in a festive gathering amidst the slopes and scenic streets of Pispala.",
+    "venue": "Pispala Church",
+    "venue_address": "Pispalan valtatie 16, 33250 Tampere"
   },
   {
     "event_id": "E024",
@@ -2385,7 +2781,9 @@
     "end_time": "2024-05-18T03:15:00+03:00",
     "event_type": "Market",
     "expected_attendance": 1092,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Pispalan Pulteri",
+    "venue_address": "Pispalan valtatie 23, 33250 Tampere"
   },
   {
     "event_id": "E022",
@@ -2397,7 +2795,9 @@
     "end_time": "2024-05-26T22:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1071,
-    "description": "An immersive experience in the heart of Pispala’s iconic hillside neighborhood."
+    "description": "An immersive experience in the heart of Pispala’s iconic hillside neighborhood.",
+    "venue": "Café Pispala",
+    "venue_address": "Pispankatu 30, 33240 Tampere"
   },
   {
     "event_id": "E026",
@@ -2409,7 +2809,9 @@
     "end_time": "2024-06-09T07:00:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 774,
-    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills."
+    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills.",
+    "venue": "Hirvitalo",
+    "venue_address": "Hirvikatu 10, 33240 Tampere"
   },
   {
     "event_id": "E027",
@@ -2421,7 +2823,9 @@
     "end_time": "2024-06-13T22:45:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 925,
-    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills."
+    "description": "A vibrant community event showcasing the historic charm and cultural spirit of Pispala's steep hills.",
+    "venue": "Pispala Sound",
+    "venue_address": "Kannaksenkatu 8, 33250 Tampere"
   },
   {
     "event_id": "E028",
@@ -2433,7 +2837,9 @@
     "end_time": "2024-06-17T23:45:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 880,
-    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales."
+    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales.",
+    "venue": "Pispala Church",
+    "venue_address": "Pispalan valtatie 16, 33250 Tampere"
   },
   {
     "event_id": "E029",
@@ -2445,7 +2851,9 @@
     "end_time": "2024-06-21T18:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 674,
-    "description": "From sunrise to sunset, enjoy events inspired by Pispala’s historic beauty and creative soul."
+    "description": "From sunrise to sunset, enjoy events inspired by Pispala’s historic beauty and creative soul.",
+    "venue": "Hirvitalo",
+    "venue_address": "Hirvikatu 10, 33240 Tampere"
   },
   {
     "event_id": "E030",
@@ -2457,7 +2865,9 @@
     "end_time": "2024-06-26T05:45:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 999,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Lauri Viita Museum",
+    "venue_address": "Harjuntekijänkatu 4, 33250 Tampere"
   },
   {
     "event_id": "E035",
@@ -2469,7 +2879,9 @@
     "end_time": "2024-07-02T02:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 827,
-    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales."
+    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales.",
+    "venue": "Hirvitalo",
+    "venue_address": "Hirvikatu 10, 33240 Tampere"
   },
   {
     "event_id": "E032",
@@ -2481,7 +2893,9 @@
     "end_time": "2024-07-06T23:45:00+03:00",
     "event_type": "Market",
     "expected_attendance": 1056,
-    "description": "A day of joy and community spirit in the steep, storied streets of Pispala."
+    "description": "A day of joy and community spirit in the steep, storied streets of Pispala.",
+    "venue": "Vaakon Nakki",
+    "venue_address": "Pispalan valtatie 37, 33250 Tampere"
   },
   {
     "event_id": "E031",
@@ -2493,7 +2907,9 @@
     "end_time": "2024-07-14T10:30:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 989,
-    "description": "Join the locals in a festive gathering amidst the slopes and scenic streets of Pispala."
+    "description": "Join the locals in a festive gathering amidst the slopes and scenic streets of Pispala.",
+    "venue": "Pispala Sound",
+    "venue_address": "Kannaksenkatu 8, 33250 Tampere"
   },
   {
     "event_id": "E033",
@@ -2505,7 +2921,9 @@
     "end_time": "2024-07-26T16:00:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 602,
-    "description": "Celebrating local traditions and panoramic views from the heights of Pispala."
+    "description": "Celebrating local traditions and panoramic views from the heights of Pispala.",
+    "venue": "Lauri Viita Museum",
+    "venue_address": "Harjuntekijänkatu 4, 33250 Tampere"
   },
   {
     "event_id": "E034",
@@ -2517,7 +2935,9 @@
     "end_time": "2024-07-28T22:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 785,
-    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales."
+    "description": "Exploring Pispala's unique character through music, food, and neighborhood tales.",
+    "venue": "Hirvitalo",
+    "venue_address": "Hirvikatu 10, 33240 Tampere"
   },
   {
     "event_id": "E002",
@@ -2529,7 +2949,9 @@
     "end_time": "2024-01-01 17:45:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1204,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Hatanpää Mansion",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E004",
@@ -2541,7 +2963,9 @@
     "end_time": "2024-01-12 21:15:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1125,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Hatanpää Mansion",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E005",
@@ -2553,7 +2977,9 @@
     "end_time": "2024-01-16 02:00:00+0200",
     "event_type": "Expo",
     "expected_attendance": 521,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "2ndhomes Hatanpää Apartment Hotel",
+    "venue_address": "Hatanpään valtatie 14 B 24, 33900 Tampere"
   },
   {
     "event_id": "E001",
@@ -2565,7 +2991,9 @@
     "end_time": "2024-01-24 09:45:00+0200",
     "event_type": "Concert",
     "expected_attendance": 983,
-    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor."
+    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor.",
+    "venue": "Hatanpää Mansion",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E003",
@@ -2577,7 +3005,9 @@
     "end_time": "2024-01-25 03:30:00+0200",
     "event_type": "Market",
     "expected_attendance": 1094,
-    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor."
+    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E008",
@@ -2589,7 +3019,9 @@
     "end_time": "2024-02-03 22:15:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1224,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Hatanpää Mansion",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E009",
@@ -2601,7 +3033,9 @@
     "end_time": "2024-02-06 23:15:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1042,
-    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor."
+    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor.",
+    "venue": "Hatanpää Mansion",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E006",
@@ -2613,7 +3047,9 @@
     "end_time": "2024-02-18 15:15:00+0200",
     "event_type": "Market",
     "expected_attendance": 1065,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E007",
@@ -2625,7 +3061,9 @@
     "end_time": "2024-02-21 06:15:00+0200",
     "event_type": "Cultural",
     "expected_attendance": 675,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Vihilahdenpuisto Park",
+    "venue_address": "Near Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E010",
@@ -2637,7 +3075,9 @@
     "end_time": "2024-02-26 14:00:00+0200",
     "event_type": "Market",
     "expected_attendance": 875,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E012",
@@ -2649,7 +3089,9 @@
     "end_time": "2024-03-04 23:15:00+0200",
     "event_type": "Expo",
     "expected_attendance": 532,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Tampere Art Museum",
+    "venue_address": "Puutarhakatu 34, 33230 Tampere"
   },
   {
     "event_id": "E013",
@@ -2661,7 +3103,9 @@
     "end_time": "2024-03-05 21:30:00+0200",
     "event_type": "Cultural",
     "expected_attendance": 679,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E014",
@@ -2673,7 +3117,9 @@
     "end_time": "2024-03-12 17:15:00+0200",
     "event_type": "Expo",
     "expected_attendance": 779,
-    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate."
+    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate.",
+    "venue": "Hotelli Ville",
+    "venue_address": "Hatanpään valtatie 40, 33900 Tampere"
   },
   {
     "event_id": "E011",
@@ -2685,7 +3131,9 @@
     "end_time": "2024-03-22 15:30:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1134,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Hotelli Ville",
+    "venue_address": "Hatanpään valtatie 40, 33900 Tampere"
   },
   {
     "event_id": "E015",
@@ -2697,7 +3145,9 @@
     "end_time": "2024-03-23 05:30:00+0200",
     "event_type": "Market",
     "expected_attendance": 713,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E016",
@@ -2709,7 +3159,9 @@
     "end_time": "2024-04-07 04:45:00+0300",
     "event_type": "Expo",
     "expected_attendance": 737,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "2ndhomes Hatanpää Apartment Hotel",
+    "venue_address": "Hatanpään valtatie 14 B 24, 33900 Tampere"
   },
   {
     "event_id": "E020",
@@ -2721,7 +3173,9 @@
     "end_time": "2024-04-13 21:30:00+0300",
     "event_type": "Concert",
     "expected_attendance": 1161,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Original Sokos Hotel Ilves",
+    "venue_address": "Hatanpään valtatie 1, 33100 Tampere"
   },
   {
     "event_id": "E019",
@@ -2733,7 +3187,9 @@
     "end_time": "2024-04-21 13:30:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 968,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E017",
@@ -2745,7 +3201,9 @@
     "end_time": "2024-04-23 23:00:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 840,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Vihilahdenpuisto Park",
+    "venue_address": "Near Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E018",
@@ -2757,7 +3215,9 @@
     "end_time": "2024-04-27 05:45:00+0300",
     "event_type": "Market",
     "expected_attendance": 834,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E025",
@@ -2769,7 +3229,9 @@
     "end_time": "2024-05-13 03:45:00+0300",
     "event_type": "Market",
     "expected_attendance": 744,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E021",
@@ -2781,7 +3243,9 @@
     "end_time": "2024-05-16 01:45:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1407,
-    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor."
+    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E022",
@@ -2793,7 +3257,9 @@
     "end_time": "2024-05-16 12:00:00+0300",
     "event_type": "Concert",
     "expected_attendance": 1181,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Original Sokos Hotel Ilves",
+    "venue_address": "Hatanpään valtatie 1, 33100 Tampere"
   },
   {
     "event_id": "E024",
@@ -2805,7 +3271,9 @@
     "end_time": "2024-05-18 16:30:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 698,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Vihilahdenpuisto Park",
+    "venue_address": "Near Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E023",
@@ -2817,7 +3285,9 @@
     "end_time": "2024-05-28 06:45:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 671,
-    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor."
+    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor.",
+    "venue": "Vihilahdenpuisto Park",
+    "venue_address": "Near Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E027",
@@ -2829,7 +3299,9 @@
     "end_time": "2024-06-01 21:15:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1497,
-    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate."
+    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E026",
@@ -2841,7 +3313,9 @@
     "end_time": "2024-06-03 18:15:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1273,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E030",
@@ -2853,7 +3327,9 @@
     "end_time": "2024-06-06 20:45:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 957,
-    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor."
+    "description": "A delightful gathering showcasing local spirit, just steps from Hatanpää's iconic manor.",
+    "venue": "Vihilahdenpuisto Park",
+    "venue_address": "Near Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E028",
@@ -2865,7 +3341,9 @@
     "end_time": "2024-06-18 01:30:00+0300",
     "event_type": "Market",
     "expected_attendance": 735,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Bistro Vilja",
+    "venue_address": "Hatanpään valtatie 40, 33900 Tampere"
   },
   {
     "event_id": "E029",
@@ -2877,7 +3355,9 @@
     "end_time": "2024-06-27 05:45:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 999,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Vihilahdenpuisto Park",
+    "venue_address": "Near Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E033",
@@ -2889,7 +3369,9 @@
     "end_time": "2024-07-11 14:15:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1342,
-    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands."
+    "description": "Experience the charm of Hatanpää with this unique event near the historic manor and lush parklands.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E035",
@@ -2901,7 +3383,9 @@
     "end_time": "2024-07-17 20:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 773,
-    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate."
+    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate.",
+    "venue": "Hotelli Ville",
+    "venue_address": "Hatanpään valtatie 40, 33900 Tampere"
   },
   {
     "event_id": "E032",
@@ -2913,7 +3397,9 @@
     "end_time": "2024-07-20 05:00:00+0300",
     "event_type": "Market",
     "expected_attendance": 1156,
-    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings."
+    "description": "Celebrate community and culture in the scenic Hatanpää park surroundings.",
+    "venue": "Edun Herkkukeidas",
+    "venue_address": "Hatanpään valtatie 48, 33900 Tampere"
   },
   {
     "event_id": "E034",
@@ -2925,7 +3411,9 @@
     "end_time": "2024-07-22 17:15:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1242,
-    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate."
+    "description": "Enjoy music, culture, and nature in harmony by the historic Hatanpää estate.",
+    "venue": "Hatanpää Arboretum & Rose Garden",
+    "venue_address": "Hatanpään puistokuja 1, 33900 Tampere"
   },
   {
     "event_id": "E031",
@@ -2937,7 +3425,9 @@
     "end_time": "2024-07-25 23:00:00+0300",
     "event_type": "Concert",
     "expected_attendance": 1092,
-    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor."
+    "description": "Immerse yourself in arts and heritage at this park-side event with a view of the manor.",
+    "venue": "Original Sokos Hotel Ilves",
+    "venue_address": "Hatanpään valtatie 1, 33100 Tampere"
   },
   {
     "event_id": "E003",
@@ -2949,7 +3439,9 @@
     "end_time": "2024-01-04 21:00:00+0200",
     "event_type": "Cultural",
     "expected_attendance": 919,
-    "description": "This cultural event at Lielahti showcases the area's unique mix of old industry and modern life."
+    "description": "This cultural event at Lielahti showcases the area's unique mix of old industry and modern life.",
+    "venue": "Lielahti Manor",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E004",
@@ -2961,7 +3453,9 @@
     "end_time": "2024-01-11 06:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1440,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E001",
@@ -2973,7 +3467,9 @@
     "end_time": "2024-01-18 12:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1164,
-    "description": "This festival event at Lielahti showcases the area's unique mix of old industry and modern life."
+    "description": "This festival event at Lielahti showcases the area's unique mix of old industry and modern life.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E002",
@@ -2985,7 +3481,9 @@
     "end_time": "2024-01-28 03:00:00+0200",
     "event_type": "Concert",
     "expected_attendance": 800,
-    "description": "This concert event at Lielahti showcases the area's unique mix of old industry and modern life."
+    "description": "This concert event at Lielahti showcases the area's unique mix of old industry and modern life.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E005",
@@ -2997,7 +3495,9 @@
     "end_time": "2024-01-28 21:00:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1228,
-    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E010",
@@ -3009,7 +3509,9 @@
     "end_time": "2024-02-13 23:00:00+0200",
     "event_type": "Concert",
     "expected_attendance": 1050,
-    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E007",
@@ -3021,7 +3523,9 @@
     "end_time": "2024-02-15 15:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1343,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E009",
@@ -3033,7 +3537,9 @@
     "end_time": "2024-02-18 00:00:00+0200",
     "event_type": "Expo",
     "expected_attendance": 686,
-    "description": "This expo event at Lielahti showcases the area's unique mix of old industry and modern life."
+    "description": "This expo event at Lielahti showcases the area's unique mix of old industry and modern life.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E008",
@@ -3045,7 +3551,9 @@
     "end_time": "2024-02-26 23:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1062,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Tyyppaamo at Hiedanranta",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E006",
@@ -3057,7 +3565,9 @@
     "end_time": "2024-03-01 03:00:00+0200",
     "event_type": "Concert",
     "expected_attendance": 816,
-    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E015",
@@ -3069,7 +3579,9 @@
     "end_time": "2024-03-01 17:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1497,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E011",
@@ -3081,7 +3593,9 @@
     "end_time": "2024-03-16 06:00:00+0200",
     "event_type": "Cultural",
     "expected_attendance": 715,
-    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Church",
+    "venue_address": "Ollinojankatu 2, 33400 Tampere"
   },
   {
     "event_id": "E014",
@@ -3093,7 +3607,9 @@
     "end_time": "2024-03-22 21:00:00+0200",
     "event_type": "Expo",
     "expected_attendance": 610,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E013",
@@ -3105,7 +3621,9 @@
     "end_time": "2024-03-27 08:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1283,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Tyyppaamo at Hiedanranta",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E012",
@@ -3117,7 +3635,9 @@
     "end_time": "2024-03-28 21:00:00+0200",
     "event_type": "Cultural",
     "expected_attendance": 977,
-    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Manor",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E019",
@@ -3129,7 +3649,9 @@
     "end_time": "2024-04-02 01:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 603,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Like Shopping Center",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E016",
@@ -3141,7 +3663,9 @@
     "end_time": "2024-04-06 20:00:00+0300",
     "event_type": "Concert",
     "expected_attendance": 914,
-    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E020",
@@ -3153,7 +3677,9 @@
     "end_time": "2024-04-07 22:00:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1268,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Kuivaamo Event Venue",
+    "venue_address": "Lielahdenkatu 10, 33400 Tampere"
   },
   {
     "event_id": "E017",
@@ -3165,7 +3691,9 @@
     "end_time": "2024-04-13 00:00:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1226,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Tyyppaamo at Hiedanranta",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E018",
@@ -3177,7 +3705,9 @@
     "end_time": "2024-04-15 21:00:00+0300",
     "event_type": "Market",
     "expected_attendance": 836,
-    "description": "This market event at Lielahti showcases the area's unique mix of old industry and modern life."
+    "description": "This market event at Lielahti showcases the area's unique mix of old industry and modern life.",
+    "venue": "Leo's Leikkimaa",
+    "venue_address": "Sellukatu 22, 33400 Tampere"
   },
   {
     "event_id": "E022",
@@ -3189,7 +3719,9 @@
     "end_time": "2024-05-03 23:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 589,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E023",
@@ -3201,7 +3733,9 @@
     "end_time": "2024-05-11 03:00:00+0300",
     "event_type": "Market",
     "expected_attendance": 952,
-    "description": "Experience Lielahti through a market capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a market capturing the district’s transformation and vibrant community.",
+    "venue": "Like Shopping Center",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E025",
@@ -3213,7 +3747,9 @@
     "end_time": "2024-05-20 19:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 509,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E024",
@@ -3225,7 +3761,9 @@
     "end_time": "2024-05-23 03:00:00+0300",
     "event_type": "Concert",
     "expected_attendance": 977,
-    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a concert capturing the district’s transformation and vibrant community.",
+    "venue": "Tampere Climbing Center Lielahti",
+    "venue_address": "Harjuntausta 6, 33400 Tampere"
   },
   {
     "event_id": "E021",
@@ -3237,7 +3775,9 @@
     "end_time": "2024-05-28 23:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 624,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E028",
@@ -3249,7 +3789,9 @@
     "end_time": "2024-06-04 02:00:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1243,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Tyyppaamo at Hiedanranta",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E030",
@@ -3261,7 +3803,9 @@
     "end_time": "2024-06-08 01:00:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1276,
-    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a festival capturing the district’s transformation and vibrant community.",
+    "venue": "Tyyppaamo at Hiedanranta",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E027",
@@ -3273,7 +3817,9 @@
     "end_time": "2024-06-14 18:00:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 602,
-    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Manor",
+    "venue_address": "Tehdaskartanonkatu 38, 33400 Tampere"
   },
   {
     "event_id": "E029",
@@ -3285,7 +3831,9 @@
     "end_time": "2024-06-17 17:00:00+0300",
     "event_type": "Market",
     "expected_attendance": 760,
-    "description": "Experience Lielahti through a market capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a market capturing the district’s transformation and vibrant community.",
+    "venue": "Like Shopping Center",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E026",
@@ -3297,7 +3845,9 @@
     "end_time": "2024-06-28 03:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 529,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Like Shopping Center",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E032",
@@ -3309,7 +3859,9 @@
     "end_time": "2024-07-02 23:00:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 713,
-    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Church",
+    "venue_address": "Ollinojankatu 2, 33400 Tampere"
   },
   {
     "event_id": "E033",
@@ -3321,7 +3873,9 @@
     "end_time": "2024-07-04 22:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 673,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E034",
@@ -3333,7 +3887,9 @@
     "end_time": "2024-07-07 23:00:00+0300",
     "event_type": "Expo",
     "expected_attendance": 601,
-    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a expo capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Library",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E031",
@@ -3345,7 +3901,9 @@
     "end_time": "2024-07-12 04:00:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 641,
-    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a cultural capturing the district’s transformation and vibrant community.",
+    "venue": "Lielahti Church",
+    "venue_address": "Ollinojankatu 2, 33400 Tampere"
   },
   {
     "event_id": "E035",
@@ -3357,7 +3915,9 @@
     "end_time": "2024-07-27 23:00:00+0300",
     "event_type": "Market",
     "expected_attendance": 1050,
-    "description": "Experience Lielahti through a market capturing the district’s transformation and vibrant community."
+    "description": "Experience Lielahti through a market capturing the district’s transformation and vibrant community.",
+    "venue": "Like Shopping Center",
+    "venue_address": "Antti Possin kuja 1, 33400 Tampere"
   },
   {
     "event_id": "E001",
@@ -3369,7 +3929,9 @@
     "end_time": "2024-01-04 04:45:00+0200",
     "event_type": "Concert",
     "expected_attendance": 763,
-    "description": "Discover handcrafted goods and fresh produce near the lake's calm waters."
+    "description": "Discover handcrafted goods and fresh produce near the lake's calm waters.",
+    "venue": "Tampere Hall (Tampere-talo)",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E004",
@@ -3381,7 +3943,9 @@
     "end_time": "2024-01-05 21:30:00+0200",
     "event_type": "Market",
     "expected_attendance": 759,
-    "description": "A peaceful open-air event with art, music, and local culture by the water."
+    "description": "A peaceful open-air event with art, music, and local culture by the water.",
+    "venue": "Sale Järvensivu",
+    "venue_address": "Järvensivuntie 15, 33540 Tampere"
   },
   {
     "event_id": "E005",
@@ -3393,7 +3957,9 @@
     "end_time": "2024-01-13 21:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1102,
-    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat."
+    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E003",
@@ -3405,7 +3971,9 @@
     "end_time": "2024-01-21 17:00:00+0200",
     "event_type": "Expo",
     "expected_attendance": 519,
-    "description": "A soulful evening of music by the gently rippling shoreline."
+    "description": "A soulful evening of music by the gently rippling shoreline.",
+    "venue": "Tampere University – Faculty of Social Sciences",
+    "venue_address": "Kalevantie 5, 33100 Tampere"
   },
   {
     "event_id": "E002",
@@ -3417,7 +3985,9 @@
     "end_time": "2024-01-29 03:30:00+0200",
     "event_type": "Expo",
     "expected_attendance": 518,
-    "description": "An immersive community gathering set against tranquil lakeside scenery."
+    "description": "An immersive community gathering set against tranquil lakeside scenery.",
+    "venue": "Tampere Hall (Tampere-talo)",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E006",
@@ -3429,7 +3999,9 @@
     "end_time": "2024-02-07 05:00:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1118,
-    "description": "A scenic day of connection and creativity near the still waters."
+    "description": "A scenic day of connection and creativity near the still waters.",
+    "venue": "Mancester Järvensivu",
+    "venue_address": "Teerentie 7, 33540 Tampere"
   },
   {
     "event_id": "E007",
@@ -3441,7 +4013,9 @@
     "end_time": "2024-02-14 03:00:00+0200",
     "event_type": "Market",
     "expected_attendance": 670,
-    "description": "A soulful evening of music by the gently rippling shoreline."
+    "description": "A soulful evening of music by the gently rippling shoreline.",
+    "venue": "Sale Järvensivu",
+    "venue_address": "Järvensivuntie 15, 33540 Tampere"
   },
   {
     "event_id": "E009",
@@ -3453,7 +4027,9 @@
     "end_time": "2024-02-24 01:00:00+0200",
     "event_type": "Expo",
     "expected_attendance": 517,
-    "description": "Relax in nature while enjoying live performances and wholesome food."
+    "description": "Relax in nature while enjoying live performances and wholesome food.",
+    "venue": "Mancester Järvensivu",
+    "venue_address": "Teerentie 7, 33540 Tampere"
   },
   {
     "event_id": "E010",
@@ -3465,7 +4041,9 @@
     "end_time": "2024-02-25 20:45:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1038,
-    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat."
+    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E008",
@@ -3477,7 +4055,9 @@
     "end_time": "2024-02-27 23:45:00+0200",
     "event_type": "Concert",
     "expected_attendance": 699,
-    "description": "An immersive community gathering set against tranquil lakeside scenery."
+    "description": "An immersive community gathering set against tranquil lakeside scenery.",
+    "venue": "Café Europa",
+    "venue_address": "Aleksanterinkatu 29, 33100 Tampere"
   },
   {
     "event_id": "E012",
@@ -3489,7 +4069,9 @@
     "end_time": "2024-03-05 19:45:00+0200",
     "event_type": "Concert",
     "expected_attendance": 884,
-    "description": "A scenic day of connection and creativity near the still waters."
+    "description": "A scenic day of connection and creativity near the still waters.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E015",
@@ -3501,7 +4083,9 @@
     "end_time": "2024-03-13 23:30:00+0200",
     "event_type": "Festival",
     "expected_attendance": 1191,
-    "description": "An immersive community gathering set against tranquil lakeside scenery."
+    "description": "An immersive community gathering set against tranquil lakeside scenery.",
+    "venue": "Mancester Järvensivu",
+    "venue_address": "Teerentie 7, 33540 Tampere"
   },
   {
     "event_id": "E013",
@@ -3513,7 +4097,9 @@
     "end_time": "2024-03-16 01:15:00+0200",
     "event_type": "Concert",
     "expected_attendance": 895,
-    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat."
+    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat.",
+    "venue": "Tampere Hall (Tampere-talo)",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E014",
@@ -3525,7 +4111,9 @@
     "end_time": "2024-03-18 04:00:00+0200",
     "event_type": "Market",
     "expected_attendance": 877,
-    "description": "A soulful evening of music by the gently rippling shoreline."
+    "description": "A soulful evening of music by the gently rippling shoreline.",
+    "venue": "Sale Järvensivu",
+    "venue_address": "Järvensivuntie 15, 33540 Tampere"
   },
   {
     "event_id": "E011",
@@ -3537,7 +4125,9 @@
     "end_time": "2024-03-25 10:30:00+0200",
     "event_type": "Cultural",
     "expected_attendance": 434,
-    "description": "A scenic day of connection and creativity near the still waters."
+    "description": "A scenic day of connection and creativity near the still waters.",
+    "venue": "Järvensivu Daycare Centre",
+    "venue_address": "Järvensivu, 33540 Tampere"
   },
   {
     "event_id": "E019",
@@ -3549,7 +4139,9 @@
     "end_time": "2024-04-11 17:00:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 301,
-    "description": "A vibrant yet serene day featuring local talent and sustainable living ideas."
+    "description": "A vibrant yet serene day featuring local talent and sustainable living ideas.",
+    "venue": "Teerentie 20 Residential Complex",
+    "venue_address": "Teerentie 20, 33540 Tampere"
   },
   {
     "event_id": "E020",
@@ -3561,7 +4153,9 @@
     "end_time": "2024-04-21 19:45:00+0300",
     "event_type": "Festival",
     "expected_attendance": 913,
-    "description": "Relax in nature while enjoying live performances and wholesome food."
+    "description": "Relax in nature while enjoying live performances and wholesome food.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E017",
@@ -3573,7 +4167,9 @@
     "end_time": "2024-04-26 02:00:00+0300",
     "event_type": "Concert",
     "expected_attendance": 700,
-    "description": "An immersive community gathering set against tranquil lakeside scenery."
+    "description": "An immersive community gathering set against tranquil lakeside scenery.",
+    "venue": "Café Europa",
+    "venue_address": "Aleksanterinkatu 29, 33100 Tampere"
   },
   {
     "event_id": "E016",
@@ -3585,7 +4181,9 @@
     "end_time": "2024-04-28 13:30:00+0300",
     "event_type": "Expo",
     "expected_attendance": 493,
-    "description": "An immersive community gathering set against tranquil lakeside scenery."
+    "description": "An immersive community gathering set against tranquil lakeside scenery.",
+    "venue": "Tampere University – Faculty of Social Sciences",
+    "venue_address": "Kalevantie 5, 33100 Tampere"
   },
   {
     "event_id": "E018",
@@ -3597,7 +4195,9 @@
     "end_time": "2024-04-29 03:45:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 376,
-    "description": "A soulful evening of music by the gently rippling shoreline."
+    "description": "A soulful evening of music by the gently rippling shoreline.",
+    "venue": "Iidesranta 18 & 20 Apartments",
+    "venue_address": "Iidesranta 18 & 20, 33540 Tampere"
   },
   {
     "event_id": "E021",
@@ -3609,7 +4209,9 @@
     "end_time": "2024-05-04 01:45:00+0300",
     "event_type": "Concert",
     "expected_attendance": 928,
-    "description": "Discover handcrafted goods and fresh produce near the lake's calm waters."
+    "description": "Discover handcrafted goods and fresh produce near the lake's calm waters.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E025",
@@ -3621,7 +4223,9 @@
     "end_time": "2024-05-07 22:15:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 504,
-    "description": "A scenic day of connection and creativity near the still waters."
+    "description": "A scenic day of connection and creativity near the still waters.",
+    "venue": "Kalevankangas Cemetery",
+    "venue_address": "Kalevantie 131, 33540 Tampere"
   },
   {
     "event_id": "E023",
@@ -3633,7 +4237,9 @@
     "end_time": "2024-05-16 22:45:00+0300",
     "event_type": "Market",
     "expected_attendance": 777,
-    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat."
+    "description": "Embrace wellness and mindfulness in a leafy lakeside retreat.",
+    "venue": "Sale Järvensivu",
+    "venue_address": "Järvensivuntie 15, 33540 Tampere"
   },
   {
     "event_id": "E022",
@@ -3645,7 +4251,9 @@
     "end_time": "2024-05-17 23:00:00+0300",
     "event_type": "Festival",
     "expected_attendance": 835,
-    "description": "A peaceful open-air event with art, music, and local culture by the water."
+    "description": "A peaceful open-air event with art, music, and local culture by the water.",
+    "venue": "Mancester Järvensivu",
+    "venue_address": "Teerentie 7, 33540 Tampere"
   },
   {
     "event_id": "E024",
@@ -3657,7 +4265,9 @@
     "end_time": "2024-05-22 04:15:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 599,
-    "description": "A peaceful open-air event with art, music, and local culture by the water."
+    "description": "A peaceful open-air event with art, music, and local culture by the water.",
+    "venue": "Café Europa",
+    "venue_address": "Aleksanterinkatu 29, 33100 Tampere"
   },
   {
     "event_id": "E026",
@@ -3669,7 +4279,9 @@
     "end_time": "2024-06-16 17:45:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 422,
-    "description": "Workshops and talks focused on living harmoniously with nature."
+    "description": "Workshops and talks focused on living harmoniously with nature.",
+    "venue": "Järvensivu Daycare Centre",
+    "venue_address": "Järvensivu, 33540 Tampere"
   },
   {
     "event_id": "E030",
@@ -3681,7 +4293,9 @@
     "end_time": "2024-06-17 01:00:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 596,
-    "description": "Relax in nature while enjoying live performances and wholesome food."
+    "description": "Relax in nature while enjoying live performances and wholesome food.",
+    "venue": "Teerentie 20 Residential Complex",
+    "venue_address": "Teerentie 20, 33540 Tampere"
   },
   {
     "event_id": "E028",
@@ -3693,7 +4307,9 @@
     "end_time": "2024-06-18 00:00:00+0300",
     "event_type": "Concert",
     "expected_attendance": 812,
-    "description": "Stroll through a market surrounded by the soothing presence of pine trees."
+    "description": "Stroll through a market surrounded by the soothing presence of pine trees.",
+    "venue": "Tampere Hall (Tampere-talo)",
+    "venue_address": "Yliopistonkatu 55, 33100 Tampere"
   },
   {
     "event_id": "E029",
@@ -3705,7 +4321,9 @@
     "end_time": "2024-06-23 03:45:00+0300",
     "event_type": "Concert",
     "expected_attendance": 615,
-    "description": "A scenic day of connection and creativity near the still waters."
+    "description": "A scenic day of connection and creativity near the still waters.",
+    "venue": "Café Europa",
+    "venue_address": "Aleksanterinkatu 29, 33100 Tampere"
   },
   {
     "event_id": "E027",
@@ -3717,7 +4335,9 @@
     "end_time": "2024-06-23 22:15:00+0300",
     "event_type": "Cultural",
     "expected_attendance": 344,
-    "description": "An inspiring mix of community and calm in Järvensivu’s green heart."
+    "description": "An inspiring mix of community and calm in Järvensivu’s green heart.",
+    "venue": "Iidesranta 18 & 20 Apartments",
+    "venue_address": "Iidesranta 18 & 20, 33540 Tampere"
   },
   {
     "event_id": "E031",
@@ -3729,7 +4349,9 @@
     "end_time": "2024-07-07 15:30:00+0300",
     "event_type": "Market",
     "expected_attendance": 596,
-    "description": "Workshops and talks focused on living harmoniously with nature."
+    "description": "Workshops and talks focused on living harmoniously with nature.",
+    "venue": "Sale Järvensivu",
+    "venue_address": "Järvensivuntie 15, 33540 Tampere"
   },
   {
     "event_id": "E033",
@@ -3741,7 +4363,9 @@
     "end_time": "2024-07-12 05:00:00+0300",
     "event_type": "Market",
     "expected_attendance": 729,
-    "description": "Celebrate tradition and togetherness in a forest-fringed lakeside park."
+    "description": "Celebrate tradition and togetherness in a forest-fringed lakeside park.",
+    "venue": "Sale Järvensivu",
+    "venue_address": "Järvensivuntie 15, 33540 Tampere"
   },
   {
     "event_id": "E035",
@@ -3753,7 +4377,9 @@
     "end_time": "2024-07-19 21:45:00+0300",
     "event_type": "Concert",
     "expected_attendance": 975,
-    "description": "Workshops and talks focused on living harmoniously with nature."
+    "description": "Workshops and talks focused on living harmoniously with nature.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E034",
@@ -3765,7 +4391,9 @@
     "end_time": "2024-07-21 16:30:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1165,
-    "description": "A peaceful open-air event with art, music, and local culture by the water."
+    "description": "A peaceful open-air event with art, music, and local culture by the water.",
+    "venue": "Gastropub Soho",
+    "venue_address": "Otavalankatu 10, 33100 Tampere"
   },
   {
     "event_id": "E032",
@@ -3777,7 +4405,9 @@
     "end_time": "2024-07-24 07:00:00+0300",
     "event_type": "Festival",
     "expected_attendance": 1115,
-    "description": "Workshops and talks focused on living harmoniously with nature."
+    "description": "Workshops and talks focused on living harmoniously with nature.",
+    "venue": "Mancester Järvensivu",
+    "venue_address": "Teerentie 7, 33540 Tampere"
   },
   {
     "event_id": "E002",
@@ -3789,7 +4419,9 @@
     "end_time": "2024-01-01T13:00:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 430,
-    "description": "A expo that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A expo that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi School",
+    "venue_address": "Keskisenkatu 10, 33710 Tampere"
   },
   {
     "event_id": "E001",
@@ -3801,7 +4433,9 @@
     "end_time": "2024-01-09T05:00:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 975,
-    "description": "Enjoy a vibrant concert at the heart of Kaukajärvi, blending tradition with modern community vibes."
+    "description": "Enjoy a vibrant concert at the heart of Kaukajärvi, blending tradition with modern community vibes.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E005",
@@ -3813,7 +4447,9 @@
     "end_time": "2024-01-18T21:15:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 690,
-    "description": "This concert brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity."
+    "description": "This concert brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E003",
@@ -3825,7 +4461,9 @@
     "end_time": "2024-01-24T16:45:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 887,
-    "description": "Discover the suburban soul of Kaukajärvi at this festival packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this festival packed with activities for all ages.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E004",
@@ -3837,7 +4475,9 @@
     "end_time": "2024-01-26T01:45:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 846,
-    "description": "Discover the suburban soul of Kaukajärvi at this concert packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this concert packed with activities for all ages.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E010",
@@ -3849,7 +4489,9 @@
     "end_time": "2024-02-17T21:00:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 711,
-    "description": "Experience the best of Kaukajärvi at this festival, featuring engaging activities and a strong sense of togetherness."
+    "description": "Experience the best of Kaukajärvi at this festival, featuring engaging activities and a strong sense of togetherness.",
+    "venue": "Kaukajärvi Rowing and Canoeing Centre",
+    "venue_address": "Kangasalantie 76, 33730 Tampere"
   },
   {
     "event_id": "E009",
@@ -3861,7 +4503,9 @@
     "end_time": "2024-02-20T20:30:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 808,
-    "description": "A festival that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A festival that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi Rowing and Canoeing Centre",
+    "venue_address": "Kangasalantie 76, 33730 Tampere"
   },
   {
     "event_id": "E008",
@@ -3873,7 +4517,9 @@
     "end_time": "2024-02-22T23:15:00+02:00",
     "event_type": "Concert",
     "expected_attendance": 646,
-    "description": "Discover the suburban soul of Kaukajärvi at this concert packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this concert packed with activities for all ages.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E006",
@@ -3885,7 +4531,9 @@
     "end_time": "2024-02-27T14:15:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 779,
-    "description": "A festival that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A festival that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi Rowing and Canoeing Centre",
+    "venue_address": "Kangasalantie 76, 33730 Tampere"
   },
   {
     "event_id": "E007",
@@ -3897,7 +4545,9 @@
     "end_time": "2024-02-28T20:45:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 341,
-    "description": "Experience the best of Kaukajärvi at this cultural, featuring engaging activities and a strong sense of togetherness."
+    "description": "Experience the best of Kaukajärvi at this cultural, featuring engaging activities and a strong sense of togetherness.",
+    "venue": "Kaukajärvi Library",
+    "venue_address": "Keskisenkatu 10, 33710 Tampere"
   },
   {
     "event_id": "E015",
@@ -3909,7 +4559,9 @@
     "end_time": "2024-03-02T03:45:00+02:00",
     "event_type": "Festival",
     "expected_attendance": 783,
-    "description": "Discover the suburban soul of Kaukajärvi at this festival packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this festival packed with activities for all ages.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E014",
@@ -3921,7 +4573,9 @@
     "end_time": "2024-03-02T22:30:00+02:00",
     "event_type": "Market",
     "expected_attendance": 638,
-    "description": "This market brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity."
+    "description": "This market brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E012",
@@ -3933,7 +4587,9 @@
     "end_time": "2024-03-12T03:15:00+02:00",
     "event_type": "Expo",
     "expected_attendance": 576,
-    "description": "This expo brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity."
+    "description": "This expo brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity.",
+    "venue": "Kaukajärvi School",
+    "venue_address": "Keskisenkatu 10, 33710 Tampere"
   },
   {
     "event_id": "E013",
@@ -3945,7 +4601,9 @@
     "end_time": "2024-03-14T02:15:00+02:00",
     "event_type": "Cultural",
     "expected_attendance": 621,
-    "description": "A cultural that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A cultural that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E011",
@@ -3957,7 +4615,9 @@
     "end_time": "2024-04-01T00:45:00+02:00",
     "event_type": "Market",
     "expected_attendance": 551,
-    "description": "Enjoy a vibrant market at the heart of Kaukajärvi, blending tradition with modern community vibes."
+    "description": "Enjoy a vibrant market at the heart of Kaukajärvi, blending tradition with modern community vibes.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E020",
@@ -3969,7 +4629,9 @@
     "end_time": "2024-04-01T22:15:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 648,
-    "description": "A concert that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A concert that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E016",
@@ -3981,7 +4643,9 @@
     "end_time": "2024-04-09T02:30:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 500,
-    "description": "Enjoy a vibrant cultural at the heart of Kaukajärvi, blending tradition with modern community vibes."
+    "description": "Enjoy a vibrant cultural at the heart of Kaukajärvi, blending tradition with modern community vibes.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E018",
@@ -3993,7 +4657,9 @@
     "end_time": "2024-04-16T12:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 532,
-    "description": "Experience the best of Kaukajärvi at this market, featuring engaging activities and a strong sense of togetherness."
+    "description": "Experience the best of Kaukajärvi at this market, featuring engaging activities and a strong sense of togetherness.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E017",
@@ -4005,7 +4671,9 @@
     "end_time": "2024-04-22T00:45:00+03:00",
     "event_type": "Market",
     "expected_attendance": 743,
-    "description": "Discover the suburban soul of Kaukajärvi at this market packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this market packed with activities for all ages.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E019",
@@ -4017,7 +4685,9 @@
     "end_time": "2024-04-23T00:15:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 908,
-    "description": "Discover the suburban soul of Kaukajärvi at this concert packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this concert packed with activities for all ages.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E023",
@@ -4029,7 +4699,9 @@
     "end_time": "2024-05-02T19:00:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 885,
-    "description": "This concert brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity."
+    "description": "This concert brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E025",
@@ -4041,7 +4713,9 @@
     "end_time": "2024-05-06T01:15:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 849,
-    "description": "This concert brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity."
+    "description": "This concert brings together residents in Kaukajärvi’s modern spaces for a unique celebration of culture and unity.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E022",
@@ -4053,7 +4727,9 @@
     "end_time": "2024-05-14T21:45:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 708,
-    "description": "Experience the best of Kaukajärvi at this expo, featuring engaging activities and a strong sense of togetherness."
+    "description": "Experience the best of Kaukajärvi at this expo, featuring engaging activities and a strong sense of togetherness.",
+    "venue": "Kaukajärvi School",
+    "venue_address": "Keskisenkatu 10, 33710 Tampere"
   },
   {
     "event_id": "E024",
@@ -4065,7 +4741,9 @@
     "end_time": "2024-05-20T22:45:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 767,
-    "description": "Experience the best of Kaukajärvi at this concert, featuring engaging activities and a strong sense of togetherness."
+    "description": "Experience the best of Kaukajärvi at this concert, featuring engaging activities and a strong sense of togetherness.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E021",
@@ -4077,7 +4755,9 @@
     "end_time": "2024-05-25T11:15:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1057,
-    "description": "Discover the suburban soul of Kaukajärvi at this festival packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this festival packed with activities for all ages.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E030",
@@ -4089,7 +4769,9 @@
     "end_time": "2024-06-05T03:15:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 723,
-    "description": "A expo that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A expo that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi Library",
+    "venue_address": "Keskisenkatu 10, 33710 Tampere"
   },
   {
     "event_id": "E026",
@@ -4101,7 +4783,9 @@
     "end_time": "2024-06-07T20:45:00+03:00",
     "event_type": "Market",
     "expected_attendance": 753,
-    "description": "A market that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A market that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E028",
@@ -4113,7 +4797,9 @@
     "end_time": "2024-06-15T19:00:00+03:00",
     "event_type": "Market",
     "expected_attendance": 528,
-    "description": "Experience the best of Kaukajärvi at this market, featuring engaging activities and a strong sense of togetherness."
+    "description": "Experience the best of Kaukajärvi at this market, featuring engaging activities and a strong sense of togetherness.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E029",
@@ -4125,7 +4811,9 @@
     "end_time": "2024-06-18T17:45:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 612,
-    "description": "Enjoy a vibrant concert at the heart of Kaukajärvi, blending tradition with modern community vibes."
+    "description": "Enjoy a vibrant concert at the heart of Kaukajärvi, blending tradition with modern community vibes.",
+    "venue": "Kaukajärvi Leisure Centre",
+    "venue_address": "Käätykatu 8, 33710 Tampere"
   },
   {
     "event_id": "E027",
@@ -4137,7 +4825,9 @@
     "end_time": "2024-06-25T12:45:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 1076,
-    "description": "Enjoy a vibrant festival at the heart of Kaukajärvi, blending tradition with modern community vibes."
+    "description": "Enjoy a vibrant festival at the heart of Kaukajärvi, blending tradition with modern community vibes.",
+    "venue": "Saunaranta Beach",
+    "venue_address": "Saunaranta 7, 33730 Tampere"
   },
   {
     "event_id": "E035",
@@ -4149,7 +4839,9 @@
     "end_time": "2024-07-02T17:15:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 546,
-    "description": "Discover the suburban soul of Kaukajärvi at this cultural packed with activities for all ages."
+    "description": "Discover the suburban soul of Kaukajärvi at this cultural packed with activities for all ages.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E034",
@@ -4161,7 +4853,9 @@
     "end_time": "2024-07-15T03:30:00+03:00",
     "event_type": "Concert",
     "expected_attendance": 650,
-    "description": "A concert that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A concert that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E031",
@@ -4173,7 +4867,9 @@
     "end_time": "2024-07-19T22:00:00+03:00",
     "event_type": "Festival",
     "expected_attendance": 831,
-    "description": "A festival that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A festival that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi Rowing and Canoeing Centre",
+    "venue_address": "Kangasalantie 76, 33730 Tampere"
   },
   {
     "event_id": "E032",
@@ -4185,7 +4881,9 @@
     "end_time": "2024-07-25T02:15:00+03:00",
     "event_type": "Cultural",
     "expected_attendance": 388,
-    "description": "Enjoy a vibrant cultural at the heart of Kaukajärvi, blending tradition with modern community vibes."
+    "description": "Enjoy a vibrant cultural at the heart of Kaukajärvi, blending tradition with modern community vibes.",
+    "venue": "Haihara Manor",
+    "venue_address": "Haiharankatu 30, 33710 Tampere"
   },
   {
     "event_id": "E033",
@@ -4197,6 +4895,8 @@
     "end_time": "2024-07-25T17:30:00+03:00",
     "event_type": "Expo",
     "expected_attendance": 679,
-    "description": "A expo that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair."
+    "description": "A expo that captures the suburban charm of Kaukajärvi with community-driven experiences and local flair.",
+    "venue": "Kaukajärvi School",
+    "venue_address": "Keskisenkatu 10, 33710 Tampere"
   }
 ]
