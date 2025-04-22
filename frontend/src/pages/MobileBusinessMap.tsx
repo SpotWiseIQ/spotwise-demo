@@ -4,12 +4,16 @@ import { MobileBusinessSidebar } from "@/components/MobileBusinessSidebar";
 import { MobileBusinessMap } from "@/components/MobileBusinessMap";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 
 const MobileBusinessMapPage = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [searchParams] = useSearchParams();
+  const selectedBusiness = searchParams.get('business') || undefined;
+  const selectedLocation = searchParams.get('location') || undefined;
   
   return (
-    <TampereProvider>
+    <TampereProvider initialBusiness={selectedBusiness} initialLocation={selectedLocation}>
       <div className="flex h-screen w-full overflow-hidden">
         <div className={`${sidebarCollapsed ? 'w-0' : 'w-1/3'} border-r border-gray-200 bg-white transition-all duration-300 relative`}>
           <MobileBusinessSidebar />

@@ -145,7 +145,7 @@ export const StaticBusinessSidebar: React.FC = () => {
           </a>
           <h1 className="text-xl font-bold flex items-center gap-2">
             <a href="/static-business" className="cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-2">
-              <Building2 className="text-tampere-red" />
+              <Building2 className="text-tampere-red" size={20} />
               <span>Static Business Locations</span>
             </a>
           </h1>

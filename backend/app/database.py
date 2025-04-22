@@ -1372,6 +1372,13 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
     labels = list(string.ascii_uppercase)  # A-Z
     locations = []
 
+    # Save current random state
+    random_state = random.getstate()
+
+    # Generate a seed based on the date AND hour to ensure different event selection each hour
+    hour_date_seed = sum(ord(c) for c in f"{target_date}_{target_hour}")
+    random.seed(hour_date_seed)
+
     for i, (location, _) in enumerate(locations_with_traffic):
         if i < len(labels):
             location.label = labels[i]
@@ -1381,7 +1388,7 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
         # Randomly upgrade some locations to event hotspots
         # This simulates events happening at some locations
         if (
-            random.random() < 0.4
+            random.random() < 0.5
             and location.id in all_events
             and all_events[location.id]
         ):
@@ -1431,6 +1438,9 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
             location.event_id = event.get("event_id", "")
 
         locations.append(location)
+
+    # Restore random state
+    random.setstate(random_state)
 
     # Cache the results (top 6 locations)
     location_cache[cache_key] = locations[:6]

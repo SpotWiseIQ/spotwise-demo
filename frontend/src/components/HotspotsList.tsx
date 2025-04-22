@@ -4,7 +4,11 @@ import { NaturalHotspotCard } from "./NaturalHotspotCard";
 import { CompareToggle } from "./CompareToggle";
 import { EventHotspotCard } from "./EventHotspotCard";
 
-export const HotspotsList: React.FC = () => {
+interface HotspotsListProps {
+  searchQuery?: string;
+}
+
+export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) => {
   const { 
     locations,
     selectedLocation,
@@ -19,6 +23,20 @@ export const HotspotsList: React.FC = () => {
     loadEventDetailedMetrics,
     setDetailedMetrics
   } = useTampere();
+
+  // Filter locations based on search query
+  const filteredLocations = useMemo(() => {
+    if (!searchQuery) return locations;
+    const query = searchQuery.toLowerCase();
+    return locations.filter(location => {
+      if (location.type === 'natural') {
+        return location.name.toLowerCase().includes(query);
+      } else {
+        // For events
+        return location.event_name.toLowerCase().includes(query);
+      }
+    });
+  }, [locations, searchQuery]);
 
   const handleLocationClick = async (location: (typeof locations)[0]) => {
     if (isCompareMode) {
@@ -67,8 +85,10 @@ export const HotspotsList: React.FC = () => {
           <div className="text-red-500 text-sm py-2">{error}</div>
         ) : locations.length === 0 ? (
           <div className="text-gray-500 text-sm py-2">No hotspots for this date and time</div>
+        ) : filteredLocations.length === 0 ? (
+          <div className="text-gray-500 text-sm py-2">No hotspots match your search</div>
         ) : (
-          locations.map((location) => 
+          filteredLocations.map((location) => 
             location.type === 'natural' ? (
               <NaturalHotspotCard
                 key={location.id}

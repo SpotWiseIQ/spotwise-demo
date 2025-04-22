@@ -4,6 +4,7 @@ import { DateSelector } from "./DateSelector";
 import { TimelineSlider } from "./TimelineSlider";
 import { HotspotsList } from "./HotspotsList";
 import { LanguageSelector } from "./LanguageSelector";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -11,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Truck, Home } from "lucide-react";
+import { Truck, Home, Search } from "lucide-react";
 
 export const MobileBusinessSidebar: React.FC = () => {
   const { 
@@ -23,8 +24,11 @@ export const MobileBusinessSidebar: React.FC = () => {
     setSelectedLocation,
     timePeriod,
     setTimePeriod,
-    locations
+    locations,
+    selectedBusiness,
+    selectedArea
   } = useTampere();
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Derived state for backward compatibility
   const selectedEvent = selectedLocation?.type === 'event' ? selectedLocation : null;
@@ -57,7 +61,7 @@ export const MobileBusinessSidebar: React.FC = () => {
     if (selectedEvent) {
       console.log(`🧩 SIDEBAR: Showing EVENT DETAIL view for event id=${selectedEvent.id}, name=${selectedEvent.name}, date=${selectedEvent.date}`);
     } else if (selectedHotspot) {
-      console.log(`🧩 SIDEBAR: Showing HOTSPOT DETAIL view for hotspot id=${selectedHotspot.id}, label=${selectedHotspot.label}, address=${selectedHotspot.address}`);
+      console.log(`🧩 SIDEBAR: Showing HOTSPOT DETAIL view for hotspot id=${selectedHotspot.id}, label=${selectedHotspot.label}`);
     } else {
       console.log(`🧩 SIDEBAR: Showing EVENTS LIST view for date ${formattedDate}`);
     }
@@ -75,7 +79,7 @@ export const MobileBusinessSidebar: React.FC = () => {
           </a>
           <h1 className="text-xl font-bold flex items-center gap-2">
             <a href="/mobile-business" className="cursor-pointer hover:opacity-80 transition-opacity flex items-center gap-2">
-              <Truck className="text-tampere-red" />
+              <Truck className="text-tampere-red" size={20} />
               <span>Mobile Business Spots</span>
             </a>
           </h1>
@@ -83,6 +87,13 @@ export const MobileBusinessSidebar: React.FC = () => {
             <LanguageSelector />
           </div>
         </div>
+        {selectedBusiness && selectedArea && (
+          <div className="text-sm text-gray-600 mb-3 bg-gray-50 p-2 rounded-md border border-gray-100 shadow-sm">
+            <p className="font-medium">
+              Displaying spots for <span className="text-tampere-red">{selectedBusiness}</span> in <span className="text-tampere-red">{selectedArea}</span>
+            </p>
+          </div>
+        )}
         <div className="mb-2">
           <Select value={timePeriod} onValueChange={(value) => setTimePeriod(value as 'real-time' | 'daily' | 'weekly' | 'monthly')}>
             <SelectTrigger className="w-full py-1 h-8 text-xs">
@@ -127,7 +138,18 @@ export const MobileBusinessSidebar: React.FC = () => {
           />
         </div>
       )}
-      <HotspotsList />
+      {/* remove bottom margin and increase top margin */}
+      <div className="relative flex-grow mt-8">
+        <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+        <Input
+          type="text"
+          placeholder="Search hotspots..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="pl-8 h-8 text-sm"
+        />
+      </div>
+      <HotspotsList searchQuery={searchQuery} />
     </div>
   );
 }; 

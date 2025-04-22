@@ -59,11 +59,19 @@ interface TampereContextType {
   selectedEventsForComparison: UnifiedHotspot[];
   setIsHotspotCompareMode: (mode: boolean) => void;
   setIsEventCompareMode: (mode: boolean) => void;
+
+  // Add business and location info
+  selectedBusiness: string | undefined;
+  selectedArea: string | undefined;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
 
-export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const TampereProvider: React.FC<{ 
+  children: React.ReactNode;
+  initialBusiness?: string;
+  initialLocation?: string;
+}> = ({ children, initialBusiness, initialLocation }) => {
   debugLog("TampereProvider initializing");
   
   // Initialize with current date and time
@@ -83,6 +91,10 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
     end: endTimePercentage 
   });
   
+  // Store business and location info
+  const [selectedBusiness] = useState<string | undefined>(initialBusiness);
+  const [selectedArea] = useState<string | undefined>(initialLocation);
+
   // Unified locations state (includes both types of hotspots)
   const [locations, setLocations] = useState<UnifiedHotspot[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<UnifiedHotspot | null>(null);
@@ -329,6 +341,10 @@ export const TampereProvider: React.FC<{ children: React.ReactNode }> = ({ child
         selectedEventsForComparison,
         setIsHotspotCompareMode,
         setIsEventCompareMode,
+
+        // Add business and location info
+        selectedBusiness,
+        selectedArea,
       }}
     >
       {children}

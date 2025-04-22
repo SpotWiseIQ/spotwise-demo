@@ -64,7 +64,16 @@ export default function LandingPage(): JSX.Element {
     console.log('Redirecting with:', { businessType, business, location });
     
     if (businessType.toLowerCase() === "mobile" && location === "Tampere") {
-      navigate("/mobile-business");
+      // Add business and location parameters for mobile business too
+      if (business) {
+        navigate(`/mobile-business?business=${encodeURIComponent(business)}&location=${encodeURIComponent(location)}`);
+      } else {
+        toast({
+          title: "Please select a business",
+          description: "You need to select a business before proceeding",
+          variant: "destructive",
+        });
+      }
     } else if (businessType.toLowerCase() === "static" && location === "Tampere") {
       // Only navigate if we have a business selected
       if (business) {
