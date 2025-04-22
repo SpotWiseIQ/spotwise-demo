@@ -4,10 +4,19 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useTampere } from "@/lib/TampereContext";
 import { MobileBusinessLegend } from "./MobileBusinessLegend";
 import { PulseToggle } from "./PulseToggle";
-import { fetchMapItems, fetchTrafficData, fetchTrafficPoints, fetchTampereCenter } from "@/lib/api";
+import { 
+  fetchMapItems, 
+  fetchTrafficData, 
+  fetchTrafficPoints, 
+  fetchTampereCenter,
+  setupTrafficCacheListeners,
+  trafficDataCache as sharedTrafficDataCache,
+  trafficPointsCache as sharedTrafficPointsCache
+} from "@/lib/api";
 import { MapItem } from "@/lib/types";
 import { LocationMetrics } from "./LocationMetrics";
 import { ComparisonView } from "./ComparisonView";
+import { getTrafficCacheKey } from "@/lib/utils";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
@@ -639,79 +648,61 @@ export const MobileBusinessMap: React.FC = () => {
     };
   }, [tampereCenter]);
 
-  // Update traffic data based on pulse state
+  // EFFECT: Update traffic data points when time/hotspot changes
   useEffect(() => {
-    if (!map.current || !mapLoaded) {
-      debugLog("Map not ready for traffic data update");
-      return;
-    }
+    if (!map.current || !mapLoaded) return;
 
-    const sliderHour = getSliderHour();
-    const systemHour = getSystemHour();
-    const dateKey = getDateKey(selectedDate || new Date());
-    const cacheKey = `${dateKey}-${sliderHour}`;
+    debugLog("Traffic data update triggered", {
+      date: selectedDate ? selectedDate.toISOString().split('T')[0] : "current",
+      timelineRange,
+      pulse
+    });
 
-    let shouldFetch = false;
+    const cacheKey = getTrafficCacheKey(selectedDate, timelineRange);
+    debugLog('MAP CACHE KEY DEBUG', { cacheKey, selectedDate, timelineRange });
 
-    // First load
-    if (isFirstLoad.current) {
-      shouldFetch = true;
-      isFirstLoad.current = false;
-    }
-    // Slider hour changed
-    else if (prevSliderHour.current !== sliderHour) {
-      shouldFetch = true;
-    }
-    // System hour changed
-    else if (prevSystemHour.current !== systemHour) {
-      shouldFetch = true;
-    }
+    // Only use cached data from context/api. Do not fetch here.
+    const cachedPoints = sharedTrafficPointsCache[cacheKey];
+    const cachedTraffic = sharedTrafficDataCache[cacheKey];
 
-    prevSliderHour.current = sliderHour;
-    prevSystemHour.current = systemHour;
+    debugLog(`Traffic cache lookup`, {
+      cacheKey,
+      hasCachedPoints: !!cachedPoints,
+      hasCachedTraffic: !!cachedTraffic,
+      pointsFeatureCount: cachedPoints?.features?.length ?? 0,
+      trafficFeatureCount: cachedTraffic?.features?.length ?? 0,
+      firstPointFeature: cachedPoints?.features?.[0] ?? null,
+      firstTrafficFeature: cachedTraffic?.features?.[0] ?? null
+    });
 
-    if (shouldFetch) {
-      debugLog(`Fetching traffic data for hour ${sliderHour} (cacheKey=${cacheKey})`);
-      // Fetch and cache traffic points
-      fetchTrafficPoints().then((pointsData) => {
-        if (!pointsData) return;
-        trafficPointsCache.current[cacheKey] = pointsData;
-        if (map.current && map.current.getSource("traffic-points")) {
-          (
-            map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
-          ).setData(pointsData);
-        }
-      }).catch(err => {
-        console.error("Error fetching traffic points:", err);
-      });
-      
-      // Fetch and cache traffic data
-      fetchTrafficData().then((trafficData) => {
-        if (!trafficData) return;
-        trafficDataCache.current[cacheKey] = trafficData;
-        if (map.current && map.current.getSource("traffic-lines")) {
-          (
-            map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
-          ).setData(trafficData);
-        }
-      }).catch(err => {
-        console.error("Error fetching traffic data:", err);
+    // If not present, use empty GeoJSON
+    const emptyGeoJSON = {
+      type: "FeatureCollection" as const,
+      features: []
+    };
+
+    // Update sources with cached data or empty
+    if (map.current && map.current.getSource("traffic-points")) {
+      (
+        map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
+      ).setData(cachedPoints || emptyGeoJSON);
+      debugLog(`Set traffic-points source`, {
+        usedCache: !!cachedPoints,
+        featureCount: cachedPoints?.features?.length ?? 0
       });
     } else {
-      // Use cached data if available
-      debugLog(`Using cached traffic data for hour ${sliderHour} (cacheKey=${cacheKey})`);
-      const cachedPoints = trafficPointsCache.current[cacheKey];
-      const cachedTraffic = trafficDataCache.current[cacheKey];
-      if (cachedPoints && map.current && map.current.getSource("traffic-points")) {
-        (
-          map.current.getSource("traffic-points") as maplibregl.GeoJSONSource
-        ).setData(cachedPoints);
-      }
-      if (cachedTraffic && map.current && map.current.getSource("traffic-lines")) {
-        (
-          map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
-        ).setData(cachedTraffic);
-      }
+      debugLog("traffic-points source not found on map");
+    }
+    if (map.current && map.current.getSource("traffic-lines")) {
+      (
+        map.current.getSource("traffic-lines") as maplibregl.GeoJSONSource
+      ).setData(cachedTraffic || emptyGeoJSON);
+      debugLog(`Set traffic-lines source`, {
+        usedCache: !!cachedTraffic,
+        featureCount: cachedTraffic?.features?.length ?? 0
+      });
+    } else {
+      debugLog("traffic-lines source not found on map");
     }
 
     // Toggle visibility of traffic layers based on selection and pulse state
@@ -722,6 +713,7 @@ export const MobileBusinessMap: React.FC = () => {
         "visibility",
         "visible"
       );
+      debugLog(`Set traffic-heatmap visibility to: visible`);
 
       // Show traffic lines only when pulse is on
       map.current.setLayoutProperty(
@@ -729,8 +721,21 @@ export const MobileBusinessMap: React.FC = () => {
         "visibility",
         pulse ? "visible" : "none"
       );
+      debugLog(`Set traffic-lines visibility to: ${pulse ? "visible" : "none"}`);
+
+      // Make sure the layers are ordered correctly (heatmap at bottom, lines on top)
+      try {
+        // Move lines layer to top if needed
+        if (map.current.getLayer("traffic-lines") && map.current.getLayer("traffic-heatmap")) {
+          map.current.moveLayer("traffic-lines");  // Move to top
+          debugLog("Moved traffic-lines layer to top");
+        }
+      } catch (e) {
+        // Ignore errors, this is just an optimization
+        debugLog("Error trying to reorder layers", e);
+      }
     }
-  }, [pulse, mapLoaded, selectedHotspot, selectedEvent, timelineRange, selectedDate]);
+  }, [pulse, mapLoaded, selectedHotspot, selectedEvent, timelineRange, selectedDate, loading, context.cacheVersion]);
 
   // Update map markers and traffic data for selected items
   useEffect(() => {
@@ -1316,6 +1321,31 @@ export const MobileBusinessMap: React.FC = () => {
       setPulse(false);
     }
   }, [selectedHotspot, selectedEvent, setPulse]);
+
+  // Initialize traffic cache listeners when component mounts
+  useEffect(() => {
+    setupTrafficCacheListeners();
+    
+    // Log initial cache state for debugging
+    debugLog("Initial traffic cache state:", {
+      trafficDataCacheKeys: Object.keys(sharedTrafficDataCache),
+      trafficPointsCacheKeys: Object.keys(sharedTrafficPointsCache)
+    });
+    
+    // Set up a timer to log cache state periodically
+    const interval = setInterval(() => {
+      debugLog("Traffic cache status check:", {
+        trafficDataCacheKeys: Object.keys(sharedTrafficDataCache),
+        trafficPointsCacheKeys: Object.keys(sharedTrafficPointsCache),
+        trafficDataCount: Object.keys(sharedTrafficDataCache).length,
+        trafficPointsCount: Object.keys(sharedTrafficPointsCache).length
+      });
+    }, 5000); // Check every 5 seconds
+    
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div className="relative w-full h-full">

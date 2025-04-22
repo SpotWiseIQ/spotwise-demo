@@ -14,7 +14,7 @@ export const fetchLocations = async (
   timePeriod?: string,
   date?: string,
   timelineRange?: TimelineRange
-): Promise<UnifiedHotspot[]> => {
+): Promise<{locations: UnifiedHotspot[], traffic_data?: any, traffic_points?: any}> => {
   // Build query parameters
   const params = new URLSearchParams();
   
@@ -57,13 +57,25 @@ export const fetchLocations = async (
     }
     const data = await response.json();
     debugLog(`Locations response received`, { 
-      count: data.length,
-      natural: data.filter((h: UnifiedHotspot) => h.type === 'natural').length,
-      event: data.filter((h: UnifiedHotspot) => h.type === 'event').length,
+      locationsCount: data.locations?.length || 0,
+      hasTrafficData: !!data.traffic_data,
+      hasTrafficPoints: !!data.traffic_points,
       timePeriod,
       date,
       selectedTime: timelineRange ? Math.round(timelineRange.start / 100 * 24) : undefined
     });
+    
+    if (!data.locations) {
+      // Handle old API format (array of locations)
+      if (Array.isArray(data)) {
+        debugLog('Received legacy locations format (array)', { count: data.length });
+        return { locations: data };
+      }
+      
+      debugLog('Invalid locations response format', data);
+      throw new Error('Invalid locations response format');
+    }
+    
     return data;
   } catch (error) {
     debugLog(`Exception in fetchLocations`, error);
@@ -78,10 +90,10 @@ export const fetchHotspots = async (
 ): Promise<UnifiedHotspot[]> => {
   try {
     // Use the locations endpoint with filtering on the client side
-    const allLocations = await fetchLocations(timePeriod, date, timelineRange);
-    const naturalHotspots = allLocations.filter(location => location.type === 'natural');
+    const responseData = await fetchLocations(timePeriod, date, timelineRange);
+    const naturalHotspots = responseData.locations.filter(location => location.type === 'natural');
     
-    debugLog(`Filtered ${naturalHotspots.length} natural hotspots from ${allLocations.length} locations`);
+    debugLog(`Filtered ${naturalHotspots.length} natural hotspots from ${responseData.locations.length} locations`);
     return naturalHotspots;
   } catch (error) {
     debugLog(`Exception in fetchHotspots`, error);
@@ -92,10 +104,10 @@ export const fetchHotspots = async (
 export const fetchEvents = async (date?: string): Promise<UnifiedHotspot[]> => {
   try {
     // Use the locations endpoint with filtering on the client side
-    const allLocations = await fetchLocations('real-time', date);
-    const eventHotspots = allLocations.filter(location => location.type === 'event');
+    const responseData = await fetchLocations('real-time', date);
+    const eventHotspots = responseData.locations.filter(location => location.type === 'event');
     
-    debugLog(`Filtered ${eventHotspots.length} event hotspots from ${allLocations.length} locations`);
+    debugLog(`Filtered ${eventHotspots.length} event hotspots from ${responseData.locations.length} locations`);
     return eventHotspots;
   } catch (error) {
     debugLog(`Exception in fetchEvents`, error);
@@ -211,61 +223,198 @@ export const fetchEventFootTraffic = async (eventId: string, timeHour?: number) 
   }
 };
 
-// Function to fetch traffic data
-export const fetchTrafficData = async (useHotspots: boolean = true) => {
-  const timestamp = new Date().getTime();
-  const url = buildUrl(`/traffic?use_hotspots=${useHotspots}&_=${timestamp}`);
+// Cache objects that will be populated by the TampereContext events
+export const trafficDataCache: { [key: string]: any } = {};
+export const trafficPointsCache: { [key: string]: any } = {};
+
+// Event listener setup function (call this early in the app initialization)
+export const setupTrafficCacheListeners = () => {
+  // No longer needs event listeners, but keeping for backward compatibility
+  debugLog('Traffic cache system initialized (direct API fallback enabled)');
   
-  console.log(`🔌 API: FETCH_TRAFFIC_DATA START with useHotspots=${useHotspots}`);
+  // Report initial state
+  debugLog('Initial traffic cache state:', {
+    dataKeys: Object.keys(trafficDataCache).length,
+    pointsKeys: Object.keys(trafficPointsCache).length
+  });
+};
+
+// Function to get traffic data (from cache or API if needed)
+export const fetchTrafficData = async (useHotspots: boolean = true, date?: string, timeHour?: number) => {
+  console.log(`🔌 API: GET_TRAFFIC_DATA with date=${date}, hour=${timeHour}`);
+  
+  const cacheKey = `${date || getDateKey(new Date())}-${timeHour !== undefined ? timeHour : getCurrentHour()}`;
+  debugLog(`Looking for traffic data with key=${cacheKey}`);
+  
+  // Check if data exists in cache
+  if (trafficDataCache[cacheKey]) {
+    debugLog(`Cache hit for traffic data (key=${cacheKey})`);
+    return trafficDataCache[cacheKey];
+  }
+  
+  // If not in cache, fetch directly from the API
+  debugLog(`Traffic data not in cache, fetching from API for key=${cacheKey}`);
+  
+  // Build query parameters
+  const params = new URLSearchParams();
+  
+  // Add cache-busting timestamp
+  const timestamp = new Date().getTime();
+  params.append('_', timestamp.toString());
+  
+  // Add date parameter if provided
+  if (date) {
+    params.append('date', date);
+  }
+  
+  // Add time parameter if provided
+  if (timeHour !== undefined) {
+    params.append('time', timeHour.toString());
+  }
+  
+  const url = buildUrl(`/locations?${params}`);
   debugLog(`GET ${url}`);
   
   try {
     const response = await fetch(url);
     if (!response.ok) {
       const errorText = await response.text();
-      debugLog(`Error fetching traffic data: ${response.status} ${response.statusText}`, errorText);
+      debugLog(`Error fetching locations data: ${response.status} ${response.statusText}`, errorText);
       throw new Error('Failed to fetch traffic data');
     }
     
     const data = await response.json();
-    console.log(`🔌 API: FETCH_TRAFFIC_DATA COMPLETED`);
     
-    debugLog(`Traffic data received`, { featureCount: data.features.length });
-    return data;
+    // Extract traffic_data from the locations response
+    if (data.traffic_data) {
+      debugLog(`Traffic data extracted from locations response`, {
+        cacheKey,
+        featureCount: data.traffic_data.features.length 
+      });
+      
+      // Update the cache
+      trafficDataCache[cacheKey] = data.traffic_data;
+      
+      // If we also got traffic points, cache those too
+      if (data.traffic_points) {
+        debugLog(`Also caching traffic points from same response`, {
+          cacheKey,
+          featureCount: data.traffic_points.features.length
+        });
+        trafficPointsCache[cacheKey] = data.traffic_points;
+      }
+      
+      return data.traffic_data;
+    } else {
+      debugLog(`No traffic_data found in locations response`);
+      throw new Error('No traffic data in response');
+    }
   } catch (error) {
-    console.log(`🔌 API: FETCH_TRAFFIC_DATA ERROR`, error);
+    console.error(`Error fetching traffic data:`, error);
     debugLog(`Exception in fetchTrafficData`, error);
     throw error;
   }
 };
 
-// Function to fetch traffic points data
-export const fetchTrafficPoints = async (useHotspots: boolean = true) => {
-  const timestamp = new Date().getTime();
-  const url = buildUrl(`/traffic/points?use_hotspots=${useHotspots}&_=${timestamp}`);
+// Function to get traffic points (from cache or API if needed)
+export const fetchTrafficPoints = async (useHotspots: boolean = true, date?: string, timeHour?: number) => {
+  console.log(`🔌 API: GET_TRAFFIC_POINTS with date=${date}, hour=${timeHour}`);
   
-  console.log(`🔌 API: FETCH_TRAFFIC_POINTS START with useHotspots=${useHotspots}`);
+  const cacheKey = `${date || getDateKey(new Date())}-${timeHour !== undefined ? timeHour : getCurrentHour()}`;
+  debugLog(`Looking for traffic points with key=${cacheKey}`);
+  
+  // Check if data exists in cache
+  if (trafficPointsCache[cacheKey]) {
+    debugLog(`Cache hit for traffic points (key=${cacheKey})`);
+    return trafficPointsCache[cacheKey];
+  }
+  
+  // If traffic data is already cached but not points, we can check if points were also cached
+  if (trafficDataCache[cacheKey]) {
+    debugLog(`Traffic data is cached but not points, checking if traffic data request already in progress`);
+    
+    // Wait a short time to see if traffic points get populated by parallel traffic data request
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Check cache again after waiting
+    if (trafficPointsCache[cacheKey]) {
+      debugLog(`Cache hit for traffic points after waiting (key=${cacheKey})`);
+      return trafficPointsCache[cacheKey];
+    }
+  }
+  
+  // If not in cache, fetch directly from the API
+  debugLog(`Traffic points not in cache, fetching from API for key=${cacheKey}`);
+  
+  // Build query parameters
+  const params = new URLSearchParams();
+  
+  // Add cache-busting timestamp
+  const timestamp = new Date().getTime();
+  params.append('_', timestamp.toString());
+  
+  // Add date parameter if provided
+  if (date) {
+    params.append('date', date);
+  }
+  
+  // Add time parameter if provided
+  if (timeHour !== undefined) {
+    params.append('time', timeHour.toString());
+  }
+  
+  const url = buildUrl(`/locations?${params}`);
   debugLog(`GET ${url}`);
   
   try {
     const response = await fetch(url);
     if (!response.ok) {
       const errorText = await response.text();
-      debugLog(`Error fetching traffic points: ${response.status} ${response.statusText}`, errorText);
+      debugLog(`Error fetching locations data: ${response.status} ${response.statusText}`, errorText);
       throw new Error('Failed to fetch traffic points');
     }
     
     const data = await response.json();
-    console.log(`🔌 API: FETCH_TRAFFIC_POINTS COMPLETED`);
     
-    debugLog(`Traffic points received`, { points: data.length });
-    return data;
+    // Extract traffic_points from the locations response
+    if (data.traffic_points) {
+      debugLog(`Traffic points extracted from locations response`, {
+        cacheKey,
+        featureCount: data.traffic_points.features.length 
+      });
+      
+      // Update the cache
+      trafficPointsCache[cacheKey] = data.traffic_points;
+      
+      // If we also got traffic data, cache that too
+      if (data.traffic_data) {
+        debugLog(`Also caching traffic data from same response`, {
+          cacheKey,
+          featureCount: data.traffic_data.features.length
+        });
+        trafficDataCache[cacheKey] = data.traffic_data;
+      }
+      
+      return data.traffic_points;
+    } else {
+      debugLog(`No traffic_points found in locations response`);
+      throw new Error('No traffic points in response');
+    }
   } catch (error) {
-    console.log(`🔌 API: FETCH_TRAFFIC_POINTS ERROR`, error);
+    console.error(`Error fetching traffic points:`, error);
     debugLog(`Exception in fetchTrafficPoints`, error);
     throw error;
   }
 };
+
+// Helper functions for getting current date key and hour
+function getDateKey(date: Date): string {
+  return date.toISOString().split('T')[0];
+}
+
+function getCurrentHour(): number {
+  return new Date().getHours();
+}
 
 // Function to fetch detailed metrics for a specific hotspot
 export const fetchHotspotDetailedMetrics = async (hotspotId: string) => {

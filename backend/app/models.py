@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Optional, Tuple, Literal
+from typing import List, Optional, Tuple, Literal, Dict, Any
 from pydantic import BaseModel
 
 
@@ -192,3 +192,15 @@ class BusinessRequirementNotSupported(BaseModel):
     supported: bool = False
     message: str
     input_text: Optional[str] = None
+
+
+class LocationsResponse(BaseModel):
+    locations: List[Location]
+    traffic_data: Optional[TrafficData] = None
+    traffic_points: Optional[Dict[str, Any]] = None
+
+
+class LocationResponse(BaseModel):
+    location: Location
+    traffic_data: Optional[TrafficData] = None
+    traffic_points: Optional[Dict[str, Any]] = None

@@ -5,12 +5,38 @@ import {
   fetchHotspotFootTraffic, 
   fetchEventFootTraffic,
   fetchHotspotDetailedMetrics,
-  fetchEventDetailedMetrics
+  fetchEventDetailedMetrics,
+  trafficDataCache,
+  trafficPointsCache
 } from "./api";
+import { getTrafficCacheKey } from "./utils";
 
 // Debug logger function
 const debugLog = (message: string, data?: any) => {
   console.log(`🌐 CONTEXT DEBUG: ${message}`, data || '');
+};
+
+// Add debounce utility at the top level
+interface DebouncedFunction extends Function {
+  cancel?: () => void;
+}
+
+const debounce = (func: Function, wait: number): DebouncedFunction => {
+  let timeout: NodeJS.Timeout;
+  const executedFunction: DebouncedFunction = function (...args: any[]) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+  
+  executedFunction.cancel = () => {
+    clearTimeout(timeout);
+  };
+  
+  return executedFunction;
 };
 
 interface TampereContextType {
@@ -63,6 +89,7 @@ interface TampereContextType {
   // Add business and location info
   selectedBusiness: string | undefined;
   selectedArea: string | undefined;
+  cacheVersion: number;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -113,6 +140,9 @@ export const TampereProvider: React.FC<{
   const [detailedMetricsCache, setDetailedMetricsCache] = useState<{ [key: string]: any }>({});
   const inFlightRequests = useRef<{ [key: string]: Promise<any> }>({});
 
+  // Add cache version state
+  const [cacheVersion, setCacheVersion] = useState(0);
+
   // Unified function to get detailed metrics (with cache and in-flight tracking)
   const getDetailedMetrics = async (locationId: string, type: 'hotspot' | 'event') => {
     // 1. Return from cache if available
@@ -144,7 +174,8 @@ export const TampereProvider: React.FC<{
 
   // Fetch locations (both natural and event hotspots)
   useEffect(() => {
-    debugLog("Fetching locations");
+    debugLog("Setting up debounced location fetching");
+    
     const getLocations = async () => {
       try {
         // Format date as YYYY-MM-DD
@@ -154,14 +185,38 @@ export const TampereProvider: React.FC<{
         
         // Call fetchLocations with the appropriate parameters
         debugLog(`API call: fetchLocations(${timePeriod}, ${formattedDate}, ${JSON.stringify(timelineRange)})`);
-        const data = await fetchLocations(
+        const responseData = await fetchLocations(
           timePeriod,
           formattedDate,
           timelineRange
         );
         
-        debugLog(`Fetched ${data.length} locations successfully`);
-        setLocations(data);
+        // Store traffic data and points in the cache
+        const cacheKey = getTrafficCacheKey(selectedDate, timelineRange);
+        debugLog('CONTEXT CACHE KEY DEBUG', { cacheKey, selectedDate, timelineRange });
+        
+        if (responseData.traffic_data) {
+          debugLog(`Directly caching traffic data for cacheKey=${cacheKey}`);
+          trafficDataCache[cacheKey] = responseData.traffic_data;
+          debugLog(`trafficDataCache[${cacheKey}] set:`, {
+            featureCount: responseData.traffic_data.features?.length ?? 0,
+            firstFeature: responseData.traffic_data.features?.[0] ?? null
+          });
+          setCacheVersion(v => v + 1);
+        }
+        
+        if (responseData.traffic_points) {
+          debugLog(`Directly caching traffic points for cacheKey=${cacheKey}`);
+          trafficPointsCache[cacheKey] = responseData.traffic_points;
+          debugLog(`trafficPointsCache[${cacheKey}] set:`, {
+            featureCount: responseData.traffic_points.features?.length ?? 0,
+            firstFeature: responseData.traffic_points.features?.[0] ?? null
+          });
+          setCacheVersion(v => v + 1);
+        }
+        
+        debugLog(`Fetched ${responseData.locations.length} locations successfully`);
+        setLocations(responseData.locations);
         setLoading(false);
       } catch (err) {
         console.error("Failed to fetch locations:", err);
@@ -171,8 +226,18 @@ export const TampereProvider: React.FC<{
       }
     };
 
-    setLoading(true);
-    getLocations();
+    // Create a debounced version of getLocations
+    const debouncedGetLocations = debounce(() => {
+      setLoading(true);
+      getLocations();
+    }, 300); // 300ms debounce delay
+
+    debouncedGetLocations();
+
+    // Cleanup function to cancel any pending debounced calls
+    return () => {
+      debouncedGetLocations.cancel?.();
+    };
   }, [selectedDate, timePeriod, timelineRange]);
 
   // Debug state changes
@@ -331,10 +396,8 @@ export const TampereProvider: React.FC<{
         setPulse,
         detailedMetrics,
         setDetailedMetrics,
-        // Expose the cache-aware getter for future use
         getDetailedMetrics,
         
-        // Legacy comparison properties for backward compatibility
         isHotspotCompareMode,
         isEventCompareMode,
         selectedHotspotsForComparison,
@@ -342,9 +405,9 @@ export const TampereProvider: React.FC<{
         setIsHotspotCompareMode,
         setIsEventCompareMode,
 
-        // Add business and location info
         selectedBusiness,
         selectedArea,
+        cacheVersion,
       }}
     >
       {children}

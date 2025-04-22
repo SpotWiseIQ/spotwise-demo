@@ -16,6 +16,8 @@ from app.models import (
     BusinessPreferences,
     Location,
     HotspotType,
+    LocationsResponse,
+    LocationResponse,
 )
 from app.database import (
     get_all_hotspots,
@@ -135,7 +137,7 @@ async def get_tampere_center():
     return TAMPERE_CENTER
 
 
-@api_router.get("/locations", response_model=List[Location])
+@api_router.get("/locations", response_model=LocationsResponse)
 async def read_locations(
     time_period: Optional[str] = Query(
         None, description="Time period: real-time, daily, weekly, monthly"
@@ -148,6 +150,7 @@ async def read_locations(
     """
     Get all locations as hotspots (natural and event types).
     Returns locations with their foot traffic data, ordered by current traffic level.
+    Also includes traffic data and traffic points for the map view.
     """
     logger.info(
         f"Locations requested with filters: time_period={time_period}, date={date}, time={time}"
@@ -164,10 +167,48 @@ async def read_locations(
     # Get locations with traffic data
     locations = get_all_locations(date, time)
     logger.info(f"Retrieved {len(locations)} locations")
-    return locations
+
+    # Convert Location objects to Hotspot objects for traffic generation
+    hotspots = []
+    for location in locations:
+        # Use venue_coordinates for event-hotspots if available
+        coordinates = location.coordinates
+        if location.type == HotspotType.EVENT and location.venue_coordinates:
+            coordinates = location.venue_coordinates
+
+        hotspot = Hotspot(
+            id=location.id,
+            name=location.name,
+            label=location.label,
+            address=f"{location.name} Area",  # Simple address
+            trafficLevel=location.trafficLevel,
+            weather=location.weather,
+            coordinates=coordinates,
+            population=location.population,
+            areaType=location.areaType,
+            peakHour=location.peakHour,
+            avgDailyTraffic=location.avgDailyTraffic,
+            dominantDemographics=location.dominantDemographics,
+            nearbyBusinesses=location.nearbyBusinesses,
+            footTraffic=location.footTraffic,
+        )
+        hotspots.append(hotspot)
+
+    # Generate traffic data using locations
+    traffic_data = get_traffic_data(hotspots)
+    logger.info("Traffic data generated")
+
+    # Generate traffic points from traffic data
+    traffic_points = generate_traffic_points(traffic_data)
+    logger.info("Traffic points generated")
+
+    # Return combined response
+    return LocationsResponse(
+        locations=locations, traffic_data=traffic_data, traffic_points=traffic_points
+    )
 
 
-@api_router.get("/locations/{location_id}", response_model=Location)
+@api_router.get("/locations/{location_id}", response_model=LocationResponse)
 async def read_location(
     location_id: str,
     date: Optional[str] = Query(
@@ -175,7 +216,7 @@ async def read_location(
     ),
     time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
 ):
-    """Get a specific location by ID with all its data."""
+    """Get a specific location by ID with all its data, traffic data, and traffic points."""
     logger.info(
         f"Location requested with ID: {location_id}, date: {date}, time: {time}"
     )
@@ -190,7 +231,40 @@ async def read_location(
     if not location:
         logger.warning(f"Location with ID {location_id} not found")
         raise HTTPException(status_code=404, detail="Location not found")
-    return location
+
+    # Create a hotspot object for traffic data generation
+    coordinates = location.coordinates
+    if location.type == HotspotType.EVENT and location.venue_coordinates:
+        coordinates = location.venue_coordinates
+
+    hotspot = Hotspot(
+        id=location.id,
+        name=location.name,
+        label=location.label,
+        address=f"{location.name} Area",  # Simple address
+        trafficLevel=location.trafficLevel,
+        weather=location.weather,
+        coordinates=coordinates,
+        population=location.population,
+        areaType=location.areaType,
+        peakHour=location.peakHour,
+        avgDailyTraffic=location.avgDailyTraffic,
+        dominantDemographics=location.dominantDemographics,
+        nearbyBusinesses=location.nearbyBusinesses,
+        footTraffic=location.footTraffic,
+    )
+
+    # Generate traffic data using this single location
+    traffic_data = get_traffic_data([hotspot])
+    logger.info("Traffic data generated for location")
+
+    # Generate traffic points from traffic data
+    traffic_points = generate_traffic_points(traffic_data)
+    logger.info("Traffic points generated for location")
+
+    return LocationResponse(
+        location=location, traffic_data=traffic_data, traffic_points=traffic_points
+    )
 
 
 @api_router.get("/locations/{location_id}/detailed-metrics")
@@ -205,7 +279,7 @@ async def read_location_detailed_metrics(location_id: str):
     return detailed_metrics
 
 
-@api_router.get("/traffic", response_model=TrafficData)
+@api_router.get("/traffic", response_model=TrafficData, deprecated=True)
 async def read_traffic_data(
     use_hotspots: bool = Query(
         True, description="Whether to use hotspots to generate traffic data"
@@ -217,6 +291,7 @@ async def read_traffic_data(
 ):
     """
     Get traffic data for Tampere, optionally using hotspots.
+    DEPRECATED: Use /locations endpoint instead, which returns traffic data along with locations.
     """
     logger.info(f"Traffic data requested (use_hotspots={use_hotspots})")
 
@@ -265,7 +340,7 @@ async def read_traffic_data(
     return data
 
 
-@api_router.get("/traffic/points")
+@api_router.get("/traffic/points", deprecated=True)
 async def read_traffic_points(
     use_hotspots: bool = Query(
         True, description="Whether to use hotspots to generate traffic data"
@@ -277,6 +352,7 @@ async def read_traffic_points(
 ):
     """
     Get traffic points for Tampere, optionally using hotspots.
+    DEPRECATED: Use /locations endpoint instead, which returns traffic points along with locations.
     """
     logger.info(f"Traffic points requested (use_hotspots={use_hotspots})")
 
