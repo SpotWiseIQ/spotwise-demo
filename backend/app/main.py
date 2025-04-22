@@ -15,6 +15,7 @@ from app.models import (
     BusinessRequirementRequest,
     BusinessPreferences,
     Location,
+    HotspotType,
 )
 from app.database import (
     get_all_hotspots,
@@ -33,7 +34,10 @@ from app.database import (
     get_location_detailed_metrics,
 )
 from app.fetch_tampere_roads import generate_traffic_points
-from app.business_requirements import get_business_requirements_response
+from app.business_requirements import (
+    get_business_requirements_response,
+    classify_business_requirement_with_openai,
+)
 
 # Configure logging
 logging.basicConfig(
@@ -69,6 +73,61 @@ async def root():
     return {"message": "Welcome to the Tampere Explorer Hub API"}
 
 
+@api_router.post("/analyze-business", response_model=BusinessPreferences)
+async def analyze_business_requirement(requirement: BusinessRequirementRequest):
+    """Analyze business requirement text and return business preferences"""
+    logger.info(f"Analyzing business requirement: {requirement.text}")
+
+    # Use OpenAI classification
+    result = classify_business_requirement_with_openai(requirement.text)
+    logger.debug(f"OpenAI classification result: {result}")
+    logger.debug(f"Business field from OpenAI result: {result.get('business')}")
+    if not result.get("supported", False):
+        raise HTTPException(
+            status_code=422,
+            detail=result.get("message", "Business requirement not supported."),
+        )
+
+    # Check for unsupported location
+    location = result.get("location")
+    if location and location.strip().lower() != "tampere":
+        raise HTTPException(
+            status_code=422,
+            detail="Currently, only Tampere is supported as a location.",
+        )
+
+    # Normalize and validate business value
+    allowed_businesses = {
+        "car wash": "Car Wash",
+        "food stall": "Food Stall",
+        "artisan stall": "Artisan Stall",
+    }
+    business_raw = (result["business"] or "").strip().lower()
+    business = allowed_businesses.get(business_raw)
+    if not business:
+        raise HTTPException(
+            status_code=422, detail="Business type not recognized or supported."
+        )
+
+    # Map OpenAI result to BusinessPreferences
+    business_type = (
+        BusinessType(result["business_type"])
+        if result["business_type"]
+        else BusinessType.MOBILE
+    )
+    intent = (
+        BusinessIntent(result["intent"])
+        if result.get("intent") in BusinessIntent.__members__.values()
+        else BusinessIntent.RESEARCH
+    )
+    return BusinessPreferences(
+        business_type=business_type,
+        business=business,
+        location="Tampere",  # Always Tampere as per frontend
+        intent=intent,
+    )
+
+
 @api_router.get("/tampere-center")
 async def get_tampere_center():
     """Get Tampere center coordinates"""
@@ -99,6 +158,8 @@ async def read_locations(
         date = datetime.now().strftime("%Y-%m-%d")
     if time is None:
         time = datetime.now().hour
+
+    logger.info(f"Using date={date}, hour={time} for location request")
 
     # Get locations with traffic data
     locations = get_all_locations(date, time)
@@ -149,12 +210,57 @@ async def read_traffic_data(
     use_hotspots: bool = Query(
         True, description="Whether to use hotspots to generate traffic data"
     ),
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
 ):
     """
     Get traffic data for Tampere, optionally using hotspots.
     """
     logger.info(f"Traffic data requested (use_hotspots={use_hotspots})")
-    data = get_traffic_data() if use_hotspots else get_traffic_data([])
+
+    if not use_hotspots:
+        data = get_traffic_data([])  # Use empty list when hotspots are not wanted
+    else:
+        # Use current date/time if not provided
+        if not date:
+            date = datetime.now().strftime("%Y-%m-%d")
+        if time is None:
+            time = datetime.now().hour
+
+        # Get locations from the database
+        locations = get_all_locations(date, time)
+
+        # Convert Location objects to Hotspot objects for traffic generation
+        hotspots = []
+        for location in locations:
+            # Use venue_coordinates for event-hotspots if available
+            coordinates = location.coordinates
+            if location.type == HotspotType.EVENT and location.venue_coordinates:
+                coordinates = location.venue_coordinates
+
+            hotspot = Hotspot(
+                id=location.id,
+                name=location.name,
+                label=location.label,
+                address=f"{location.name} Area",  # Simple address
+                trafficLevel=location.trafficLevel,
+                weather=location.weather,
+                coordinates=coordinates,
+                population=location.population,
+                areaType=location.areaType,
+                peakHour=location.peakHour,
+                avgDailyTraffic=location.avgDailyTraffic,
+                dominantDemographics=location.dominantDemographics,
+                nearbyBusinesses=location.nearbyBusinesses,
+                footTraffic=location.footTraffic,
+            )
+            hotspots.append(hotspot)
+
+        # Generate traffic data using converted hotspots
+        data = get_traffic_data(hotspots)
+
     logger.info("Traffic data generated")
     return data
 
@@ -164,12 +270,56 @@ async def read_traffic_points(
     use_hotspots: bool = Query(
         True, description="Whether to use hotspots to generate traffic data"
     ),
+    date: Optional[str] = Query(
+        None, description="Selected date in ISO format (YYYY-MM-DD)"
+    ),
+    time: Optional[int] = Query(None, ge=0, le=23, description="Selected hour (0-23)"),
 ):
     """
     Get traffic points for Tampere, optionally using hotspots.
     """
     logger.info(f"Traffic points requested (use_hotspots={use_hotspots})")
-    traffic_data = get_traffic_data() if use_hotspots else get_traffic_data([])
+
+    if not use_hotspots:
+        traffic_data = get_traffic_data([])
+    else:
+        # Use current date/time if not provided
+        if not date:
+            date = datetime.now().strftime("%Y-%m-%d")
+        if time is None:
+            time = datetime.now().hour
+
+        # Get locations from the database
+        locations = get_all_locations(date, time)
+
+        # Convert Location objects to Hotspot objects
+        hotspots = []
+        for location in locations:
+            # Use venue_coordinates for event-hotspots if available
+            coordinates = location.coordinates
+            if location.type == HotspotType.EVENT and location.venue_coordinates:
+                coordinates = location.venue_coordinates
+
+            hotspot = Hotspot(
+                id=location.id,
+                name=location.name,
+                label=location.label,
+                address=f"{location.name} Area",
+                trafficLevel=location.trafficLevel,
+                weather=location.weather,
+                coordinates=coordinates,
+                population=location.population,
+                areaType=location.areaType,
+                peakHour=location.peakHour,
+                avgDailyTraffic=location.avgDailyTraffic,
+                dominantDemographics=location.dominantDemographics,
+                nearbyBusinesses=location.nearbyBusinesses,
+                footTraffic=location.footTraffic,
+            )
+            hotspots.append(hotspot)
+
+        traffic_data = get_traffic_data(hotspots)
+
     points = generate_traffic_points(traffic_data)
     logger.info("Traffic points generated")
     return points

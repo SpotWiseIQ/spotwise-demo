@@ -1,10 +1,10 @@
 [
   {
     "poi_id": "POI001",
-    "name": "Hatanpää Park",
+    "name": "Vihilahti Park",
     "location_id": "LOC007",
-    "latitude": 61.4825,
-    "longitude": 23.76,
+    "latitude": 61.47863732062222,
+    "longitude": 23.75725853266556,
     "category": "Park",
     "description": "A verdant urban park offering riverside walking trails and lush green spaces within a growing residential district."
   },
@@ -12,35 +12,35 @@
     "poi_id": "POI002",
     "name": "Hatanpää Arboretum",
     "location_id": "LOC007",
-    "latitude": 61.485,
-    "longitude": 23.765,
-    "category": "Garden",
+    "latitude": 61.48105963297061,
+    "longitude": 23.752818468991777,
+    "category": "Park",
     "description": "A curated botanical garden showcasing diverse tree species and scenic lawns adjacent to historic manor grounds and housing areas."
   },
   {
     "poi_id": "POI003",
-    "name": "Hatanpää Manor",
+    "name": "Hatanpää Mansion",
     "location_id": "LOC007",
     "latitude": 61.4829,
     "longitude": 23.7612,
-    "category": "Manor",
-    "description": "A restored historic manor house anchoring verdant parklands and offering cultural events in a picturesque residential neighbourhood."
+    "category": "Historical Landmark",
+    "description": "A restored historic building anchoring verdant parklands and offering cultural events in a picturesque residential neighbourhood."
   },
   {
     "poi_id": "POI004",
-    "name": "Café Hatanpää",
+    "name": "Summer Café Arboretum",
     "location_id": "LOC007",
-    "latitude": 61.484,
-    "longitude": 23.7605,
+    "latitude": 61.48234739378433,
+    "longitude": 23.749827962324673,
     "category": "Café",
     "description": "A cozy café serving artisanal pastries and coffee overlooking lush gardens and providing a welcoming spot for local residents."
   },
   {
     "poi_id": "POI005",
-    "name": "Restaurant Vinha",
+    "name": "Bistro Vilja",
     "location_id": "LOC007",
-    "latitude": 61.4838,
-    "longitude": 23.764,
+    "latitude": 61.48377938577533,
+    "longitude": 23.762741426664228,
     "category": "Restaurant",
     "description": "A modern restaurant featuring Nordic-inspired cuisine in a leafy setting near the park with views of historic estate grounds."
   },
@@ -48,45 +48,45 @@
     "poi_id": "POI006",
     "name": "Hatanpää Children's Playground",
     "location_id": "LOC007",
-    "latitude": 61.4815,
-    "longitude": 23.7635,
+    "latitude": 61.48237462075221,
+    "longitude": 23.75912641538711,
     "category": "Playground",
     "description": "A vibrant playground offering safe play structures and seating areas for families amidst green spaces in a residential zone."
   },
   {
     "poi_id": "POI007",
-    "name": "Hatanpää Linja A",
+    "name": "Hatanpään vt 31",
     "location_id": "LOC007",
-    "latitude": 61.4835,
-    "longitude": 23.759,
+    "latitude": 61.48310548204889,
+    "longitude": 23.762400229055427,
     "category": "Bus Stop",
     "description": "A convenient bus stop serving multiple routes with sheltered seating and digital timetables adjacent to local housing complexes."
   },
   {
     "poi_id": "POI008",
-    "name": "Hatanpää Linja B",
+    "name": "Hatanpään sairaala",
     "location_id": "LOC007",
-    "latitude": 61.4845,
-    "longitude": 23.762,
+    "latitude": 61.484292613629165,
+    "longitude": 23.757429052235413,
     "category": "Bus Stop",
     "description": "A busy bus stop located near residential blocks offering real-time schedule displays and covered benches for commuter comfort."
   },
   {
     "poi_id": "POI009",
-    "name": "Hatanpää Parking Area",
+    "name": "Aimo Park Valtatie 30",
     "location_id": "LOC007",
-    "latitude": 61.482,
-    "longitude": 23.7629,
+    "latitude": 61.489392745192134,
+    "longitude": 23.77202698836729,
     "category": "Parking",
-    "description": "A spacious parking lot serving nearby park visitors and residents with marked bays and easy access to surrounding green areas."
+    "description": "A multi-storey parking lot nearby park visitors and residents with marked bays and easy access to surrounding green areas."
   },
   {
     "poi_id": "POI010",
-    "name": "Hatanpäänranta Apartments",
+    "name": "Villa Hatanpää",
     "location_id": "LOC007",
-    "latitude": 61.4842,
-    "longitude": 23.7638,
-    "category": "Residential Complex",
+    "latitude": 61.48487005425773,
+    "longitude": 23.752008282491378,
+    "category": "Historical Landmark",
     "description": "A modern residential complex overlooking park landscapes and river views, blending urban living with proximity to historic manor grounds."
   }
 ]

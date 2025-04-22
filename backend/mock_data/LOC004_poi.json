@@ -12,62 +12,62 @@
     "poi_id": "POI002",
     "name": "Kaleva Health Services",
     "location_id": "LOC004",
-    "latitude": 61.492779,
-    "longitude": 23.798553,
+    "latitude": 61.493045460030594,
+    "longitude": 23.81781857299984,
     "category": "Office",
     "description": "A multi-tenant medical office offering healthcare services to local families and nearby businesses."
   },
   {
     "poi_id": "POI003",
-    "name": "Nordea Bank Kaleva Branch",
+    "name": "DHL Express Service Point",
     "location_id": "LOC004",
-    "latitude": 61.488578,
-    "longitude": 23.842423,
-    "category": "Bank",
-    "description": "A welcoming bank branch serving both residential clients and professionals from nearby offices."
+    "latitude": 61.49699062729764,
+    "longitude": 23.79814742795475,
+    "category": "Post Office",
+    "description": "A post office offering postal services and a range of postal products to the local community."
   },
   {
     "poi_id": "POI004",
-    "name": "Ravintola Harmooni",
+    "name": "Golden India",
     "location_id": "LOC004",
-    "latitude": 61.504687,
-    "longitude": 23.768619,
+    "latitude": 61.4965968590056,
+    "longitude": 23.80132632891376,
     "category": "Restaurant",
-    "description": "A popular neighborhood restaurant blending local cuisine for office workers and family diners alike."
+    "description": "A popular Indian restaurant offering a wide range of authentic Indian dishes, attracting both locals and office workers."
   },
   {
     "poi_id": "POI005",
-    "name": "Urban Grill",
+    "name": "Ravintola Diagonal",
     "location_id": "LOC004",
-    "latitude": 61.496552,
-    "longitude": 23.7947,
+    "latitude": 61.49480165300166,
+    "longitude": 23.810377121049225,
     "category": "Restaurant",
-    "description": "An urban grill restaurant known for its lively atmosphere catering to residents and nearby office staff."
+    "description": "A modern restaurant offering a variety of dishes, including local specialties, attracting both locals and office workers."
   },
   {
     "poi_id": "POI006",
-    "name": "Kaleva Community Café",
+    "name": "Public House Huurre",
     "location_id": "LOC004",
-    "latitude": 61.484776,
-    "longitude": 23.802311,
-    "category": "Cafe",
-    "description": "A cozy café offering specialty coffees and pastries to local residents and professionals on the go."
+    "latitude": 61.49587362661668,
+    "longitude": 23.805075797363234,
+    "category": "Pub",
+    "description": "A cozy pub offering a variety of drinks and snacks, attracting both locals and office workers."
   },
   {
     "poi_id": "POI007",
-    "name": "Kalevanpuisto",
+    "name": "Liisanpuisto",
     "location_id": "LOC004",
-    "latitude": 61.480229,
-    "longitude": 23.762626,
+    "latitude": 61.49903834124663,
+    "longitude": 23.790724195035782,
     "category": "Park",
     "description": "A scenic urban park providing green space for residents and lunch breaks for neighboring office workers."
   },
   {
     "poi_id": "POI008",
-    "name": "Kalevankatu Bus Stop",
+    "name": "Kalevantie Bus Stop",
     "location_id": "LOC004",
-    "latitude": 61.501658,
-    "longitude": 23.804512,
+    "latitude": 61.49340622289961,
+    "longitude": 23.80555546797782,
     "category": "Bus Stop",
     "description": "A busy bus stop used by commuters traveling between residential areas and the business district."
   },
@@ -75,18 +75,18 @@
     "poi_id": "POI009",
     "name": "Sammonaukio Bus Stop",
     "location_id": "LOC004",
-    "latitude": 61.512279,
-    "longitude": 23.784118,
+    "latitude": 61.4987651,
+    "longitude": 23.7896273,
     "category": "Bus Stop",
     "description": "A convenient bus stop servicing both nearby housing complexes and office buildings in Kaleva."
   },
   {
     "poi_id": "POI010",
-    "name": "Kaleva Multi-Storey Parking",
+    "name": "Kalevan kirkon pysäköintialue",
     "location_id": "LOC004",
-    "latitude": 61.480569,
-    "longitude": 23.822665,
+    "latitude": 61.498708770630124,
+    "longitude": 23.79259755569608,
     "category": "Parking",
-    "description": "A multi-storey parking facility adjacent to mixed-use developments serving residents and businesses."
+    "description": "A small parking facility adjacent to mixed-use developments serving residents and businesses."
   }
 ]

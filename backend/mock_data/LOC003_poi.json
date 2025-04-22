@@ -1,92 +1,92 @@
 [
   {
-    "poi_id":"POI001",
-    "name":"Tampere University Hervanta Campus",
-    "location_id":"LOC003",
-    "latitude":61.446268,
-    "longitude":23.856215,
-    "category":"University Campus",
-    "description":"A modern university campus bustling with students and innovative research facilities."
+    "poi_id": "POI001",
+    "name": "Tampere University Hervanta Campus",
+    "location_id": "LOC003",
+    "latitude": 61.449642,
+    "longitude": 23.8587746,
+    "category": "University Campus",
+    "description": "A modern university campus bustling with students and innovative research facilities."
   },
   {
-    "poi_id":"POI002",
-    "name":"Hervanta Tech Park",
-    "location_id":"LOC003",
-    "latitude":61.445757,
-    "longitude":23.869744,
-    "category":"Tech Hub",
-    "description":"A contemporary tech hub hosting startups and research labs, popular among students and entrepreneurs."
+    "poi_id": "POI002",
+    "name": "Technopolis",
+    "location_id": "LOC003",
+    "latitude": 61.44718503731512,
+    "longitude": 23.855146371652967,
+    "category": "Tech Hub",
+    "description": "A contemporary tech hub hosting startups and research labs, popular among students and entrepreneurs."
   },
   {
-    "poi_id":"POI003",
-    "name":"Café Metso",
-    "location_id":"LOC003",
-    "latitude":61.44515,
-    "longitude":23.819241,
-    "category":"Cafe",
-    "description":"A cozy modern cafe attracting students and families for coffee and light meals all day."
+    "poi_id": "POI003",
+    "name": "Viialan Leipomo",
+    "location_id": "LOC003",
+    "latitude": 61.45111396523918,
+    "longitude": 23.847844690028943,
+    "category": "Cafe",
+    "description": "A cozy modern bakery attracting students and families for coffee and light meals all day."
   },
   {
-    "poi_id":"POI004",
-    "name":"Lounasravintola Lukema",
-    "location_id":"LOC003",
-    "latitude":61.448528,
-    "longitude":23.854224,
-    "category":"Cafe",
-    "description":"A bright student-friendly cafe serving fresh lunches and snacks in a lively atmosphere."
+    "poi_id": "POI004",
+    "name": "Lounasravintola Lukema",
+    "location_id": "LOC003",
+    "latitude": 61.446828225408254,
+    "longitude": 23.856898631590894,
+    "category": "Restaurant",
+    "description": "A bright restaurant serving fresh lunches and snacks in a lively atmosphere."
   },
   {
-    "poi_id":"POI005",
-    "name":"Hervanta City Park",
-    "location_id":"LOC003",
-    "latitude":61.445991,
-    "longitude":23.858092,
-    "category":"Park",
-    "description":"A modern green park offering open spaces and walking trails, ideal for families and students."
+    "poi_id": "POI005",
+    "name": "Ahvenisjärven puisto",
+    "location_id": "LOC003",
+    "latitude": 61.44842984593319,
+    "longitude": 23.843258389570828,
+    "category": "Park",
+    "description": "A modern green park offering open spaces and walking trails, ideal for families and students."
   },
   {
-    "poi_id":"POI006",
-    "name":"Hervanta Campus Bus Stop",
-    "location_id":"LOC003",
-    "latitude":61.449369,
-    "longitude":23.885273,
-    "category":"Bus Stop",
-    "description":"A convenient bus stop serving the university campus and vibrant tech district, frequented by students."
+    "poi_id": "POI006",
+    "name": "Hervanta Campus Bus Stop",
+    "location_id": "LOC003",
+    "latitude": 61.44979612420389,
+    "longitude": 23.85420916898988,
+    "category": "Bus Stop",
+    "description": "A convenient bus stop serving the university campus and vibrant tech district, frequented by students."
   },
   {
-    "poi_id":"POI007",
-    "name":"Hervanta Center Bus Stop",
-    "location_id":"LOC003",
-    "latitude":61.45199,
-    "longitude":23.859163,
-    "category":"Bus Stop",
-    "description":"A busy bus stop connecting residential areas with campus and downtown, used daily by families and students."
+    "poi_id": "POI007",
+    "name": "Hervanta Center Bus Stop",
+    "location_id": "LOC003",
+    "latitude": 61.45112953811475,
+    "longitude": 23.849284338899466,
+    "category": "Bus Stop",
+    "description": "A busy bus stop connecting residential areas with campus and downtown, used daily by families and students."
   },
   {
-    "poi_id":"POI008",
-    "name":"Hervanta Campus Parking",
-    "location_id":"LOC003",
-    "latitude":61.43805,
-    "longitude":23.832428,
-    "category":"Parking",
-    "description":"A spacious parking area adjacent to the campus, popular with families and visitors for convenience."
+    "poi_id": "POI008",
+    "name": "Korkeakoulunkatu 2 Parking",
+    "location_id": "LOC003",
+    "latitude": 61.44912337891578,
+    "longitude": 23.8566389200988,
+    "category": "Parking",
+    "description": "A spacious parking area adjacent to the campus, popular with families and visitors for convenience."
   },
   {
-    "poi_id":"POI009",
-    "name":"Duo Center Parking",
-    "location_id":"LOC003",
-    "latitude":61.449636,
-    "longitude":23.889989,
-    "category":"Parking",
-    "description":"A modern parking facility serving the local shopping and educational district, widely used by students."
+    "poi_id": "POI009",
+    "name": "Duo Outside Parking",
+    "location_id": "LOC003",
+    "latitude": 61.45160931176094,
+    "longitude": 23.84947280173764,
+    "category": "Parking",
+    "description": "A modern parking facility serving the local shopping and educational district, widely used by students."
   },
   {
-    "poi_id":"POI010",
-    "name":"Tampere City Service Point Hervanta",
-    "location_id":"LOC003",
-    "latitude":61.446764,
-    "longitude":23.856958,
-    "category":"Government Office",
-    "description":"A modern government service point offering municipal services, frequently visited by residents and students."
+    "poi_id": "POI010",
+    "name": "Hervanta Library",
+    "location_id": "LOC003",
+    "latitude": 61.45016896868953,
+    "longitude": 23.848850969154302,
+    "category": "Library",
+    "description": "A modern library offering a quiet space for reading and studying, frequented by students and locals."
   }
 ]

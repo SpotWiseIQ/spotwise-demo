@@ -1,6 +1,8 @@
 import os
 import json
 import random
+import math
+import string
 from app.models import (
     TrafficLevel,
     WeatherType,
@@ -18,12 +20,12 @@ from app.models import (
     HotspotType,
     Location,
 )
-from typing import List, Dict, Callable, Optional
+from typing import List, Dict, Callable, Optional, Tuple, Union
 from datetime import datetime, timedelta
 from app.fetch_tampere_roads import fetch_tampere_roads, process_road_data
 import requests
 from math import sin, cos, sqrt, atan2, radians
-import math
+import time
 
 # Tampere center coordinates
 TAMPERE_CENTER = (23.7610, 61.4978)
@@ -933,6 +935,7 @@ def get_event_foot_traffic(
 
     # Parse event time to get hour
     event_hour = 12  # Default to noon if we can't parse
+    tz_info = None  # Initialize timezone info variable
     try:
         if event.start_time and ":" in event.start_time:
             # Try parsing from start_time first
@@ -1270,6 +1273,101 @@ def generate_location_foot_traffic(location_id, target_date, target_hour):
     return traffic_data
 
 
+def generate_event_specific_foot_traffic(
+    location_foot_traffic: List[FootTrafficData],
+    start_time_str: str,
+    end_time_str: str,
+    target_hour: int,
+) -> List[FootTrafficData]:
+    """
+    Generate event-specific foot traffic data with peaks at start and end times.
+    The peak values match the location's foot traffic values at those times.
+
+    Args:
+        location_foot_traffic: Regular foot traffic data for the location
+        start_time_str: Event start time string
+        end_time_str: Event end time string
+        target_hour: Current hour for setting data types (past/current/predicted)
+
+    Returns:
+        List of FootTrafficData with peaks at start and end times
+    """
+    # Parse start and end times to get hours
+    start_hour = 12  # Default to noon if we can't parse
+    end_hour = 14  # Default to 2pm if we can't parse
+
+    try:
+        # Try parsing ISO format with timezone
+        if "T" in start_time_str or " " in start_time_str:
+            if "+" in start_time_str:
+                # Format like "2024-01-01 20:07:00+02:00"
+                start_dt = datetime.fromisoformat(start_time_str)
+                end_dt = datetime.fromisoformat(end_time_str)
+            else:
+                # Format without timezone
+                start_dt = datetime.fromisoformat(start_time_str.replace("Z", "+00:00"))
+                end_dt = datetime.fromisoformat(end_time_str.replace("Z", "+00:00"))
+
+            start_hour = start_dt.hour
+            end_hour = end_dt.hour
+        else:
+            # Simple time format like "14:00"
+            start_hour = int(start_time_str.split(":")[0])
+            end_hour = int(end_time_str.split(":")[0])
+    except Exception as e:
+        print(f"Error parsing event times for foot traffic: {e}")
+
+    # Create a mapping of hour to value from the location foot traffic
+    hour_to_value = {}
+    for ft in location_foot_traffic:
+        hour_to_value[ft.hour] = ft.value
+
+    # Generate event-specific foot traffic with peaks at start and end times
+    event_traffic = []
+    for hour in range(24):
+        # Base value is low
+        base_value = max(5, hour_to_value.get(hour, 20) // 4)
+
+        # Calculate proximity to start and end times
+        start_proximity = abs(hour - start_hour)
+        end_proximity = abs(hour - end_hour)
+
+        # Apply peaks at start and end times
+        value = base_value
+        if start_proximity == 0:  # Start time peak
+            value = hour_to_value.get(
+                hour, 100
+            )  # Match location's traffic at this hour
+        elif start_proximity == 1:  # Hour before/after start
+            value = int(hour_to_value.get(hour, 100) * 0.8)
+        elif start_proximity == 2:  # Two hours before/after start
+            value = int(hour_to_value.get(hour, 100) * 0.5)
+        elif end_proximity == 0:  # End time peak
+            value = hour_to_value.get(
+                hour, 100
+            )  # Match location's traffic at this hour
+        elif end_proximity == 1:  # Hour before/after end
+            value = int(hour_to_value.get(hour, 100) * 0.8)
+        elif end_proximity == 2:  # Two hours before/after end
+            value = int(hour_to_value.get(hour, 100) * 0.5)
+
+        # If hour is between start and end, maintain a medium level
+        if start_hour < end_hour and start_hour < hour < end_hour:
+            value = max(value, int(hour_to_value.get(hour, 100) * 0.4))
+
+        # Set data type based on current hour
+        if hour < target_hour:
+            data_type = FootTrafficType.PAST
+        elif hour > target_hour:
+            data_type = FootTrafficType.PREDICTED
+        else:
+            data_type = FootTrafficType.CURRENT
+
+        event_traffic.append(FootTrafficData(hour=hour, value=value, type=data_type))
+
+    return event_traffic
+
+
 def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
     """Get all locations as hotspots (natural or event), sorted by foot traffic."""
     # Set defaults for target_date and target_hour
@@ -1278,14 +1376,13 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
     if target_hour is None:
         target_hour = datetime.now().hour
 
-    # Get current system time for cache invalidation
-    current_date = datetime.now().strftime("%Y-%m-%d")
-    current_hour = datetime.now().hour
-
-    # Cache key includes current date and hour to ensure hourly regeneration
-    cache_key = (
-        f"locations_{target_date}_{target_hour}_sys_{current_date}_{current_hour}"
+    print(
+        f"DEBUG: get_all_locations called with target_date={target_date}, target_hour={target_hour}"
     )
+
+    # Create a cache key that depends only on the target date and hour
+    # This ensures consistent results for the same query parameters
+    cache_key = f"locations_{target_date}_{target_hour}"
 
     if cache_key in location_cache:
         return location_cache[cache_key]
@@ -1367,8 +1464,6 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
     locations_with_traffic.sort(key=lambda x: x[1], reverse=True)
 
     # Assign labels A, B, C, etc. based on traffic order
-    import string
-
     labels = list(string.ascii_uppercase)  # A-Z
     locations = []
 
@@ -1388,46 +1483,125 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
         # Randomly upgrade some locations to event hotspots
         # This simulates events happening at some locations
         if (
-            random.random() < 0.5
+            random.random() < 0.4
             and location.id in all_events
             and all_events[location.id]
         ):
             # Pick a random event for this location
             event = random.choice(all_events[location.id])
 
-            # Format the event time (assuming ISO format)
-            event_time = "N/A"
-            if "start_time" in event:
-                try:
-                    if (
-                        isinstance(event["start_time"], str)
-                        and "T" in event["start_time"]
-                    ):
-                        # Parse ISO format
-                        dt = datetime.fromisoformat(
-                            event["start_time"].replace("Z", "+00:00")
-                        )
-                        event_time = dt.strftime("%H:%M")
-                    elif (
-                        isinstance(event["start_time"], str)
-                        and len(event["start_time"]) > 10
-                    ):
-                        # Try to parse other common formats
-                        parts = event["start_time"].split(" ")
-                        if len(parts) > 1:
-                            time_part = parts[1]
-                            hours_mins = time_part.split(":")
-                            if len(hours_mins) >= 2:
-                                event_time = f"{hours_mins[0]}:{hours_mins[1]}"
-                except Exception:
-                    pass  # Keep default if parsing fails
-
             # Convert to event hotspot
             location.type = HotspotType.EVENT
-            location.start_time = event.get("start_time", "")
-            location.end_time = event.get("end_time", "")
+
+            # Get original times
+            original_start_time = event.get("start_time", "")
+            original_end_time = event.get("end_time", "")
+
+            # Parse times to datetime objects if available
+            original_duration = 0
+            tz_info = None  # Initialize timezone info variable
+            try:
+                # Parse original times to calculate duration in minutes
+                if original_start_time and original_end_time:
+                    # Handle format like "2024-01-01 20:07:00+02:00"
+                    if "+" in original_start_time:
+                        start_dt = datetime.fromisoformat(original_start_time)
+                        end_dt = datetime.fromisoformat(original_end_time)
+                        tz_info = start_dt.tzinfo  # Preserve timezone info
+                    else:
+                        # Fallback for other formats
+                        start_dt = datetime.fromisoformat(
+                            original_start_time.replace("Z", "+00:00")
+                        )
+                        end_dt = datetime.fromisoformat(
+                            original_end_time.replace("Z", "+00:00")
+                        )
+                        tz_info = None
+
+                    original_duration = (
+                        end_dt - start_dt
+                    ).total_seconds() / 60  # duration in minutes
+
+                # Use the target_hour that was passed to the function
+                # This is the hour that the frontend is requesting data for
+                print(
+                    f"DEBUG: Using target hour {target_hour} for event time calculation"
+                )
+
+                # Create a consistent timezone for Finland (UTC+2/UTC+3 depending on DST)
+                # We'll use a fixed +02:00 timezone for simplicity
+                finland_tz = "+02:00"
+
+                # Create event date with the requested hour
+                event_date = datetime.now().replace(
+                    hour=target_hour, minute=0, second=0, microsecond=0
+                )
+
+                # Choose either target_hour + 30 minutes or target_hour + 1 hour
+                time_option = random.choice([30, 60])  # Either 30 minutes or 1 hour
+
+                if time_option == 30:
+                    # target_hour + 30 minutes
+                    new_start_time = event_date.replace(minute=30)
+                else:
+                    # target_hour + 1 hour
+                    new_start_time = event_date + timedelta(hours=1)
+
+                print(
+                    f"DEBUG: Event {event.get('event_id', 'unknown')} start time set to {new_start_time.strftime('%H:%M')}"
+                )
+
+                # Calculate new end time by adding the original duration
+                new_end_time = new_start_time + timedelta(minutes=original_duration)
+
+                # Format as strings with consistent Finland timezone
+                # Strip tzinfo before formatting to avoid duplicated timezone info
+                new_start_time = new_start_time.replace(tzinfo=None)
+                new_end_time = new_end_time.replace(tzinfo=None)
+
+                # Format with consistent Finland timezone
+                location.start_time = (
+                    f"{new_start_time.strftime('%Y-%m-%d %H:%M:%S')}{finland_tz}"
+                )
+                location.end_time = (
+                    f"{new_end_time.strftime('%Y-%m-%d %H:%M:%S')}{finland_tz}"
+                )
+            except Exception as e:
+                # Fallback to original times if parsing fails
+                print(
+                    f"DEBUG: Error parsing times for event {event.get('event_id', 'unknown')}: {e}"
+                )
+
+                # Try to fix timezone if possible
+                try:
+                    # If we have the original start time, try to reformat it with consistent timezone
+                    if original_start_time and "+" in original_start_time:
+                        # Parse and strip timezone
+                        start_dt = datetime.fromisoformat(original_start_time)
+                        end_dt = datetime.fromisoformat(original_end_time)
+
+                        # Format with consistent Finland timezone
+                        location.start_time = (
+                            f"{start_dt.strftime('%Y-%m-%d %H:%M:%S')}+02:00"
+                        )
+                        location.end_time = (
+                            f"{end_dt.strftime('%Y-%m-%d %H:%M:%S')}+02:00"
+                        )
+                    else:
+                        # Use as-is
+                        location.start_time = original_start_time
+                        location.end_time = original_end_time
+                except:
+                    # If all else fails, use original times
+                    location.start_time = original_start_time
+                    location.end_time = original_end_time
+
             location.venue = event.get("venue", None)
             location.venue_address = event.get("venue_address", None)
+            location.venue_coordinates = (
+                event.get("longitude", None),
+                event.get("latitude", None),
+            )
             location.event_name = event.get("name", "Unknown Event")
             location.event_type = event.get("event_type", "Event")
             location.expected_attendance = event.get(
@@ -1436,6 +1610,15 @@ def get_all_locations(target_date=None, target_hour=None) -> List[Location]:
             location.description = event.get("description", "")
             location.location_id = event.get("location_id", "")
             location.event_id = event.get("event_id", "")
+
+            # Add event-specific foot traffic with peaks at start and end times
+            if location.start_time and location.end_time:
+                location.event_foot_traffic = generate_event_specific_foot_traffic(
+                    location.footTraffic,
+                    location.start_time,
+                    location.end_time,
+                    target_hour,
+                )
 
         locations.append(location)
 
@@ -1499,7 +1682,7 @@ def get_location_by_id(
             )
 
             # Create a basic Location object
-            return Location(
+            location = Location(
                 id=location_id,
                 name=location_data["name"],
                 type=HotspotType.NATURAL,  # Default to natural type
@@ -1515,6 +1698,74 @@ def get_location_by_id(
                 dominantDemographics=f"{20 + random.randint(0, 30)}-{40 + random.randint(0, 30)}",
                 nearbyBusinesses=f"{random.randint(10, 60)}+",
             )
+
+            # Check if there are any events associated with this location
+            consolidated_events = load_all_events()
+            location_events = [
+                e for e in consolidated_events if e["location_id"] == location_id
+            ]
+
+            if location_events:
+                # Convert to event hotspot if there are events
+                event = random.choice(location_events)
+                location.type = HotspotType.EVENT
+
+                # Get original times or generate new ones
+                original_start_time = event.get("start_time", "")
+                original_end_time = event.get("end_time", "")
+
+                # Use target_hour to set event times if needed
+                if not original_start_time or not original_end_time:
+                    event_date = datetime.now().replace(
+                        hour=target_hour, minute=0, second=0, microsecond=0
+                    )
+                    time_option = random.choice([30, 60])
+
+                    if time_option == 30:
+                        new_start_time = event_date.replace(minute=30)
+                    else:
+                        new_start_time = event_date + timedelta(hours=1)
+
+                    # Default 2-hour event
+                    new_end_time = new_start_time + timedelta(hours=2)
+
+                    # Format with Finland timezone
+                    location.start_time = (
+                        f"{new_start_time.strftime('%Y-%m-%d %H:%M:%S')}+02:00"
+                    )
+                    location.end_time = (
+                        f"{new_end_time.strftime('%Y-%m-%d %H:%M:%S')}+02:00"
+                    )
+                else:
+                    location.start_time = original_start_time
+                    location.end_time = original_end_time
+
+                # Set other event fields
+                location.venue = event.get("venue", None)
+                location.venue_address = event.get("venue_address", None)
+                location.venue_coordinates = (
+                    event.get("longitude", None),
+                    event.get("latitude", None),
+                )
+                location.event_name = event.get("name", "Unknown Event")
+                location.event_type = event.get("event_type", "Event")
+                location.expected_attendance = event.get(
+                    "expected_attendance", random.randint(200, 2000)
+                )
+                location.description = event.get("description", "")
+                location.location_id = event.get("location_id", "")
+                location.event_id = event.get("event_id", "")
+
+                # Add event-specific foot traffic with peaks at start and end times
+                if location.start_time and location.end_time:
+                    location.event_foot_traffic = generate_event_specific_foot_traffic(
+                        location.footTraffic,
+                        location.start_time,
+                        location.end_time,
+                        target_hour,
+                    )
+
+            return location
 
     return None
 

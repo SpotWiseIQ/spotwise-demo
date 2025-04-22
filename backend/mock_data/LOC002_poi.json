@@ -12,8 +12,8 @@
     "poi_id": "POI002",
     "name": "Osmonpuisto Playground",
     "location_id": "LOC002",
-    "latitude": 61.5045,
-    "longitude": 23.775,
+    "latitude": 61.504671479158965,
+    "longitude": 23.780505505694006,
     "category": "Park",
     "description": "A leafy playground nestled within a quiet green oasis, where families can enjoy gentle swings, picnic benches, and safe open spaces for children to explore."
   },
@@ -21,8 +21,8 @@
     "poi_id": "POI003",
     "name": "Cafe Kaisuli",
     "location_id": "LOC002",
-    "latitude": 61.5042,
-    "longitude": 23.7761,
+    "latitude": 61.50009688845,
+    "longitude": 23.77937144018622,
     "category": "Cafe",
     "description": "A charming cafe set amid verdant surroundings, offering home‑baked delights and a cozy patio where families can savor quiet moments over warm drinks."
   },
@@ -30,8 +30,8 @@
     "poi_id": "POI004",
     "name": "Café Tammela",
     "location_id": "LOC002",
-    "latitude": 61.5058,
-    "longitude": 23.7789,
+    "latitude": 60.80851367192391,
+    "longitude": 23.760232168979634,
     "category": "Cafe",
     "description": "A family-friendly cafe tucked beside a green courtyard, serving local comfort food in a tranquil setting ideal for quiet gatherings."
   },
@@ -39,54 +39,54 @@
     "poi_id": "POI005",
     "name": "Tammelantori Stop",
     "location_id": "LOC002",
-    "latitude": 61.5034,
-    "longitude": 23.7769,
+    "latitude": 61.502111956988415,
+    "longitude": 23.779704429910968,
     "category": "Bus Stop",
     "description": "A quiet bus stop shaded by mature trees, offering a green respite for families commuting in a calm neighborhood setting."
   },
   {
     "poi_id": "POI006",
-    "name": "Kirjasto Stop",
+    "name": "Tammelankatu",
     "location_id": "LOC002",
-    "latitude": 61.498,
-    "longitude": 23.7805,
+    "latitude": 61.50021068840168,
+    "longitude": 23.77986162798983,
     "category": "Bus Stop",
-    "description": "A serene bus stop adjacent to a leafy library park, providing families a peaceful waiting spot amidst gentle greenery."
+    "description": "Bus stop, providing families a peaceful waiting spot amidst gentle greenery."
   },
   {
     "poi_id": "POI007",
     "name": "Aimo Park Tammelan stadion",
     "location_id": "LOC002",
-    "latitude": 61.504,
-    "longitude": 23.776,
+    "latitude": 61.49988246639123,
+    "longitude": 23.784420382516338,
     "category": "Parking",
     "description": "A well‑maintained parking facility surrounded by leafy avenues, offering families easy access and a quiet, secure place for vehicles."
   },
   {
     "poi_id": "POI008",
-    "name": "Kauppakeskus Duo Hall",
+    "name": "Aimo Park Postitalo",
     "location_id": "LOC002",
-    "latitude": 61.4995,
-    "longitude": 23.78,
+    "latitude": 61.49981085899006,
+    "longitude": 23.77299232201832,
     "category": "Parking",
     "description": "A spacious parking hall nestled beneath a green boulevard, providing families a secure and quiet spot to park before leisure strolls."
   },
   {
     "poi_id": "POI009",
-    "name": "Tammelantori Square",
+    "name": "Tammela Square",
     "location_id": "LOC002",
-    "latitude": 61.5042,
-    "longitude": 23.7767,
+    "latitude": 61.501683232883934,
+    "longitude": 23.7788371401863,
     "category": "Market",
     "description": "A bustling market square lined with seasonal stalls, set against a backdrop of green trees where families can browse in a relaxed, quiet atmosphere."
   },
   {
     "poi_id": "POI010",
-    "name": "Metso Main Library",
+    "name": "Hotel Homeland",
     "location_id": "LOC002",
-    "latitude": 61.498,
-    "longitude": 23.7802,
-    "category": "Library",
-    "description": "A grand library enveloped by leafy parkland, offering families a quiet green retreat to explore books and share peaceful reading time."
+    "latitude": 61.50339903167768,
+    "longitude": 23.78188482877611,
+    "category": "Hotel",
+    "description": "A hotel with a quiet and peaceful atmosphere, offering families a comfortable and relaxing stay."
   }
 ]

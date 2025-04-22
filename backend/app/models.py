@@ -110,6 +110,12 @@ class Location(BaseModel):
     event_id: Optional[str] = None  # Reference to the original event
     venue: Optional[str] = None  # Venue name for event-hotspots
     venue_address: Optional[str] = None  # Venue address for event-hotspots
+    venue_coordinates: Optional[Tuple[float, float]] = (
+        None  # [longitude, latitude] for venue
+    )
+    event_foot_traffic: Optional[List[FootTrafficData]] = (
+        None  # Event-specific foot traffic data
+    )
 
 
 class MapItemType(str, Enum):
@@ -180,3 +186,9 @@ class BusinessPreferences(BaseModel):
     business: str
     location: str
     intent: BusinessIntent
+
+
+class BusinessRequirementNotSupported(BaseModel):
+    supported: bool = False
+    message: str
+    input_text: Optional[str] = None
