@@ -15,7 +15,7 @@ interface Message {
 }
 
 export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) => {
-  const { selectedHotspot, selectedEvent } = useTampere();
+  const { selectedLocation, detailedMetrics } = useTampere();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -24,32 +24,129 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
 
   // Generate business opportunity summaries based on selected item
   const getBusinessOpportunitySummary = () => {
-    if (selectedHotspot) {
-      return generateHotspotSummary(selectedHotspot);
-    } else if (selectedEvent) {
-      return generateEventSummary(selectedEvent);
+    if (!selectedLocation) {
+      return "Select a hotspot or event to see business opportunities analysis.";
     }
+    
+    if (selectedLocation.type === 'natural') {
+      return generateHotspotSummary(selectedLocation);
+    } else if (selectedLocation.type === 'event') {
+      return generateEventSummary(selectedLocation);
+    }
+    
     return "Select a hotspot or event to see business opportunities analysis.";
   };
 
   const generateHotspotSummary = (hotspot: any) => {
-    const trafficMap = {
-      high: "high foot traffic making it ideal",
-      medium: "moderate foot traffic offering good potential",
-      low: "lower foot traffic but still potential"
-    };
+    // Extract metrics from different sources, with fallbacks
+    const population = hotspot.population || detailedMetrics?.metrics?.population || "a significant population";
+    const areaType = hotspot.areaType || detailedMetrics?.metrics?.areaType || "mixed-use area";
+    const peakHour = hotspot.peakHour || detailedMetrics?.metrics?.peakHour || "17:00";
+    const avgDailyTraffic = hotspot.avgDailyTraffic || detailedMetrics?.metrics?.avgDailyTraffic || "moderate";
+    const demographics = hotspot.dominantDemographics || detailedMetrics?.metrics?.dominantDemographics || "diverse demographics";
+    const nearbyBusinesses = hotspot.nearbyBusinesses || detailedMetrics?.metrics?.nearbyBusinesses || "various businesses";
     
-    const trafficText = trafficMap[hotspot.trafficLevel as keyof typeof trafficMap] || "varying foot traffic";
-    const demographics = hotspot.dominantDemographics || "diverse demographics";
+    // Determine traffic level based on numbers or text
+    let trafficDescription = "varying";
+    if (typeof avgDailyTraffic === 'string') {
+      if (avgDailyTraffic.includes('2,500') || avgDailyTraffic.includes('2500')) {
+        trafficDescription = "significant";
+      } else if (avgDailyTraffic.includes('1,') || avgDailyTraffic.includes('1000')) {
+        trafficDescription = "moderate";
+      } else if (avgDailyTraffic.toLowerCase().includes('high')) {
+        trafficDescription = "high";
+      } else if (avgDailyTraffic.toLowerCase().includes('low')) {
+        trafficDescription = "lower";
+      }
+    }
     
-    return `This area has ${trafficText} for mobile businesses. With ${demographics} and ${hotspot.nearbyBusinesses || "various businesses"} nearby, it offers a strategic location to capture customer flow. Peak activity around ${hotspot.peakHour || "various times"} provides optimal serving windows.`;
+    // Create a more concise summary
+    return `${areaType} with ${trafficDescription} traffic (${avgDailyTraffic}/day). Peak time: ${peakHour}. ${demographics} demographic. ${nearbyBusinesses} nearby businesses.`;
   };
 
   const generateEventSummary = (event: any) => {
-    const capacity = event.capacity ? `approximately ${event.capacity} attendees` : "significant attendance";
-    const demographics = event.demographics || "diverse crowd";
+    // Extract metrics from different sources, with fallbacks
+    const eventType = event.event_type || event.type_info || event.type || detailedMetrics?.metrics?.type || "event";
+    const duration = event.duration || 
+      (event.start_time && event.end_time ? calculateDuration(event.start_time, event.end_time) : null) || 
+      detailedMetrics?.metrics?.duration || 
+      "limited timeframe";
+      
+    const capacity = event.expected_attendance || event.capacity || detailedMetrics?.metrics?.capacity || "significant";
+    const demographics = 
+      (detailedMetrics?.detailed?.expected_crowd && detailedMetrics?.detailed?.expected_crowd.primary_demographic) ||
+      event.demographics || 
+      detailedMetrics?.metrics?.demographics || 
+      "diverse";
+      
+    const peakImpact = event.peakTrafficImpact || detailedMetrics?.metrics?.peakTrafficImpact || "+40%";
     
-    return `This ${event.type || "event"} provides an excellent opportunity with ${capacity} expected. The ${demographics} aligns well with mobile business offerings. With ${event.peakTrafficImpact || "increased"} foot traffic during the event, positioning nearby would maximize sales potential.`;
+    // Create a more concise summary
+    return `${eventType} event. Expected attendance: ${capacity}. Duration: ${duration}. ${demographics} demographic. Traffic impact: ${peakImpact}.`;
+  };
+  
+  // Helper functions for more specific recommendations
+  const getBusinessRecommendation = (demographics: string) => {
+    const demographicsLower = demographics.toLowerCase();
+    
+    if (demographicsLower.includes('young') || demographicsLower.includes('18-24') || demographicsLower.includes('student')) {
+      return "coffee, fast food, and trendy food options";
+    } else if (demographicsLower.includes('families') || demographicsLower.includes('35-44')) {
+      return "family-friendly food options and refreshments";
+    } else if (demographicsLower.includes('professional') || demographicsLower.includes('25-34')) {
+      return "premium coffee, healthy options, and quick lunch solutions";
+    } else if (demographicsLower.includes('senior') || demographicsLower.includes('45+') || demographicsLower.includes('elder')) {
+      return "traditional food options and comfortable seating areas";
+    } else if (demographicsLower.includes('tourist') || demographicsLower.includes('international')) {
+      return "local specialties and easy grab-and-go options";
+    }
+    
+    return "a variety of food and beverage options";
+  };
+  
+  const getEventSpecificOffers = (eventType: string) => {
+    const typeLower = eventType.toLowerCase();
+    
+    if (typeLower.includes('concert') || typeLower.includes('music')) {
+      return "themed drinks and quick snacks that can be consumed while standing";
+    } else if (typeLower.includes('sport')) {
+      return "energy drinks, healthy snacks, and quick meal options";
+    } else if (typeLower.includes('festival') || typeLower.includes('cultural')) {
+      return "culturally relevant food items and specialty beverages";
+    } else if (typeLower.includes('food')) {
+      return "complementary food items that aren't competing directly with the event";
+    } else if (typeLower.includes('market') || typeLower.includes('fair')) {
+      return "hot beverages and sweet treats that complement shopping experiences";
+    }
+    
+    return "a mix of quick snacks and beverages suited to the event atmosphere";
+  };
+  
+  const calculateDuration = (startTime: string, endTime: string) => {
+    try {
+      // Parse times directly respecting timezone in the string
+      // This prevents browser timezone conversion
+      const start_parts = startTime.split(/[- :+]/);
+      const end_parts = endTime.split(/[- :+]/);
+      
+      // Extract hours and minutes directly from the parts 
+      const start_hour = parseInt(start_parts[3]);
+      const start_minute = parseInt(start_parts[4]);
+      const end_hour = parseInt(end_parts[3]);
+      const end_minute = parseInt(end_parts[4]);
+      
+      // Calculate duration in minutes
+      let duration_minutes = (end_hour * 60 + end_minute) - (start_hour * 60 + start_minute);
+      if (duration_minutes < 0) duration_minutes += 24 * 60; // Handle overnight events
+      
+      // Convert to hours and minutes
+      const diffH = Math.floor(duration_minutes / 60);
+      const diffM = duration_minutes % 60;
+      
+      return `${diffH}h${diffM > 0 ? ` ${diffM}m` : ''}`;
+    } catch (e) {
+      return "multiple hours";
+    }
   };
 
   // Reset messages when selected hotspot/event changes
@@ -62,7 +159,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
       timestamp: new Date()
     }]);
     setMessageIdCounter(1);
-  }, [selectedHotspot, selectedEvent]);
+  }, [selectedLocation, detailedMetrics]);
 
   // Scroll to bottom when messages change
   useEffect(() => {

@@ -31,6 +31,7 @@ import {
 } from 'recharts';
 import { FootTrafficChart } from "@/components/FootTrafficChart";
 import { ChatBox } from "@/components/ChatBox";
+import { logFootTrafficSource } from "@/lib/debug_utils";
 
 interface MetricCardProps {
   title: string;
@@ -481,14 +482,23 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
       if (selectedLocation) {
         setIsLoadingData(true);
         try {
-          if (selectedLocation.footTraffic) {
+          // First check for event_foot_traffic (for event-type locations)
+          if (isEvent && (selectedLocation as any).event_foot_traffic) {
+            setFootTrafficData((selectedLocation as any).event_foot_traffic);
+            logFootTrafficSource(selectedLocation, "LocationMetrics");
+          } 
+          // Then check for regular footTraffic as fallback
+          else if (selectedLocation.footTraffic) {
             setFootTrafficData(selectedLocation.footTraffic);
+            logFootTrafficSource(selectedLocation, "LocationMetrics");
           } else if (isHotspot) {
             const data = await loadHotspotFootTraffic(selectedLocation.id);
             if (data) setFootTrafficData(data);
+            logFootTrafficSource(selectedLocation, "LocationMetrics");
           } else if (isEvent) {
             const data = await loadEventFootTraffic(selectedLocation.id);
             if (data) setFootTrafficData(data);
+            logFootTrafficSource(selectedLocation, "LocationMetrics");
           }
         } catch (error) {
           console.error('Error loading foot traffic data:', error);
@@ -607,16 +617,42 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
                   selectedLocation.duration ||
                   (selectedLocation.start_time && selectedLocation.end_time
                     ? (() => {
-                        // Try to calculate duration in hours/minutes
-                        const start = new Date(selectedLocation.start_time);
-                        const end = new Date(selectedLocation.end_time);
-                        if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
-                          const diffMs = end.getTime() - start.getTime();
-                          const diffH = Math.floor(diffMs / (1000 * 60 * 60));
-                          const diffM = Math.floor((diffMs / (1000 * 60)) % 60);
+                        try {
+                          // Parse times directly respecting timezone in the string
+                          // This prevents browser timezone conversion
+                          const start_parts = selectedLocation.start_time.split(/[- :+]/);
+                          const end_parts = selectedLocation.end_time.split(/[- :+]/);
+                          
+                          // Extract hours and minutes directly from the parts 
+                          const start_hour = parseInt(start_parts[3]);
+                          const start_minute = parseInt(start_parts[4]);
+                          const end_hour = parseInt(end_parts[3]);
+                          const end_minute = parseInt(end_parts[4]);
+                          
+                          // Calculate duration in minutes
+                          let duration_minutes = (end_hour * 60 + end_minute) - (start_hour * 60 + start_minute);
+                          if (duration_minutes < 0) duration_minutes += 24 * 60; // Handle overnight events
+                          
+                          // Convert to hours and minutes
+                          const diffH = Math.floor(duration_minutes / 60);
+                          const diffM = duration_minutes % 60;
+                          
                           return `${diffH}h${diffM > 0 ? ` ${diffM}m` : ''}`;
+                        } catch (e) {
+                          // Fallback to original calculation for robustness
+                          console.log("Error calculating duration, using fallback method:", e);
+                          
+                          // Original method using Date objects
+                          const start = new Date(selectedLocation.start_time);
+                          const end = new Date(selectedLocation.end_time);
+                          if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
+                            const diffMs = end.getTime() - start.getTime();
+                            const diffH = Math.floor(diffMs / (1000 * 60 * 60));
+                            const diffM = Math.floor((diffMs / (1000 * 60)) % 60);
+                            return `${diffH}h${diffM > 0 ? ` ${diffM}m` : ''}`;
+                          }
+                          return "N/A";
                         }
-                        return "N/A";
                       })()
                     : detailedMetrics?.metrics?.duration || "N/A")
                 }

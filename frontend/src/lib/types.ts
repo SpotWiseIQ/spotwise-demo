@@ -90,6 +90,8 @@ export interface UnifiedHotspot {
   event_name?: string;
   venue?: string;
   venue_address?: string;
+  venue_coordinates?: [number, number]; // [longitude, latitude] for venue
+  event_foot_traffic?: FootTrafficData[]; // Event-specific foot traffic data
 }
 
 export interface MapItem {

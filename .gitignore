@@ -33,3 +33,6 @@ backend/.pytest_cache
 # Cursor files
 .cursor/
 .cursor
+
+# Environment variables
+.env

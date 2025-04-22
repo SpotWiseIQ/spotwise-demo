@@ -1,5 +1,5 @@
 import React from "react";
-import { CircleDot, CalendarDays, Bus, Train, Store, SquareParking } from "lucide-react";
+import { CircleDot, Bus, Train, Store, SquareParking, Trees, Landmark } from "lucide-react";
 import { useTampere } from "@/lib/TampereContext";
 
 // Helper to map POI category to icon
@@ -23,11 +23,12 @@ export const MobileBusinessLegend: React.FC = () => {
 
   const mapItems = [
     { icon: <CircleDot className="text-green-600" size={16} />, label: "Available" },
-    { icon: <CalendarDays className="text-red-500" size={16} />, label: "Events" },
     { icon: <Bus className="text-blue-600" size={16} />, label: "Bus stop" },
     { icon: <Train className="text-purple-700" size={16} />, label: "Tram stop" },
     { icon: <Store className="text-orange-600" size={16} />, label: "Business" },
-    { icon: <SquareParking className="text-blue-800" size={16} />, label: "Parking" }
+    { icon: <SquareParking className="text-blue-800" size={16} />, label: "Parking" },
+    { icon: <Trees className="text-green-700" size={16} />, label: "Park" },
+    { icon: <Landmark className="text-gray-600" size={16} />, label: "Others" }
   ];
 
   const trafficItems = [

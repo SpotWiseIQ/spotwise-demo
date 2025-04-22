@@ -40,6 +40,33 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
   const getFormattedTime = () => {
     if (typeof event.start_time === "string" && typeof event.end_time === "string") {
       try {
+        console.log(`DEBUG: Original time strings - start: ${event.start_time}, end: ${event.end_time}`);
+        
+        // Direct string parsing to avoid timezone conversion
+        const extractTime = (timeStr: string) => {
+          // Split the string by spaces, colons, and other delimiters
+          const parts = timeStr.split(/[- :+]/);
+          console.log(`DEBUG: Time parts:`, parts);
+          
+          if (parts.length >= 5) {
+            // Parts[3] should be hours, parts[4] should be minutes
+            const hours = parts[3].padStart(2, '0');
+            const minutes = parts[4].padStart(2, '0');
+            const timeStr = `${hours}:${minutes}`;
+            console.log(`DEBUG: Extracted time: ${timeStr}`);
+            return timeStr;
+          }
+          return null;
+        };
+        
+        const startTime = extractTime(event.start_time);
+        const endTime = extractTime(event.end_time);
+        
+        if (startTime && endTime) {
+          return `${startTime} - ${endTime}`;
+        }
+        
+        // Fallback to Date parsing if direct extraction fails
         const startDate = parseISO(event.start_time);
         const endDate = parseISO(event.end_time);
         
@@ -63,6 +90,31 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
   const getFormattedDate = () => {
     if (typeof event.start_time === "string") {
       try {
+        // Direct string parsing to avoid timezone conversion
+        const extractDate = (timeStr: string) => {
+          // Split the string by spaces, colons, and other delimiters
+          const parts = timeStr.split(/[- :+]/);
+          if (parts.length >= 3) {
+            // parts[1] should be the month (1-indexed), parts[2] should be the day
+            const year = parseInt(parts[0]);
+            const month = parseInt(parts[1]) - 1; // Convert to 0-indexed for month names
+            const day = parseInt(parts[2]);
+            
+            // Get month name abbreviation
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const monthName = monthNames[month];
+            
+            return `${monthName} ${day}`;
+          }
+          return null;
+        };
+        
+        const dateStr = extractDate(event.start_time);
+        if (dateStr) {
+          return dateStr;
+        }
+        
+        // Fallback to date-fns if direct extraction fails
         const startDate = parseISO(event.start_time);
         if (!isValid(startDate)) return "Date not specified";
         return format(startDate, "MMM d");
@@ -99,7 +151,14 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
     const fetchData = async () => {
       setIsLoadingTraffic(true);
       try {
-        // If footTraffic is already available in the event object, use it
+        // If event_foot_traffic is available, use it (for event hotspots)
+        if ((event as any).event_foot_traffic) {
+          setFootTrafficData((event as any).event_foot_traffic);
+          setIsLoadingTraffic(false);
+          return;
+        }
+        
+        // If regular footTraffic is available, use it as fallback
         if (event.footTraffic) {
           setFootTrafficData(event.footTraffic);
           setIsLoadingTraffic(false);
@@ -119,7 +178,7 @@ export const EventHotspotCard: React.FC<EventHotspotCardProps> = ({
     };
 
     fetchData();
-  }, [event.id, event.footTraffic, loadEventFootTraffic, currentHour]);
+  }, [event.id, event.footTraffic, (event as any).event_foot_traffic, loadEventFootTraffic, currentHour]);
 
   // Reset traffic panel when deselected
   useEffect(() => {

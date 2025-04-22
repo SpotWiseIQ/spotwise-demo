@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,21 @@ export default function LandingPage(): JSX.Element {
   
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Add a memoized business options based on business type
+  const businessOptions = useMemo(() => {
+    switch (businessType.toLowerCase()) {
+      case 'static':
+        return [{ value: 'Car Wash', label: 'Car Wash' }];
+      case 'mobile':
+        return [
+          { value: 'Food Stall', label: 'Food Stall' },
+          { value: 'Artisan Stall', label: 'Artisan Stall' }
+        ];
+      default:
+        return [];
+    }
+  }, [businessType]);
 
   const handleAnalysisSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -120,7 +135,7 @@ export default function LandingPage(): JSX.Element {
                   className="mt-2 mb-2"
                 />
                 <p className="text-right mt-1 text-sm text-purple-700">
-                  (e.g., &quot;Find a spot to open a food truck in Kaleva&quot;)
+                  (e.g., &quot;Find a spot to open a food truck in Tampere&quot;)
                 </p>
                 <Button 
                   type="submit"
@@ -166,6 +181,7 @@ export default function LandingPage(): JSX.Element {
                       <Select 
                         value={location}
                         onValueChange={setLocation}
+                        defaultValue="Tampere"
                       >
                         <SelectTrigger className="flex items-center pl-2">
                           <MapPin className="w-4 h-4 mr-2 text-gray-600" />
@@ -173,7 +189,6 @@ export default function LandingPage(): JSX.Element {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Tampere">Tampere</SelectItem>
-                          <SelectItem value="Helsinki">Helsinki</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -193,9 +208,11 @@ export default function LandingPage(): JSX.Element {
                           <SelectValue placeholder="Select business" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Car Wash">Car Wash</SelectItem>
-                          <SelectItem value="Food Truck">Food Truck</SelectItem>
-                          <SelectItem value="Foodstand">Foodstand</SelectItem>
+                          {businessOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>

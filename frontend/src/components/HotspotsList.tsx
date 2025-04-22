@@ -29,12 +29,17 @@ export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) 
     if (!searchQuery) return locations;
     const query = searchQuery.toLowerCase();
     return locations.filter(location => {
-      if (location.type === 'natural') {
-        return location.name.toLowerCase().includes(query);
-      } else {
-        // For events
-        return location.event_name.toLowerCase().includes(query);
-      }
+      // Search in name
+      const nameMatch = location.type === 'natural' 
+        ? location.name.toLowerCase().includes(query)
+        : location.event_name.toLowerCase().includes(query);
+
+      // Search in type
+      const typeMatch = location.type === 'natural' 
+        ? 'hotspot'.includes(query) || 'natural'.includes(query)
+        : 'event'.includes(query);
+
+      return nameMatch || typeMatch;
     });
   }, [locations, searchQuery]);
 

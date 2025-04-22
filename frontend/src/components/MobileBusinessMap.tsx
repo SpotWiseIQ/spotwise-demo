@@ -143,7 +143,9 @@ export const MobileBusinessMap: React.FC = () => {
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
 
-    const coordinates = selectedHotspot?.coordinates || selectedEvent?.coordinates;
+    const coordinates = selectedHotspot ? 
+      (selectedHotspot.type === 'event' && selectedHotspot.venue_coordinates ? selectedHotspot.venue_coordinates : selectedHotspot.coordinates) 
+      : (selectedEvent?.venue_coordinates || selectedEvent?.coordinates);
     if (coordinates) {
       debugLog("Immediate fly to coordinates", coordinates);
       
@@ -159,16 +161,16 @@ export const MobileBusinessMap: React.FC = () => {
 
       map.current.flyTo({
         center: coordinates,
-        zoom: 15.5,
+        zoom: 14.5,
         essential: true,
-        duration: 1000, // 1 second transition
+        duration: 1500,
         padding: {
-          top: 60, // Reduced top padding
-          bottom: verticalOffset + 80, // Increased bottom padding to account for metrics panel
-          left: 50,
-          right: 50,
+          top: 60,
+          bottom: verticalOffset + 60,
+          left: 40,
+          right: 40
         },
-        offset: [0, -bottomOffsetAdjustment] // Increased negative offset to move focus point higher
+        offset: [0, -bottomOffsetAdjustment]
       });
     }
   }, [selectedHotspot, selectedEvent, mapLoaded, isAnyCardExpanded]);
@@ -356,17 +358,20 @@ export const MobileBusinessMap: React.FC = () => {
 
     // Helper function to map POI category to icon type
     const mapCategoryToIconType = (category: string): string => {
-      if (!category) return 'business';
+      if (!category) return 'others';
       
       const categoryLower = category.toLowerCase();
       
+      // Follow exact rules as specified
+      if (categoryLower.includes('bus')) return 'bus';
+      if (categoryLower.includes('tram')) return 'tram';
       if (categoryLower.includes('parking')) return 'parking';
-      if (categoryLower.includes('bus') || categoryLower.includes('bus stop')) return 'bus';
-      if (categoryLower.includes('tram') || categoryLower.includes('tram stop')) return 'tram';
+      if (categoryLower.includes('cafe') || categoryLower.includes('retail')) return 'business';
+      if (categoryLower === 'park' || categoryLower.includes('puisto') || categoryLower.includes('playground')) return 'park';
       if (categoryLower.includes('available') || categoryLower.includes('for rent')) return 'available';
       
-      // Default to business for any other category
-      return 'business';
+      // Default to others for any other category
+      return 'others';
     };
 
     const fetchAndSetMetrics = async (location: any, isHotspot: boolean) => {
@@ -711,11 +716,11 @@ export const MobileBusinessMap: React.FC = () => {
 
     // Toggle visibility of traffic layers based on selection and pulse state
     if (map.current) {
-      // Hide heatmap when a selection is made, show otherwise
+      // Always show the heatmap regardless of selection
       map.current.setLayoutProperty(
         "traffic-heatmap",
         "visibility",
-        selectedHotspot || selectedEvent ? "none" : "visible"
+        "visible"
       );
 
       // Show traffic lines only when pulse is on
@@ -775,15 +780,20 @@ export const MobileBusinessMap: React.FC = () => {
       });
 
       markerElement.addEventListener("click", () => {
-        debugLog(`Selected hotspot marker clicked: ${selectedHotspot.id}`);
-        setSelectedHotspot(null);
+        debugLog(`Hotspot marker clicked: ${selectedHotspot.id}`);
+        // Check if this hotspot is already selected, if so, unselect it
+        if (selectedHotspot) {
+          setSelectedHotspot(null);
+        } else {
+          setSelectedHotspot(selectedHotspot);
+        }
       });
 
       const marker = new maplibregl.Marker({
         element: markerElement,
         anchor: "center",
       })
-        .setLngLat(selectedHotspot.coordinates)
+        .setLngLat(selectedHotspot.type === 'event' && selectedHotspot.venue_coordinates ? selectedHotspot.venue_coordinates : selectedHotspot.coordinates)
         .setPopup(popup)
         .addTo(map.current!);
 
@@ -839,7 +849,7 @@ export const MobileBusinessMap: React.FC = () => {
       const eventId = selectedEvent.id || selectedEvent.event_id;
       const eventLabel = 'label' in selectedEvent ? selectedEvent.label : '';
       const eventName = selectedEvent.name || selectedEvent.event_name || '';
-      const eventCoordinates = selectedEvent.coordinates;
+      const eventCoordinates = selectedEvent.venue_coordinates || selectedEvent.coordinates;
       // Always use the same base class, add 'highlighted' if selected
       markerElement.className = "event-marker" + (selectedEvent && (selectedEvent.id || selectedEvent.event_id) === eventId ? " highlighted" : "");
       markerElement.textContent = eventLabel;
@@ -863,7 +873,8 @@ export const MobileBusinessMap: React.FC = () => {
 
       markerElement.addEventListener("click", () => {
         debugLog(`Event marker clicked: ${eventId}`);
-        setSelectedEvent(selectedEvent);
+        // When we click on the already selected event marker, we should unselect it
+        setSelectedEvent(null);
       });
 
       const marker = new maplibregl.Marker({
@@ -964,14 +975,19 @@ export const MobileBusinessMap: React.FC = () => {
 
       markerElement.addEventListener("click", () => {
         debugLog(`Hotspot marker clicked: ${hotspot.id}`);
-        setSelectedHotspot(hotspot);
+        // Check if this hotspot is already selected, if so, unselect it
+        if (selectedHotspot && selectedHotspot.id === hotspot.id) {
+          setSelectedHotspot(null);
+        } else {
+          setSelectedHotspot(hotspot);
+        }
       });
 
       const marker = new maplibregl.Marker({
         element: markerElement,
         anchor: "center",
       })
-        .setLngLat(hotspot.coordinates)
+        .setLngLat(hotspot.type === 'event' && hotspot.venue_coordinates ? hotspot.venue_coordinates : hotspot.coordinates)
         .setPopup(popup)
         .addTo(map.current!);
 
@@ -982,7 +998,7 @@ export const MobileBusinessMap: React.FC = () => {
       const eventId = event.id || event.event_id;
       const eventLabel = 'label' in event ? event.label : '';
       const eventName = event.name || event.event_name || '';
-      const eventCoordinates = event.coordinates;
+      const eventCoordinates = event.venue_coordinates || event.coordinates;
       // Always use the same base class, add 'highlighted' if selected
       const markerElement = document.createElement("div");
       markerElement.className = "event-marker" + (selectedEvent && (selectedEvent.id || selectedEvent.event_id) === eventId ? " highlighted" : "");
@@ -1007,7 +1023,12 @@ export const MobileBusinessMap: React.FC = () => {
 
       markerElement.addEventListener("click", () => {
         debugLog(`Event marker clicked: ${eventId}`);
-        setSelectedEvent(event);
+        // Check if this event is already selected, if so, unselect it
+        if (selectedEvent && (selectedEvent.id === eventId || selectedEvent.event_id === eventId)) {
+          setSelectedEvent(null);
+        } else {
+          setSelectedEvent(event);
+        }
       });
 
       const marker = new maplibregl.Marker({
@@ -1071,6 +1092,62 @@ export const MobileBusinessMap: React.FC = () => {
             <circle cx="12" cy="12" r="1"></circle>
           </svg>
         `;
+      case "park":
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trees">
+            <path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"></path>
+            <path d="M7 16v6"></path>
+            <path d="M13 19v3"></path>
+            <path d="M12 13v.2a3 3 0 0 0 1.1 5.8H17v0h0a3 3 0 0 0 1-5.8V13a3 3 0 0 0-6 0Z"></path>
+          </svg>
+        `;
+      case "food":
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee">
+            <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+            <line x1="6" x2="6" y1="2" y2="4"></line>
+            <line x1="10" x2="10" y1="2" y2="4"></line>
+            <line x1="14" x2="14" y1="2" y2="4"></line>
+          </svg>
+        `;
+      case "shop":
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket">
+            <path d="m5 11 4-7"></path>
+            <path d="m19 11-4-7"></path>
+            <path d="M2 11h20"></path>
+            <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"></path>
+            <path d="m9 11 1 9"></path>
+            <path d="M4.5 15.5h15"></path>
+            <path d="m15 11-1 9"></path>
+          </svg>
+        `;
+      case "hotel":
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hotel">
+            <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"></path>
+            <path d="m9 16 .348-.24c1.465-1.013 3.84-1.013 5.304 0L15 16"></path>
+            <path d="M8 7h.01"></path>
+            <path d="M16 7h.01"></path>
+            <path d="M12 7h.01"></path>
+            <path d="M12 11h.01"></path>
+            <path d="M16 11h.01"></path>
+            <path d="M8 11h.01"></path>
+            <path d="M10 22v-6.5m4 0V22"></path>
+          </svg>
+        `;
+      case "others":
+        return `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-landmark">
+            <line x1="3" x2="21" y1="22" y2="22"></line>
+            <line x1="6" x2="6" y1="18" y2="11"></line>
+            <line x1="10" x2="10" y1="18" y2="11"></line>
+            <line x1="14" x2="14" y1="18" y2="11"></line>
+            <line x1="18" x2="18" y1="18" y2="11"></line>
+            <polygon points="12 2 20 7 4 7"></polygon>
+          </svg>
+        `;
       default:
         return "";
     }
@@ -1084,6 +1161,11 @@ export const MobileBusinessMap: React.FC = () => {
       case "business": return "text-orange-600";
       case "parking": return "text-blue-800";
       case "available": return "text-green-600";
+      case "park": return "text-green-700";
+      case "food": return "text-amber-600";
+      case "shop": return "text-violet-600";
+      case "hotel": return "text-indigo-600";
+      case "others": return "text-gray-600";
       default: return "";
     }
   };
