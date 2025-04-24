@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { MessageSquare, Send } from "lucide-react";
+import { fetchLLMSummary } from "@/lib/api";
 
 export interface ChatBoxProps {
   className?: string;
@@ -15,12 +16,13 @@ interface Message {
 }
 
 export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) => {
-  const { selectedLocation, detailedMetrics } = useTampere();
+  const { selectedLocation, detailedMetrics, selectedBusiness } = useTampere();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [messageIdCounter, setMessageIdCounter] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLoadingLLM, setIsLoadingLLM] = useState(false);
 
   // Generate business opportunity summaries based on selected item
   const getBusinessOpportunitySummary = () => {
@@ -149,22 +151,78 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
     }
   };
 
-  // Reset messages when selected hotspot/event changes
-  useEffect(() => {
-    const summary = getBusinessOpportunitySummary();
-    setMessages([{
-      id: 0,
-      text: summary,
-      sender: 'system',
-      timestamp: new Date()
-    }]);
-    setMessageIdCounter(1);
-  }, [selectedLocation, detailedMetrics]);
+  // Helper to gather all relevant metrics for the LLM
+  const gatherMetrics = () => {
+    if (!selectedLocation) return {};
+    const metrics = detailedMetrics?.metrics || {};
+    return {
+      population: selectedLocation.population || metrics.population,
+      areaType: selectedLocation.areaType || metrics.areaType,
+      peakHour: selectedLocation.peakHour || metrics.peakHour,
+      avgDailyTraffic: selectedLocation.avgDailyTraffic || metrics.avgDailyTraffic,
+      dominantDemographics: selectedLocation.dominantDemographics || metrics.dominantDemographics,
+      nearbyBusinesses: selectedLocation.nearbyBusinesses || metrics.nearbyBusinesses,
+      event_type: selectedLocation.event_type || metrics.type,
+      duration: selectedLocation.duration || metrics.duration,
+      expected_attendance: selectedLocation.expected_attendance || selectedLocation.capacity || metrics.capacity,
+      demographics: metrics.demographics,
+      peakTrafficImpact: selectedLocation.peakTrafficImpact || metrics.peakTrafficImpact,
+      // Add more as needed
+    };
+  };
 
-  // Scroll to bottom when messages change
+  // Fetch LLM summary when location or business changes
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    let cancelled = false;
+    const fetchSummary = async () => {
+      if (!selectedLocation || !selectedBusiness) {
+        setMessages([{
+          id: 0,
+          text: "Select a hotspot or event to see business opportunities analysis.",
+          sender: 'system',
+          timestamp: new Date()
+        }]);
+        setMessageIdCounter(1);
+        return;
+      }
+      setIsLoadingLLM(true);
+      const metrics = gatherMetrics();
+      const payload = {
+        business_requirement: selectedBusiness,
+        metrics,
+        location_type: selectedLocation.type,
+        instructions: "Create a small summary of why this zone would be a good zone for the type of business the user is interested in.",
+      };
+      try {
+        const summary = await fetchLLMSummary(payload);
+        if (!cancelled) {
+          setMessages([{
+            id: 0,
+            text: summary,
+            sender: 'system',
+            timestamp: new Date()
+          }]);
+          setMessageIdCounter(1);
+        }
+      } catch (e) {
+        if (!cancelled) {
+          // fallback to old summary
+          const summary = getBusinessOpportunitySummary();
+          setMessages([{
+            id: 0,
+            text: summary,
+            sender: 'system',
+            timestamp: new Date()
+          }]);
+          setMessageIdCounter(1);
+        }
+      } finally {
+        if (!cancelled) setIsLoadingLLM(false);
+      }
+    };
+    fetchSummary();
+    return () => { cancelled = true; };
+  }, [selectedLocation, detailedMetrics, selectedBusiness]);
 
   // Notify parent component when expanded state changes
   useEffect(() => {
@@ -232,26 +290,26 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
       </div>
       
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
-        {messages.map((message) => (
-          <div 
-            key={message.id}
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
+        {isLoadingLLM ? (
+          <div className="text-xs text-center text-gray-400 py-6">Loading smart summary...</div>
+        ) : (
+          messages.map((message) => (
             <div 
-              className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
-                message.sender === 'user' 
-                  ? 'bg-blue-100 text-blue-800' 
-                  : 'bg-gray-100 text-gray-800'
-              }`}
+              key={message.id}
+              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div className="mb-1">{message.text}</div>
-              <div className="text-xs opacity-70 text-right">
-                {formatTime(message.timestamp)}
+              <div 
+                className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
+                  message.sender === 'user' 
+                    ? 'bg-blue-100 text-blue-800' 
+                    : 'bg-gray-100 text-gray-800'
+                }`}
+              >
+                <div>{message.text}</div>
               </div>
             </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
+          ))
+        )}
       </div>
       
       <div className="border-t border-gray-100 p-3 bg-gray-50">

@@ -143,3 +143,34 @@ def classify_business_requirement_with_openai(text: str) -> dict:
         "location": parsed.get("location"),
         "message": parsed.get("message", "Business requirement classified."),
     }
+
+
+def generate_llm_summary(metrics, business_requirement, location_type, instructions):
+    """
+    Generate a summary using OpenAI based on metrics, business requirement, location type, and instructions.
+    """
+    try:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise RuntimeError("OPENAI_API_KEY environment variable not set.")
+        client = openai.OpenAI(api_key=api_key)
+        # Compose a prompt for the LLM
+        prompt = (
+            f"You are a business location advisor for Tampere.\n"
+            f"The user is interested in: {business_requirement}\n"
+            f"Location type: {location_type}\n"
+            f"Here are the relevant metrics for this zone (as JSON):\n{metrics}\n"
+            f"Instructions: {instructions}\n"
+            f"Create a concise, helpful summary for the user."
+        )
+        response = client.chat.completions.create(
+            model="gpt-4.1-nano",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=200,
+            temperature=0.2,
+        )
+        summary = response.choices[0].message.content.strip()
+        return summary
+    except Exception as e:
+        logger.error(f"Failed to generate LLM summary: {e}", exc_info=True)
+        return "This area has promising metrics for your business. (LLM summary unavailable)"

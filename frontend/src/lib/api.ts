@@ -586,3 +586,33 @@ export const analyzeBusiness = async (text: string): Promise<any> => {
     };
   }
 };
+
+/**
+ * Fetches an LLM-generated summary for a zone and business requirement
+ * @param {object} payload - The payload containing metrics and business requirement
+ * @returns {Promise<string>} The summary string from the LLM
+ */
+export const fetchLLMSummary = async (payload: any): Promise<string> => {
+  debugLog(`Fetching LLM summary for payload`, payload);
+  try {
+    const response = await fetch(buildUrl(`/api/llm-summary`), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      debugLog(`Error fetching LLM summary: ${response.status} ${response.statusText}`, errorText);
+      throw new Error('Failed to fetch LLM summary');
+    }
+    const data = await response.json();
+    debugLog(`LLM summary received`, data);
+    return data.summary;
+  } catch (error) {
+    debugLog(`Exception in fetchLLMSummary`, error);
+    // Fallback to a generic summary
+    return 'This area has promising metrics for your business. (LLM summary unavailable)';
+  }
+};

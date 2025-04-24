@@ -1,5 +1,5 @@
 import logging
-from fastapi import FastAPI, HTTPException, Query, APIRouter
+from fastapi import FastAPI, HTTPException, Query, APIRouter, Request
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 from datetime import datetime
@@ -39,6 +39,7 @@ from app.fetch_tampere_roads import generate_traffic_points
 from app.business_requirements import (
     get_business_requirements_response,
     classify_business_requirement_with_openai,
+    generate_llm_summary,
 )
 
 # Configure logging
@@ -399,6 +400,29 @@ async def read_traffic_points(
     points = generate_traffic_points(traffic_data)
     logger.info("Traffic points generated")
     return points
+
+
+@api_router.post("/llm-summary")
+async def llm_summary(request: Request):
+    """Generate a smart summary for a zone and business requirement using LLM"""
+    try:
+        data = await request.json()
+        metrics = data.get("metrics", {})
+        business_requirement = data.get("business_requirement", "")
+        location_type = data.get("location_type", None)
+        instructions = data.get("instructions", "")
+        summary = generate_llm_summary(
+            metrics=metrics,
+            business_requirement=business_requirement,
+            location_type=location_type,
+            instructions=instructions,
+        )
+        return {"summary": summary}
+    except Exception as e:
+        logger.error(f"LLM summary error: {e}", exc_info=True)
+        return {
+            "summary": "This area has promising metrics for your business. (LLM summary unavailable)"
+        }
 
 
 # Include the API router in the main app
