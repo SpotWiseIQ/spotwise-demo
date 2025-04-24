@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useTampere } from "@/lib/TampereContext";
 import { MessageSquare, Send } from "lucide-react";
-import { fetchLLMSummary } from "@/lib/api";
 
 export interface ChatBoxProps {
   className?: string;
@@ -16,7 +15,7 @@ interface Message {
 }
 
 export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) => {
-  const { selectedLocation, detailedMetrics, selectedBusiness } = useTampere();
+  const { selectedLocation, detailedMetrics, selectedBusiness, getLLMSummary } = useTampere();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -187,14 +186,15 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
       }
       setIsLoadingLLM(true);
       const metrics = gatherMetrics();
-      const payload = {
-        business_requirement: selectedBusiness,
-        metrics,
-        location_type: selectedLocation.type,
-        instructions: "Create a small summary of why this zone would be a good zone for the type of business the user is interested in.",
-      };
+      const instructions = "Create a small summary of why this zone would be a good zone for the type of business the user is interested in.";
       try {
-        const summary = await fetchLLMSummary(payload);
+        const summary = await getLLMSummary({
+          locationId: selectedLocation.id,
+          businessRequirement: selectedBusiness,
+          metrics,
+          locationType: selectedLocation.type,
+          instructions,
+        });
         if (!cancelled) {
           setMessages([{
             id: 0,
@@ -222,7 +222,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
     };
     fetchSummary();
     return () => { cancelled = true; };
-  }, [selectedLocation, detailedMetrics, selectedBusiness]);
+  }, [selectedLocation, detailedMetrics, selectedBusiness, getLLMSummary]);
 
   // Notify parent component when expanded state changes
   useEffect(() => {
@@ -276,7 +276,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
 
   return (
     <div 
-      className={`bg-white rounded-lg shadow-sm border border-gray-100 flex flex-col transition-all duration-300 ease-in-out overflow-hidden h-full ${isExpanded ? 'ring-2 ring-blue-300' : ''} ${className}`}
+      className={`bg-white rounded-lg shadow-sm border border-gray-100 flex flex-col transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'ring-2 ring-blue-300' : ''} ${className || ''}`}
     >
       <div 
         className="flex items-center justify-between p-3 border-b border-gray-100 bg-blue-50"

@@ -7,7 +7,8 @@ import {
   fetchHotspotDetailedMetrics,
   fetchEventDetailedMetrics,
   trafficDataCache,
-  trafficPointsCache
+  trafficPointsCache,
+  fetchLLMSummary
 } from "./api";
 import { getTrafficCacheKey } from "./utils";
 
@@ -90,6 +91,15 @@ interface TampereContextType {
   selectedBusiness: string | undefined;
   selectedArea: string | undefined;
   cacheVersion: number;
+
+  // LLM Summary Cache and In-Flight Tracking
+  getLLMSummary: (opts: {
+    locationId: string;
+    businessRequirement: string;
+    metrics: any;
+    locationType: string;
+    instructions: string;
+  }) => Promise<string>;
 }
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
@@ -143,6 +153,10 @@ export const TampereProvider: React.FC<{
   // Add cache version state
   const [cacheVersion, setCacheVersion] = useState(0);
 
+  // LLM Summary Cache and In-Flight Tracking
+  const [llmSummaryCache, setLLMSummaryCache] = useState<{ [key: string]: string }>({});
+  const llmInFlightRequests = useRef<{ [key: string]: Promise<string> }>({});
+
   // Unified function to get detailed metrics (with cache and in-flight tracking)
   const getDetailedMetrics = async (locationId: string, type: 'hotspot' | 'event') => {
     // 1. Return from cache if available
@@ -169,6 +183,52 @@ export const TampereProvider: React.FC<{
         throw err;
       });
     inFlightRequests.current[locationId] = promise;
+    return promise;
+  };
+
+  /**
+   * Returns a cached or in-flight LLM summary for a location/business combo, or fetches if missing.
+   * @param {object} opts - { locationId, businessRequirement, metrics, locationType, instructions }
+   * @returns {Promise<string>} The summary string
+   */
+  const getLLMSummary = async ({ locationId, businessRequirement, metrics, locationType, instructions }: {
+    locationId: string;
+    businessRequirement: string;
+    metrics: any;
+    locationType: string;
+    instructions: string;
+  }): Promise<string> => {
+    if (!locationId || !businessRequirement) return "Select a hotspot or event to see business opportunities analysis.";
+    const cacheKey = `${locationId}::${businessRequirement}`;
+    // 1. Return from cache if available
+    if (llmSummaryCache[cacheKey]) {
+      debugLog(`LLM summary cache hit: ${cacheKey}`);
+      return llmSummaryCache[cacheKey];
+    }
+    // 2. If a request is in-flight, return its promise
+    if (llmInFlightRequests.current[cacheKey]) {
+      debugLog(`LLM summary in-flight: ${cacheKey}`);
+      return llmInFlightRequests.current[cacheKey];
+    }
+    // 3. Otherwise, start a new request
+    debugLog(`Fetching LLM summary from API: ${cacheKey}`);
+    const payload = {
+      business_requirement: businessRequirement,
+      metrics,
+      location_type: locationType,
+      instructions,
+    };
+    const promise = fetchLLMSummary(payload)
+      .then(summary => {
+        setLLMSummaryCache(prev => ({ ...prev, [cacheKey]: summary }));
+        delete llmInFlightRequests.current[cacheKey];
+        return summary;
+      })
+      .catch(err => {
+        delete llmInFlightRequests.current[cacheKey];
+        throw err;
+      });
+    llmInFlightRequests.current[cacheKey] = promise;
     return promise;
   };
 
@@ -408,6 +468,7 @@ export const TampereProvider: React.FC<{
         selectedBusiness,
         selectedArea,
         cacheVersion,
+        getLLMSummary,
       }}
     >
       {children}
