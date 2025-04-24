@@ -52,7 +52,7 @@ This section explains how data flows between the frontend and backend components
 
 1. The backend serves data via REST API endpoints defined in backend/app/main.py
 2. Road data is sourced from backend/app/tampere_roads.json which is fetched/updated using backend/app/fetch_tampere_roads.py
-3. Data models are defined in backend/app/models.py
+3. Data models are defined in backend/app/models.py/
 
 ### Frontend Data Fetching
 
@@ -89,19 +89,3 @@ This project uses MapLibre GL JS for interactive map visualization.
 - Click events for selecting map features
 - Radius-based search for nearby locations
 - Layer toggling for different data types
-
-## Other Important Rules
-
-### Running Servers
-
-The project has both backend and frontend servers running. Do not execute commands to run the servers as they are already running.
-
-### Python Environment Management
-
-The project uses a recently released python library called uv which is a replacement for pip, venv, conda, poetry, etc. When working with the Python backend:
-
-- Use uv instead of pip, conda, etc.
-- The project uses Python 3.12 as specified in the .python-version file
-- To add a Python library run "uv add library"
-- To remove a Python library run "uv remove library"
-- Always activate the environment with "source ./venv/bin/activate" before running Python scripts

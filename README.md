@@ -1,13 +1,15 @@
-# Tampere Explorer Hub
+# Location Insights for Small and Medium-sized Businesses
 
 This project consists of a React frontend and a FastAPI backend for a Tampere city explorer application.
+
+**Live demo available at:** https://location-insights.onrender.com/
 
 ## Project Structure
 
 - `frontend/` - Frontend React application
 - `backend/` - FastAPI backend providing data for the application
 
-For detailed documentation about the project structure, features, workflows, and API endpoints, please refer to [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md).
+For detailed documentation about the project structure, features, workflows, and API endpoints, please refer to [project_structure.md](project_structure.md).
 
 ## Tech Stack
 
