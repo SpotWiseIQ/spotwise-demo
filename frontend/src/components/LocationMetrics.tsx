@@ -533,9 +533,9 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
     <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 h-full">
       {selectedLocation && isHotspot && (
         <>
-          <div className="col-span-1 h-full">
+          <div className="col-span-1 h-full flex items-center">
             <ChatBox 
-              className="h-full"
+              className="h-[350px]"
               onExpandToggle={handleCardExpandToggle} 
             />
           </div>
@@ -599,9 +599,9 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
       )}
       {selectedLocation && isEvent && (
         <>
-          <div className="col-span-1 h-full">
+          <div className="col-span-1 h-full flex items-center">
             <ChatBox 
-              className="h-full"
+              className="h-[350px]"
               onExpandToggle={handleCardExpandToggle} 
             />
           </div>
