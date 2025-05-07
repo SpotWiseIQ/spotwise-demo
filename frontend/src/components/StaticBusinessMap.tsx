@@ -222,6 +222,8 @@ export const StaticBusinessMap: React.FC = () => {
         try {
           // List of paths to try in order
           const pathsToTry = [
+            `/data/${encodedFileName}`,
+            `/data/${zoneFileName}`,
             `/mock_data/static_poi/${encodedFileName}`,
             `/mock_data/static_poi/${zoneFileName}`,
             `/backend/mock_data/static_poi/${encodedFileName}`,
