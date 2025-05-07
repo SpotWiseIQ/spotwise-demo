@@ -118,7 +118,6 @@ export const StaticChatBox: React.FC<StaticChatBoxProps> = ({
           <h3 className="text-xs font-medium text-gray-700">Business Opportunity Analysis</h3>
         </div>
       </div>
-
       <div className="flex-1 overflow-y-auto p-2 space-y-2">
         {messages.map((message) => (
           <div
@@ -127,8 +126,8 @@ export const StaticChatBox: React.FC<StaticChatBoxProps> = ({
           >
             <div
               className={`max-w-[85%] rounded-lg px-2 py-1.5 text-xs ${message.sender === 'user'
-                  ? 'bg-blue-100 text-blue-800'
-                  : 'bg-gray-100 text-gray-800'
+                ? 'bg-blue-100 text-blue-800'
+                : 'bg-gray-100 text-gray-800'
                 }`}
             >
               <div>{message.text}</div>
@@ -137,7 +136,6 @@ export const StaticChatBox: React.FC<StaticChatBoxProps> = ({
         ))}
         <div ref={messagesEndRef} />
       </div>
-
       <div className="border-t border-gray-100 p-2 bg-gray-50">
         <div className="flex items-center gap-1.5">
           <input

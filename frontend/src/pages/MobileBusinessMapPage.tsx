@@ -12,7 +12,6 @@ const MobileBusinessMapPage = () => {
   const [searchParams] = useSearchParams();
   const selectedBusiness = searchParams.get('business') || undefined;
   const selectedLocation = searchParams.get('location') || undefined;
-
   return (
     <TampereProvider initialBusiness={selectedBusiness} initialLocation={selectedLocation}>
       <div className="flex h-screen w-full overflow-hidden">
