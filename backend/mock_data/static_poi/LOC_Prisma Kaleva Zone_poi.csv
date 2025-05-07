@@ -1,0 +1,24 @@
+poi_id;name;location_id;latitude;longitude;category;description
+POI001;Hakametsä Tram Stop;LOC_prisma_kaleva_zone;61.4928;23.8179;Tram Stop;
+POI002;Hakametsä Bus Stop;LOC_prisma_kaleva_zone;61.4928;23.8182;Bus Stop;
+POI003;Prisma Kaleva Parking;LOC_prisma_kaleva_zone;61.4920;23.8195;Parking;
+POI004;Tampereen jäähalli;LOC_prisma_kaleva_zone;61.4960;23.8243;Sport;
+POI005;Kalevanharju Park;LOC_prisma_kaleva_zone;61.4921;23.8120;Park;
+POI006;Neste Express;LOC_prisma_kaleva_zone;61.4934;23.8250;Gas Station;
+POI007;Tredu Parking;LOC_prisma_kaleva_zone;61.4948;23.8151;Parking;
+POI008;Jäähalli Parking;LOC_prisma_kaleva_zone;61.4957;23.8218;Parking;
+POI009;McDonald's Tampere Jäähovi;LOC_prisma_kaleva_zone;61.4931;23.8239;Food;
+POI010;Kauppakeskus Kale;LOC_prisma_kaleva_zone;61.4938;23.81988;Shopping;
+POI011;Sammon koulu - Pellervon toimipiste;LOC_prisma_kaleva_zone;61.4966;23.8149;Education;
+POI012;Tampere Swimming Centre;LOC_prisma_kaleva_zone;61.4993;23.8065;Sport;
+POI013;Kalevanrinne Tram Stop;LOC_prisma_kaleva_zone;61.4948;23.8124;Tram Stop;
+POI014;Sarvijaakonkatu/Sammonkatu Bus Stop;LOC_prisma_kaleva_zone;61.4931;23.8196;Bus Stop;
+POI015;Sarvijaakonkatu 20 Bus Stop;LOC_prisma_kaleva_zone;61.4929;23.8113;Bus Stop;
+POI016;Uusikyla Bus Stop;LOC_prisma_kaleva_zone;61.4937; 23.8265;Bus Stop;
+POI017;Tampereen seudun ammattiopisto Tredu - Sammonkadun toimipiste;LOC_prisma_kaleva_zone;61.4949;23.8167;Education;
+POI018;Prisma Kaleva Tampere;LOC_prisma_kaleva_zone;61.4919;23.8213;Shopping;
+POI019;Kauppakeskus Kale Parking;LOC_prisma_kaleva_zone;61.4941;23.8202;Parking;
+POI020;Kotipizza Kaleva;LOC_prisma_kaleva_zone;61.4939;23.8148;Food;
+POI021;ABC CarWash itsepalvelu Prisma Kaleva Tampere;LOC_prisma_kaleva_zone;61.4915;23.8227;Car wash;
+POI022;Tampereen pesupiste;LOC_prisma_kaleva_zone;61.4875;23.8459;Car wash;
+POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;

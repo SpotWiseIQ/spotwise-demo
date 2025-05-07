@@ -107,10 +107,10 @@ export default function LandingPage(): JSX.Element {
     <div className="min-h-screen w-full bg-white flex items-center justify-center">
       <div className="max-w-4xl w-full px-4">
         <h1 className="text-3xl font-bold text-center text-[#29549a] drop-shadow-sm mb-2">
-          Smart Location Insights for Business Planning
+          SpotWise
         </h1>
         <p className="text-center text-gray-600 mb-8">
-          Discover data-powered location insights for your next business idea.
+        Find the Perfect Spot for Your Business
         </p>
 
         <Card>

@@ -413,7 +413,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
     }
 
     return (
-       <div style={{ width: '100%', height: 150 }} className="mt-2"> {/* Increased height for better visibility */} 
+       <div style={{ width: '100%', height: 200 }} className="mt-2"> 
         <ResponsiveContainer>
           {chartComponent}
         </ResponsiveContainer>
@@ -423,22 +423,27 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-sm border border-gray-100 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'ring-2 ring-blue-300' : ''}`}
+      className={`bg-gray-50 rounded-lg shadow-sm border border-gray-100 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'ring-2 ring-blue-300' : ''}`}
       onClick={() => setIsExpanded(!isExpanded)}
-      style={{ cursor: 'pointer' }} // Add cursor pointer to indicate clickability
+      style={{ cursor: 'pointer' }}
     >
-      <div className="p-4"> {/* Wrap original content in a div for padding */}
-        <div className="flex items-center gap-2 mb-1">
-          <div className="text-gray-500">{icon}</div>
-          <div className="text-sm text-gray-500">{title}</div>
+      <div className="pt-2 px-2 pb-0.5">
+        <div className="flex items-center gap-1 mb-0.5">
+          <div className="text-gray-500">{React.cloneElement(icon as React.ReactElement, { size: 14 })}</div>
+          <div className="text-xs text-gray-500">{title}</div>
         </div>
-        <div className="flex items-baseline gap-2">
-          <div className="text-3xl font-semibold">{value}</div>
+        <div className="flex items-baseline gap-1">
+          <div className="text-xl font-semibold leading-tight">{value}</div>
         </div>
-        {vs && <div className="text-xs text-gray-400 mt-1">{vs}</div>}
+        {vs && <div className="text-[10px] text-gray-400 mt-0.5">{vs}</div>}
       </div>
-      {/* Expanded Chart Section */}
-      {isExpanded && renderChart()} {/* Call the chart rendering function */} 
+      {isExpanded && (
+        <div style={{ width: '100%', height: 200 }}>
+          <ResponsiveContainer>
+            {renderChart()}
+          </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 };
@@ -530,17 +535,11 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
   const getDetailed = (key: string) => detailedMetrics?.detailed?.[key];
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 h-full">
+    <div className="grid grid-cols-3 gap-2 p-2 bg-white h-full">
       {selectedLocation && isHotspot && (
         <>
-          <div className="col-span-1 h-full flex items-center">
-            <ChatBox 
-              className="h-[350px]"
-              onExpandToggle={handleCardExpandToggle} 
-            />
-          </div>
-          <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '100%' }}>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '400px' }}>
+            <div className="grid grid-cols-2 gap-2">
               <MetricCard
                 title="Population (Est.)"
                 value={selectedLocation.population || detailedMetrics?.metrics?.population || "N/A"}
@@ -595,18 +594,18 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
               />
             </div>
           </div>
+          <div className="col-span-1 h-full flex items-center">
+            <ChatBox 
+              className="h-[230px]"
+              onExpandToggle={handleCardExpandToggle} 
+            />
+          </div>
         </>
       )}
       {selectedLocation && isEvent && (
         <>
-          <div className="col-span-1 h-full flex items-center">
-            <ChatBox 
-              className="h-[350px]"
-              onExpandToggle={handleCardExpandToggle} 
-            />
-          </div>
-          <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '100%' }}>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '400px' }}>
+            <div className="grid grid-cols-2 gap-2">
               <MetricCard
                 title="Event Type"
                 value={
@@ -623,49 +622,7 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
               />
               <MetricCard
                 title="Duration"
-                value={
-                  selectedLocation.duration ||
-                  (selectedLocation.start_time && selectedLocation.end_time
-                    ? (() => {
-                        try {
-                          // Parse times directly respecting timezone in the string
-                          // This prevents browser timezone conversion
-                          const start_parts = selectedLocation.start_time.split(/[- :+]/);
-                          const end_parts = selectedLocation.end_time.split(/[- :+]/);
-                          
-                          // Extract hours and minutes directly from the parts 
-                          const start_hour = parseInt(start_parts[3]);
-                          const start_minute = parseInt(start_parts[4]);
-                          const end_hour = parseInt(end_parts[3]);
-                          const end_minute = parseInt(end_parts[4]);
-                          
-                          // Calculate duration in minutes
-                          let duration_minutes = (end_hour * 60 + end_minute) - (start_hour * 60 + start_minute);
-                          if (duration_minutes < 0) duration_minutes += 24 * 60; // Handle overnight events
-                          
-                          // Convert to hours and minutes
-                          const diffH = Math.floor(duration_minutes / 60);
-                          const diffM = duration_minutes % 60;
-                          
-                          return `${diffH}h${diffM > 0 ? ` ${diffM}m` : ''}`;
-                        } catch (e) {
-                          // Fallback to original calculation for robustness
-                          console.log("Error calculating duration, using fallback method:", e);
-                          
-                          // Original method using Date objects
-                          const start = new Date(selectedLocation.start_time);
-                          const end = new Date(selectedLocation.end_time);
-                          if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
-                            const diffMs = end.getTime() - start.getTime();
-                            const diffH = Math.floor(diffMs / (1000 * 60 * 60));
-                            const diffM = Math.floor((diffMs / (1000 * 60)) % 60);
-                            return `${diffH}h${diffM > 0 ? ` ${diffM}m` : ''}`;
-                          }
-                          return "N/A";
-                        }
-                      })()
-                    : detailedMetrics?.metrics?.duration || "N/A")
-                }
+                value={selectedLocation.duration || detailedMetrics?.metrics?.duration || "N/A"}
                 icon={<Clock size={18} />}
                 onExpandToggle={handleCardExpandToggle}
                 footTrafficData={footTrafficData}
@@ -719,10 +676,16 @@ export const LocationMetrics: React.FC<LocationMetricsProps> = ({ onAnyCardExpan
               />
             </div>
           </div>
+          <div className="col-span-1 h-full flex items-center">
+            <ChatBox 
+              className="h-[230px]"
+              onExpandToggle={handleCardExpandToggle} 
+            />
+          </div>
         </>
       )}
       {!selectedLocation && (
-        <div className="col-span-3 text-center text-gray-500 pt-10">
+        <div className="col-span-3 text-center text-gray-500 pt-4 text-sm">
           Select a hotspot or event on the map or list to see details.
         </div>
       )}
