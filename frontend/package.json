@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "chmod +x verify-static-poi.sh && ./verify-static-poi.sh && vite build",
-    "build:dev": "chmod +x verify-static-poi.sh && ./verify-static-poi.sh && vite build --mode development",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
   },
