@@ -188,21 +188,27 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, vs, onExpan
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-sm border border-gray-100 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'ring-2 ring-blue-300' : ''}`}
+      className={`bg-gray-50 rounded-lg shadow-sm border border-gray-100 transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'ring-2 ring-blue-300' : ''}`}
       onClick={() => setIsExpanded(!isExpanded)}
       style={{ cursor: 'pointer' }}
     >
-      <div className="p-4">
-        <div className="flex items-center gap-2 mb-1">
-          <div className="text-gray-500">{icon}</div>
-          <div className="text-sm text-gray-500">{title}</div>
+      <div className="pt-2 px-2 pb-0.5">
+        <div className="flex items-center gap-1 mb-0.5">
+          <div className="text-gray-500">{React.cloneElement(icon as React.ReactElement, { size: 14 })}</div>
+          <div className="text-xs text-gray-500">{title}</div>
         </div>
-        <div className="flex items-baseline gap-2">
-          <div className="text-3xl font-semibold">{value}</div>
+        <div className="flex items-baseline gap-1">
+          <div className="text-xl font-semibold leading-tight">{value}</div>
         </div>
-        {vs && <div className="text-xs text-gray-400 mt-1">{vs}</div>}
+        {vs && <div className="text-[10px] text-gray-400 mt-0.5">{vs}</div>}
       </div>
-      {isExpanded && renderChart()}
+      {isExpanded && (
+        <div style={{ width: '100%', height: 200 }}>
+          <ResponsiveContainer>
+            {renderChart()}
+          </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 };
@@ -227,17 +233,16 @@ export const StaticLocationMetrics: React.FC<StaticLocationMetricsProps> = ({ on
 
   if (!selectedZone) {
     return (
-      <div className="col-span-3 text-center text-gray-500 pt-10">
+      <div className="col-span-3 text-center text-gray-500 pt-4 text-sm">
         Select a zone on the map to see details.
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50 h-full">
-      <StaticChatBox className="col-span-1 h-full" onExpandToggle={handleCardExpandToggle} />
-      <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '100%' }}>
-        <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-3 gap-2 p-2 bg-white h-full">
+      <div className="col-span-2 overflow-y-auto pr-1" style={{ maxHeight: '400px' }}>
+        <div className="grid grid-cols-2 gap-2">
           <MetricCard
             title="Daily Car Flow"
             value={selectedZone.carFlow?.toLocaleString() || "13,500"}
@@ -279,6 +284,12 @@ export const StaticLocationMetrics: React.FC<StaticLocationMetricsProps> = ({ on
             onExpandToggle={handleCardExpandToggle}
           />
         </div>
+      </div>
+      <div className="col-span-1 h-full flex items-center">
+        <StaticChatBox 
+          className="h-[230px]"
+          onExpandToggle={handleCardExpandToggle} 
+        />
       </div>
     </div>
   );

@@ -279,19 +279,19 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
       className={`bg-white rounded-lg shadow-sm border border-gray-100 flex flex-col transition-all duration-300 ease-in-out overflow-hidden ${isExpanded ? 'ring-2 ring-blue-300' : ''} ${className || ''}`}
     >
       <div 
-        className="flex items-center justify-between p-3 border-b border-gray-100 bg-blue-50"
+        className="flex items-center justify-between p-2 border-b border-gray-100 bg-blue-50"
         style={{ cursor: 'pointer' }}
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex items-center gap-2">
-          <MessageSquare className="text-blue-500" size={18} />
-          <h3 className="text-sm font-medium text-gray-700">Business Opportunity Analysis</h3>
+        <div className="flex items-center gap-1.5">
+          <MessageSquare className="text-blue-500" size={14} />
+          <h3 className="text-xs font-medium text-gray-700">Business Opportunity Analysis</h3>
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto p-3 space-y-3">
+      <div className="flex-1 overflow-y-auto p-2 space-y-2">
         {isLoadingLLM ? (
-          <div className="text-xs text-center text-gray-400 py-6">Loading smart summary...</div>
+          <div className="text-[10px] text-center text-gray-400 py-4">Loading smart summary...</div>
         ) : (
           messages.map((message) => (
             <div 
@@ -299,7 +299,7 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
               className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div 
-                className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
+                className={`max-w-[85%] rounded-lg px-2 py-1.5 text-xs ${
                   message.sender === 'user' 
                     ? 'bg-blue-100 text-blue-800' 
                     : 'bg-gray-100 text-gray-800'
@@ -312,22 +312,22 @@ export const ChatBox: React.FC<ChatBoxProps> = ({ className, onExpandToggle }) =
         )}
       </div>
       
-      <div className="border-t border-gray-100 p-3 bg-gray-50">
-        <div className="flex items-center gap-2">
+      <div className="border-t border-gray-100 p-2 bg-gray-50">
+        <div className="flex items-center gap-1.5">
           <input
             type="text"
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Ask about this location..."
-            className="flex-1 text-sm border border-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 text-xs border border-gray-200 rounded-md py-1.5 px-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
           <button 
             onClick={handleSendMessage}
-            className="p-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="p-1.5 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
             disabled={inputValue.trim() === ""}
           >
-            <Send size={16} />
+            <Send size={14} />
           </button>
         </div>
       </div>
