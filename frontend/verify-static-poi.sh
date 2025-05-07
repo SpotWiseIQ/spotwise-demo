@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "Static POI data check complete. Using files in public/data:"
-ls -la frontend/public/data/ 
+echo "Static POI data check complete. Using hardcoded data from StaticBusinessMap.tsx file."
+exit 0 

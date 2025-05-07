@@ -194,87 +194,10 @@ export const StaticBusinessMap: React.FC = () => {
         });
       });
       
-      // Format the zone name to match the CSV file naming, handle spaces and special characters
-      const zoneFileName = `LOC_${selectedZone.name}_poi.csv`;
-      const encodedFileName = encodeURIComponent(zoneFileName);
-      
-      // Function to check if content looks like a CSV
-      const isCSVContent = (text: string): boolean => {
-        const firstLine = text.trim().split('\n')[0];
-        // Check if first line contains typical CSV headers with semicolons
-        const isCSVHeader = firstLine.includes(';') && 
-                            (firstLine.includes('poi_id') || 
-                             firstLine.includes('name') || 
-                             firstLine.includes('latitude'));
-        
-        if (!isCSVHeader) {
-          debugError(`Response does not appear to be CSV data. First line: "${firstLine}"`);
-          // Check for HTML content
-          if (text.includes('<html') || text.includes('<!DOCTYPE')) {
-            debugError('Received HTML content instead of CSV data');
-          }
-        }
-        
-        return isCSVHeader;
-      };
-      
-      return await timeOperation(`Fetch ${zoneFileName}`, async () => {
-        try {
-          // List of paths to try in order
-          const pathsToTry = [
-            `/data/${encodedFileName}`,
-            `/data/${zoneFileName}`,
-            `/mock_data/static_poi/${encodedFileName}`,
-            `/mock_data/static_poi/${zoneFileName}`,
-            `/backend/mock_data/static_poi/${encodedFileName}`,
-            `/backend/mock_data/static_poi/${zoneFileName}`,
-            `/mock_data/static_poi/LOC_${encodeURIComponent(selectedZone.name.replace(/\s+/g, '_'))}_poi.csv`,
-            `/backend/mock_data/static_poi/LOC_${encodeURIComponent(selectedZone.name.replace(/\s+/g, '_'))}_poi.csv`
-          ];
-          
-          let csvText = null;
-          
-          // Try each path in sequence until we find a valid CSV
-          for (const path of pathsToTry) {
-            debugLog(`Trying path: ${path}`);
-            try {
-              const response = await fetch(path);
-              
-              if (!response.ok) {
-                debugLog(`Path failed with status ${response.status}: ${path}`);
-                continue;
-              }
-              
-              const text = await response.text();
-              
-              // Quick check to see if the content actually looks like a CSV
-              if (!isCSVContent(text)) {
-                debugLog(`Path returned non-CSV content: ${path}`);
-                continue;
-              }
-              
-              debugLog(`CSV loaded successfully from: ${path}`);
-              debugLog(`Data size: ${text.length} bytes, ${text.split('\n').length} lines`);
-              csvText = text;
-              break;
-            } catch (error) {
-              debugLog(`Error fetching from ${path}:`, error);
-            }
-          }
-          
-          if (csvText) {
-            return csvText;
-          }
-          
-          // If we got here, we failed to find a valid CSV
-          throw new Error(`Failed to load POI data for ${selectedZone.name} after trying ${pathsToTry.length} paths`);
-        } catch (error) {
-          debugError("Error loading POI data", error);
-          
-          // Use hardcoded fallback data for the specific zone
-          if (selectedZone.name === "Ratina Mall Area") {
-            debugLog("Using fallback data for Ratina Mall Area");
-            return `poi_id;name;location_id;latitude;longitude;category;description
+      // Use hardcoded data based on the zone name
+      if (selectedZone.name === "Ratina Mall Area") {
+        debugLog("Using hardcoded data for Ratina Mall Area");
+        return `poi_id;name;location_id;latitude;longitude;category;description
 POI001;Shopping Center Ratina;LOC_ratina_mall_area;61.4933;23.7671;Shopping;
 POI002;Koskikeskus;LOC_ratina_mall_area;61.4959;23.7673;Shopping;
 POI003;Tampereen stadion;LOC_ratina_mall_area;61.4929;23.7642;Sport;
@@ -298,11 +221,96 @@ POI020;Ratinan Autopesu;LOC_ratina_mall_area;61.4935;23.7700;Car Wash;
 POI021;Carspot Autopesu;LOC_ratina_mall_area;61.4958;23.7699;Car Wash;
 POI022;Frenckellin autopesu;LOC_ratina_mall_area;61.5000;23.7639;Car Wash;
 POI023;ABC Carwash Viinikka Tampere;LOC_ratina_mall_area;61.4865;23.7787;Car Wash;`;
-          }
-          
-          return null;
-        }
-      });
+      } else if (selectedZone.name === "Lielahti Zone") {
+        debugLog("Using hardcoded data for Lielahti Zone");
+        return `poi_id;name;location_id;latitude;longitude;category;description
+POI001;Prisma Lielahti;LOC_lielahti_zone;61.5200;23.6659;Shopping;
+POI002;Gigantti;LOC_lielahti_zone;61.5185;23.6664;Shopping;
+POI003;Stadium Outlet;LOC_lielahti_zone;61.5169;23.6702;Shopping;
+POI004;K-Rauta Lielahti;LOC_lielahti_zone;61.5206;23.6588;Shopping;
+POI005;Puuilo Lielahti;LOC_lielahti_zone;61.5194;23.6710;Shopping;
+POI006;Lidl Lielahti;LOC_lielahti_zone;61.5158;23.6659;Shopping;
+POI007;K-Citymarket Lielahti;LOC_lielahti_zone;61.5151;23.6682;Shopping;
+POI008;XXL Sports & Outdoor Lielahti;LOC_lielahti_zone;61.5160;23.6635;Shopping;
+POI009;Epilä Esker;LOC_lielahti_zone;61.5135;23.6607;Park;
+POI010;Neste Lielahti;LOC_lielahti_zone;61.5151;23.6642;Gas Station;
+POI011;Tehdas Tram Stop;LOC_lielahti_zone;61.5175;23.6822;Tram Stop;
+POI012;Niemen kartano Tram Stop;LOC_lielahti_zone;61.5209;23.6839;Tram Stop;
+POI013;Sellupuisto Park;LOC_lielahti_zone;61.5209;23.6812;Park;
+POI014;McDonald's Lielahti;LOC_lielahti_zone;61.5144;23.6702;Food;
+POI015;Subway Lielahti;LOC_lielahti_zone;61.5168;23.6638;Food;
+POI016;Lielahtikeskus Pysäköintihalli;LOC_lielahti_zone;61.5204;23.6691;Parking;
+POI017;Lielahti B Bus Stop;LOC_lielahti_zone;61.5172;23.6658;Bus Stop;
+POI018;Lielahti C Bus Stop;LOC_lielahti_zone;61.5198;23.6700;Bus Stop;
+POI019;Sellukatu Bus Stop;LOC_lielahti_zone;61.5172;23.6693;Bus Stop;
+POI020;Lielahtikeskus;LOC_lielahti_zone;61.5192;23.6653;Bus Stop;
+POI021;ABC Prisma Lielahti ;LOC_lielahti_zone;61.5200;23.6644;Gas Station;
+POI022;Prisma Lielahti Parking Lot;LOC_lielahti_zone;61.5195;23.6654;Parking;
+POI023;Lielahden koulu;LOC_lielahti_zone;61.5220;23.6725;Education;
+POI024;Suomen Jäsenkorjaajakoulu;LOC_lielahti_zone;61.5175;23.6646;Education;
+POI025;MJE-Fix Oy Lielahti;LOC_lielahti_zone;61.5204;23.6560;Car Wash;
+POI026;L&M Autopesu Avoin Yhtiö;LOC_lielahti_zone;61.5170;23.6611;Car Wash;
+POI027;ABC Carwash itsepalvelu Prisma Lielahti;LOC_lielahti_zone;61.5200;23.6659;Car Wash;
+POI028;Tampereen autopesu;LOC_lielahti_zone;61.5202;23.6705;Car Wash;
+POI029;TP Autofix;LOC_lielahti_zone;61.5143;23.6772;Car Wash;
+POI030;Hand Wash Autopesu Lielahti;LOC_lielahti_zone;61.5205;23.6700;Car Wash;`;
+      } else if (selectedZone.name === "Hervanta Bypass Area") {
+        debugLog("Using hardcoded data for Hervanta Bypass Area");
+        return `poi_id;name;location_id;latitude;longitude;category;description
+POI001;Etelä-Hervannan koulu;LOC_hervanta_bypass_area;61.4437;23.8510;Education;
+POI002;Arkkitehdinkatu Bus Stop;LOC_hervanta_bypass_area;61.4410; 23.8470;Bus Stop;
+POI003;Hervannan frisbeegolfrata;LOC_hervanta_bypass_area;61.4436;23.8662;Sport;
+POI004;Tampere University, Hervanta Campus;LOC_hervanta_bypass_area;61.4502;23.8596;Education;
+POI005;Etelä-Hervanta Tram Stop;LOC_hervanta_bypass_area;61.4429;23.8581;Tram Stop;
+POI006;Hervannan kampus Tram Stop;LOC_hervanta_bypass_area;61.4474;23.8545;Tram Stop;
+POI007;Tohtorinkatu;LOC_hervanta_bypass_area;61.4423;23.8581;Bus Stop;
+POI008;Joutsenpuiston metsäalue;LOC_hervanta_bypass_area;61.4392;23.8701;Park;
+POI009;Hervantajärven Helmi;LOC_hervanta_bypass_area;61.4395;23.8734;Parking;
+POI010;Elementinpolku Bus Stop;LOC_hervanta_bypass_area;61.4444; 23.8587;Bus Stop;
+POI011;Ahvenisjärven koulu;LOC_hervanta_bypass_area;61.4490;23.8599;Education;
+POI012;Korkeakoulunkatu 2 Parking;LOC_hervanta_bypass_area;61.4490;23.8567;Parking;
+POI013;Korkeakoulunkatu P-Area Parking;LOC_hervanta_bypass_area;61.4508;23.8562;Parking;
+POI014;Tekniikankatu 8 Parking;LOC_hervanta_bypass_area;61.4512;23.8587;Parking;
+POI015;Kauppakeskus Duo;LOC_hervanta_bypass_area;61.4509;23.8507;Shopping;
+POI016;Hervantakeskus Bus Stop;LOC_hervanta_bypass_area;61.4513;23.8523;Bus Stop;
+POI017;Tupakkikiven Parkki;LOC_hervanta_bypass_area;61.4510;23.8513;Parking;
+POI018;Pizza-Kebab Heval;LOC_hervanta_bypass_area;61.4416;23.8521;Food;
+POI019;Helapuisto Bus Stop;LOC_hervanta_bypass_area;61.4419;23.8516;Parking;
+POI020;Mäkipuisto;LOC_hervanta_bypass_area;61.4425;23.8469;Park;
+POI021;Duon Autopesu;LOC_hervanta_bypass_area;61.4511;23.8531;Car wash;
+POI022;H-timantti Autojen Käsinpesu;LOC_hervanta_bypass_area;61.4600;23.8691;Car wash;
+POI023;Tampereen tehopesu oy;LOC_hervanta_bypass_area;61.4499;23.8865;Car wash;`;
+      } else if (selectedZone.name === "Prisma Kaleva Zone") {
+        debugLog("Using hardcoded data for Prisma Kaleva Zone");
+        return `poi_id;name;location_id;latitude;longitude;category;description
+POI001;Hakametsä Tram Stop;LOC_prisma_kaleva_zone;61.4928;23.8179;Tram Stop;
+POI002;Hakametsä Bus Stop;LOC_prisma_kaleva_zone;61.4928;23.8182;Bus Stop;
+POI003;Prisma Kaleva Parking;LOC_prisma_kaleva_zone;61.4920;23.8195;Parking;
+POI004;Tampereen jäähalli;LOC_prisma_kaleva_zone;61.4960;23.8243;Sport;
+POI005;Kalevanharju Park;LOC_prisma_kaleva_zone;61.4921;23.8120;Park;
+POI006;Neste Express;LOC_prisma_kaleva_zone;61.4934;23.8250;Gas Station;
+POI007;Tredu Parking;LOC_prisma_kaleva_zone;61.4948;23.8151;Parking;
+POI008;Jäähalli Parking;LOC_prisma_kaleva_zone;61.4957;23.8218;Parking;
+POI009;McDonald's Tampere Jäähovi;LOC_prisma_kaleva_zone;61.4931;23.8239;Food;
+POI010;Kauppakeskus Kale;LOC_prisma_kaleva_zone;61.4938;23.81988;Shopping;
+POI011;Sammon koulu - Pellervon toimipiste;LOC_prisma_kaleva_zone;61.4966;23.8149;Education;
+POI012;Tampere Swimming Centre;LOC_prisma_kaleva_zone;61.4993;23.8065;Sport;
+POI013;Kalevanrinne Tram Stop;LOC_prisma_kaleva_zone;61.4948;23.8124;Tram Stop;
+POI014;Sarvijaakonkatu/Sammonkatu Bus Stop;LOC_prisma_kaleva_zone;61.4931;23.8196;Bus Stop;
+POI015;Sarvijaakonkatu 20 Bus Stop;LOC_prisma_kaleva_zone;61.4929;23.8113;Bus Stop;
+POI016;Uusikyla Bus Stop;LOC_prisma_kaleva_zone;61.4937; 23.8265;Bus Stop;
+POI017;Tampereen seudun ammattiopisto Tredu - Sammonkadun toimipiste;LOC_prisma_kaleva_zone;61.4949;23.8167;Education;
+POI018;Prisma Kaleva Tampere;LOC_prisma_kaleva_zone;61.4919;23.8213;Shopping;
+POI019;Kauppakeskus Kale Parking;LOC_prisma_kaleva_zone;61.4941;23.8202;Parking;
+POI020;Kotipizza Kaleva;LOC_prisma_kaleva_zone;61.4939;23.8148;Food;
+POI021;ABC CarWash itsepalvelu Prisma Kaleva Tampere;LOC_prisma_kaleva_zone;61.4915;23.8227;Car wash;
+POI022;Tampereen pesupiste;LOC_prisma_kaleva_zone;61.4875;23.8459;Car wash;
+POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
+      } else {
+        // Default empty data if zone doesn't match
+        debugLog(`No hardcoded data for zone: ${selectedZone.name}`);
+        return null;
+      }
     };
 
     const processCSVData = async () => {
