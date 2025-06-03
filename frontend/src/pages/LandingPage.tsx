@@ -25,7 +25,7 @@ export default function LandingPage(): JSX.Element {
   const [location, setLocation] = useState<string>("");
   const [intent, setIntent] = useState<string>("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  
+
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -57,7 +57,7 @@ export default function LandingPage(): JSX.Element {
     try {
       setIsAnalyzing(true);
       const preferences = await analyzeBusiness(businessRequirement);
-      
+
       // Update form values based on API response
       setBusinessType(preferences.business_type);
       setBusiness(preferences.business);
@@ -77,7 +77,7 @@ export default function LandingPage(): JSX.Element {
   const handleRedirect = () => {
     // Debug log
     console.log('Redirecting with:', { businessType, business, location });
-    
+
     if (businessType.toLowerCase() === "mobile" && location === "Tampere") {
       // Add business and location parameters for mobile business too
       if (business) {
@@ -110,7 +110,7 @@ export default function LandingPage(): JSX.Element {
           SpotWise
         </h1>
         <p className="text-center text-gray-600 mb-8">
-        Find the Perfect Spot for Your Business
+          Find the Best Spot for your Business
         </p>
 
         <Card>
@@ -137,7 +137,7 @@ export default function LandingPage(): JSX.Element {
                 <p className="text-right mt-1 text-sm text-purple-700">
                   (e.g., &quot;Find a spot to open a food truck in Tampere&quot;)
                 </p>
-                <Button 
+                <Button
                   type="submit"
                   variant="secondary"
                   className="mt-2"
@@ -160,7 +160,7 @@ export default function LandingPage(): JSX.Element {
                     {/* Business Type */}
                     <div className="flex flex-col gap-2">
                       <Label>Business Type</Label>
-                      <Select 
+                      <Select
                         value={businessType}
                         onValueChange={setBusinessType}
                       >
@@ -178,7 +178,7 @@ export default function LandingPage(): JSX.Element {
                     {/* Location */}
                     <div className="flex flex-col gap-2">
                       <Label>Location</Label>
-                      <Select 
+                      <Select
                         value={location}
                         onValueChange={setLocation}
                         defaultValue="Tampere"
@@ -199,7 +199,7 @@ export default function LandingPage(): JSX.Element {
                     {/* Business */}
                     <div className="flex flex-col gap-2">
                       <Label>Business</Label>
-                      <Select 
+                      <Select
                         value={business}
                         onValueChange={setBusiness}
                       >
@@ -220,7 +220,7 @@ export default function LandingPage(): JSX.Element {
                     {/* Intent */}
                     <div className="flex flex-col gap-2">
                       <Label>Intent</Label>
-                      <Select 
+                      <Select
                         value={intent}
                         onValueChange={setIntent}
                       >
@@ -238,7 +238,7 @@ export default function LandingPage(): JSX.Element {
 
                   {/* Column 3: Button */}
                   <div className="flex justify-center items-center">
-                    <Button 
+                    <Button
                       onClick={handleRedirect}
                       className="px-6 py-2"
                       disabled={!businessType}
