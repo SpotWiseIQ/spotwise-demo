@@ -15,7 +15,7 @@ fi
 REQUIRED_NODE_MAJOR=18
 NODE_VERSION=$(node --version 2>/dev/null | sed 's/v\([0-9]*\).*/\1/')
 if [ -z "$NODE_VERSION" ] || [ "$NODE_VERSION" -lt "$REQUIRED_NODE_MAJOR" ]; then
-    echo "Error: Node.js version 18 or higher is required. Please upgrade Node.js. and run this script again"
+    echo "Error: Node.js version 18 or higher is required. Please upgrade Node.js and run this script again"
     exit 1
 fi
 
@@ -27,21 +27,18 @@ cd ..
 echo "=== [3/5] Setting up backend Python environment ==="
 cd backend
 
-# Create venv if missing
-if [ ! -d ".venv" ]; then
-    python3 -m venv .venv
-fi
-
-# Activate venv
-source .venv/bin/activate
-
 # Install uv if missing
-if ! pip show uv &> /dev/null; then
+if ! command -v uv &> /dev/null; then
     pip install uv
 fi
 
-# Sync backend dependencies using pyproject.toml
-uv sync
+# Remove old venv if it exists
+if [ -d ".venv" ]; then
+    rm -rf .venv
+fi
+
+# Create venv and sync dependencies using uv
+uv venv
 
 cd ..
 
@@ -51,6 +48,6 @@ npm run backend:build
 echo "=== [5/5] Setup complete! ==="
 echo ""
 echo "You can now run the following in separate terminals:"
-echo "  npm run backend:dev    # Start backend (http://localhost:8000)"
-echo "  npm run frontend:dev   # Start frontend (http://localhost:8080)"
+echo "  npm run backend:dev or npm run backend:dev2  # Start backend (http://localhost:8000)"
+echo "  npm run frontend:dev    # Start frontend (http://localhost:8080)"
 echo ""
