@@ -42,83 +42,100 @@ The backend is a FastAPI application providing all the data for the frontend:
 - Map items
 - Traffic data
 
+## Supported Operating Systems
+
+- **Ubuntu Linux / WSL (Windows Subsystem for Linux)** – Recommended and fully supported
+- **macOS** – Should work, but not officially tested
+- **Windows (native)** – Not recommended for backend development; use WSL for best compatibility
+
 ## Setup and Running
 
 ### Prerequisites
 
-- Node.js and npm for the frontend
-- Python 3.12 (specified in `.python-version`)
-- `uv` for Python package management
+- **Node.js** and **npm** for the frontend
+- **Python 3.12** for the backend (recommended to use [pyenv](https://github.com/pyenv/pyenv))
+- **uv** for Python package management
 
-### Quick Start
+---
 
-You can use the following npm scripts to manage the project:
+### Python 3.12 Setup (if needed), otherwise setup last three lines
+
+If you do not have Python 3.12, install it using [pyenv](https://github.com/pyenv/pyenv):
 
 ```bash
-# Install all dependencies
-npm run install:all
+# Install pyenv if not already installed
+curl https://pyenv.run | bash
 
-# Build the backend (using uv)
-npm run backend:build
+# Add pyenv to your shell (add these lines to ~/.bashrc if not present)
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
-# Start the backend development server
-npm run backend:dev
+# Restart your terminal or run:
+source ~/.bashrc
 
-# Start the frontend development server
-npm run frontend:dev
-
-# Build the frontend for production
-npm run frontend:build
+# Install Python 3.12 and set it locally for the backend
+pyenv install 3.12.0
+cd backend
+pyenv local 3.12.0
+cd ..
 ```
 
-### Manual Setup
+---
 
-#### Backend
+### One-Time Project Setup
 
-1. Navigate to the backend directory:
+Run the provided setup script from the project root (requires bash/WSL/Linux):
+Also please take a look for understading
 
+```bash
+chmod +x helper/scripts/setup_project.sh
+./helper/scripts/firsttime_setup_project.sh
+```
+
+This script will:
+- Install frontend dependencies
+- Set up the backend Python virtual environment
+- Install backend dependencies using `uv` and `pyproject.toml`
+- Build the backend
+
+---
+
+### Starting the Development Servers
+
+After setup, in separate terminals:
+
+**Backend:**
 ```bash
 cd backend
-```
-
-2. Build the backend using uv:
-
-```bash
-uv sync
-```
-
-3. Activate the virtual environment:
-
-```bash
-source ./.venv/bin/activate
-```
-
-4. Run the backend:
-
-```bash
+source .venv/bin/activate
 python main.py
+```
+_or, just run an npm script available in package.json:_
+
+```bash
+npm run backend:dev
+```
+_or, you can manually activate the virtual env using "source backend/.venv/bin/activate" inside the root folder and then run the below script_
+
+```bash
+npm run backend:dev2
 ```
 
 The backend will be running at http://localhost:8000. API documentation is available at http://localhost:8000/docs.
 
-#### Frontend
-
-1. Navigate to the frontend directory:
-
+**Frontend:**
 ```bash
-cd frontend
-```
-
-2. Install dependencies (if not already installed):
-
-```bash
-npm install
-```
-
-3. Run the frontend development server:
-
-```bash
-npm run dev
+npm run frontend:dev
 ```
 
 The frontend will be running at http://localhost:8080.
+
+---
+
+### Notes
+
+- If you encounter issues with Python versions, ensure you have Python 3.12 active in the backend directory (`pyenv local 3.12.0`).
+- For Windows users, WSL (Ubuntu) is recommended for best compatibility.
+
+---

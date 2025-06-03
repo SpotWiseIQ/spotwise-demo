@@ -36,3 +36,6 @@ backend/.pytest_cache
 
 # Environment variables
 .env
+
+# ignore node_modules in the root directory
+node_modules/
