@@ -81,6 +81,42 @@ After setup, in separate terminals:
 
 **Backend:**
 ```bash
+chmod +x helper/scripts/setup_project.sh
+./helper/scripts/firsttime_setup_project.sh
+```
+
+This script will:
+- Install frontend dependencies
+- Set up the backend Python virtual environment
+- Install backend dependencies using `uv` and `pyproject.toml`
+- Build the backend
+
+---
+
+### Starting the Development Servers
+
+After setup, in separate terminals:
+
+**Backend:**
+```bash
+chmod +x helper/scripts/setup_project.sh
+./helper/scripts/firsttime_setup_project.sh
+```
+
+This script will:
+- Install frontend dependencies
+- Set up the backend Python virtual environment
+- Install backend dependencies using `uv` and `pyproject.toml`
+- Build the backend
+
+---
+
+### Starting the Development Servers
+
+After setup, in separate terminals:
+
+**Backend:**
+```bash
 cd backend
 source .venv/bin/activate
 python main.py
