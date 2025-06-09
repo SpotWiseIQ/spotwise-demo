@@ -1,7 +1,7 @@
 import React from "react";
 import { MapPin, Car, Clock, Users, Scale, ArrowLeftRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useStaticBusiness } from "@/lib/StaticBusinessContext";
+import { useStaticBusiness } from "@/lib/static/StaticBusinessContext";
 
 export interface Zone {
   id: string;
@@ -34,8 +34,8 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
   onClick,
   selected,
 }) => {
-  const { 
-    isZoneCompareMode, 
+  const {
+    isZoneCompareMode,
     selectedZonesForComparison,
     addZoneToComparison,
     removeZoneFromComparison
@@ -60,13 +60,12 @@ export const ZoneCard: React.FC<ZoneCardProps> = ({
 
   return (
     <div
-      className={`flex flex-col my-1 bg-gray-50 rounded-lg border transition-all duration-200 ease-in-out ${
-        selected
+      className={`flex flex-col my-1 bg-gray-50 rounded-lg border transition-all duration-200 ease-in-out ${selected
           ? "ring-2 ring-tampere-red border-tampere-red shadow-md"
           : isInComparison
-          ? "ring-2 ring-blue-500 border-blue-500 shadow-md"
-          : "border-gray-200 hover:shadow-sm"
-      }`}
+            ? "ring-2 ring-blue-500 border-blue-500 shadow-md"
+            : "border-gray-200 hover:shadow-sm"
+        }`}
     >
       <div className={`p-2 ${!isZoneCompareMode ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
         <div className="flex items-start mb-2">

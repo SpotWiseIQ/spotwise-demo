@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useStaticBusiness } from "@/lib/StaticBusinessContext";
+import { useStaticBusiness } from "@/lib/static/StaticBusinessContext";
 import { sampleZones } from "./StaticBusinessSidebar";
 import { StaticLocationMetrics } from "./StaticLocationMetrics";
 import { StaticBusinessLegend } from "./StaticBusinessLegend";
@@ -64,7 +64,7 @@ const parseCSV = (csvText: string): POI[] => {
   try {
     debugLog("Starting CSV parsing");
     const startTime = performance.now();
-    
+
     const lines = csvText.trim().split('\n');
     if (lines.length <= 1) {
       debugError("CSV has no data rows");
@@ -72,26 +72,26 @@ const parseCSV = (csvText: string): POI[] => {
     }
 
     const headers = lines[0].split(';');
-    debugLog(`CSV has ${lines.length-1} data rows with ${headers.length} columns`);
-    
+    debugLog(`CSV has ${lines.length - 1} data rows with ${headers.length} columns`);
+
     const results = lines.slice(1).map((line, index) => {
       try {
         const values = line.split(';');
-        
+
         // Check if we have enough values
         if (values.length < 6) {
           debugError(`Line ${index + 2} has insufficient data (${values.length} columns): ${line}`);
           return null;
         }
-        
+
         // Trim whitespace from all values, especially coordinates
         const latitude = parseFloat(values[3].trim());
         const longitude = parseFloat(values[4].trim());
-        
+
         if (isNaN(latitude) || isNaN(longitude)) {
           debugError(`Line ${index + 2} has invalid coordinates: lat=${values[3]}, lng=${values[4]}`);
         }
-        
+
         return {
           poi_id: values[0].trim(),
           name: values[1].trim(),
@@ -106,10 +106,10 @@ const parseCSV = (csvText: string): POI[] => {
         return null;
       }
     }).filter(poi => poi !== null) as POI[];
-    
+
     const duration = Math.round(performance.now() - startTime);
     debugLog(`CSV parsing completed in ${duration}ms with ${results.length} valid POIs`);
-    
+
     return results;
   } catch (error) {
     debugError("Error parsing CSV", error);
@@ -123,11 +123,11 @@ const isCarWash = (poi: POI): boolean => {
   if (poi.category && poi.category.toLowerCase().includes('wash')) {
     return true;
   }
-  
+
   // Check for car wash in name or description
   const searchTerms = ['car wash', 'carwash', 'autopesu', 'pesu'];
   const searchText = `${poi.name || ''} ${poi.description || ''}`.toLowerCase();
-  
+
   return searchTerms.some(term => searchText.includes(term));
 };
 
@@ -145,7 +145,7 @@ const getMapItemIcon = (type: string) => {
     "Education": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
     "Others": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"></line><line x1="6" x2="6" y1="18" y2="11"></line><line x1="10" x2="10" y1="18" y2="11"></line><line x1="14" x2="14" y1="18" y2="11"></line><line x1="18" x2="18" y1="18" y2="11"></line><polygon points="12 2 20 7 4 7"></polygon></svg>`
   };
-  
+
   return icons[type as keyof typeof icons] || icons["Others"];
 };
 
@@ -163,7 +163,7 @@ const getMapItemColor = (type: string) => {
     "Education": "text-indigo-600",
     "Others": "text-gray-600"
   };
-  
+
   return colors[type as keyof typeof colors] || colors["Others"];
 };
 
@@ -187,13 +187,13 @@ export const StaticBusinessMap: React.FC = () => {
       }
 
       debugGroup(`Loading POIs for zone: ${selectedZone.name}`, () => {
-        debugLog(`Zone details`, { 
+        debugLog(`Zone details`, {
           id: selectedZone.id,
-          name: selectedZone.name, 
+          name: selectedZone.name,
           coordinates: selectedZone.coordinates
         });
       });
-      
+
       // Use hardcoded data based on the zone name
       if (selectedZone.name === "Ratina Mall Area") {
         debugLog("Using hardcoded data for Ratina Mall Area");
@@ -319,32 +319,32 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
         setPois([]);
         return;
       }
-      
+
       await timeOperation("Process CSV data", async () => {
         try {
           const parsedPois = parseCSV(csvText);
-          
+
           // Log some info about the parsed POIs
           debugGroup(`Parsed ${parsedPois.length} POIs`, () => {
             if (parsedPois.length > 0) {
               debugLog(`Sample POIs:`, parsedPois.slice(0, 2));
             }
-            
+
             // Count by category
             const categories = parsedPois.reduce((acc, poi) => {
               acc[poi.category] = (acc[poi.category] || 0) + 1;
               return acc;
             }, {} as Record<string, number>);
-            
+
             debugLog(`POIs by category:`, categories);
           });
-          
+
           // Process POIs to prioritize car washes and limit bus stops
           const processedPois = processPoisForDisplay(parsedPois);
-          
+
           const carWashes = processedPois.filter(p => isCarWash(p));
           debugLog(`Found ${carWashes.length} car washes:`, carWashes.map(cw => cw.name));
-          
+
           debugLog(`Processing complete. Displaying ${processedPois.length} of ${parsedPois.length} POIs`);
           setPois(processedPois);
         } catch (error) {
@@ -377,12 +377,12 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
           new maplibregl.NavigationControl(),
           "top-right"
         );
-        
+
         // Add markers for all zones
         sampleZones.forEach(zone => {
           const zoneMarkerElement = document.createElement("div");
           zoneMarkerElement.className = "zone-marker";
-          
+
           // Create pin-shaped marker with SVG
           zoneMarkerElement.innerHTML = `
             <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -390,17 +390,17 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
               <circle cx="12" cy="12" r="5" fill="white"/>
             </svg>
           `;
-          
+
           const marker = new maplibregl.Marker({
             element: zoneMarkerElement,
             anchor: "bottom", // Changed to bottom for pin marker
           })
             .setLngLat(zone.coordinates)
             .addTo(map.current!);
-          
+
           // Add to markersRef with special 'zone_' prefix to avoid collision
           markersRef.current[`zone_${zone.id}`] = marker;
-          
+
           // Add popup with zone name on hover
           const popup = new maplibregl.Popup({
             closeButton: false,
@@ -408,12 +408,12 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
             offset: [0, -36], // Adjusted offset for pin height
             className: 'zone-tooltip',
           }).setText(zone.name);
-          
+
           zoneMarkerElement.addEventListener("mouseenter", () => {
             popup.addTo(map.current!);
             marker.setPopup(popup);
           });
-          
+
           zoneMarkerElement.addEventListener("mouseleave", () => {
             popup.remove();
           });
@@ -452,7 +452,7 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
       // Update selected zone marker style
       Object.entries(markersRef.current).forEach(([key, marker]) => {
         const el = marker.getElement();
-        
+
         if (key === `zone_${selectedZone.id}`) {
           // Selected zone: smaller size, brighter red
           el.innerHTML = `
@@ -481,11 +481,11 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
           console.warn(`Skipping POI with invalid coordinates: ${poi.name}`);
           return;
         }
-        
+
         const markerElement = document.createElement("div");
         // Check if POI is a car wash and override its category if it is
         const effectiveCategory = isCarWash(poi) ? "Car Wash" : poi.category;
-        
+
         // Add special class for Car Wash markers to emphasize them
         const isCarWashMarker = effectiveCategory === "Car Wash";
         markerElement.className = `map-icon-container ${getMapItemColor(effectiveCategory)} ${isCarWashMarker ? 'car-wash-marker' : ''}`;
@@ -545,27 +545,27 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
   const processPoisForDisplay = (pois: POI[]): POI[] => {
     // First, identify all car washes (including those at the end of the CSV)
     const carWashes = pois.filter(poi => isCarWash(poi));
-    
+
     // Calculate how many non-car wash POIs we can include
     const remainingSlots = Math.max(0, 10 - carWashes.length);
-    
+
     // Get other non-bus stop POIs
     const otherPois = pois
       .filter(poi => !isCarWash(poi) && poi.category !== "Bus Stop")
       .slice(0, Math.max(0, remainingSlots - 2)); // Reserve at most 2 spots for bus stops
-    
+
     // Get a limited number of bus stops if we still have room
     const busStopsCount = Math.min(2, remainingSlots - otherPois.length);
     const busStops = pois
       .filter(poi => poi.category === "Bus Stop")
       .slice(0, busStopsCount);
-    
+
     // Combine with car washes first for priority, ensuring total is max 10
     const result = [...carWashes, ...otherPois, ...busStops];
-    
+
     // Log the breakdown
     debugLog(`Displaying ${result.length} POIs: ${carWashes.length} car washes, ${otherPois.length} other POIs, ${busStops.length} bus stops`);
-    
+
     return result.slice(0, 10);
   };
 
@@ -583,7 +583,7 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
         `}
       </style>
       <div ref={mapContainer} className="absolute inset-0" />
-      
+
       {mapError && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-20">
           <div className="text-red-500 text-center p-4">
@@ -595,11 +595,10 @@ POI023;St1 Autopesu;LOC_prisma_kaleva_zone;61.4895;23.8583;Car wash;`;
 
       {/* Legend - positioned in the left-center of visible map area */}
       {selectedZone && (
-        <div className={`absolute left-4 z-10 transition-all duration-300 ${
-          isAnyCardExpanded 
-            ? 'top-[35%] -translate-y-1/2' 
-            : 'top-[40%] -translate-y-1/2'
-        }`}>
+        <div className={`absolute left-4 z-10 transition-all duration-300 ${isAnyCardExpanded
+          ? 'top-[35%] -translate-y-1/2'
+          : 'top-[40%] -translate-y-1/2'
+          }`}>
           <StaticBusinessLegend />
         </div>
       )}

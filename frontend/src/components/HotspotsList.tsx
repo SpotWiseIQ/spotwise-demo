@@ -9,7 +9,7 @@ interface HotspotsListProps {
 }
 
 export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) => {
-  const { 
+  const {
     locations,
     selectedLocation,
     setSelectedLocation,
@@ -30,12 +30,12 @@ export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) 
     const query = searchQuery.toLowerCase();
     return locations.filter(location => {
       // Search in name
-      const nameMatch = location.type === 'natural' 
+      const nameMatch = location.type === 'natural'
         ? location.name.toLowerCase().includes(query)
         : location.event_name.toLowerCase().includes(query);
 
       // Search in type
-      const typeMatch = location.type === 'natural' 
+      const typeMatch = location.type === 'natural'
         ? 'hotspot'.includes(query) || 'natural'.includes(query)
         : 'event'.includes(query);
 
@@ -77,9 +77,9 @@ export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) 
       <div className="mb-2 font-medium flex items-center justify-between">
         <span>Hotspots</span>
         <div className="flex gap-2">
-          <CompareToggle 
-            isCompareMode={isCompareMode} 
-            onToggle={handleCompareToggle} 
+          <CompareToggle
+            isCompareMode={isCompareMode}
+            onToggle={handleCompareToggle}
           />
         </div>
       </div>
@@ -93,12 +93,15 @@ export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) 
         ) : filteredLocations.length === 0 ? (
           <div className="text-gray-500 text-sm py-2">No hotspots match your search</div>
         ) : (
-          filteredLocations.map((location) => 
+          filteredLocations.map((location) =>
             location.type === 'natural' ? (
               <NaturalHotspotCard
                 key={location.id}
-                hotspot={location}
-                selected={isCompareMode 
+                hotspot={{
+                  ...location,
+                  name: "🔥TEST: " + location.name // <-- Add this line for testing
+                }}
+                selected={isCompareMode
                   ? selectedLocationsForComparison.some(l => l.id === location.id)
                   : selectedLocation?.id === location.id}
                 onClick={() => handleLocationClick(location)}
@@ -108,8 +111,11 @@ export const HotspotsList: React.FC<HotspotsListProps> = ({ searchQuery = "" }) 
             ) : (
               <EventHotspotCard
                 key={location.id}
-                event={location}
-                selected={isCompareMode 
+                event={{
+                  ...location,
+                  event_name: "🔥Event TEST: " + location.event_name // <-- Add this line for testing
+                }}
+                selected={isCompareMode
                   ? selectedLocationsForComparison.some(l => l.id === location.id)
                   : selectedLocation?.id === location.id}
                 onClick={() => handleLocationClick(location)}

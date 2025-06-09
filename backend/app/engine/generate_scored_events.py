@@ -175,7 +175,7 @@ for event in events:
 scored_events = sorted(scored_events, key=lambda x: int(x['leftPanelData']['score']), reverse=True)
 
 # Save the scored events to a test_output_samples folder
-output_path = './test_output_samples/scored_events.json'
+output_path = './frontend/test_output_samples/scored_events.json'
 
 # Make sure test_output_samples directory exists
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
