@@ -18,14 +18,12 @@ export default function EventsPage() {
             .finally(() => setLoading(false));
     }, []);
 
-    if (loading) return <div>Loading events...</div>;
-    if (error) return <div>Error: {error}</div>;
-
     return (
-        <div style={{ display: "flex" }}>
-            <EventSidebar events={events} />
-            <main style={{ flex: 1, padding: 16 }}>
-                <h1>Event Map Coming Soon</h1>
+        <div className="flex min-h-screen bg-white">
+            <EventSidebar events={events} loading={loading} error={error} />
+            <main className="flex-1 p-8 flex items-center justify-center">
+                {/* Placeholder for map or event details */}
+                <div className="text-gray-400 text-xl">Event Map Coming Soon</div>
             </main>
         </div>
     );
