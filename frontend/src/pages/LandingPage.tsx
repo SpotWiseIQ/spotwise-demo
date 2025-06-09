@@ -81,7 +81,10 @@ export default function LandingPage(): JSX.Element {
     if (businessType.toLowerCase() === "mobile" && location === "Tampere") {
       // Add business and location parameters for mobile business too
       if (business) {
-        navigate(`/mobile-business?business=${encodeURIComponent(business)}&location=${encodeURIComponent(location)}`);
+        // navigate(`/mobile-business?business=${encodeURIComponent(business)}&location=${encodeURIComponent(location)}`);
+        navigate(`/events?business=${encodeURIComponent(business)}&location=${encodeURIComponent(location)}`);
+        // navigate("/events");
+
       } else {
         toast({
           title: "Please select a business",

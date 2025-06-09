@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MobileBusinessMap from "./pages/MobileBusinessMap";
 import StaticBusinessMap from "./pages/StaticBusinessMap";
+import { EventsPage } from "@/features/events";
 import NotFound from "./pages/NotFound";
 import LandingPage from "./pages/LandingPage";
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<LandingPage />} />
           <Route path="/mobile-business" element={<MobileBusinessMap />} />
           <Route path="/static-business" element={<StaticBusinessMap />} />
+          <Route path="/events" element={<EventsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

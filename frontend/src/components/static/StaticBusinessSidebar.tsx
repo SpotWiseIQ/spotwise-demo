@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useStaticBusiness } from "@/lib/StaticBusinessContext";
+import { useStaticBusiness } from "@/lib/static/StaticBusinessContext";
 import { Search, Building2, Home, Scale } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { ZoneCard, Zone } from "./ZoneCard";
-import { LanguageSelector } from "./LanguageSelector";
+import { ZoneCard, Zone } from "../ZoneCard";
+import { LanguageSelector } from "../LanguageSelector";
 import { Button } from "@/components/ui/button";
-import { CompareToggle } from "./CompareToggle";
+import { CompareToggle } from "../CompareToggle";
 
 // Sample data for zones
 export const sampleZones: Zone[] = [
   {
     id: "1",
-    name: "Prisma Kaleva Zone",
+    name: "risma Kaleva Zone",
     distance: 5.2,
     carFlow: 13500,
     avgParkingTime: 42,
@@ -112,10 +112,10 @@ export const sampleZones: Zone[] = [
 ];
 
 export const StaticBusinessSidebar: React.FC = () => {
-  const { 
-    selectedZone, 
-    setSelectedZone, 
-    selectedBusiness, 
+  const {
+    selectedZone,
+    setSelectedZone,
+    selectedBusiness,
     selectedLocation,
     isZoneCompareMode,
     setIsZoneCompareMode,
