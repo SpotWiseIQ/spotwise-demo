@@ -17,6 +17,7 @@ const MobileBusinessMapPage = () => {
     <TampereProvider initialBusiness={selectedBusiness} initialLocation={selectedLocation}>
       <div className="flex h-screen w-full overflow-hidden">
         <div className={`${sidebarCollapsed ? 'w-0' : 'w-1/3'} border-r border-gray-200 bg-white transition-all duration-300 relative`}>
+          <h1 style={{ color: 'red' }}>THIS IS THE SECOND MAP PAGE TEST</h1>
           <MobileBusinessSidebar />
           <Button
             variant="outline"
