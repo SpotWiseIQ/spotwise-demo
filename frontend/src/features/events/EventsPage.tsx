@@ -18,8 +18,8 @@ export default function EventsPage() {
     }, []);
 
     return (
-        <div className="flex min-h-screen bg-white">
-            <aside className="w-[28rem] border-r border-gray-200 bg-gray-50 p-6 overflow-y-auto h-screen">
+        <div className="flex min-h-screen h-screen bg-white overflow-hidden">
+            <aside className="w-[28rem] border-r border-gray-200 bg-gray-50 p-6 h-screen overflow-y-auto">
                 <EventSidebar
                     events={events}
                     loading={loading}
@@ -28,8 +28,8 @@ export default function EventsPage() {
                     selectedEvent={selectedEvent}
                 />
             </aside>
-            <main className="flex-1 p-4">
-                <EventDetails event={selectedEvent} />
+            <main className="flex-1 p-4 h-screen overflow-y-auto">
+                <EventDetails event={selectedEvent} events={events} />
             </main>
         </div>
     );

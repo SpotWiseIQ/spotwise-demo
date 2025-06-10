@@ -1,13 +1,23 @@
-import { Calendar, MapPin, Users, Clock, Sparkles, CloudSun, Footprints, Mail, Link } from "lucide-react";
+import { Calendar, MapPin, Users, Clock, Sparkles, CloudSun, Footprints, Mail, Link, Facebook, Instagram, Twitter } from "lucide-react";
 import React, { useState } from "react";
+import { formatDuration, daysToEvent } from "../util/helper";
+import { AllEventsMap } from "./components/AllEventMap";
 
 const SAMPLE_IMAGE = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80";
 
-export function EventDetails({ event }) {
+export function EventDetails({ event, events }) {
     if (!event) {
+        if (!events || events.length === 0) {
+            return (
+                <div className="flex flex-col items-center justify-center h-full w-full">
+                    <div className="mb-4 text-gray-500 text-lg">Loading events...</div>
+                </div>
+            );
+        }
         return (
-            <div className="flex items-center justify-center h-full text-gray-400 text-xl">
-                Select an event to see details
+            <div className="flex flex-col items-center justify-center h-full w-full">
+                <div className="mb-4 text-gray-500 text-lg">Select an event to see details</div>
+                <AllEventsMap events={events} />
             </div>
         );
     }
@@ -29,15 +39,17 @@ export function EventDetails({ event }) {
     const hasLongDesc = fullEventData?.description && fullEventData.description.length > MAX_DESC_LENGTH;
     const shortDesc = hasLongDesc ? fullEventData.description.slice(0, MAX_DESC_LENGTH) + "..." : fullEventData.description;
 
+    // Social links
+    const social = fullEventData.socialLinks || {};
+
     return (
-        <div className="w-full bg-white rounded-xl shadow-lg mt-8 overflow-hidden flex flex-col">
+        <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg mt-8 overflow-hidden flex flex-col">
             {/* Image */}
             {/* <img
                 src={fullEventData.mainImage || SAMPLE_IMAGE}
                 alt={leftPanelData.eventName}
                 className="w-full h-72 md:h-96 object-cover"
             /> */}
-
             {/* Map */}
             <div className="w-full h-64 md:h-80 overflow-hidden">
                 <iframe
@@ -53,8 +65,12 @@ export function EventDetails({ event }) {
             {/* Details */}
             <div className="p-8 flex flex-col">
                 {/* Title */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
                     <h2 className="text-3xl font-bold text-[#29549a]">{leftPanelData.eventName}</h2>
+                    {/* Days left badge */}
+                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold">
+                        {daysToEvent(leftPanelData.startDate)}
+                    </span>
                 </div>
                 {/* Info Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -78,6 +94,12 @@ export function EventDetails({ event }) {
                         {leftPanelData.startDate && leftPanelData.endDate
                             ? `${new Date(leftPanelData.startDate).toLocaleString("en-GB", { weekday: "short", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })} - ${new Date(leftPanelData.endDate).toLocaleString("en-GB", { weekday: "short", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}`
                             : "-"}
+                        {/* Duration */}
+                        {leftPanelData.startDate && leftPanelData.endDate && (
+                            <span className="ml-2 text-xs text-gray-400">
+                                ({formatDuration(leftPanelData.startDate, leftPanelData.endDate)})
+                            </span>
+                        )}
                     </span>
                     <span className="flex items-center text-orange-600 font-semibold">
                         <Sparkles className="w-5 h-5 mr-2 text-orange-400" />
@@ -124,10 +146,22 @@ export function EventDetails({ event }) {
                             <a href={website} target="_blank" rel="noopener noreferrer" className="underline break-all">Website</a>
                         </span>
                     )}
-                    {fullEventData.socialLinks?.twitter && (
+                    {social.facebook && (
+                        <span className="flex items-center text-blue-700">
+                            <Facebook className="w-5 h-5 mr-1" />
+                            <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="underline">Facebook</a>
+                        </span>
+                    )}
+                    {social.instagram && (
+                        <span className="flex items-center text-pink-500">
+                            <Instagram className="w-5 h-5 mr-1" />
+                            <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="underline">Instagram</a>
+                        </span>
+                    )}
+                    {social.twitter && (
                         <span className="flex items-center text-blue-500">
-                            <Link className="w-5 h-5 mr-1" />
-                            <a href={fullEventData.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="underline">Twitter</a>
+                            <Twitter className="w-5 h-5 mr-1" />
+                            <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="underline">Twitter</a>
                         </span>
                     )}
                 </div>
