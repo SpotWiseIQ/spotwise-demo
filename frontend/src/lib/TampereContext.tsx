@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { UnifiedHotspot, TimelineRange } from "./types";
-import { 
+import {
   fetchLocations,
-  fetchHotspotFootTraffic, 
+  fetchHotspotFootTraffic,
   fetchEventFootTraffic,
   fetchHotspotDetailedMetrics,
   fetchEventDetailedMetrics,
@@ -32,11 +32,11 @@ const debounce = (func: Function, wait: number): DebouncedFunction => {
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
-  
+
   executedFunction.cancel = () => {
     clearTimeout(timeout);
   };
-  
+
   return executedFunction;
 };
 
@@ -45,29 +45,29 @@ interface TampereContextType {
   setSelectedDate: (date: Date) => void;
   timelineRange: TimelineRange;
   setTimelineRange: (range: TimelineRange) => void;
-  
+
   // Unified locations state (includes both natural and event hotspots)
   locations: UnifiedHotspot[];
   selectedLocation: UnifiedHotspot | null;
   setSelectedLocation: (location: UnifiedHotspot | null) => void;
-  
+
   // Single compare mode for all locations
   isCompareMode: boolean;
   setIsCompareMode: (mode: boolean) => void;
   selectedLocationsForComparison: UnifiedHotspot[];
   toggleLocationComparison: (location: UnifiedHotspot) => void;
-  
+
   loading: boolean;
   error: string | null;
   timePeriod: 'real-time' | 'daily' | 'weekly' | 'monthly';
   setTimePeriod: (period: 'real-time' | 'daily' | 'weekly' | 'monthly') => void;
-  
+
   // Legacy methods for backward compatibility
   loadHotspotFootTraffic: (hotspotId: string, currentHour?: number) => Promise<any>;
   loadEventFootTraffic: (eventId: string, currentHour?: number) => Promise<any>;
   loadHotspotDetailedMetrics: (hotspotId: string) => Promise<any>;
   loadEventDetailedMetrics: (eventId: string) => Promise<any>;
-  
+
   clearComparisons: () => void;
   pulse: boolean;
   setPulse: (pulse: boolean) => void;
@@ -78,7 +78,7 @@ interface TampereContextType {
 
   // Add detailed metrics cache and in-flight requests
   getDetailedMetrics: (locationId: string, type: 'hotspot' | 'event') => Promise<any>;
-  
+
   // Legacy comparison properties for backward compatibility
   isHotspotCompareMode: boolean;
   isEventCompareMode: boolean;
@@ -104,30 +104,30 @@ interface TampereContextType {
 
 const TampereContext = createContext<TampereContextType | undefined>(undefined);
 
-export const TampereProvider: React.FC<{ 
+export const TampereProvider: React.FC<{
   children: React.ReactNode;
   initialBusiness?: string;
   initialLocation?: string;
 }> = ({ children, initialBusiness, initialLocation }) => {
   debugLog("TampereProvider initializing");
-  
+
   // Initialize with current date and time
   const now = new Date();
   const currentHour = now.getHours();
-  
+
   // Convert current hour to percentage for timeline (0-100 range)
   const currentTimePercentage = Math.round((currentHour / 24) * 100);
   // Set end to be about 25% ahead of current time, but cap at 100
   const endTimePercentage = Math.min(100, currentTimePercentage + 25);
-  
+
   debugLog(`Initializing with current date: ${now.toISOString().split('T')[0]}, hour: ${currentHour}, time percentage: ${currentTimePercentage}`);
-  
+
   const [selectedDate, setSelectedDate] = useState<Date>(now);
-  const [timelineRange, setTimelineRange] = useState<TimelineRange>({ 
-    start: currentTimePercentage, 
-    end: endTimePercentage 
+  const [timelineRange, setTimelineRange] = useState<TimelineRange>({
+    start: currentTimePercentage,
+    end: endTimePercentage
   });
-  
+
   // Store business and location info
   const [selectedBusiness] = useState<string | undefined>(initialBusiness);
   const [selectedArea] = useState<string | undefined>(initialLocation);
@@ -137,7 +137,7 @@ export const TampereProvider: React.FC<{
   const [selectedLocation, setSelectedLocation] = useState<UnifiedHotspot | null>(null);
   const [isCompareMode, setIsCompareMode] = useState(false);
   const [selectedLocationsForComparison, setSelectedLocationsForComparison] = useState<UnifiedHotspot[]>([]);
-  
+
   const [pulse, setPulse] = useState<boolean>(false);
   const [timePeriod, setTimePeriod] = useState<'real-time' | 'daily' | 'weekly' | 'monthly'>('real-time');
   const [loading, setLoading] = useState<boolean>(true);
@@ -235,14 +235,15 @@ export const TampereProvider: React.FC<{
   // Fetch locations (both natural and event hotspots)
   useEffect(() => {
     debugLog("Setting up debounced location fetching");
-    
+
     const getLocations = async () => {
       try {
         // Format date as YYYY-MM-DD
         const dateToFetch = new Date(selectedDate);
         dateToFetch.setHours(12, 0, 0, 0);
         const formattedDate = dateToFetch.toISOString().split('T')[0];
-        
+        debugger;
+
         // Call fetchLocations with the appropriate parameters
         debugLog(`API call: fetchLocations(${timePeriod}, ${formattedDate}, ${JSON.stringify(timelineRange)})`);
         const responseData = await fetchLocations(
@@ -250,11 +251,11 @@ export const TampereProvider: React.FC<{
           formattedDate,
           timelineRange
         );
-        
+
         // Store traffic data and points in the cache
         const cacheKey = getTrafficCacheKey(selectedDate, timelineRange);
         debugLog('CONTEXT CACHE KEY DEBUG', { cacheKey, selectedDate, timelineRange });
-        
+
         if (responseData.traffic_data) {
           debugLog(`Directly caching traffic data for cacheKey=${cacheKey}`);
           trafficDataCache[cacheKey] = responseData.traffic_data;
@@ -264,7 +265,7 @@ export const TampereProvider: React.FC<{
           });
           setCacheVersion(v => v + 1);
         }
-        
+
         if (responseData.traffic_points) {
           debugLog(`Directly caching traffic points for cacheKey=${cacheKey}`);
           trafficPointsCache[cacheKey] = responseData.traffic_points;
@@ -274,7 +275,7 @@ export const TampereProvider: React.FC<{
           });
           setCacheVersion(v => v + 1);
         }
-        
+
         debugLog(`Fetched ${responseData.locations.length} locations successfully`);
         setLocations(responseData.locations);
         setLoading(false);
@@ -302,8 +303,8 @@ export const TampereProvider: React.FC<{
 
   // Debug state changes
   useEffect(() => {
-    debugLog("Context state updated", { 
-      locationsCount: locations.length, 
+    debugLog("Context state updated", {
+      locationsCount: locations.length,
       naturalCount: locations.filter(l => l.type === 'natural').length,
       eventCount: locations.filter(l => l.type === 'event').length,
       hasSelectedLocation: !!selectedLocation,
@@ -322,16 +323,16 @@ export const TampereProvider: React.FC<{
   const toggleLocationComparison = (location: UnifiedHotspot) => {
     setSelectedLocationsForComparison(prev => {
       const exists = prev.find(l => l.id === location.id);
-      
+
       if (exists) {
         return prev.filter(l => l.id !== location.id);
       }
-      
+
       // If we're starting a new comparison, or all items are of the same type as the new one
       if (prev.length === 0 || prev[0].type === location.type) {
         return [...prev, location];
       }
-      
+
       // If trying to add a different type, replace current selection with the new one
       debugLog(`Comparison type changed from ${prev[0].type} to ${location.type}`);
       return [location];
@@ -356,7 +357,7 @@ export const TampereProvider: React.FC<{
         debugLog(`Using pre-loaded foot traffic data for hotspot ${hotspotId}`);
         return location.footTraffic;
       }
-      
+
       // Fall back to API call if not available (should be rare)
       debugLog(`Foot traffic data not found in hotspot ${hotspotId}, falling back to API call`);
       const data = await fetchHotspotFootTraffic(hotspotId, currentHour);
@@ -380,7 +381,7 @@ export const TampereProvider: React.FC<{
         debugLog(`Using pre-loaded foot traffic data for event ${eventId}`);
         return eventLocation.footTraffic;
       }
-      
+
       // Fall back to API call if not available (should be rare)
       debugLog(`Foot traffic data not found in event ${eventId}, falling back to API call`);
       const data = await fetchEventFootTraffic(eventId, currentHour);
@@ -407,7 +408,7 @@ export const TampereProvider: React.FC<{
   const isEventCompareMode = isCompareMode && selectedLocationsForComparison.some(loc => loc.type === 'event');
   const selectedHotspotsForComparison = selectedLocationsForComparison.filter(loc => loc.type === 'natural');
   const selectedEventsForComparison = selectedLocationsForComparison.filter(loc => loc.type === 'event');
-  
+
   const setIsHotspotCompareMode = (mode: boolean) => {
     setIsCompareMode(mode);
     // If turning off hotspot compare mode, clear all hotspots from comparison
@@ -415,7 +416,7 @@ export const TampereProvider: React.FC<{
       setSelectedLocationsForComparison(prev => prev.filter(loc => loc.type !== 'natural'));
     }
   };
-  
+
   const setIsEventCompareMode = (mode: boolean) => {
     setIsCompareMode(mode);
     // If turning off event compare mode, clear all events from comparison
@@ -431,33 +432,33 @@ export const TampereProvider: React.FC<{
         setSelectedDate,
         timelineRange,
         setTimelineRange,
-        
+
         locations,
         selectedLocation,
         setSelectedLocation: loggedSetSelectedLocation,
-        
+
         isCompareMode,
         setIsCompareMode,
         selectedLocationsForComparison,
         toggleLocationComparison,
-        
+
         loading,
         error,
         timePeriod,
         setTimePeriod,
-        
+
         loadHotspotFootTraffic,
         loadEventFootTraffic,
         loadHotspotDetailedMetrics,
         loadEventDetailedMetrics,
-        
+
         clearComparisons,
         pulse,
         setPulse,
         detailedMetrics,
         setDetailedMetrics,
         getDetailedMetrics,
-        
+
         isHotspotCompareMode,
         isEventCompareMode,
         selectedHotspotsForComparison,

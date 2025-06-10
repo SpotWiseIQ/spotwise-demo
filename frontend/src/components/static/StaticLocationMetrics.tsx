@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Car, Users, Clock, Ban, EuroIcon, TrendingUp } from "lucide-react";
-import { useStaticBusiness } from "@/lib/StaticBusinessContext";
-import { 
-  ResponsiveContainer, 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
+import { useStaticBusiness } from "@/lib/static/StaticBusinessContext";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
   Tooltip,
   PieChart,
   Pie,
@@ -19,7 +19,7 @@ import {
   PolarAngleAxis,
   Radar
 } from 'recharts';
-import { StaticChatBox } from "@/components/StaticChatBox";
+import { StaticChatBox } from "@/components/static/StaticChatBox";
 
 interface MetricCardProps {
   title: string;
@@ -90,8 +90,8 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, vs, onExpan
           <AreaChart data={populationData} margin={{ top: 5, right: 20, left: -20, bottom: 5 }}>
             <defs>
               <linearGradient id="colorPopulation" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
               </linearGradient>
             </defs>
             <XAxis dataKey="name" fontSize={10} />
@@ -118,8 +118,8 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, vs, onExpan
           <AreaChart data={trafficHourData} margin={{ top: 5, right: 20, left: -20, bottom: 5 }}>
             <defs>
               <linearGradient id="colorTraffic" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
               </linearGradient>
             </defs>
             <XAxis dataKey="hour" fontSize={10} />
@@ -132,18 +132,18 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon, vs, onExpan
 
       case "Dominant Demo.":
         chartComponent = (
-          <PieChart width={200} height={130}> 
+          <PieChart width={200} height={130}>
             <Pie
               data={demoData}
-              cx="50%" 
-              cy="50%" 
+              cx="50%"
+              cy="50%"
               labelLine={false}
               outerRadius={50}
               fill="#8884d8"
               dataKey="value"
               label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
               fontSize={8}
-            > 
+            >
               {demoData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
@@ -286,9 +286,9 @@ export const StaticLocationMetrics: React.FC<StaticLocationMetricsProps> = ({ on
         </div>
       </div>
       <div className="col-span-1 h-full flex items-center">
-        <StaticChatBox 
+        <StaticChatBox
           className="h-[230px]"
-          onExpandToggle={handleCardExpandToggle} 
+          onExpandToggle={handleCardExpandToggle}
         />
       </div>
     </div>
