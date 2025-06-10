@@ -1,16 +1,23 @@
-import React from "react";
-import { EventData } from "../types";
-import { MapPin, Calendar, Star, Eye, Users, Clock } from "lucide-react";
+import { MapPin, Calendar, Star, Users, Clock, CloudSun, Footprints } from "lucide-react";
 
-export function EventSidebar({
-    events,
-    loading,
-    error,
-}: {
-    events: EventData[];
-    loading?: boolean;
-    error?: string | null;
-}) {
+function formatDateRange(start: string, end: string) {
+    const s = new Date(start);
+    const e = new Date(end);
+    // Example: Fri, 08/08 22:00 - 08/08 23:59
+    return `${s.toLocaleDateString("en-GB", { weekday: "short" })}, ${s.getDate().toString().padStart(2, "0")}/${(s.getMonth() + 1).toString().padStart(2, "0")} ${s.getHours().toString().padStart(2, "0")}:${s.getMinutes().toString().padStart(2, "0")} - ${e.getDate().toString().padStart(2, "0")}/${(e.getMonth() + 1).toString().padStart(2, "0")} ${e.getHours().toString().padStart(2, "0")}:${e.getMinutes().toString().padStart(2, "0")}`;
+}
+
+function shortVenue(venue: string) {
+    return venue.split(",")[0];
+}
+
+function scoreCategory(score: number) {
+    if (score >= 150) return { label: "High", color: "bg-green-100 text-green-700" };
+    if (score >= 100) return { label: "Medium", color: "bg-yellow-100 text-yellow-700" };
+    return { label: "Low", color: "bg-red-100 text-red-700" };
+}
+
+export function EventSidebar({ events, loading, error }) {
     return (
         <aside className="w-96 border-r border-gray-200 bg-gray-50 p-6">
             <h2 className="text-2xl font-bold mb-6 text-[#29549a]">Events</h2>
@@ -19,45 +26,62 @@ export function EventSidebar({
             ) : error ? (
                 <div className="text-red-500">Error: {error}</div>
             ) : (
-                <ul className="space-y-4">
-                    {events.map((e, i) => (
-                        <li key={i} className="bg-white rounded-lg shadow p-4">
-                            <div className="font-semibold text-lg mb-1">{e.leftPanelData.eventName}</div>
-                            <div className="flex items-center text-gray-600 mb-1">
-                                <MapPin className="w-4 h-4 mr-1" />
-                                {e.leftPanelData.venue}
-                            </div>
-                            <div className="flex items-center text-gray-500 text-sm mb-1">
-                                <Calendar className="w-4 h-4 mr-1" />
-                                {new Date(e.leftPanelData.startDate).toLocaleString()} - {new Date(e.leftPanelData.endDate).toLocaleString()}
-                            </div>
-                            <div className="text-xs text-blue-700 mb-1">
-                                {e.leftPanelData.eventType.join(", ")}
-                            </div>
-                            <div className="flex flex-wrap gap-3 text-xs text-gray-500 mb-1 items-center">
-                                <span className="flex items-center">
-                                    <Star className="w-4 h-4 mr-1 text-yellow-500" />
-                                    <b>{e.leftPanelData.score}</b>
-                                </span>
-                                <span className="flex items-center">
-                                    <Eye className="w-4 h-4 mr-1" />
-                                    {e.leftPanelData.views}
-                                </span>
-                                <span className="flex items-center">
-                                    <Clock className="w-4 h-4 mr-1" />
-                                    {e.leftPanelData.dayType}, {e.leftPanelData.timeOfDay}
-                                </span>
-                                <span className="flex items-center">
-                                    <Users className="w-4 h-4 mr-1" />
-                                    {e.leftPanelData.audienceType}
-                                </span>
-                                <span className="flex items-center">
-                                    <Calendar className="w-4 h-4 mr-1" />
-                                    {e.leftPanelData.daysToEvent} days
-                                </span>
-                            </div>
-                        </li>
-                    ))}
+                <ul className="space-y-6">
+                    {events.map((e, i) => {
+                        const scoreCat = scoreCategory(e.leftPanelData.score);
+                        return (
+                            <li key={i} className="bg-white rounded-lg shadow p-6">
+                                {/* Top row: Weather and Footprints */}
+                                <div className="flex items-center justify-between mb-2">
+                                    <span className="flex items-center">
+                                        <CloudSun className="w-6 h-6 mr-2 text-sky-400" />
+                                        <span className="text-sm text-sky-700 font-medium">
+                                            {e.leftPanelData.weather !== "N/A" ? e.leftPanelData.weather : "-"}
+                                        </span>
+                                    </span>
+                                    <span className="flex items-center">
+                                        <Footprints className="w-6 h-6 mr-2 text-green-500" />
+                                        <span className="text-sm text-green-700 font-medium">
+                                            {e.leftPanelData.views ?? "-"}
+                                        </span>
+                                    </span>
+                                </div>
+                                {/* Event Name */}
+                                <div className="font-semibold text-lg mb-2">{e.leftPanelData.eventName}</div>
+                                {/* Venue */}
+                                <div className="flex items-center text-gray-600 mb-2">
+                                    <MapPin className="w-4 h-4 mr-1 text-blue-400" />
+                                    <span className="truncate">{shortVenue(e.leftPanelData.venue)}</span>
+                                </div>
+                                {/* Date Range */}
+                                <div className="flex items-center text-gray-500 text-sm mb-2">
+                                    <Calendar className="w-4 h-4 mr-1 text-green-400" />
+                                    {formatDateRange(e.leftPanelData.startDate, e.leftPanelData.endDate)}
+                                </div>
+                                {/* Event Type */}
+                                <div className={`text-xs mb-2 ${e.leftPanelData.eventType.includes("festivals") ? "text-orange-600 font-semibold" : "text-blue-700"}`}>
+                                    {e.leftPanelData.eventType.join(", ")}
+                                </div>
+                                {/* Details Row */}
+                                <div className="flex flex-wrap gap-4 text-xs text-gray-500 mb-2 items-center">
+                                    <span className="flex items-center">
+                                        <Clock className="w-4 h-4 mr-1 text-indigo-400" />
+                                        {e.leftPanelData.dayType && e.leftPanelData.timeOfDay
+                                            ? `${e.leftPanelData.dayType.charAt(0).toUpperCase() + e.leftPanelData.dayType.slice(1)}, ${e.leftPanelData.timeOfDay.charAt(0).toUpperCase() + e.leftPanelData.timeOfDay.slice(1)}`
+                                            : "-"}
+                                    </span>
+                                    <span className="flex items-center">
+                                        <Users className="w-4 h-4 mr-1 text-pink-400" />
+                                        {e.leftPanelData.audienceType}
+                                    </span>
+                                    <span className={`flex items-center px-2 py-1 rounded ${scoreCat.color}`}>
+                                        <Star className="w-4 h-4 mr-1" />
+                                        <b>{scoreCat.label}</b>
+                                    </span>
+                                </div>
+                            </li>
+                        );
+                    })}
                 </ul>
             )}
         </aside>
