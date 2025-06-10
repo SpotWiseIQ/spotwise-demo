@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Star, Users, Clock, CloudSun, Footprints } from "lucide-react";
+import { MapPin, Calendar, Star, Users, Clock, CloudSun, Footprints, Sparkles } from "lucide-react";
 
 function formatDateRange(start: string, end: string) {
     const s = new Date(start);
@@ -12,8 +12,9 @@ function shortVenue(venue: string) {
 }
 
 function scoreCategory(score: number) {
-    if (score >= 150) return { label: "High", color: "bg-green-100 text-green-700" };
-    if (score >= 100) return { label: "Medium", color: "bg-yellow-100 text-yellow-700" };
+    if (score >= 150) return { label: "Top", color: "bg-purple-100 text-purple-700" };
+    if (score >= 100) return { label: "High", color: "bg-green-100 text-green-700" };
+    if (score >= 70) return { label: "Medium", color: "bg-yellow-100 text-yellow-700" };
     return { label: "Low", color: "bg-red-100 text-red-700" };
 }
 
@@ -29,25 +30,20 @@ export function EventSidebar({ events, loading, error }) {
                 <ul className="space-y-6">
                     {events.map((e, i) => {
                         const scoreCat = scoreCategory(e.leftPanelData.score);
+                        const weather = e.leftPanelData.weather !== "N/A" ? e.leftPanelData.weather : "Sunny 22°C";
+                        // All categories in orange
+                        const categoryClass = "text-orange-600 font-semibold";
+                        const categoryIconClass = "text-orange-400";
                         return (
-                            <li key={i} className="bg-white rounded-lg shadow p-6">
-                                {/* Top row: Weather and Footprints */}
-                                <div className="flex items-center justify-between mb-2">
-                                    <span className="flex items-center">
-                                        <CloudSun className="w-6 h-6 mr-2 text-sky-400" />
-                                        <span className="text-sm text-sky-700 font-medium">
-                                            {e.leftPanelData.weather !== "N/A" ? e.leftPanelData.weather : "-"}
-                                        </span>
-                                    </span>
-                                    <span className="flex items-center">
-                                        <Footprints className="w-6 h-6 mr-2 text-green-500" />
-                                        <span className="text-sm text-green-700 font-medium">
-                                            {e.leftPanelData.views ?? "-"}
-                                        </span>
+                            <li key={i} className="bg-white rounded-lg shadow p-6 flex flex-col justify-between">
+                                {/* Event Name and Score */}
+                                <div className="flex items-start justify-between mb-2">
+                                    <div className="font-semibold text-lg">{e.leftPanelData.eventName}</div>
+                                    <span className={`flex items-center px-2 py-1 rounded ${scoreCat.color} ml-2`}>
+                                        <Star className="w-4 h-4 mr-1" />
+                                        <b>{scoreCat.label}</b>
                                     </span>
                                 </div>
-                                {/* Event Name */}
-                                <div className="font-semibold text-lg mb-2">{e.leftPanelData.eventName}</div>
                                 {/* Venue */}
                                 <div className="flex items-center text-gray-600 mb-2">
                                     <MapPin className="w-4 h-4 mr-1 text-blue-400" />
@@ -58,8 +54,9 @@ export function EventSidebar({ events, loading, error }) {
                                     <Calendar className="w-4 h-4 mr-1 text-green-400" />
                                     {formatDateRange(e.leftPanelData.startDate, e.leftPanelData.endDate)}
                                 </div>
-                                {/* Event Type */}
-                                <div className={`text-xs mb-2 ${e.leftPanelData.eventType.includes("festivals") ? "text-orange-600 font-semibold" : "text-blue-700"}`}>
+                                {/* Event Type with Icon */}
+                                <div className={`flex items-center text-xs mb-2 ${categoryClass}`}>
+                                    <Sparkles className={`w-4 h-4 mr-1 ${categoryIconClass}`} />
                                     {e.leftPanelData.eventType.join(", ")}
                                 </div>
                                 {/* Details Row */}
@@ -74,9 +71,20 @@ export function EventSidebar({ events, loading, error }) {
                                         <Users className="w-4 h-4 mr-1 text-pink-400" />
                                         {e.leftPanelData.audienceType}
                                     </span>
-                                    <span className={`flex items-center px-2 py-1 rounded ${scoreCat.color}`}>
-                                        <Star className="w-4 h-4 mr-1" />
-                                        <b>{scoreCat.label}</b>
+                                </div>
+                                {/* Bottom row: Weather and Footprints */}
+                                <div className="flex items-center justify-between mt-4">
+                                    <span className="flex items-center">
+                                        <CloudSun className="w-6 h-6 mr-2 text-sky-400" />
+                                        <span className="text-sm text-sky-700 font-medium">
+                                            {weather}
+                                        </span>
+                                    </span>
+                                    <span className="flex items-center">
+                                        <Footprints className="w-6 h-6 mr-2 text-green-500" />
+                                        <span className="text-sm text-green-700 font-medium">
+                                            {e.leftPanelData.views ?? "-"}
+                                        </span>
                                     </span>
                                 </div>
                             </li>
