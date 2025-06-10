@@ -3,7 +3,6 @@ import { MapPin, Calendar, Star, Users, Clock, CloudSun, Footprints, Sparkles } 
 function formatDateRange(start: string, end: string) {
     const s = new Date(start);
     const e = new Date(end);
-    // Example: Fri, 08/08 22:00 - 08/08 23:59
     return `${s.toLocaleDateString("en-GB", { weekday: "short" })}, ${s.getDate().toString().padStart(2, "0")}/${(s.getMonth() + 1).toString().padStart(2, "0")} ${s.getHours().toString().padStart(2, "0")}:${s.getMinutes().toString().padStart(2, "0")} - ${e.getDate().toString().padStart(2, "0")}/${(e.getMonth() + 1).toString().padStart(2, "0")} ${e.getHours().toString().padStart(2, "0")}:${e.getMinutes().toString().padStart(2, "0")}`;
 }
 
@@ -20,7 +19,7 @@ function scoreCategory(score: number) {
 
 export function EventSidebar({ events, loading, error, selectedEvent, onSelect }) {
     return (
-        <aside className="w-96 border-r border-gray-200 bg-gray-50 p-6">
+        <>
             <h2 className="text-2xl font-bold mb-6 text-[#29549a]">Events</h2>
             {loading ? (
                 <div className="text-gray-500">Loading events...</div>
@@ -32,7 +31,6 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                         const isActive = selectedEvent && selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName;
                         const scoreCat = scoreCategory(e.leftPanelData.score);
                         const weather = e.leftPanelData.weather !== "N/A" ? e.leftPanelData.weather : "Sunny 22°C";
-                        // All categories in orange
                         const categoryClass = "text-orange-600 font-semibold";
                         const categoryIconClass = "text-orange-400";
                         return (
@@ -97,6 +95,6 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                     })}
                 </ul>
             )}
-        </aside>
+        </>
     );
 }

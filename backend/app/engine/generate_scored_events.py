@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from datetime import datetime
 from calculate_score import calculate_score, map_age_groups, is_weekend, is_morning, is_evening
 
@@ -40,6 +41,10 @@ scored_events = []
 MAX_SCORE = 350  # Based on previous calculation
 
 today = datetime.now()
+
+def strip_html_tags(text):
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', text) if text else text
 
 # Test scoring
 for event in events:
@@ -86,7 +91,9 @@ for event in events:
             'instagram': event.get('urlInstagram'),
             'twitter': event.get('urlTwitter')
         }
-        event_description = event.get('descriptionShort')
+        event_description_short = event.get('descriptionShort')
+        event_description = strip_html_tags(event.get('descriptionLong'))
+        # event_description = event.get('descriptionLong')
 
         # Audience
         audience_type = map_age_groups(event_data['ages'])
@@ -175,7 +182,7 @@ for event in events:
 scored_events = sorted(scored_events, key=lambda x: int(x['leftPanelData']['score']), reverse=True)
 
 # Save the scored events to a test_output_samples folder
-output_path = './frontend/public/scored_events_1.json'
+output_path = '../frontend/public/scored_events.json'
 
 # Make sure test_output_samples directory exists
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
