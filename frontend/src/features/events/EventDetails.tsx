@@ -1,3 +1,5 @@
+import { MapContainer, TileLayer } from "react-leaflet";
+import { SelectedEventMarker } from "./components/SelectedEventMarker";
 import { Calendar, MapPin, Users, Clock, Sparkles, CloudSun, Footprints, Mail, Link, Facebook, Instagram, Twitter } from "lucide-react";
 import React, { useState } from "react";
 import { formatDuration, daysToEvent } from "../util/helper";
@@ -51,17 +53,22 @@ export function EventDetails({ event, events }) {
                 className="w-full h-72 md:h-96 object-cover"
             /> */}
             {/* Map */}
-            <div className="w-full h-64 md:h-80 overflow-hidden">
-                <iframe
-                    title="Event Location"
-                    src={mapUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                />
-            </div>
+            {lat && lng && (
+                <div className="w-full h-64 md:h-80 overflow-hidden">
+                    <MapContainer
+                        center={[lat, lng]}
+                        zoom={15}
+                        style={{ height: "100%", width: "100%" }}
+                        scrollWheelZoom={false}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <SelectedEventMarker lat={lat} lng={lng} name={leftPanelData.eventName} venue={leftPanelData.venue} />
+                    </MapContainer>
+                </div>
+            )}
             {/* Details */}
             <div className="p-8 flex flex-col">
                 {/* Title */}
