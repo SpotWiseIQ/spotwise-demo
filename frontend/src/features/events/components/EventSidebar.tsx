@@ -18,7 +18,7 @@ function scoreCategory(score: number) {
     return { label: "Low", color: "bg-red-100 text-red-700" };
 }
 
-export function EventSidebar({ events, loading, error }) {
+export function EventSidebar({ events, loading, error, selectedEvent, onSelect }) {
     return (
         <aside className="w-96 border-r border-gray-200 bg-gray-50 p-6">
             <h2 className="text-2xl font-bold mb-6 text-[#29549a]">Events</h2>
@@ -29,13 +29,18 @@ export function EventSidebar({ events, loading, error }) {
             ) : (
                 <ul className="space-y-6">
                     {events.map((e, i) => {
+                        const isActive = selectedEvent && selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName;
                         const scoreCat = scoreCategory(e.leftPanelData.score);
                         const weather = e.leftPanelData.weather !== "N/A" ? e.leftPanelData.weather : "Sunny 22°C";
                         // All categories in orange
                         const categoryClass = "text-orange-600 font-semibold";
                         const categoryIconClass = "text-orange-400";
                         return (
-                            <li key={i} className="bg-white rounded-lg shadow p-6 flex flex-col justify-between">
+                            <li
+                                key={i}
+                                className={`bg-white rounded-lg shadow p-6 flex flex-col justify-between cursor-pointer transition ring-2 ${isActive ? "ring-blue-400" : "ring-transparent"}`}
+                                onClick={() => onSelect && onSelect(e)}
+                            >
                                 {/* Event Name and Score */}
                                 <div className="flex items-start justify-between mb-2">
                                     <div className="font-semibold text-lg">{e.leftPanelData.eventName}</div>
