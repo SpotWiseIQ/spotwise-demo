@@ -30,28 +30,28 @@ export function EventDetails({ event }) {
     const shortDesc = hasLongDesc ? fullEventData.description.slice(0, MAX_DESC_LENGTH) + "..." : fullEventData.description;
 
     return (
-        <div className="w-full bg-white rounded-xl shadow-lg mt-8 overflow-hidden flex flex-col md:flex-row">
-            {/* Left: Image and Map */}
-            <div className="md:w-1/2 flex flex-col">
-                <img
-                    src={fullEventData.mainImage || SAMPLE_IMAGE}
-                    alt={leftPanelData.eventName}
-                    className="w-full h-64 object-cover md:h-80"
+        <div className="w-full bg-white rounded-xl shadow-lg mt-8 overflow-hidden flex flex-col">
+            {/* Image */}
+            {/* <img
+                src={fullEventData.mainImage || SAMPLE_IMAGE}
+                alt={leftPanelData.eventName}
+                className="w-full h-72 md:h-96 object-cover"
+            /> */}
+
+            {/* Map */}
+            <div className="w-full h-64 md:h-80 overflow-hidden">
+                <iframe
+                    title="Event Location"
+                    src={mapUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
                 />
-                <div className="w-full h-64 mt-2 rounded-lg overflow-hidden">
-                    <iframe
-                        title="Event Location"
-                        src={mapUrl}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                    />
-                </div>
             </div>
-            {/* Right: Details */}
-            <div className="md:w-1/2 p-8 flex flex-col">
+            {/* Details */}
+            <div className="p-8 flex flex-col">
                 {/* Title */}
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-3xl font-bold text-[#29549a]">{leftPanelData.eventName}</h2>
