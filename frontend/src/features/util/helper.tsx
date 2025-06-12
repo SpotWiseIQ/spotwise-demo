@@ -29,7 +29,7 @@ function daysToEvent(start: string) {
     const now = new Date();
     const s = new Date(start);
     const diffDays = Math.ceil((s.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    return diffDays >= 0 ? `${diffDays} day${diffDays !== 1 ? "s" : ""} left` : "Started";
+    return diffDays >= 0 ? `${diffDays} day${diffDays !== 1 ? "s" : ""} left` : "ongoing";
 }
 
 function formatDateRange(start: string, end: string) {
@@ -49,4 +49,54 @@ function scoreCategory(score: number) {
     return { label: "Low", color: "bg-red-100 text-red-700" };
 }
 
-export { formatDuration, daysToEvent, formatDateRange, shortVenue, scoreCategory };
+// function isOutdoorEvent(event) {
+//     const outdoorKeywords = [
+//         "park", "outdoor", "puisto", "square", "stage", "field", "stadium", "beach", "garden", "market", "aukio", "piha", "rant"
+//     ];
+//     const indoorKeywords = [
+//         "museum", "hall", "house", "kirjasto", "library", "center", "keskus", "palatsi", "indoor", "sali", "teatteri", "theatre"
+//     ];
+
+//     // 1. Check address/venue
+//     const address = (event.fullEventData?.location?.address ||
+//         event.leftPanelData?.venue ||
+//         event.locations?.[0]?.address ||
+//         "").toLowerCase();
+
+//     const isOutdoor = outdoorKeywords.some(word => address.includes(word));
+//     const isIndoor = indoorKeywords.some(word => address.includes(word));
+
+//     // 2. Check description
+//     const desc = (event.fullEventData?.description || event.description || "").toLowerCase();
+//     const descOutdoor = outdoorKeywords.some(word => desc.includes(word));
+//     const descIndoor = indoorKeywords.some(word => desc.includes(word));
+
+//     // 3. Check event type/category
+//     const categories = event.leftPanelData?.eventType || event.fullEventData?.globalContentCategories || [];
+//     const catOutdoor = Array.isArray(categories) && categories.some(cat =>
+//         ["festival", "market", "parade", "outdoor", "fair", "excursion", "guided tour"].some(word => (cat || "").toLowerCase().includes(word))
+//     );
+//     const catIndoor = Array.isArray(categories) && categories.some(cat =>
+//         ["theatre", "exhibition", "museum", "indoor", "concert", "gig"].some(word => (cat || "").toLowerCase().includes(word))
+//     );
+
+//     // Decision logic
+//     if ((isOutdoor || descOutdoor || catOutdoor) && (isIndoor || descIndoor || catIndoor)) {
+//         return "mixed";
+//     }
+//     if (isOutdoor || descOutdoor || catOutdoor) {
+//         return "outdoor";
+//     }
+//     if (isIndoor || descIndoor || catIndoor) {
+//         return "indoor";
+//     }
+//     return "unknown";
+// }
+
+export {
+    formatDuration,
+    daysToEvent,
+    formatDateRange,
+    shortVenue,
+    scoreCategory
+};
