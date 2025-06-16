@@ -114,7 +114,9 @@ export function EventDetails({ event, events }) {
                         {/* Duration */}
                         {leftPanelData.startDate && leftPanelData.endDate && (
                             <span className="ml-2 text-xs text-gray-400">
-                                ({formatDuration(leftPanelData.startDate, leftPanelData.endDate)})
+                                {leftPanelData.occurrenceCount > 1
+                                    ? `(${leftPanelData.occurrenceCount} days)`
+                                    : `(${formatDuration(leftPanelData.startDate, leftPanelData.endDate)})`}
                             </span>
                         )}
                     </span>

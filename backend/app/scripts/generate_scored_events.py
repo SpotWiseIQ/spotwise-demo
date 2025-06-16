@@ -3,7 +3,7 @@ import os
 import re
 from datetime import datetime, timezone
 from app.engine.calculate_score import calculate_score, map_age_groups, is_weekend, is_morning, is_evening
-from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai
+from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range
 
 # Load your saved event list
 with open('./mock_data/mvp_data/events_full_list.json', 'r', encoding='utf-8') as f:
@@ -49,8 +49,7 @@ def strip_html_tags(text):
 
 for event in events:
     try:
-        startDate = event.get('defaultStartDate')
-        endDate = event.get('defaultEndDate')
+        startDate, endDate, occurrenceCount  = get_event_date_range(event)
 
         if not startDate or not endDate:
             print(f"Skipping event due to missing start or end date: {event.get('name', 'Unknown')}")
@@ -183,6 +182,7 @@ for event in events:
                 'weather': 'N/A',  # Placeholder for now
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
+                'occurrenceCount': occurrenceCount,
             }
 
             # Build Full Event Data
@@ -213,6 +213,7 @@ for event in events:
                 'locations_type': locations_type,
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
+                'occurrenceCount': occurrenceCount,
             }
 
             scored_events.append({

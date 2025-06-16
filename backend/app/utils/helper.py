@@ -148,3 +148,13 @@ def classify_location_type_with_openai(event):
         temperature=0.0,
     )
     return json.loads(response.choices[0].message.content)
+
+def get_event_date_range(event):
+    event_dates = event.get('event', {}).get('dates', [])
+    if event_dates:
+        starts = [d['start'] for d in event_dates if 'start' in d]
+        ends = [d['end'] for d in event_dates if 'end' in d]
+        if starts and ends:
+            return min(starts), max(ends), len(event_dates)
+    # Fallback
+    return event.get('defaultStartDate'), event.get('defaultEndDate'), 1

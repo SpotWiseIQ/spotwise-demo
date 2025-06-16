@@ -38,7 +38,9 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                                     <Calendar className="w-4 h-4 mr-1 text-green-400" />
                                     {formatDateRange(e.leftPanelData.startDate, e.leftPanelData.endDate)}
                                     <span className="ml-2 text-xs text-gray-400">
-                                        ({formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)})
+                                        {e.leftPanelData.occurrenceCount > 1
+                                            ? `(${e.leftPanelData.occurrenceCount} days)`
+                                            : `(${formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)})`}
                                     </span>
                                 </div>
                                 {/* Event Type with Icon */}
