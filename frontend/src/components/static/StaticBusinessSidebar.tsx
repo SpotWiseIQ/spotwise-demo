@@ -11,7 +11,7 @@ import { CompareToggle } from "../CompareToggle";
 export const sampleZones: Zone[] = [
   {
     id: "1",
-    name: "risma Kaleva Zone",
+    name: "Prisma Kaleva Zone",
     distance: 5.2,
     carFlow: 13500,
     avgParkingTime: 42,
