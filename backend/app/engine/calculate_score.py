@@ -91,11 +91,17 @@ def calculate_score(
     if views_score > 0:
         score_breakdown.append({"type": "Views", "value": views_score})
 
-    # 3. Indoor or Outdoor
+# 3. Indoor or Outdoor
     locations_type = event_data.get('event', {}).get('locationsType', '')
-    outdoor_score = 20 if locations_type == "event-with-location" else 5
+    if locations_type == "outdoor":
+        outdoor_score = 20
+    elif locations_type == "mixed":
+        outdoor_score = 10
+    else:  # indoor or unknown
+        outdoor_score = 5
     score += outdoor_score
     score_breakdown.append({"type": "Outdoor/Indoor", "value": outdoor_score})
+
 
     # 4. Event Duration
     start_time = event_data.get('defaultStartDate')
@@ -162,13 +168,41 @@ def calculate_score(
     if foot_traffic_score > 0:
         score_breakdown.append({"type": "Foot Traffic", "value": foot_traffic_score})
 
-    # 9. Demographics Fit
-    age_group = map_age_groups(event_data.get('ages', []))
-    audience_score = ideal_audience.get(age_group, 0)
+    # 9. Audience Type Fit (improved)
+    audience_type = event_data.get('audienceType', 'Unknown')
+    audience_score = 0
+    if audience_type == "Family":
+        audience_score = 20
+    elif audience_type == "Student":
+        audience_score = 15
+    elif audience_type == "General":
+        audience_score = 10
+    elif audience_type == "Adult":
+        audience_score = 8
+    elif audience_type == "Senior":
+        audience_score = 8
     score += audience_score
     if audience_score > 0:
         score_breakdown.append({"type": "Audience Fit", "value": audience_score})
 
+    # 10. Demographics Fit (improved)
+    demographics = event_data.get('demographics', [])
+    demographics_score = 0
+    if isinstance(demographics, list):
+        if "Family" in demographics:
+            demographics_score += 10
+        if "Youth" in demographics or "Student" in demographics:
+            demographics_score += 8
+        if "Senior" in demographics:
+            demographics_score += 5
+        if "LGBTQ+" in demographics:
+            demographics_score += 3
+        if "International" in demographics:
+            demographics_score += 3
+    score += demographics_score
+    if demographics_score > 0:
+        score_breakdown.append({"type": "Demographics Fit", "value": demographics_score})
+        
     # 10. Public Transport Access
     transport_score = 0
     if transport_data:

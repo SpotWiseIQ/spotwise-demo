@@ -2,7 +2,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { SelectedEventMarker } from "./components/SelectedEventMarker";
 import { Calendar, MapPin, Users, Clock, Sparkles, CloudSun, Footprints, Mail, Link, Facebook, Instagram, Twitter } from "lucide-react";
 import React, { useState } from "react";
-import { formatDuration, daysToEvent } from "../util/helper";
+import { scoreCategory, formatDateRange, formatDuration, daysToEvent, shortVenue } from "../util/helper";
 import { AllEventsMap } from "./components/AllEventMap";
 
 const SAMPLE_IMAGE = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80";
@@ -29,14 +29,16 @@ export function EventDetails({ event, events }) {
     // Map logic
     const lat = fullEventData.location?.lat;
     const lng = fullEventData.location?.lng;
-    const mapUrl = lat && lng
-        ? `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`
-        : "https://maps.google.com/maps?q=helsinki&t=&z=13&ie=UTF8&iwloc=&output=embed";
 
     // Website link logic
     const website = fullEventData.website || fullEventData.link || fullEventData.url;
 
     const [descExpanded, setDescExpanded] = useState(false);
+    const [showInfoGridMore, setShowInfoGridMore] = useState(false);
+    const [showContact, setShowContact] = useState(false);
+    const [showMoreInfo, setShowMoreInfo] = useState(false);
+    const [showBasicInfo, setShowBasicInfo] = useState(false);
+
     const MAX_DESC_LENGTH = 400;
     const hasLongDesc = fullEventData?.description && fullEventData.description.length > MAX_DESC_LENGTH;
     const shortDesc = hasLongDesc ? fullEventData.description.slice(0, MAX_DESC_LENGTH) + "..." : fullEventData.description;
@@ -46,12 +48,6 @@ export function EventDetails({ event, events }) {
 
     return (
         <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg mt-8 overflow-hidden flex flex-col">
-            {/* Image */}
-            {/* <img
-                src={fullEventData.mainImage || SAMPLE_IMAGE}
-                alt={leftPanelData.eventName}
-                className="w-full h-72 md:h-96 object-cover"
-            /> */}
             {/* Map */}
             {lat && lng && (
                 <div className="w-full h-64 md:h-80 overflow-hidden">
@@ -73,7 +69,21 @@ export function EventDetails({ event, events }) {
             <div className="p-8 flex flex-col">
                 {/* Title */}
                 <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                    <h2 className="text-3xl font-bold text-[#29549a]">{leftPanelData.eventName}</h2>
+                    {/* Venue/Spot Name as Main Title */}
+                    <h2 className="text-3xl font-bold text-[#29549a]">{shortVenue(leftPanelData.venue)}</h2>
+                    {/* Event Name as Subtitle */}
+                    <div className="text-lg text-gray-700 font-medium flex items-center gap-2 flex-wrap">
+                        {/* Event Name, truncated if too long */}
+                        <span className="truncate max-w-xs" title={leftPanelData.eventName}>
+                            {leftPanelData.eventName}
+                        </span>
+                        {/* Location type in brackets, capitalized */}
+                        {fullEventData.locations_type && (
+                            <span className="text-sm text-gray-500 whitespace-nowrap">
+                                ({fullEventData.locations_type.charAt(0).toUpperCase() + fullEventData.locations_type.slice(1)})
+                            </span>
+                        )}
+                    </div>
                     {/* Days left badge */}
                     <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold">
                         {daysToEvent(leftPanelData.startDate)}
@@ -104,7 +114,9 @@ export function EventDetails({ event, events }) {
                         {/* Duration */}
                         {leftPanelData.startDate && leftPanelData.endDate && (
                             <span className="ml-2 text-xs text-gray-400">
-                                ({formatDuration(leftPanelData.startDate, leftPanelData.endDate)})
+                                {leftPanelData.occurrenceCount > 1
+                                    ? `(${leftPanelData.occurrenceCount} days)`
+                                    : `(${formatDuration(leftPanelData.startDate, leftPanelData.endDate)})`}
                             </span>
                         )}
                     </span>
@@ -139,56 +151,93 @@ export function EventDetails({ event, events }) {
                         ))}
                     </div>
                 )}
-                {/* Contact and Social */}
-                <div className="flex flex-wrap gap-4 mb-4">
-                    {fullEventData.contactEmail && (
-                        <span className="flex items-center text-gray-500">
-                            <Mail className="w-5 h-5 mr-1" />
-                            <a href={`mailto:${fullEventData.contactEmail}`} className="underline">{fullEventData.contactEmail}</a>
-                        </span>
-                    )}
-                    {website && (
-                        <span className="flex items-center text-blue-500">
-                            <Link className="w-5 h-5 mr-1" />
-                            <a href={website} target="_blank" rel="noopener noreferrer" className="underline break-all">Website</a>
-                        </span>
-                    )}
-                    {social.facebook && (
-                        <span className="flex items-center text-blue-700">
-                            <Facebook className="w-5 h-5 mr-1" />
-                            <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="underline">Facebook</a>
-                        </span>
-                    )}
-                    {social.instagram && (
-                        <span className="flex items-center text-pink-500">
-                            <Instagram className="w-5 h-5 mr-1" />
-                            <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="underline">Instagram</a>
-                        </span>
-                    )}
-                    {social.twitter && (
-                        <span className="flex items-center text-blue-500">
-                            <Twitter className="w-5 h-5 mr-1" />
-                            <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="underline">Twitter</a>
-                        </span>
+
+                {/* Expandable Sections */}
+                {/* Book the spot contact info */}
+                <div className="mb-4">
+                    <button
+                        className="font-semibold text-blue-700 flex items-center gap-2"
+                        onClick={() => setShowContact(v => !v)}
+                    >
+                        📍 Book the Spot – Contact Info
+                        <span>{showContact ? "▲" : "▼"}</span>
+                    </button>
+                    {showContact && (
+                        <div className="mt-2 ml-4 space-y-1">
+                            <div>
+                                Name: {fullEventData.ownerName || "-"}
+                            </div>
+                            <div>
+                                Email: {fullEventData.contactEmail
+                                    ? <a href={`mailto:${fullEventData.contactEmail}`} className="underline">{fullEventData.contactEmail}</a>
+                                    : "-"}
+                            </div>
+                            <div>
+                                Office: {fullEventData.location?.address || leftPanelData.venue || "-"}
+                            </div>
+                        </div>
                     )}
                 </div>
-                {/* Description */}
-                {fullEventData?.description && (
-                    <div className="mb-4">
-                        <div className="font-semibold mb-1 text-gray-700">Description</div>
-                        <div className="text-gray-600 whitespace-pre-line">
-                            {descExpanded || !hasLongDesc ? fullEventData.description : shortDesc}
+
+                {/* More info about the event */}
+                <div className="mb-4">
+                    <button
+                        className="font-semibold text-blue-700 flex items-center gap-2"
+                        onClick={() => setShowMoreInfo(v => !v)}
+                    >
+                        📣 More Info About the Event
+                        <span>{showMoreInfo ? "▲" : "▼"}</span>
+                    </button>
+                    {showMoreInfo && (
+                        <div className="mt-2 ml-4 space-y-2">
+                            {/* Social and website */}
+                            <div className="flex flex-wrap gap-4">
+                                {website && (
+                                    <span className="flex items-center text-blue-500">
+                                        <Link className="w-5 h-5 mr-1" />
+                                        <a href={website} target="_blank" rel="noopener noreferrer" className="underline break-all">Website</a>
+                                    </span>
+                                )}
+                                {social.facebook && (
+                                    <span className="flex items-center text-blue-700">
+                                        <Facebook className="w-5 h-5 mr-1" />
+                                        <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="underline">Facebook</a>
+                                    </span>
+                                )}
+                                {social.instagram && (
+                                    <span className="flex items-center text-pink-500">
+                                        <Instagram className="w-5 h-5 mr-1" />
+                                        <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="underline">Instagram</a>
+                                    </span>
+                                )}
+                                {social.twitter && (
+                                    <span className="flex items-center text-blue-500">
+                                        <Twitter className="w-5 h-5 mr-1" />
+                                        <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="underline">Twitter</a>
+                                    </span>
+                                )}
+                            </div>
+                            {/* Description */}
+                            {fullEventData?.description && (
+                                <div>
+                                    <div className="font-semibold mb-1 text-gray-700">Description</div>
+                                    <div className="text-gray-600 whitespace-pre-line">
+                                        {descExpanded || !hasLongDesc ? fullEventData.description : shortDesc}
+                                    </div>
+                                    {hasLongDesc && (
+                                        <button
+                                            className="mt-2 text-blue-600 underline text-sm"
+                                            onClick={() => setDescExpanded(v => !v)}
+                                        >
+                                            {descExpanded ? "Show less" : "Show more"}
+                                        </button>
+                                    )}
+                                </div>
+                            )}
                         </div>
-                        {hasLongDesc && (
-                            <button
-                                className="mt-2 text-blue-600 underline text-sm"
-                                onClick={() => setDescExpanded(v => !v)}
-                            >
-                                {descExpanded ? "Show less" : "Show more"}
-                            </button>
-                        )}
-                    </div>
-                )}
+                    )}
+                </div>
+
                 {/* Extra Details */}
                 <div className="text-xs text-gray-400">
                     {fullEventData.ages && fullEventData.ages.length > 0 && (

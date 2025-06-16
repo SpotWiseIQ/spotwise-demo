@@ -1,11 +1,9 @@
 import { MapPin, Calendar, Star, Users, Clock, CloudSun, Footprints, Sparkles } from "lucide-react";
 import { scoreCategory, formatDateRange, formatDuration, daysToEvent, shortVenue } from "../../util/helper";
 
-// Helper to calculate duration
 export function EventSidebar({ events, loading, error, selectedEvent, onSelect }) {
     return (
         <>
-            <h2 className="text-2xl font-bold mb-6 text-[#29549a]">Events</h2>
             {loading ? (
                 <div className="text-gray-500">Loading events...</div>
             ) : error ? (
@@ -13,7 +11,7 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
             ) : (
                 <ul className="space-y-6">
                     {events.map((e, i) => {
-                        const isActive = selectedEvent && selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName;
+                        const isActive = selectedEvent && selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName && selectedEvent.leftPanelData.venue === e.leftPanelData.venue;
                         const scoreCat = scoreCategory(e.leftPanelData.score);
                         const weather = e.leftPanelData.weather !== "N/A" ? e.leftPanelData.weather : "Sunny 22°C";
                         const categoryClass = "text-orange-600 font-semibold";
@@ -24,25 +22,25 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                                 className={`bg-white rounded-lg shadow p-6 flex flex-col justify-between cursor-pointer transition ring-2 ${isActive ? "ring-blue-400" : "ring-transparent"}`}
                                 onClick={() => onSelect && onSelect(e)}
                             >
-                                {/* Event Name and Score */}
+                                {/* Venue/Spot Name as Main Title */}
                                 <div className="flex items-start justify-between mb-2">
-                                    <div className="font-semibold text-lg">{e.leftPanelData.eventName}</div>
+                                    <div>
+                                        <div className="font-semibold text-lg">{shortVenue(e.leftPanelData.venue)}</div>
+                                        <div className="text-sm text-gray-500">{e.leftPanelData.eventName}</div>
+                                    </div>
                                     <span className={`flex items-center px-2 py-1 rounded ${scoreCat.color} ml-2`}>
                                         <Star className="w-4 h-4 mr-1" />
                                         <b>{scoreCat.label}</b>
                                     </span>
-                                </div>
-                                {/* Venue */}
-                                <div className="flex items-center text-gray-600 mb-2">
-                                    <MapPin className="w-4 h-4 mr-1 text-blue-400" />
-                                    <span className="truncate">{shortVenue(e.leftPanelData.venue)}</span>
                                 </div>
                                 {/* Date Range with Duration */}
                                 <div className="flex items-center text-gray-500 text-sm mb-2">
                                     <Calendar className="w-4 h-4 mr-1 text-green-400" />
                                     {formatDateRange(e.leftPanelData.startDate, e.leftPanelData.endDate)}
                                     <span className="ml-2 text-xs text-gray-400">
-                                        ({formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)})
+                                        {e.leftPanelData.occurrenceCount > 1
+                                            ? `(${e.leftPanelData.occurrenceCount} days)`
+                                            : `(${formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)})`}
                                     </span>
                                 </div>
                                 {/* Event Type with Icon */}
