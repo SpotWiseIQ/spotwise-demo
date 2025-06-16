@@ -29,7 +29,7 @@ function daysToEvent(start: string) {
     const now = new Date();
     const s = new Date(start);
     const diffDays = Math.ceil((s.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    return diffDays >= 0 ? `${diffDays} day${diffDays !== 1 ? "s" : ""} left` : "Started";
+    return diffDays >= 0 ? `${diffDays} day${diffDays !== 1 ? "s" : ""} left` : "ongoing";
 }
 
 function formatDateRange(start: string, end: string) {
@@ -49,4 +49,10 @@ function scoreCategory(score: number) {
     return { label: "Low", color: "bg-red-100 text-red-700" };
 }
 
-export { formatDuration, daysToEvent, formatDateRange, shortVenue, scoreCategory };
+export {
+    formatDuration,
+    daysToEvent,
+    formatDateRange,
+    shortVenue,
+    scoreCategory
+};
