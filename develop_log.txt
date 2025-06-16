@@ -1,0 +1,65 @@
+caf89d6 Get event date range: The start and end detfault dates are not right to show. We need to pick dates from the dates array. If event Occurance count is more than one then display days otherwise hours. update: Audience Type, location type, demographics, openAI help, Used locations as primary instead of event names, Added contant name
+5e9d0de Show All Events on Map, Animate Pin on Selection, and Improve Event Sidebar/Details (#2)
+2c0531f Implement event scoring engine and output sorted results to backend/test_output_sample (#1)
+8ea0c50 chore/docs: update setup scripts and README for uv-based workflow (#2)
+40b39d3 add some tweaks and fix bugs
+f92cdbc fix (ish) chatbox
+1269637 cache llm responses
+4a05c35 implemented ai generated summary
+e0a6986 update readme
+618a86f fix traffic lines and heatmap
+5c684f3 updating backend requirements
+ea1ed6a updating backend requirements
+d85f674 add final touches
+da21428 final commit before delivery
+1aeade3 final commit before delivery
+75ff67d fix event caching
+5a1296b fix comparison and selection for unified hotspots
+914c931 fix comaprison and selection for unified hotspots
+0ee30da unify hotspot and events
+e30cf5f improve comparison view
+cd2bb3f remove unnecessary API calling
+dbb3226 Revert "improve performance"
+b7a41df improve performance
+963c343 add more features to static businesses
+f1ac99e improve colors on the site
+8aa7617 improve readability of comparison view
+18a7cce add comparison in mobile-map
+51d3633 make markers clickable
+a722aff improve heatmap performance
+e1f9b3b improve heatmap
+515fbfa add heatmap
+3b5c4b6 fix broken card selection for mobile businesess
+ad8d316 add static business map
+d5275c4 adding slightly more reallistic events and zones
+1c65e14 improve hotspot and event generation
+dd8e248 fix api routing
+19e8e50 improve navigation performance
+f5617e6 Add API base URL configuration and update API calls
+c8d1cea Add deployment configuration for Render.com
+e9b5feb add requirements.txt as fallback for reproducing venv
+860ca3e add requirements.txt as fallback for reproducing venv
+b5f3a63 add landing page
+7c31900 improve resize performance
+5d03a93 fix visual flash when zooming in
+c5d0896 rename hotspot component for consistency
+4cfde23 update readme
+66c8b73 update readme
+d1c0b1a added chat interface
+a72f728 icons closer, metrics better
+f191d70 first demo done
+f09d236 add foot traffic for event cards
+e6676db improve foot traffic chart in hotspot cards
+cbce685 add traffic chart to hotspot cards
+394ba16 update readme
+82c9e18 add build backend command
+4e57650 main page working
+de059b4 add backend
+92bd546 Fix map display and style
+a738e20 Fix: Blank page on load
+d791a32 Fix: Map not rendering
+97c905f Refactor: Show timeline and legend on event click
+28181f7 Fix: Import CircleP from lucide-react
+76863c4 Fix: Import error for lucide-react icons
+0b6260a feat: Implement two-column layout with map and sidebar
+ea2853c Use tech stack vite_react_shadcn_ts [skip gpt_engineer]
