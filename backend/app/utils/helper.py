@@ -158,3 +158,64 @@ def get_event_date_range(event):
             return min(starts), max(ends), len(event_dates)
     # Fallback
     return event.get('defaultStartDate'), event.get('defaultEndDate'), 1
+
+# HOT SPOT_LABEL_RULES
+# These rules are used to classify events into different hotspot labels based on their attributes.
+# Each rule has a label and a condition function that checks if the event meets the criteria for that label.
+# The conditions are based on various attributes of the event, such as hotspotType,
+# audienceType, demographics, globalContentCategories, eventType, and timeOfDay.
+# The get_hotspot_labels function applies these rules to an event and returns a list of labels
+# that match the event's attributes.
+HOTSPOT_LABEL_RULES = [
+    {
+        "label": "Event-hotspot",
+        "condition": lambda e: e.get("hotspotType") == "Event-hotspot"
+    },
+    {
+        "label": "Regular-hotspot",
+        "condition": lambda e: e.get("hotspotType") == "Regular-hotspot"
+    },
+    {
+        "label": "Family-friendly",
+        "condition": lambda e: e.get("audienceType") == "Family" or "Family" in e.get("demographics", [])
+    },
+    {
+        "label": "Tourist Magnet",
+        "condition": lambda e: "excursions, guided tours" in e.get("globalContentCategories", []) or "excursions, guided tours" in e.get("eventType", [])
+    },
+    {
+        "label": "Nightlife Zone",
+        "condition": lambda e: e.get("timeOfDay") == "evening" and (
+            "gig" in e.get("globalContentCategories", []) or "gig" in e.get("eventType", [])
+        )
+    },
+    {
+        "label": "Seasonal Hotspot",
+        "condition": lambda e: (
+            (lambda m: 6 <= m <= 8)(int(e.get("startDate", "1970-01-01")[5:7]))
+            if e.get("startDate") else False
+        )
+    },
+    {
+        "label": "Student Hub",
+        "condition": lambda e: e.get("audienceType") == "Student" or "Student" in e.get("demographics", [])
+    },
+    {
+        "label": "LGBTQ+ Friendly",
+        "condition": lambda e: "LGBTQ+" in e.get("demographics", [])
+    },
+    {
+        "label": "International",
+        "condition": lambda e: "International" in e.get("demographics", [])
+    },
+]
+
+def get_hotspot_labels(event_data):
+    labels = []
+    for rule in HOTSPOT_LABEL_RULES:
+        try:
+            if rule["condition"](event_data):
+                labels.append(rule["label"])
+        except Exception:
+            continue
+    return labels

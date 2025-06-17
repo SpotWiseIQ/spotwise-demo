@@ -3,10 +3,10 @@ import os
 import re
 from datetime import datetime, timezone
 from app.engine.calculate_score import calculate_score, map_age_groups, is_weekend, is_morning, is_evening
-from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range
+from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels
 
 # Load your saved event list
-with open('./mock_data/mvp_data/events_full_list.json', 'r', encoding='utf-8') as f:
+with open('./data/events_full_list.json', 'r', encoding='utf-8') as f:
     events_data = json.load(f)
 
 # Access the list of events
@@ -102,6 +102,8 @@ for event in events:
             event_data['audienceType'] = audience_type
             event_data['demographics'] = demographics
 
+            labels = get_hotspot_labels(event_data)
+
             # New Additional Fields
             contact_email = event.get('email')
             event_image = event.get('mainImage', {}).get('imageURL')
@@ -124,6 +126,7 @@ for event in events:
                 time_of_day = 'evening'
             else:
                 time_of_day = 'other'
+
 
             score, breakdown = calculate_score(
                 event_data=event_data,
@@ -183,6 +186,7 @@ for event in events:
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
                 'occurrenceCount': occurrenceCount,
+                'labels': labels,
             }
 
             # Build Full Event Data
@@ -214,6 +218,7 @@ for event in events:
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
                 'occurrenceCount': occurrenceCount,
+                'labels': labels,
             }
 
             scored_events.append({
