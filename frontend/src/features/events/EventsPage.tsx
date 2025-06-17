@@ -49,7 +49,7 @@ export default function EventsPage() {
             {/* Subheading */}
             <div className="px-8 pb-4">
                 <div className="bg-gray-50 rounded-lg px-6 py-3 text-xl font-medium text-gray-600 border-blue-200 shadow-lg p-1">
-                    Displaying spots for <span className="text-pink-500 font-semibold">{business}</span> in <span className="text-pink-500 font-semibold">{location}</span>
+                    Displaying hotspots for <span className="text-pink-500 font-semibold">{business}</span> in <span className="text-pink-500 font-semibold">{location}</span>
                 </div>
             </div>
             {/* Main content */}
