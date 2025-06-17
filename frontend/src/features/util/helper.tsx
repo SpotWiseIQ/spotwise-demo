@@ -1,3 +1,4 @@
+import { GoldMedal, SilverMedal, BronzeMedal } from "../../features/events/components/icons/MedalIcons";
 
 function formatDuration(start: string, end: string) {
     const s = new Date(start);
@@ -42,11 +43,18 @@ function shortVenue(venue: string) {
     return venue.split(",")[0];
 }
 
-function scoreCategory(score: number) {
-    if (score >= 150) return { label: "Top", color: "bg-purple-100 text-purple-700" };
-    if (score >= 100) return { label: "High", color: "bg-green-100 text-green-700" };
-    if (score >= 70) return { label: "Medium", color: "bg-yellow-100 text-yellow-700" };
-    return { label: "Low", color: "bg-red-100 text-red-700" };
+
+// Medal-style mapping with emoji
+function scoreCategory(score) {
+    if (score >= 150) {
+        return { icon: <GoldMedal size={32} /> };
+    } else if (score >= 100) {
+        return { icon: <SilverMedal size={32} /> };
+    } else if (score >= 70) {
+        return { icon: <BronzeMedal size={32} /> };
+    } else {
+        return { icon: null };
+    }
 }
 
 export {
