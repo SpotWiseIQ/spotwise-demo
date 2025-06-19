@@ -4,6 +4,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { SelectedEventMarker } from "./components/SelectedEventMarker";
 import { shortVenue, daysToEvent } from "../util/helper";
 import { AllEventsMap } from "./components/AllEventMap";
+import { EventDetailsKeyInfoCard } from "./components/EventDetailsKeyInfoCard";
 
 export function EventDetails({ event, events }) {
     if (!event) {
@@ -129,10 +130,9 @@ export function EventDetails({ event, events }) {
 
             {/* Date & Time */}
             <div className="mb-6">
-                <div className="text-gray-700 mb-1 font-semibold text-sm">Event Date & Duration:</div>
-                <div className="ml-4 flex items-center gap-3">
+                <div className="flex items-center gap-3">
                     <span className="text-base">
-                        <Calendar className="inline w-5 h-5 mr-1" />
+                        <Calendar className="inline w-4 h-4 mr-2" />
                         {formatDate(startDate)} – {formatDate(endDate)}
                     </span>
                     <span className="ml-2 px-2 py-1 rounded bg-gray-100 text-gray-700 font-semibold">
@@ -149,7 +149,15 @@ export function EventDetails({ event, events }) {
                 </div>
             </div>
 
-            {/* Audience & Demographics */}
+            <EventDetailsKeyInfoCard
+                primaryAudience={primaryAudience}
+                demographics={demographics}
+                footTraffic={footTraffic}
+                weather={weather}
+                highlights={labels}
+            />
+
+            {/* Audience & Demographics
             <div className="mb-6">
                 <div className="text-gray-700 mb-1 font-semibold text-sm">Audience Type & Groups:</div>
                 <div className="ml-4 flex items-center gap-3">
@@ -165,10 +173,10 @@ export function EventDetails({ event, events }) {
                         </span>
                     ))}
                 </div>
-            </div>
+            </div> */}
 
             {/* Foot Traffic & Weather */}
-            <div className="mb-6">
+            {/* <div className="mb-6">
                 <div className="text-gray-700 mb-1 font-semibold text-sm">Estimated Visitors & Weather:</div>
                 <div className="ml-4 flex items-center gap-4">
                     <span className="flex items-center text-green-700 font-semibold text-base">
@@ -180,10 +188,10 @@ export function EventDetails({ event, events }) {
                         {weather}
                     </span>
                 </div>
-            </div>
+            </div> */}
 
             {/* Tags/Labels */}
-            {labels.length > 0 && (
+            {/* {labels.length > 0 && (
                 <div className="mb-6">
                     <div className="text-gray-700 mb-1 font-semibold text-sm">Highlights:</div>
                     <div className="ml-4 flex flex-wrap gap-2">
@@ -194,11 +202,11 @@ export function EventDetails({ event, events }) {
                         ))}
                     </div>
                 </div>
-            )}
+            )} */}
 
             {/* Expandable Sections */}
             {/* Book the spot contact info */}
-            <div className="mb-6">
+            <div className="mt-6 mb-6">
                 <button
                     className="font-semibold text-blue-700 flex items-center gap-2"
                     onClick={() => setShowContact(v => !v)}
