@@ -1,11 +1,9 @@
+import React, { useState } from "react";
+import { CloudSun, Footprints, Calendar, MapPin, Link, Facebook, Instagram, Twitter } from "lucide-react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { SelectedEventMarker } from "./components/SelectedEventMarker";
-import { Calendar, MapPin, Users, Clock, Sparkles, CloudSun, Footprints, Mail, Link, Facebook, Instagram, Twitter } from "lucide-react";
-import React, { useState } from "react";
-import { scoreCategory, formatDateRange, formatDuration, daysToEvent, shortVenue } from "../util/helper";
+import { shortVenue, daysToEvent } from "../util/helper";
 import { AllEventsMap } from "./components/AllEventMap";
-
-const SAMPLE_IMAGE = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80";
 
 export function EventDetails({ event, events }) {
     if (!event) {
@@ -23,34 +21,68 @@ export function EventDetails({ event, events }) {
             </div>
         );
     }
+
+    // Helper functions
+    const formatDate = (dateStr) =>
+        dateStr ? new Date(dateStr).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }) : "N/A";
+
+    const formatDuration = (start, end) => {
+        if (!start || !end) return "N/A";
+        const ms = new Date(end).getTime() - new Date(start).getTime();
+        const h = Math.floor(ms / 1000 / 60 / 60);
+        if (h < 24) return `${h}h`;
+        const d = Math.round(h / 24);
+        return `${d} days`;
+    };
+
+    // Data extraction with fallbacks
     const { leftPanelData, fullEventData } = event;
     const weather = leftPanelData.weather !== "N/A" ? leftPanelData.weather : "Sunny 22°C";
+    const name = leftPanelData?.eventName || fullEventData?.eventName || "Event";
+    const venue = leftPanelData?.venue || fullEventData?.venue || "";
+    const mapLink = fullEventData?.venue_url || "#";
+    const category = fullEventData?.globalContentCategories?.[0] || "";
+    const locationType = fullEventData?.locations_type
+        ? fullEventData.locations_type.charAt(0).toUpperCase() + fullEventData.locations_type.slice(1)
+        : "";
+    const numOfDaysToEvent = daysToEvent(leftPanelData.startDate) || "ongoing";
+    const startDate = leftPanelData?.startDate || fullEventData?.startDate;
+    const endDate = leftPanelData?.endDate || fullEventData?.endDate;
+    const duration = formatDuration(startDate, endDate);
+    const bestTime = fullEventData?.timeOfDay || "";
+    const dayType = fullEventData?.dayType || "";
+    const footTraffic = leftPanelData?.views || fullEventData?.views || "N/A";
+    const primaryAudience = leftPanelData?.audienceType || fullEventData?.audienceType || "";
+    const demographics = fullEventData?.demographics || [];
+    const labels = fullEventData?.labels || [];
+    const description = fullEventData?.description || "";
+    const contactName = fullEventData?.contactName || "";
+    const contactEmail = fullEventData?.contactEmail || "";
+    const officeAddress = fullEventData?.officeAddress || "";
+    const bookingLink = fullEventData?.bookingLink || "#";
+    const availableSpots = fullEventData?.availableSpotsNearby ?? null;
+    const lat = fullEventData?.location?.lat || fullEventData?.latitude;
+    const lng = fullEventData?.location?.lng || fullEventData?.longitude;
+    const address = fullEventData?.location?.address || venue;
+    const website = fullEventData?.website || fullEventData?.link || fullEventData?.url;
+    const social = fullEventData?.socialLinks || {};
+    const ages = fullEventData?.ages || [];
+    const occurrenceCount = leftPanelData?.occurrenceCount;
 
-    // Map logic
-    const lat = fullEventData.location?.lat;
-    const lng = fullEventData.location?.lng;
-
-    // Website link logic
-    const website = fullEventData.website || fullEventData.link || fullEventData.url;
-
+    // Description expand/collapse
     const [descExpanded, setDescExpanded] = useState(false);
-    const [showInfoGridMore, setShowInfoGridMore] = useState(false);
     const [showContact, setShowContact] = useState(false);
     const [showMoreInfo, setShowMoreInfo] = useState(false);
-    const [showBasicInfo, setShowBasicInfo] = useState(false);
 
     const MAX_DESC_LENGTH = 400;
-    const hasLongDesc = fullEventData?.description && fullEventData.description.length > MAX_DESC_LENGTH;
-    const shortDesc = hasLongDesc ? fullEventData.description.slice(0, MAX_DESC_LENGTH) + "..." : fullEventData.description;
-
-    // Social links
-    const social = fullEventData.socialLinks || {};
+    const hasLongDesc = description && description.length > MAX_DESC_LENGTH;
+    const shortDesc = hasLongDesc ? description.slice(0, MAX_DESC_LENGTH) + "..." : description;
 
     return (
-        <div className="w-full max-w-6xl bg-white rounded-xl shadow-lg mt-8 overflow-hidden flex flex-col">
-            {/* Map */}
+        <div className="p-6 bg-white rounded-lg shadow w-full max-w-6xl mx-auto overflow-hidden flex flex-col">
+            {/* Map Section */}
             {lat && lng && (
-                <div className="w-full h-64 md:h-80 overflow-hidden">
+                <div className="w-full h-64 md:h-80 overflow-hidden mb-4 rounded-lg">
                     <MapContainer
                         center={[lat, lng]}
                         zoom={15}
@@ -61,192 +93,210 @@ export function EventDetails({ event, events }) {
                             attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <SelectedEventMarker lat={lat} lng={lng} name={leftPanelData.eventName} venue={leftPanelData.venue} />
+                        <SelectedEventMarker lat={lat} lng={lng} name={name} venue={venue} />
                     </MapContainer>
                 </div>
             )}
-            {/* Details */}
-            <div className="p-8 flex flex-col">
-                {/* Title */}
-                <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                    {/* Venue/Spot Name as Main Title */}
-                    <h2 className="text-3xl font-bold text-[#29549a]">{shortVenue(leftPanelData.venue)}</h2>
-                    {/* Event Name as Subtitle */}
-                    <div className="text-lg text-gray-700 font-medium flex items-center gap-2 flex-wrap">
-                        {/* Event Name, truncated if too long */}
-                        <span className="truncate max-w-xs" title={leftPanelData.eventName}>
-                            {leftPanelData.eventName}
+
+            {/* Top Section */}
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold">{name}</h1>
+                <div className="flex flex-wrap items-center gap-3 mt-2">
+                    {category && (
+                        <span className="flex items-center px-3 py-1 rounded bg-orange-200 text-orange-900 text-sm font-bold">
+                            <Calendar className="w-5 h-5 mr-1" />
+                            {category}
                         </span>
-                        {/* Location type in brackets, capitalized */}
-                        {fullEventData.locations_type && (
-                            <span className="text-sm text-gray-500 whitespace-nowrap">
-                                ({fullEventData.locations_type.charAt(0).toUpperCase() + fullEventData.locations_type.slice(1)})
-                            </span>
-                        )}
-                    </div>
-                    {/* Days left badge */}
-                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold">
-                        {daysToEvent(leftPanelData.startDate)}
-                    </span>
+                    )}
+                    {locationType && (
+                        <span className="px-3 py-1 rounded bg-blue-200 text-blue-900 text-sm font-bold">
+                            {locationType}
+                        </span>
+                    )}
+                    {numOfDaysToEvent && (
+                        <span className="px-2 py-1 rounded bg-gray-100 text-gray-700 text-sm font-semibold capitalize">
+                            {numOfDaysToEvent}
+                        </span>
+                    )}
+                    {venue && (
+                        <span className="flex items-center px-2 py-1 rounded bg-gray-100 text-gray-700 text-sm">
+                            <MapPin className="w-4 h-4 mr-1" />
+                            {shortVenue(venue)}
+                        </span>
+                    )}
                 </div>
-                {/* Info Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <span className="flex items-center text-gray-600">
-                        <MapPin className="w-5 h-5 mr-1 text-blue-400" />
-                        {fullEventData.location && (fullEventData.location.lat && fullEventData.location.lng) ? (
-                            <a
-                                href={`https://www.google.com/maps/search/?api=1&query=${fullEventData.location.lat},${fullEventData.location.lng}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="underline text-blue-700 hover:text-blue-900"
-                            >
-                                {fullEventData.location.address}
-                            </a>
-                        ) : (
-                            fullEventData.location?.address || leftPanelData.venue
-                        )}
+            </div>
+
+            {/* Date & Time */}
+            <div className="mb-6">
+                <div className="text-gray-700 mb-1 font-semibold text-sm">Event Date & Duration:</div>
+                <div className="ml-4 flex items-center gap-3">
+                    <span className="text-base">
+                        <Calendar className="inline w-5 h-5 mr-1" />
+                        {formatDate(startDate)} – {formatDate(endDate)}
                     </span>
-                    <span className="flex items-center text-gray-500">
-                        <Calendar className="w-5 h-5 mr-1 text-green-400" />
-                        {leftPanelData.startDate && leftPanelData.endDate
-                            ? `${new Date(leftPanelData.startDate).toLocaleString("en-GB", { weekday: "short", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })} - ${new Date(leftPanelData.endDate).toLocaleString("en-GB", { weekday: "short", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}`
-                            : "-"}
-                        {/* Duration */}
-                        {leftPanelData.startDate && leftPanelData.endDate && (
-                            <span className="ml-2 text-xs text-gray-400">
-                                {leftPanelData.occurrenceCount > 1
-                                    ? `(${leftPanelData.occurrenceCount} days)`
-                                    : `(${formatDuration(leftPanelData.startDate, leftPanelData.endDate)})`}
-                            </span>
-                        )}
+                    <span className="ml-2 px-2 py-1 rounded bg-gray-100 text-gray-700 font-semibold">
+                        {/* Use occurrenceCount constant here */}
+                        {occurrenceCount > 1
+                            ? `${occurrenceCount} days`
+                            : `${duration}`}
                     </span>
-                    <span className="flex items-center text-orange-600 font-semibold">
-                        <Sparkles className="w-5 h-5 mr-2 text-orange-400" />
-                        {leftPanelData.eventType.join(", ")}
+                    {(dayType || bestTime) && (
+                        <span className="ml-2 px-2 py-1 rounded bg-purple-100 text-purple-700 font-semibold">
+                            {[dayType, bestTime].filter(Boolean).join(", ")}
+                        </span>
+                    )}
+                </div>
+            </div>
+
+            {/* Audience & Demographics */}
+            <div className="mb-6">
+                <div className="text-gray-700 mb-1 font-semibold text-sm">Audience Type & Groups:</div>
+                <div className="ml-4 flex items-center gap-3">
+                    {primaryAudience && (
+                        <span className="flex items-center px-2 py-1 rounded bg-pink-100 text-pink-700 font-semibold">
+                            <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>
+                            {primaryAudience}
+                        </span>
+                    )}
+                    {demographics.length > 0 && demographics.map((d, i) => (
+                        <span key={i} className="px-2 py-1 rounded bg-green-100 text-green-700 font-semibold">
+                            {d}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
+            {/* Foot Traffic & Weather */}
+            <div className="mb-6">
+                <div className="text-gray-700 mb-1 font-semibold text-sm">Estimated Visitors & Weather:</div>
+                <div className="ml-4 flex items-center gap-4">
+                    <span className="flex items-center text-green-700 font-semibold text-base">
+                        <Footprints className="w-5 h-5 mr-1" />
+                        {footTraffic}
                     </span>
-                    <span className="flex items-center text-gray-500">
-                        <Users className="w-5 h-5 mr-1 text-pink-400" />
-                        {leftPanelData.audienceType}
-                    </span>
-                    <span className="flex items-center text-gray-500">
-                        <Clock className="w-5 h-5 mr-1 text-indigo-400" />
-                        {leftPanelData.dayType && leftPanelData.timeOfDay
-                            ? `${leftPanelData.dayType.charAt(0).toUpperCase() + leftPanelData.dayType.slice(1)}, ${leftPanelData.timeOfDay.charAt(0).toUpperCase() + leftPanelData.timeOfDay.slice(1)}`
-                            : "-"}
-                    </span>
-                    <span className="flex items-center text-sky-700">
-                        <CloudSun className="w-5 h-5 mr-1 text-sky-400" />
+                    <span className="flex items-center text-blue-600 font-semibold text-base">
+                        <CloudSun className="w-5 h-5 mr-1" />
                         {weather}
                     </span>
-                    <span className="flex items-center text-green-700">
-                        <Footprints className="w-5 h-5 mr-1 text-green-500" />
-                        {leftPanelData.views ?? "-"}
-                    </span>
                 </div>
-                {/* Tags or Categories */}
-                {fullEventData.tags && fullEventData.tags.length > 0 && (
-                    <div className="mb-4 flex flex-wrap gap-2">
-                        {fullEventData.tags.map((tag, idx) => (
-                            <span key={idx} className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">{tag}</span>
+            </div>
+
+            {/* Tags/Labels */}
+            {labels.length > 0 && (
+                <div className="mb-6">
+                    <div className="text-gray-700 mb-1 font-semibold text-sm">Highlights:</div>
+                    <div className="ml-4 flex flex-wrap gap-2">
+                        {labels.map((l, i) => (
+                            <span key={i} className="px-2 py-1 rounded bg-gray-200 text-gray-700 font-semibold">
+                                {l}
+                            </span>
                         ))}
                     </div>
-                )}
-
-                {/* Expandable Sections */}
-                {/* Book the spot contact info */}
-                <div className="mb-4">
-                    <button
-                        className="font-semibold text-blue-700 flex items-center gap-2"
-                        onClick={() => setShowContact(v => !v)}
-                    >
-                        📍 Book the Spot – Contact Info
-                        <span>{showContact ? "▲" : "▼"}</span>
-                    </button>
-                    {showContact && (
-                        <div className="mt-2 ml-4 space-y-1">
-                            <div>
-                                Name: {fullEventData.ownerName || "-"}
-                            </div>
-                            <div>
-                                Email: {fullEventData.contactEmail
-                                    ? <a href={`mailto:${fullEventData.contactEmail}`} className="underline">{fullEventData.contactEmail}</a>
-                                    : "-"}
-                            </div>
-                            <div>
-                                Office: {fullEventData.location?.address || leftPanelData.venue || "-"}
-                            </div>
-                        </div>
-                    )}
                 </div>
+            )}
 
-                {/* More info about the event */}
-                <div className="mb-4">
-                    <button
-                        className="font-semibold text-blue-700 flex items-center gap-2"
-                        onClick={() => setShowMoreInfo(v => !v)}
-                    >
-                        📣 More Info About the Event
-                        <span>{showMoreInfo ? "▲" : "▼"}</span>
-                    </button>
-                    {showMoreInfo && (
-                        <div className="mt-2 ml-4 space-y-2">
-                            {/* Social and website */}
-                            <div className="flex flex-wrap gap-4">
-                                {website && (
-                                    <span className="flex items-center text-blue-500">
-                                        <Link className="w-5 h-5 mr-1" />
-                                        <a href={website} target="_blank" rel="noopener noreferrer" className="underline break-all">Website</a>
-                                    </span>
-                                )}
-                                {social.facebook && (
-                                    <span className="flex items-center text-blue-700">
-                                        <Facebook className="w-5 h-5 mr-1" />
-                                        <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="underline">Facebook</a>
-                                    </span>
-                                )}
-                                {social.instagram && (
-                                    <span className="flex items-center text-pink-500">
-                                        <Instagram className="w-5 h-5 mr-1" />
-                                        <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="underline">Instagram</a>
-                                    </span>
-                                )}
-                                {social.twitter && (
-                                    <span className="flex items-center text-blue-500">
-                                        <Twitter className="w-5 h-5 mr-1" />
-                                        <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="underline">Twitter</a>
-                                    </span>
-                                )}
+            {/* Expandable Sections */}
+            {/* Book the spot contact info */}
+            <div className="mb-6">
+                <button
+                    className="font-semibold text-blue-700 flex items-center gap-2"
+                    onClick={() => setShowContact(v => !v)}
+                >
+                    📍 Book This Spot & Contact Info
+                    <span>{showContact ? "▲" : "▼"}</span>
+                </button>
+                {showContact && (
+                    <div className="mt-2 ml-4 space-y-1 text-base text-gray-800">
+                        <div>
+                            <span className="font-semibold">Name:</span> {contactName || "-"}
+                        </div>
+                        <div>
+                            <span className="font-semibold">Email:</span> {contactEmail
+                                ? <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a>
+                                : "-"}
+                        </div>
+                        <div>
+                            <span className="font-semibold">Office:</span> {officeAddress || address || "-"}
+                        </div>
+                        {bookingLink && bookingLink !== "#" && (
+                            <div>
+                                <a href={bookingLink} className="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded font-semibold" target="_blank" rel="noopener noreferrer">
+                                    Book the Spot
+                                </a>
                             </div>
-                            {/* Description */}
-                            {fullEventData?.description && (
-                                <div>
-                                    <div className="font-semibold mb-1 text-gray-700">Description</div>
-                                    <div className="text-gray-600 whitespace-pre-line">
-                                        {descExpanded || !hasLongDesc ? fullEventData.description : shortDesc}
-                                    </div>
-                                    {hasLongDesc && (
-                                        <button
-                                            className="mt-2 text-blue-600 underline text-sm"
-                                            onClick={() => setDescExpanded(v => !v)}
-                                        >
-                                            {descExpanded ? "Show less" : "Show more"}
-                                        </button>
-                                    )}
-                                </div>
+                        )}
+                    </div>
+                )}
+            </div>
+
+            {/* More info about the event */}
+            <div className="mb-6">
+                <button
+                    className="font-semibold text-blue-700 flex items-center gap-2"
+                    onClick={() => setShowMoreInfo(v => !v)}
+                >
+                    📣 More About This Event
+                    <span>{showMoreInfo ? "▲" : "▼"}</span>
+                </button>
+                {showMoreInfo && (
+                    <div className="mt-2 ml-4 space-y-2">
+                        {/* Social and website */}
+                        <div className="flex flex-wrap gap-4">
+                            {website && (
+                                <span className="flex items-center text-blue-500">
+                                    <Link className="w-5 h-5 mr-1" />
+                                    <a href={website} target="_blank" rel="noopener noreferrer" className="underline break-all">Website</a>
+                                </span>
+                            )}
+                            {social.facebook && (
+                                <span className="flex items-center text-blue-700">
+                                    <Facebook className="w-5 h-5 mr-1" />
+                                    <a href={social.facebook} target="_blank" rel="noopener noreferrer" className="underline">Facebook</a>
+                                </span>
+                            )}
+                            {social.instagram && (
+                                <span className="flex items-center text-pink-500">
+                                    <Instagram className="w-5 h-5 mr-1" />
+                                    <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="underline">Instagram</a>
+                                </span>
+                            )}
+                            {social.twitter && (
+                                <span className="flex items-center text-blue-500">
+                                    <Twitter className="w-5 h-5 mr-1" />
+                                    <a href={social.twitter} target="_blank" rel="noopener noreferrer" className="underline">Twitter</a>
+                                </span>
                             )}
                         </div>
-                    )}
-                </div>
+                        {/* Description */}
+                        {description && (
+                            <div>
+                                <div className="font-semibold mb-1 text-gray-700">Description</div>
+                                <p className="text-base text-gray-800 leading-relaxed whitespace-pre-line">
+                                    {descExpanded || !hasLongDesc ? description : shortDesc}
+                                </p>
+                                {hasLongDesc && (
+                                    <button
+                                        className="mt-2 text-blue-600 underline text-sm"
+                                        onClick={() => setDescExpanded(v => !v)}
+                                    >
+                                        {descExpanded ? "Show less" : "Show more"}
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
 
-                {/* Extra Details */}
-                <div className="text-xs text-gray-400">
-                    {fullEventData.ages && fullEventData.ages.length > 0 && (
-                        <div>Ages: {fullEventData.ages.join(", ")}</div>
-                    )}
-                    {typeof fullEventData.availableSpotsNearby === "number" && (
-                        <div>Available spots nearby: {fullEventData.availableSpotsNearby}</div>
-                    )}
-                </div>
+            {/* Extra Details */}
+            <div className="mb-6 text-sm text-gray-500">
+                {ages && ages.length > 0 && (
+                    <div>Ages: {ages.join(", ")}</div>
+                )}
+                {typeof availableSpots === "number" && (
+                    <div>Available spots nearby: {availableSpots}</div>
+                )}
             </div>
         </div>
     );

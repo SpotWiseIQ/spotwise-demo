@@ -30,7 +30,7 @@ function daysToEvent(start: string) {
     const now = new Date();
     const s = new Date(start);
     const diffDays = Math.ceil((s.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    return diffDays >= 0 ? `${diffDays} day${diffDays !== 1 ? "s" : ""} left` : "ongoing";
+    return diffDays >= 0 ? `In ${diffDays} day${diffDays !== 1 ? "s" : ""}` : "Today";
 }
 
 function formatDateRange(start: string, end: string) {
