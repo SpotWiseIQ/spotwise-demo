@@ -3,7 +3,8 @@ import os
 import re
 from datetime import datetime, timezone
 from app.engine.calculate_score import calculate_score, map_age_groups, is_weekend, is_morning, is_evening
-from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels
+from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels, get_weather_data
+from app.scripts.weather_meteo import WeatherMeteo
 
 # Load your saved event list
 with open('./data/events_full_list.json', 'r', encoding='utf-8') as f:
@@ -21,11 +22,13 @@ sample_resource = {
 }
 
 # Optional data (mock for now)
-weather_data = {
-    'rain': 0,
-    'temperature': 20,
-    'condition': 'sunny'
-}
+# weather_data = {
+#     'rain': 0,
+#     'temperature': 20,
+#     'condition': 'sunny'
+# }
+weather_client = WeatherMeteo()
+
 traffic_data = {
     'daily_average': 15000
 }
@@ -81,6 +84,14 @@ for event in events:
             }
             venue = loc.get('address')
 
+            # --- Fetch weather for this event/location/date ---
+            weather = get_weather_data(
+                weather_client, 
+                event_location['lat'], 
+                event_location['lng'], 
+                startDate
+            )
+
             event_data = {
                 'name': event.get('name', 'No Name'),
                 'startDate': startDate,
@@ -131,7 +142,7 @@ for event in events:
             score, breakdown = calculate_score(
                 event_data=event_data,
                 # resource_data=sample_resource,
-                # weather_data=weather_data,
+                weather_data=weather,
                 # traffic_data=traffic_data,
                 # demographics_data=demographics_data,
                 # transport_data=transport_data,
@@ -182,7 +193,7 @@ for event in events:
                 'audienceType': audience_type,
                 'daysToEvent': days_to_event,
                 'peakFootTraffic': 'N/A',  # Placeholder for now
-                'weather': 'N/A',  # Placeholder for now
+                'weather': weather,  # Placeholder for now
                 'locations_type': locations_type,
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
@@ -206,7 +217,7 @@ for event in events:
                 'audienceType': audience_type,
                 'globalContentCategories': event_data['globalContentCategories'],
                 'ages': event_data['ages'],
-                'weather': 'N/A',  # Placeholder for now
+                'weather': weather,  # Placeholder for now
                 'availableSpotsNearby': 0,  # Placeholder for now
                 'location': event_location,
                 'upcomingDates': upcoming_dates,

@@ -2,6 +2,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 
+from app.scripts.weather_meteo import WeatherMeteo
 import openai
 import os
 import json
@@ -159,13 +160,6 @@ def get_event_date_range(event):
     # Fallback
     return event.get('defaultStartDate'), event.get('defaultEndDate'), 1
 
-# HOT SPOT_LABEL_RULES
-# These rules are used to classify events into different hotspot labels based on their attributes.
-# Each rule has a label and a condition function that checks if the event meets the criteria for that label.
-# The conditions are based on various attributes of the event, such as hotspotType,
-# audienceType, demographics, globalContentCategories, eventType, and timeOfDay.
-# The get_hotspot_labels function applies these rules to an event and returns a list of labels
-# that match the event's attributes.
 HOTSPOT_LABEL_RULES = [
     {
         "label": "Event-hotspot",
@@ -219,3 +213,37 @@ def get_hotspot_labels(event_data):
         except Exception:
             continue
     return labels
+
+def get_weather_data(weather_client: WeatherMeteo, lat: float, lng: float, date: str):
+    try:
+        # Try real API call
+        weather_response = weather_client.get_weather(lat, lng, date)
+        # weather = WeatherMeteo.extract_weather_for_date(weather_response, date)
+        weather = map_meteo_to_weather_data(weather_response, date)
+        return weather
+    except Exception:
+        pass
+
+def map_meteo_to_weather_data(meteo_response: dict, date: str) -> dict:
+    from datetime import datetime
+    # Extract date part if needed
+    if "T" in date:
+        date = datetime.fromisoformat(date.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+    daily = meteo_response.get("daily", {})
+    times = daily.get("time", [])
+    if date in times:
+        idx = times.index(date)
+        rain = daily.get("precipitation_sum", [0])[idx]
+        temperature = daily.get("temperature_2m_max", [0])[idx]
+        # You can add logic to set 'condition' based on rain, temperature, etc.
+        condition = "sunny" if rain == 0 else "partly cloudy"
+        return {
+            "rain": rain,
+            "temperature": temperature,
+            "condition": condition
+        }
+    return {
+        "rain": 0,
+        "temperature": 0,
+        "condition": ""
+    }

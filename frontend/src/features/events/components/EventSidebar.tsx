@@ -18,8 +18,9 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                             selectedEvent.leftPanelData.venue === e.leftPanelData.venue;
                         const scoreCat = scoreCategory(e.leftPanelData.score);
                         const weather =
-                            e.leftPanelData.weather !== "N/A"
-                                ? e.leftPanelData.weather
+                            e.leftPanelData.weather && e.leftPanelData.weather !== "N/A"
+                                ? `${e.leftPanelData.weather.condition || "Sunny"} ${e.leftPanelData.weather.temperature ?? "--"}°C` +
+                                (e.leftPanelData.weather.rain > 1000 ? `, Rain: ${e.leftPanelData.weather.rain}mm` : "")
                                 : "Sunny 22°C";
                         // Badge for crowd type
                         let crowdType = "";
@@ -84,11 +85,11 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
 
                                 {/* Bottom: Weather & Foot Traffic */}
                                 <div className="flex items-center justify-between mt-4">
-                                    <span className="text-blue-600 flex items-center text-lg font-semibold">
+                                    <span className="text-blue-600 flex items-center font-semibold">
                                         <CloudSun className="w-5 h-5 mr-2" />
                                         {weather}
                                     </span>
-                                    <span className="text-green-700 font-semibold flex items-center text-lg">
+                                    <span className="text-green-700 font-semibold flex items-center">
                                         <Footprints className="w-5 h-5 mr-2" />
                                         {e.leftPanelData.views}
                                     </span>

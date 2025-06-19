@@ -1,0 +1,1017 @@
+{
+	"pages": [
+		{
+			"_id": "683841c368bf7f5f792754c5",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 78,
+			"defaultStartDate": "2025-05-29T09:00:00.000Z",
+			"defaultEndDate": "2025-06-26T15:00:00.000Z",
+			"modificationDate": "2025-05-29T11:15:15.516Z",
+			"creationDate": "2025-05-29T11:15:15.516Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "67a1e8ddff34ab668735ca87",
+			"ownerName": "Hiedanrannan Paja",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "bae7974630c229deea135062722f0fc2f8f69d1837e199ffe074c9533a2affed",
+			"imageMobile": "95d034e957ea51225259f46ebc931e2ab7dfedc1a6ef6fd56e7502fcc7752055",
+			"imageList": "c648c5e3ed104d2b0ef314b7e5c1f038826459d647e2f25b3be6564650836b89",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "noora@emiliawessman.com",
+			"urlFacebook": "https://www.facebook.com/hiedanrannan.paja",
+			"urlTwitter": null,
+			"urlYoutube": null,
+			"urlInstagram": "https://www.instagram.com/hiedanrannan_paja",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.5168525,
+					"lng": 23.6847724,
+					"address": "Hiedanranta, Hiedanrannan Paja, Tehdaskartanonkatu 28, 33400 Tampere",
+					"country": "FI",
+					"page_id": "673df53c93f6dd53111aa82a",
+					"alt": {
+						"fi": {
+							"address": "Hiedanranta, Hiedanrannan Paja, Tehdaskartanonkatu 28, 33400 Tampere"
+						},
+						"en": {
+							"address": "Hiedanranta, Hiedanrannan Paja, Tehdaskartanonkatu 28, 33400 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"648b0d1336b87b460517beab"
+			],
+			"primaryCollection": null,
+			"ages": [
+				"age-5",
+				"age-4",
+				"age-3"
+			],
+			"globalContentCategories": [
+				"handicraft"
+			],
+			"categories": [
+				"65c9d8a36536991ee2b91d5a",
+				"630797cb72c77169d3dd1272"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-05T09:00:00.000Z",
+						"end": "2025-06-05T15:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-06-12T09:00:00.000Z",
+						"end": "2025-06-12T15:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-06-19T09:00:00.000Z",
+						"end": "2025-06-19T15:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-06-26T09:00:00.000Z",
+						"end": "2025-06-26T15:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"start": "2025-05-29T09:00:00.000Z",
+				"end": "2025-06-26T15:00:00.000Z"
+			},
+			"publishingDateDefined": false,
+			"publishingDate": null,
+			"sort2": {
+				"primary": 1,
+				"secondary": 1749114000000
+			},
+			"name": "Leather workhop at Hiedanrannan Paja, Katutaso-shop",
+			"descriptionShort": "Come and learn about making small leather crafts non-stop on Thursdays in June. No advance registration, prices from 20€.",
+			"descriptionLong": "<p>On Thursdays in June, you can learn how to make small leather crafts at the Hiedanrannan Paja's Katutaso summer shop, such as jewelry, key chains, coasters and bookmarks. If you wish, you can also decorate your work with different patterns or texts. You do not need to register for the workshops in advance, and no previous experience is required.</p><p><br></p><p>Prices start at 20€, including materials and guidance.</p><p><br></p><p>Workshop days:</p><p><br></p><p>May 29th 12-6pm</p><p>June 5th 12-6pm</p><p>June 12th 12-6pm</p><p>June 19th 12-6pm</p><p>June 26th 12-6pm</p><p><br></p><p>Organazier Shoemaker N./EW </p>",
+			"hashtags": [
+				"workshop",
+				"hiedanrannanpaja",
+				"hiedanranta"
+			],
+			"links": [],
+			"openingHours": [],
+			"translated": {
+				"by": "GoogleTranslate",
+				"properties": [
+					"descriptionShort",
+					"descriptionLong"
+				]
+			},
+			"sort": 1.1749114
+		},
+		{
+			"_id": "683de5af13879839f2201bff",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 27,
+			"defaultStartDate": "2025-06-05T13:30:00.000Z",
+			"defaultEndDate": "2025-06-05T15:00:00.000Z",
+			"modificationDate": "2025-06-03T05:06:18.546Z",
+			"creationDate": "2025-06-02T17:55:59.246Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "64c92d64de646415d3c303a2",
+			"ownerName": "Hirvitalo - Pispalan nykytaiteen keskus",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "526ef22d3e8d45f86dc2bb1db2a0a5956eede34cdeacfdd6c9e7636ea29fd874",
+			"imageMobile": "4f817454dc1af88f1dd3a2794562499cda962c958c2f0f1381d6a22f18e77d2d",
+			"imageList": "300ce03f1ee97eb07944fe503d1ee19fede9c8cae5ca15ee5c149f6c64669e87",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "hirvitalo.archive@gmail.com",
+			"urlFacebook": "https://www.facebook.com/hirvitalo/",
+			"urlTwitter": null,
+			"urlYoutube": null,
+			"urlInstagram": "https://www.instagram.com/hirvitalo/",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.499362,
+					"lng": 23.7139393,
+					"address": "Hirvikatu 10, 33240 Tampere",
+					"country": "FI",
+					"page_id": "64c92d64de646415d3c303a2",
+					"alt": {
+						"fi": {
+							"address": "Hirvitalo - Pispalan nykytaiteen keskus, Hirvikatu 10, 33240 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"640ddccf2a0be71f588808cd",
+				"6548d504e8fbee2338f0c723"
+			],
+			"primaryCollection": null,
+			"ages": [
+				"age-3",
+				"age-4",
+				"age-5"
+			],
+			"globalContentCategories": [
+				"seminars and meetings",
+				"students",
+				"gig"
+			],
+			"categories": [
+				"6170601b7a45476ff366cb18"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-05T13:30:00.000Z",
+						"end": "2025-06-05T15:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"start": "2025-06-05T13:30:00.000Z",
+				"end": "2025-06-05T15:00:00.000Z",
+				"urlPurchaseTicket": "",
+				"urlSignUp": ""
+			},
+			"publishingDateDefined": false,
+			"publishingDate": null,
+			"sort2": {
+				"primary": 1,
+				"secondary": 1749130200000
+			},
+			"name": "Sound tech workshop",
+			"descriptionShort": "Sound & stage tech workshop Thu 5.6., 4:30 pm, at Hirvitalo Free as usual, no sign-ups!",
+			"descriptionLong": "<p>Sound &amp; stage tech workshop Thu 5.6., 4:30 pm, at Hirvitalo Free as usual, no sign-ups! </p><p><br></p><p>Are you interested in sound tech or event organizing in general? Here's your chance to get familiar with speakers, mixers, mics and other common PA equipment. Our sound technician Oiva will host a workshop about how to set up the most common PA systems. Come and learn! </p><p><br></p><p>Hirvitalo has a lot of stairs. Accessibility information and the principles of safer space in use can be found on our website, link in bio. Welcome!</p><p><br></p>",
+			"hashtags": [
+				"työpaja",
+				"äänitekniikka"
+			],
+			"imageCopyrights": "Kuvaaja Karo Junell",
+			"links": [],
+			"openingHours": [],
+			"sort": 1.17491302
+		},
+		{
+			"_id": "659d0facf71f714e39dc94df",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 3538,
+			"defaultStartDate": "2025-06-07T11:00:00.000Z",
+			"defaultEndDate": "2025-06-07T15:00:00.000Z",
+			"modificationDate": "2025-06-05T09:55:47.379Z",
+			"creationDate": "2024-01-09T09:19:40.887Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "64ca265ade646415d3c316c8",
+			"ownerName": "Kaupunkikulttuuriyksikkö",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "5eb36b389010814ece3767760fc60829797459affe087fcb0c201dd44affc13f",
+			"imageMobile": "c365ad4588f3767f9e3226d50f349ebd5b6c5b1f0af5c234a1a1b1c34e17c1b2",
+			"imageList": "e9d356e40dc99d512d4a4e6e13eb941feae92c14a1bf2e34875cc6324188da02",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "kulttuuri@tampere.fi",
+			"urlFacebook": "https://www.facebook.com/kulttuuritampere/",
+			"urlYoutube": "https://www.youtube.com/user/KulttuuriTampere",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.49932339999999,
+					"lng": 23.7617918,
+					"address": "Kirjastonpuisto Park, Puutarhakatu, 33100 Tampere",
+					"country": "FI",
+					"page_id": "66f51861cccaac72bdc87d7b",
+					"alt": {
+						"fi": {
+							"address": "Kirjastonpuisto, Puutarhakatu, 33100 Tampere"
+						},
+						"en": {
+							"address": "Kirjastonpuisto Park, Puutarhakatu, 33100 Tampere"
+						}
+					},
+					"location_id": "location-4"
+				},
+				{
+					"lat": 61.499484908944477,
+					"lng": 23.761686380975044,
+					"address": "Laikunlava outdoor stage, Puutarhakatu 1, 33210 Tampere",
+					"country": "FI",
+					"page_id": "64d09d53e4a06834a0c9e532",
+					"alt": {
+						"fi": {
+							"address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+						},
+						"en": {
+							"address": "Laikunlava outdoor stage, Puutarhakatu 1, 33210 Tampere"
+						}
+					},
+					"location_id": "location-3"
+				},
+				{
+					"lat": 61.4988264,
+					"lng": 23.762119,
+					"address": "Culture House Laikku, Keskustori 4, Tampere",
+					"country": "FI",
+					"page_id": "64d0981d087b7a3f13b6dd9e",
+					"alt": {
+						"fi": {
+							"address": "Kulttuuritalo Laikku, Keskustori 4, Tampere"
+						},
+						"en": {
+							"address": "Culture House Laikku, Keskustori 4, Tampere"
+						}
+					},
+					"location_id": "location-5"
+				}
+			],
+			"collections": [
+				"647485b5a0d4e330681efd02",
+				"640ddc378567e330f2ac1cd0",
+				"64c75a658742312ab4b2418b"
+			],
+			"primaryCollection": null,
+			"globalContentCategories": [
+				"festivals"
+			],
+			"ages": [],
+			"categories": [
+				"6170601b7a45476ff366cb18",
+				"65c9d8a36536991ee2b91d5a"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-07T11:00:00.000Z",
+						"end": "2025-06-07T15:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"urlPurchaseTicket": "",
+				"urlSignUp": "",
+				"start": "2025-06-07T11:00:00.000Z",
+				"end": "2025-06-07T15:00:00.000Z"
+			},
+			"urlInstagram": null,
+			"urlTwitter": null,
+			"publishingDate": "2025-05-09T21:00:00.000Z",
+			"publishingDateDefined": false,
+			"sort2": {
+				"primary": 3,
+				"secondary": 1749294000000
+			},
+			"name": "Laikku and the Whole World Cultural festival 2025",
+			"descriptionShort": "The most colourful event in town",
+			"descriptionLong": "<p>Laikku and the Whole World&nbsp;Cultural festival will be celebrated for the third time on Saturday, June 7th. The event, which celebrates the diverse culture of Tampere, will fill Laikunlava and Kirjastonpuisto with music, dance, and art! In case of a very bad weather, the event will be arranged indoors Culture House Laikku and Children's Cultural Centre Rulla. </p><p><br></p><p><strong>Laikunlava programme: </strong></p><p>14.15 União da Roseira&nbsp;</p><p>14.35 Kanzashi&nbsp;</p><p>15.05 DJ Renaz</p><p>15.30 Banda Caribe Helsinki</p><p>16.15 DJ Renaz</p><p>16.45 Dance studio Rio-dance</p><p>16.50 Saïsba Intercontinental Septet</p><p>17.40 DJ Renaz</p><p><br></p><p><strong>Performers at Laikunlava stage: </strong></p><p><strong>Uniâo da Roseira</strong>&nbsp;- A rhythmic and colorful samba show invites on a journey to hot Brazil and draws you into an energetic carnival atmosphere.</p><p><strong>Saïsba Intercontinental septet</strong>&nbsp;- The music of this Afro-fusion band blends West African traditions with Afrobeat, rock, funk, jazz, and Latin rhythms.</p><p><strong>Banda Caribe Helsinki</strong>&nbsp;- The band plays traditional Cuban boleros, popular hot Latin hits, danceable lively timba, and romantic bachata.</p><p><strong>Kanzashi</strong>&nbsp;- A band of three Japanese women performing captivating chanson and film music accompanied by a barrel organ.</p><p><strong>Dance studio Rio-Dance: </strong>Rio Dance is part of the club activities of the Russian Club in Tampere. Children and young people of various ages practice dance at the studio.</p><p><br></p><p>The host and DJ of the event is journalist, DJ, and activist <strong>Renaz Ebrahimi</strong>.</p><p><br></p><p>There will also be <strong>KorentoArt's </strong>characters and art workshops for children at 14-17 and Art Live -programme by <strong>Somana ry.</strong> at 15-17.</p><p>At the food market, you can find delicacies from Arabic cuisine and Bangladeshi street food.</p><p><br></p><p><strong>Participants in the event's market area are:</strong> Tampereen ukrainalaisten yhdistys Suomessa ry, Ukraina Talo, artisan Hilton Marowa, Lähi-idän naisten yhdistys, Äetsän Seudun Kehitysmaaseura ry., henna artist Tahmina Akter, Hola Tampere, Tampere-Tartto-Seura, Tampere Intercultural Art, Bloom ry., artisan Atkia Waseka Rahma, Kulttuuriosuuskunta Uulu ja Hengaa täällä -project.</p><p><br></p><p><br></p><p>Free entry.</p><p>Tervetuloa * Welcome * Välkommen * Teretulemast * Bi xêr hatî * Bienvenido * स्वागत&nbsp;&nbsp;&nbsp;* Ласкаво просимо * Добро пожаловать * স্বাগত * Benvenuto * ようこそ * Willkommen * 欢迎 * Soo dhowow * Dobrodošli * خوش آمدید * مرحباً بك</p><p><br></p><p>The event follows principles of a safer event.</p><p><a href=\"https://www.tampere.fi/kulttuuritalo-laikku/vieraile-laikussa/esteettomyys-laikussa\" rel=\"noopener noreferrer\" target=\"_blank\">Accessibility information for Culture House Laikku in Finnish</a>.</p><p><br></p><p>Children's Cultural Center Rulla is open 10-18.</p><p>Culture House Laikku and Café are open 10-18.</p><p>The event is organised by Tampere Public Cultural Services.</p>",
+			"hashtags": [
+				"TamperForAll",
+				"laikku",
+				"culturalhouselaikku"
+			],
+			"imageAlt": "A drawn smiling globe on which a drawn Rulla figure stands. Colorful ribbons all around.",
+			"links": [
+				{
+					"name": "Public Cultural Services website",
+					"url": "https://www.tampere.fi/en/organisation/public-cultural-services"
+				},
+				{
+					"name": "Cultural House Laikku's website",
+					"url": "http://www.tampere.fi/en/laikku"
+				}
+			],
+			"openingHours": [],
+			"translated": {
+				"by": "GoogleTranslate",
+				"properties": [
+					"descriptionLong"
+				]
+			},
+			"sort": 3.1749294
+		},
+		{
+			"_id": "67dc1519eee33c66c4423f72",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 1336,
+			"defaultStartDate": "2025-06-14T12:00:00.000Z",
+			"defaultEndDate": "2025-06-14T15:00:00.000Z",
+			"modificationDate": "2025-05-12T10:23:23.138Z",
+			"creationDate": "2025-03-20T13:16:09.654Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "661e2c81568c696e7ac1acba",
+			"ownerName": "Sinuiksi ry",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "859b80830f998d32346bb788d4577ada06589220b045cac3792e16eb4dceeb1d",
+			"imageMobile": "20c0fa021a4ae6c396dd2cf9bdc2f0ab262d6c91c2c7613eb7f44e75429edb19",
+			"imageList": "04c8cd2689fbefa0a5c37a42387666b2442aec403be314c08407691510c5eb0b",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "mansepride@pirkanmaanseta.fi",
+			"urlFacebook": "https://www.facebook.com/mansepride",
+			"urlTwitter": null,
+			"urlYoutube": null,
+			"urlInstagram": "https://www.instagram.com/mansepride",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.49662278362218,
+					"lng": 23.780980302624827,
+					"address": "Sorsapuisto, 33500 Tampere",
+					"country": "FI",
+					"alt": {
+						"fi": {
+							"address": "Sorsapuisto, 33500 Tampere"
+						},
+						"en": {
+							"address": "Sorsapuisto, 33500 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"640ddc378567e330f2ac1cd0",
+				"640ee55bda65cc64900ab77b",
+				"659cfcf232b7e50755b949e8"
+			],
+			"primaryCollection": null,
+			"ages": [],
+			"globalContentCategories": [
+				"festivals",
+				"voluntary"
+			],
+			"categories": [
+				"630797cb72c77169d3dd1272",
+				"6170601b7a45476ff366cb18"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-14T12:00:00.000Z",
+						"end": "2025-06-14T15:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"start": "2025-06-14T12:00:00.000Z",
+				"end": "2025-06-14T15:00:00.000Z",
+				"urlPurchaseTicket": "",
+				"urlSignUp": ""
+			},
+			"publishingDateDefined": false,
+			"publishingDate": null,
+			"sort2": {
+				"primary": 6,
+				"secondary": 1749902400000
+			},
+			"name": "Manse Pride 2025 main celebration",
+			"descriptionShort": "The main Manse Pride party will be held this year in Sorsapuisto, traditionally. There will be lots of fun and great performances.",
+			"descriptionLong": "<p>We warmly welcome everyone to celebrate the Manse Pride main party with us at Sorsapuisto on Saturday 14.6. The rainbow-colored main party of good cheer will start at approximately 15:10, immediately after the march has arrived at Sorsapuisto.</p><p><br></p><p>The main party will follow the principles of a safer space, which you can read about here: https://thl.fi/aankohtaista/tapahtumat/turvallisempien-tapahtumien-priyaatteet-thl-ssa.</p><p><br></p><p>SCHEDULE</p><p><br></p><p>The park party will be held on 14.6. between 3 and 6 p.m.</p><p><br></p><p>The program will be finalized during the spring.</p><p><br></p><p>ARRIVAL</p><p><br></p><p>Sorsapuisto can be reached by bus on routes 2, 6, 7, 9, 19, 27, 29, 40A/B/C, 42, 90X and 95. The nearest stops are Tampere-talo (100 meters), Sorsapuisto (250 meters), Yliopisto A (350 meters) and Yliopisto D (400 meters). The tram stop for lines 3 and 1 is located 250 meters away. Tampere Railway Station is located 600 meters away. Tampere Bus Station is located 1 kilometer away.</p><p><br></p><p>Please note that the march will affect public transport, causing possible route and schedule changes. Current information about public transport can be found at www.nysse.fi.</p><p><br></p><p>ACCESSIBILITY</p><p><br></p><p>Arrival: There is a small escorted traffic area in the courtyard of Tampere Hall. The nearest disabled parking space for a passenger car is located on Lähteenkatu (more than 25 meters). The nearest bus stop is 100 meters away. Event location: The event location is accessible. The event area is located outdoors, so the terrain may be uneven in places. The stages and tents are located on a grassy area and are surrounded by dirt roads. There is also an accessible, gender-neutral public toilet in the area. You can participate in the event with an assistant and a guide dog. The performances will include music and speech. There are no subtitles or sign language interpretation available.</p><p><br></p><p>SECURITY</p><p><br></p><p>AiCan is responsible for the security of the park festival, and they can be identified by their high-visibility vests with the words “Sjärjestysenvalvoja” on the back. There is a SPR first aid station in the park. Sinuiksi ry employees can be identified by their pink high-visibility vests with the Sinuiksi ry logo on the back.</p><p><br></p><p>The harassment contact person for the main festival is Mico Ylimäki (040 510 7488) mico.ylimaki@pirkanmaanseta.fi</p><p><br></p><p>VENUE</p><p><br></p><p>The Tampere Hall toilets are available for use by visitors to the park festival. Sinuiksi ry staff and volunteers will direct you there if necessary. In addition, 1 accessible public toilet can be found in the Sorsapuisto.</p><p><br></p><p>We hope that each participant will dispose of their own trash properly. This will greatly facilitate the work of our cleaning team. There are numerous trash cans in Sorsapuisto that can be used freely.</p><p><br></p><p>The theme of the celebration is \"One big family\". You can and should be visible on social media,</p><p>so share photos of your participation by tagging @mansepride and using the hashtags #mansepride and #yhtäsuurtaperhettä</p><p><br></p><p>Welcome to celebrate Manse Pride 2025 as one big family!</p>",
+			"hashtags": [
+				"Mansepride",
+				"sinuiksiry"
+			],
+			"imageCopyrights": "Kuvittaja: Esa-Pekka Niemi",
+			"imageAlt": "Kuvittaja Esa-Pekka Niemen toteuttama Manse Pride -logo vuodelle 2025",
+			"links": [],
+			"openingHours": [],
+			"translated": {
+				"by": "GoogleTranslate",
+				"properties": [
+					"descriptionShort",
+					"descriptionLong",
+					"name"
+				]
+			},
+			"sort": 6.17499024
+		},
+		{
+			"_id": "66238e15e8bf6b4b1b9c3e29",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 971,
+			"defaultStartDate": "2024-04-28T08:00:00.000Z",
+			"defaultEndDate": "2025-06-19T16:00:00.000Z",
+			"modificationDate": "2025-06-02T10:18:09.158Z",
+			"creationDate": "2024-04-20T09:42:45.151Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "66224e535c31b513eebe1292",
+			"ownerName": "Free walking tours in Tampere",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "bad0994b4decf7efc91e2e7ac05cc2167d66646d02746fac9150e724438b77c9",
+			"imageMobile": "01838c4d83ab1cfd2ab1603d4a8a1b99fb43c6bc2772baace1da69584a56c6fa",
+			"imageList": "063ad6f86a6334557bdd25df18a2b822e8566e5d6f8f3e4753aa7ade789ba149",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "freewalkingtourtampere@gmail.com",
+			"urlFacebook": "https://www.facebook.com/guruwalk/",
+			"urlTwitter": null,
+			"urlYoutube": "https://www.youtube.com/channel/UCCe5x6fnK9CQVHjnS8Kj18g",
+			"urlInstagram": "https://www.instagram.com/guruwalk/",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.49804349999999,
+					"lng": 23.7600789,
+					"address": "Keskustori by the fountain, 33210 Tampere",
+					"country": "FI",
+					"alt": {
+						"fi": {
+							"address": "Keskustori by the fountain, 33210 Tampere"
+						},
+						"en": {
+							"address": "Keskustori by the fountain, 33210 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"640ee62a8567e330f2ac2803"
+			],
+			"primaryCollection": null,
+			"globalContentCategories": [
+				"activities",
+				"excursions, guided tours"
+			],
+			"ages": [
+				"age-3",
+				"age-4",
+				"age-5"
+			],
+			"categories": [
+				"6170601b7a45476ff366cb18",
+				"65c9d8a36536991ee2b91d5a"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-07T08:00:00.000Z",
+						"end": "2025-06-07T10:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-06-14T08:00:00.000Z",
+						"end": "2025-06-14T10:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-06-19T14:00:00.000Z",
+						"end": "2025-06-19T16:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"callToActionsPublishingDateDefined": false,
+				"urlPurchaseTicket": "",
+				"urlSignUp": "https://www.guruwalk.com/walks/55289-free-walking-tour-in-the-center-of-tampere",
+				"start": "2024-04-28T08:00:00.000Z",
+				"end": "2025-06-19T16:00:00.000Z"
+			},
+			"publishingDate": null,
+			"publishingDateDefined": false,
+			"sort2": {
+				"primary": 3,
+				"secondary": 1749283200000
+			},
+			"name": "Free walking tour in English",
+			"descriptionShort": "Free walking tour in the center of Tampere",
+			"descriptionLong": "<p>Free walking tour in the center of Tampere. Bookings and schedule https://www.guruwalk.com/walks/55289-free-walking-tour-in-the-center-of-tampere Note! If the group is full or does not show availability in Guruwalk, send me a message by email or Guruwalk app.</p>",
+			"hashtags": [
+				"freewalkingtour"
+			],
+			"imageAlt": "Tammerkoski",
+			"links": [],
+			"openingHours": [],
+			"sort": 3.17492832
+		},
+		{
+			"_id": "66cdd7429bde095f3c567c12",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 1418,
+			"defaultStartDate": "2024-09-05T15:00:00.000Z",
+			"defaultEndDate": "2025-06-05T16:45:00.000Z",
+			"modificationDate": "2025-02-09T10:09:27.440Z",
+			"creationDate": "2024-08-27T13:40:18.089Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "64f0824f59433502f01bce80",
+			"ownerName": "Suomen Nuorisoseurat",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "ca41a7ad184fdfdc70bebcdbf2b8e40cfacbd5596b3e231dd11a68dd76d37de6",
+			"imageMobile": "a8ae4df334ab06e3afafdf3a060bbcce233a8d5b2854a94a93cd20dfbd09ae18",
+			"imageList": "d7686265e78b8b1447f386e2700ce6c01be0861a2a068d8144249bdec0add44b",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "",
+			"urlFacebook": null,
+			"urlTwitter": null,
+			"urlYoutube": null,
+			"urlInstagram": null,
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.4988264,
+					"lng": 23.762119,
+					"address": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere",
+					"country": "FI",
+					"page_id": "650153b56822bf5d87f6d10b",
+					"alt": {
+						"fi": {
+							"address": "Kulttuuritalo Laikku, Musiikkisali, Keskustori 4, 33100 Tampere"
+						},
+						"en": {
+							"address": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"6548d504e8fbee2338f0c723"
+			],
+			"primaryCollection": null,
+			"ages": [
+				"age-4",
+				"age-5",
+				"age-6"
+			],
+			"globalContentCategories": [
+				"gig"
+			],
+			"categories": [
+				"6170601b7a45476ff366cb18",
+				"65c9d8a36536991ee2b91d5a"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-05T15:00:00.000Z",
+						"end": "2025-06-05T16:45:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"urlPurchaseTicket": "",
+				"urlSignUp": "",
+				"start": "2024-09-05T15:00:00.000Z",
+				"end": "2025-06-05T16:45:00.000Z"
+			},
+			"publishingDateDefined": false,
+			"publishingDate": "2024-08-28T21:00:00.000Z",
+			"sort2": {
+				"primary": 1,
+				"secondary": 1749135600000
+			},
+			"name": "Folk music jam sessions",
+			"descriptionShort": "Folk music from us and from around the world. Come play, dance or listen! Note! On March 6th, there will also be dance lessons.",
+			"descriptionLong": "<p>We will spend two hours in a relaxed atmosphere, playing music ourselves or listening in the audience, and you can even dance. The program includes instruments and songs from both Finland and around the world. The jams are organized by Pispalan Sottiis in collaboration with Manse OAS and Rahvisen kamujamit. </p><p><br></p><p><strong>Note! On Thursday 6.3., dance lessons with live music, with themes of sottiis and polska from the basics. Teacher Petri Hoppu.</strong></p>",
+			"hashtags": [
+				"Kansanmusiikki",
+				"kansantanssi",
+				"jamit"
+			],
+			"imageCopyrights": "Kuvaaja Ville Kurki",
+			"imageAlt": "Kuvat.nuorisoseurat.fi",
+			"links": [],
+			"openingHours": [],
+			"translated": {
+				"by": "GoogleTranslate",
+				"properties": [
+					"name",
+					"descriptionLong",
+					"descriptionShort"
+				]
+			},
+			"sort": 1.17491356
+		},
+		{
+			"_id": "66bf3641c4f358430c1230b8",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 1294,
+			"defaultStartDate": "2025-05-22T13:05:00.000Z",
+			"defaultEndDate": "2025-12-11T15:15:00.000Z",
+			"modificationDate": "2025-05-14T06:21:17.506Z",
+			"creationDate": "2024-08-16T11:21:37.569Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "64ca265ade646415d3c316c8",
+			"ownerName": "Kaupunkikulttuuriyksikkö",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "03fbc9e1c0e09d92ff40e0012725e67584f6487ab6ba88e9591a8bb5800e5d6c",
+			"imageMobile": "bee6cf373ca30786c70e4b312a6e29e41f0d988204d3128b81db16d4ad741cb4",
+			"imageList": "6824b668ae2adb99ac55537101919435713c2f46b3146adc00bf9047f02cc458",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": true,
+			"price": {
+				"min": 0,
+				"max": 0
+			},
+			"email": "kulttuuri@tampere.fi",
+			"urlFacebook": "https://www.facebook.com/kulttuuritalolaikku/",
+			"urlTwitter": null,
+			"urlYoutube": "https://www.youtube.com/user/KulttuuriTampere",
+			"urlInstagram": "https://www.instagram.com/kulttuuritalolaikku/",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.4988264,
+					"lng": 23.762119,
+					"address": "Kulttuuritalo Laikku, Musiikkisali, Keskustori 4, 33100 Tampere",
+					"country": "FI",
+					"page_id": "650153b56822bf5d87f6d10b",
+					"alt": {
+						"fi": {
+							"address": "Kulttuuritalo Laikku, Musiikkisali, Keskustori 4, 33100 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"63484944e30a1f16a64104d3"
+			],
+			"primaryCollection": null,
+			"ages": [
+				"age-5",
+				"age-6"
+			],
+			"globalContentCategories": [
+				"consert"
+			],
+			"categories": [
+				"6170601b7a45476ff366cb18",
+				"630797cb72c77169d3dd1272"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-09-04T13:15:00.000Z",
+						"end": "2025-09-04T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-09-11T13:15:00.000Z",
+						"end": "2025-09-11T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-09-18T13:15:00.000Z",
+						"end": "2025-09-18T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-09-25T13:15:00.000Z",
+						"end": "2025-09-25T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-10-02T13:15:00.000Z",
+						"end": "2025-10-02T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-10-16T13:15:00.000Z",
+						"end": "2025-10-16T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-10-23T13:15:00.000Z",
+						"end": "2025-10-23T14:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-10-30T14:15:00.000Z",
+						"end": "2025-10-30T15:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-11-06T14:15:00.000Z",
+						"end": "2025-11-06T15:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-11-13T14:15:00.000Z",
+						"end": "2025-11-13T15:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-11-20T14:15:00.000Z",
+						"end": "2025-11-20T15:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-11-27T14:15:00.000Z",
+						"end": "2025-11-27T15:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-12-04T14:15:00.000Z",
+						"end": "2025-12-04T15:15:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-12-11T14:15:00.000Z",
+						"end": "2025-12-11T15:15:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"urlPurchaseTicket": "",
+				"urlSignUp": "",
+				"start": "2025-05-22T13:05:00.000Z",
+				"end": "2025-12-11T15:15:00.000Z"
+			},
+			"publishingDateDefined": false,
+			"publishingDate": null,
+			"sort2": {
+				"primary": 6,
+				"secondary": 1756991700000
+			},
+			"name": "Sing-along events at Culture House Laikku",
+			"descriptionShort": "Sing-along events at Culture House Laikku",
+			"descriptionLong": "<p>Sing-along events are organized at Culture House Laikku on Thursdays! The song leader is singer and entertainer Martti Kuurila, and choir director Jussi Tamminen is responsible for the accompaniment.&nbsp; The first sing-along of 2025 will be held on Thursday, January 16 in Music Hall of Culture House Laikku from 4:15 p.m. Free entry!</p><p><br></p><p>Sing-alog events are very popular! The Music Hall can accommodate the first 110 people, we recommend arriving on time to Laikku!</p><p>Free entry!&nbsp;</p><p><br></p><p>In order to protect the oak floor of the Music Hall, please change your studded shoes to indoor shoes during the winter season. Thank you!</p><p>Changes are possible, the most up-to-date information can be asked from Laiku's info, tel. 040 806 2330.</p><p><br></p><p>organiser: City of Tampere Public Cultural Services</p><p><br></p>",
+			"hashtags": [
+				"kulttuuritalolaikku",
+				"laikku",
+				"yhteislaulut"
+			],
+			"imageCopyrights": "Laura Hyttinen",
+			"imageAlt": "2 keski-ikäistä miestä hymyilee kameralle.",
+			"links": [],
+			"openingHours": [],
+			"sort": 6.17569917
+		},
+		{
+			"_id": "6780e21d68bf7f5f791733cb",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 714,
+			"defaultStartDate": "2025-01-16T22:00:00.000Z",
+			"defaultEndDate": "2025-12-11T22:00:00.000Z",
+			"modificationDate": "2025-01-28T08:54:21.456Z",
+			"creationDate": "2025-01-10T09:02:21.282Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "64d4e152e4a06834a0ca58a3",
+			"ownerName": "Maailman ainoa Muumimuseo",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "e2c873a803b01d750453e4d5e4a74299e39a66d553bc94431a31cac53bfd8c3b",
+			"imageMobile": "6676b9c8eadd5db3fbfb9b23fc0a4fc817c1c93ca6854c3146ec4b425345ad0c",
+			"imageList": "f678fd14669a84fb2e3ae36155e33d233da83656b2578f583e0f1474a7dfeef8",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": false,
+			"email": "muumi@tampere.fi",
+			"urlFacebook": "https://www.facebook.com/muumimuseo/",
+			"urlTwitter": null,
+			"urlYoutube": null,
+			"urlInstagram": "https://www.instagram.com/moominmuseum/",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.49595300000001,
+					"lng": 23.781375,
+					"address": "Tampere-talo, Yliopistonkatu 55, 33100 Tampere",
+					"country": "FI",
+					"page_id": "64d4e152e4a06834a0ca58a3",
+					"alt": {
+						"fi": {
+							"address": "Maailman ainoa Muumimuseo, Tampere-talo, Yliopistonkatu 55, 33100 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"640ee62a8567e330f2ac2803",
+				"6489677fd21f0111e864ae66",
+				"66fe775739f8a760ee79d274"
+			],
+			"primaryCollection": null,
+			"ages": [],
+			"globalContentCategories": [
+				"activities",
+				"excursions, guided tours"
+			],
+			"categories": [
+				"6170601b7a45476ff366cb18"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-26T21:00:00.000Z",
+						"end": "2025-06-26T21:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-07-17T21:00:00.000Z",
+						"end": "2025-07-17T21:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-08-14T21:00:00.000Z",
+						"end": "2025-08-14T21:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-09-18T21:00:00.000Z",
+						"end": "2025-09-18T21:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-10-09T21:00:00.000Z",
+						"end": "2025-10-09T21:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-11-13T22:00:00.000Z",
+						"end": "2025-11-13T22:00:00.000Z",
+						"isSoldOut": false
+					},
+					{
+						"start": "2025-12-11T22:00:00.000Z",
+						"end": "2025-12-11T22:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"urlPurchaseTicket": "",
+				"urlSignUp": "",
+				"start": "2025-01-16T22:00:00.000Z",
+				"end": "2025-12-11T22:00:00.000Z"
+			},
+			"publishingDateDefined": false,
+			"publishingDate": null,
+			"sort2": {
+				"primary": 6,
+				"secondary": 1750971600000
+			},
+			"name": "Free admission to Moomin Museum",
+			"descriptionShort": "There is free admission to the Moomin Museum about once a month.",
+			"descriptionLong": "<p>The day of the free admission is Friday when the museum is open from 10am to 6pm.</p><p><br></p><p>The Studio is closed on these days. </p><p><br></p><p>Welcome to the world's only Moomin Museum!</p>",
+			"hashtags": [],
+			"imageCopyrights": "Heidi Mäenpää",
+			"imageAlt": "Iloisia ihmisiä kulkee viirinauhojen alta.",
+			"links": [],
+			"openingHours": [],
+			"sort": 6.17509716
+		}
+	],
+	"sort": "startDate"
+}

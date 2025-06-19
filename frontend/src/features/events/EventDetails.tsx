@@ -38,7 +38,11 @@ export function EventDetails({ event, events }) {
 
     // Data extraction with fallbacks
     const { leftPanelData, fullEventData } = event;
-    const weather = leftPanelData.weather !== "N/A" ? leftPanelData.weather : "Sunny 22°C";
+    const weather =
+        leftPanelData.weather && leftPanelData.weather !== "N/A"
+            ? `${leftPanelData.weather.condition || "Sunny"} ${leftPanelData.weather.temperature ?? "--"}°C` +
+            (leftPanelData.weather.rain > 1000 ? `, Rain: ${leftPanelData.weather.rain}mm` : "")
+            : "Sunny 22°C";
     const name = leftPanelData?.eventName || fullEventData?.eventName || "Event";
     const venue = leftPanelData?.venue || fullEventData?.venue || "";
     const mapLink = fullEventData?.venue_url || "#";
@@ -78,6 +82,7 @@ export function EventDetails({ event, events }) {
     const MAX_DESC_LENGTH = 400;
     const hasLongDesc = description && description.length > MAX_DESC_LENGTH;
     const shortDesc = hasLongDesc ? description.slice(0, MAX_DESC_LENGTH) + "..." : description;
+    const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
 
     return (
         <div className="p-6 bg-white rounded-lg shadow w-full max-w-6xl mx-auto overflow-hidden flex flex-col">
@@ -122,7 +127,11 @@ export function EventDetails({ event, events }) {
                     {venue && (
                         <span className="flex items-center px-2 py-1 rounded bg-gray-100 text-gray-700 text-sm">
                             <MapPin className="w-4 h-4 mr-1" />
-                            {shortVenue(venue)}
+                            <a href={mapsUrl} target="_blank" rel="noopener noreferrer"
+                                style={{ color: '#1a0dab', textDecoration: 'underline', cursor: 'pointer' }}
+                            >
+                                {venue}
+                            </a>
                         </span>
                     )}
                 </div>
