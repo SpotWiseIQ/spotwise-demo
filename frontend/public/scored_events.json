@@ -17,6 +17,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -120,6 +121,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -223,6 +225,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -327,6 +330,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -434,6 +438,7 @@
             "daysToEvent": 8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -568,6 +573,7 @@
             "daysToEvent": 51,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -673,6 +679,7 @@
             "daysToEvent": 4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -790,6 +797,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -920,6 +928,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -1036,6 +1045,7 @@
             "daysToEvent": 73,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -1151,6 +1161,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -1253,6 +1264,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -1357,6 +1369,7 @@
             "daysToEvent": -2,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -1463,6 +1476,7 @@
             "daysToEvent": 1,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -1580,6 +1594,7 @@
             "daysToEvent": 66,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -1694,6 +1709,7 @@
             "daysToEvent": 10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -1817,6 +1833,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -1938,6 +1955,7 @@
             "daysToEvent": -131,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -2038,6 +2056,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -2146,6 +2165,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -2251,6 +2271,7 @@
             "daysToEvent": 45,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -2361,6 +2382,7 @@
             "daysToEvent": 78,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -2509,6 +2531,7 @@
             "daysToEvent": -44,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -2606,6 +2629,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -2700,6 +2724,118 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Modus Market",
+            "venue": "Tallipiha, Kuninkaankatu 4, 33210 Tampere",
+            "startDate": "2025-06-14T08:00:00.000Z",
+            "endDate": "2025-06-15T13:00:00.000Z",
+            "eventType": [
+                "fairs",
+                "handicraft",
+                "consert"
+            ],
+            "score": 103,
+            "normalizedScore": 29.43,
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "views": 75,
+            "audienceType": "General",
+            "daysToEvent": -4,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Adults",
+                "Youth"
+            ],
+            "occurrenceCount": 2,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Modus Market",
+            "startDate": "2025-06-14T08:00:00.000Z",
+            "endDate": "2025-06-15T13:00:00.000Z",
+            "score": 103,
+            "normalizedScore": 29.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 5
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 75,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "fairs",
+                "handicraft",
+                "consert"
+            ],
+            "ages": [],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5034939,
+                "lng": 23.7540468,
+                "address": "Tallipiha, Kuninkaankatu 4, 33210 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "tallipiha10@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/TallipihaTampere",
+                "instagram": "https://www.instagram.com/tallipiha?igshid=MjEwN2IyYWYwYw==",
+                "twitter": null
+            },
+            "description": "Modus Market - unique handicrafts and small series for sale. At the event, artisans and craftsmen will sell and demonstrate their skills. On Saturday, every hour from 12 to 15, Go Go Pops will perform (30 min. set). The good-natured ukulele band Go Go Pops will play relaxed, easy-going music - from the sweet melodies of the past to today's rallies. On Sunday, at 12 and 14, the lovely Miss Daisy will perform. Miss Daisy will perform unforgettable songs from the 40s and 60s in her own unique style in the event yard.",
+            "ownerName": "Tallipiha",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Adults",
+                "Youth"
+            ],
+            "occurrenceCount": 2,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Summer opening of the summer café Villa Ponsa on Sunday 8 June at 12-17",
             "venue": "Ponsantie 1649, 36340 Tohkala",
             "startDate": "2025-06-08T09:00:00.000Z",
@@ -2717,6 +2853,7 @@
             "daysToEvent": -10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -2823,6 +2960,7 @@
             "daysToEvent": -14,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -2936,6 +3074,7 @@
             "daysToEvent": 59,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -3030,6 +3169,121 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Nightrun 2025",
+            "venue": "Ratinan Raitti, 33100 Tampere",
+            "startDate": "2025-09-06T15:00:00.000Z",
+            "endDate": "2025-09-06T20:30:00.000Z",
+            "eventType": [
+                "sports and fitness",
+                "festivals"
+            ],
+            "score": 99,
+            "normalizedScore": 28.29,
+            "dayType": "weekend",
+            "timeOfDay": "other",
+            "views": 299,
+            "audienceType": "Adult",
+            "daysToEvent": 80,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Nightrun 2025",
+            "startDate": "2025-09-06T15:00:00.000Z",
+            "endDate": "2025-09-06T20:30:00.000Z",
+            "score": 99,
+            "normalizedScore": 28.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 8
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 21
+                }
+            ],
+            "views": 299,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "other",
+            "audienceType": "Adult",
+            "globalContentCategories": [
+                "sports and fitness",
+                "festivals"
+            ],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.49294231190305,
+                "lng": 23.7602199156611,
+                "address": "Ratinan Raitti, 33100 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-09-06T15:00:00.000Z",
+                    "end": "2025-09-06T20:30:00.000Z"
+                }
+            ],
+            "contactEmail": "setalatouko@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/nightrunbytcc/",
+                "instagram": "https://www.instagram.com/nightrunbytcc/",
+                "twitter": null
+            },
+            "description": "Nightrun 2025The venue for Night Run will once again be Ratinnanniemi Event Park, where the start and finish of the event will be located. The running route itself will run through the centre of Tampere and the Tammerkoski area.The event gates will open at 18:00, from which point you can gather to discuss your running plan and tactics. The start will take place in the dark at 21:00. When you register, you can choose the starting group where you feel most at home. However, it is not advisable to participate in the run with your teeth in your mouth. You can choose either a 5km or 7.5km run for your running distance.The finish line for the run will close at 23:00, when it is time to head to our partners' facilities to enjoy the after-games. You can then dance the rest of your energy away at the official after-party, where the awards ceremony will also take place starting at around 00:30.Now gather your own running team, choose your team outfits and join us for the toughest running event of the autumn through idyllic Tampere!",
+            "ownerName": "Tampereen Nuorkauppakamari Ry",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Adults' Evening in Rulla",
             "venue": "Keskustori 4, 33100 Tampere",
             "startDate": "2025-06-10T13:00:00.000Z",
@@ -3047,6 +3301,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -3137,119 +3392,6 @@
     },
     {
         "leftPanelData": {
-            "eventName": "Modus Market",
-            "venue": "Tallipiha, Kuninkaankatu 4, 33210 Tampere",
-            "startDate": "2025-06-14T08:00:00.000Z",
-            "endDate": "2025-06-15T13:00:00.000Z",
-            "eventType": [
-                "fairs",
-                "handicraft",
-                "consert"
-            ],
-            "score": 98,
-            "normalizedScore": 28.0,
-            "dayType": "weekend",
-            "timeOfDay": "morning",
-            "views": 75,
-            "audienceType": "General",
-            "daysToEvent": -4,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Family",
-                "Adults",
-                "International"
-            ],
-            "occurrenceCount": 2,
-            "labels": [
-                "Family-friendly",
-                "Seasonal Hotspot",
-                "International"
-            ]
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Modus Market",
-            "startDate": "2025-06-14T08:00:00.000Z",
-            "endDate": "2025-06-15T13:00:00.000Z",
-            "score": 98,
-            "normalizedScore": 28.0,
-            "scoreBreakdown": [
-                {
-                    "type": "Event Type",
-                    "value": 20
-                },
-                {
-                    "type": "Views",
-                    "value": 5
-                },
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 20
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 20
-                },
-                {
-                    "type": "Time of Day",
-                    "value": 10
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 10
-                },
-                {
-                    "type": "Demographics Fit",
-                    "value": 13
-                }
-            ],
-            "views": 75,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekend",
-            "timeOfDay": "morning",
-            "audienceType": "General",
-            "globalContentCategories": [
-                "fairs",
-                "handicraft",
-                "consert"
-            ],
-            "ages": [],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.5034939,
-                "lng": 23.7540468,
-                "address": "Tallipiha, Kuninkaankatu 4, 33210 Tampere"
-            },
-            "upcomingDates": [],
-            "contactEmail": "tallipiha10@gmail.com",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": "https://www.facebook.com/TallipihaTampere",
-                "instagram": "https://www.instagram.com/tallipiha?igshid=MjEwN2IyYWYwYw==",
-                "twitter": null
-            },
-            "description": "Modus Market - unique handicrafts and small series for sale. At the event, artisans and craftsmen will sell and demonstrate their skills. On Saturday, every hour from 12 to 15, Go Go Pops will perform (30 min. set). The good-natured ukulele band Go Go Pops will play relaxed, easy-going music - from the sweet melodies of the past to today's rallies. On Sunday, at 12 and 14, the lovely Miss Daisy will perform. Miss Daisy will perform unforgettable songs from the 40s and 60s in her own unique style in the event yard.",
-            "ownerName": "Tallipiha",
-            "locations_type": "outdoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Family",
-                "Adults",
-                "International"
-            ],
-            "occurrenceCount": 2,
-            "labels": [
-                "Family-friendly",
-                "Seasonal Hotspot",
-                "International"
-            ]
-        }
-    },
-    {
-        "leftPanelData": {
             "eventName": "Haihara Summer Wednesdays",
             "venue": "Haihara Art Centre, Haiharankatu 30, 33710 Tampere",
             "startDate": "2025-07-02T12:00:00.000Z",
@@ -3266,6 +3408,7 @@
             "daysToEvent": 14,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -3392,6 +3535,7 @@
             "daysToEvent": 87,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -3498,6 +3642,7 @@
             "daysToEvent": -17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -3595,6 +3740,7 @@
             "daysToEvent": -17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -3692,6 +3838,7 @@
             "daysToEvent": -17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -3789,6 +3936,7 @@
             "daysToEvent": -17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -3886,6 +4034,7 @@
             "daysToEvent": -17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -3983,6 +4132,7 @@
             "daysToEvent": -17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -4083,6 +4233,7 @@
             "daysToEvent": -1,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -4223,6 +4374,7 @@
             "daysToEvent": -74,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -4324,6 +4476,7 @@
             "daysToEvent": 8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -4430,6 +4583,7 @@
             "daysToEvent": 16,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -4551,6 +4705,7 @@
             "daysToEvent": 73,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -4666,6 +4821,7 @@
             "daysToEvent": 12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -4778,6 +4934,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -4893,6 +5050,7 @@
             "daysToEvent": 24,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -4990,6 +5148,144 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Canoeing & Löyly (Finnish sauna week)",
+            "venue": "Rauhaniementie 23, 33180 Tampere",
+            "startDate": "2025-06-13T14:00:00.000Z",
+            "endDate": "2025-06-13T18:00:00.000Z",
+            "eventType": [
+                "festivals",
+                "activities",
+                "excursions, guided tours",
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus"
+            ],
+            "score": 91,
+            "normalizedScore": 26.0,
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "views": 22,
+            "audienceType": "Family",
+            "daysToEvent": -5,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Canoeing & Löyly (Finnish sauna week)",
+            "startDate": "2025-06-13T14:00:00.000Z",
+            "endDate": "2025-06-13T18:00:00.000Z",
+            "score": 91,
+            "normalizedScore": 26.0,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 21
+                }
+            ],
+            "views": 22,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "festivals",
+                "activities",
+                "excursions, guided tours",
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus"
+            ],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.51548539999999,
+                "lng": 23.7852902,
+                "address": "Rauhaniementie 23, 33180 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "info@saunatemppeli.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": null,
+                "instagram": "https://www.instagram.com/saunatemppeli/",
+                "twitter": null
+            },
+            "description": "Hiking Travel Hit invites you to a sauna from the waves, in collaboration with Saunatemppeli.We are celebrating the Finnish sauna festival on Friday 13.6. on the Rauhaniemi beach.Let's spend Friday sauna, paddling and enjoying! Paddling between 15:30-19:30. Sauna as usual 17-21.You do not need previous paddling experience to rent, as Hiking Travels will make sure you get started. If you are under 18 years old, please bring a signed permission slip from your parent. You can also book your equipment in advance by email (vuokraamo@hikingtravelhit.fi)1h rental prices at the event:2-person open canoe 13€/hKayak unit 10€/hKayak duo 16€/hand 2€ cheaper for those who bought a sauna ticket.We will also organize a \"waves to saunas\" large canoe trip on the same day, which can be purchased separately or combined with other celebrations of the evening. More information about the event in the coming days. Also follow Hiking Travels' own social media:F U O M A L A I S E N&nbsp; S A U N A N&nbsp; W I I D H O1 0 . 6 .&nbsp; -&nbsp; 1 5 . 6 .",
+            "ownerName": "Saunatemppeli / Saunakonkeli",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Pride in Laikku: March Pre-Party",
             "venue": "Kulttuuritalo Laikku, Keskustori 4, Tampere",
             "startDate": "2025-06-14T08:00:00.000Z",
@@ -5007,6 +5303,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -5120,6 +5417,7 @@
             "daysToEvent": -3,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -5245,11 +5543,12 @@
             "daysToEvent": -2,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
                 "History Enthusiasts",
-                "Local Residents"
+                "Cultural Visitors"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -5315,7 +5614,7 @@
             "demographics": [
                 "Adults",
                 "History Enthusiasts",
-                "Local Residents"
+                "Cultural Visitors"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -5342,6 +5641,7 @@
             "daysToEvent": 62,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -5437,143 +5737,6 @@
     },
     {
         "leftPanelData": {
-            "eventName": "Canoeing & Löyly (Finnish sauna week)",
-            "venue": "Rauhaniementie 23, 33180 Tampere",
-            "startDate": "2025-06-13T14:00:00.000Z",
-            "endDate": "2025-06-13T18:00:00.000Z",
-            "eventType": [
-                "festivals",
-                "activities",
-                "excursions, guided tours",
-                "tt_asuminen",
-                "tt_digitaidot",
-                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
-                "tt_kaverit_ihmissuhteet",
-                "tt_kotoutuminen_maahanmuutto",
-                "tt_paihteettomyys_riippuvuudet",
-                "tt_opiskelu_oppiminen",
-                "tt_mielen_hyvinvointi",
-                "tt_sairaudet",
-                "tt_talous_velka",
-                "tt_terveys_elintavat",
-                "tt_tyottomyys_tyollistyminen",
-                "tt_vammaisuus_liikuntarajoitteisuus"
-            ],
-            "score": 88,
-            "normalizedScore": 25.14,
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "views": 22,
-            "audienceType": "Family",
-            "daysToEvent": -5,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Youth",
-                "Children",
-                "Family",
-                "Under 18"
-            ],
-            "occurrenceCount": 1,
-            "labels": [
-                "Family-friendly",
-                "Tourist Magnet",
-                "Seasonal Hotspot"
-            ]
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Canoeing & Löyly (Finnish sauna week)",
-            "startDate": "2025-06-13T14:00:00.000Z",
-            "endDate": "2025-06-13T18:00:00.000Z",
-            "score": 88,
-            "normalizedScore": 25.14,
-            "scoreBreakdown": [
-                {
-                    "type": "Event Type",
-                    "value": 20
-                },
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 20
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 10
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 20
-                },
-                {
-                    "type": "Demographics Fit",
-                    "value": 18
-                }
-            ],
-            "views": 22,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "audienceType": "Family",
-            "globalContentCategories": [
-                "festivals",
-                "activities",
-                "excursions, guided tours",
-                "tt_asuminen",
-                "tt_digitaidot",
-                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
-                "tt_kaverit_ihmissuhteet",
-                "tt_kotoutuminen_maahanmuutto",
-                "tt_paihteettomyys_riippuvuudet",
-                "tt_opiskelu_oppiminen",
-                "tt_mielen_hyvinvointi",
-                "tt_sairaudet",
-                "tt_talous_velka",
-                "tt_terveys_elintavat",
-                "tt_tyottomyys_tyollistyminen",
-                "tt_vammaisuus_liikuntarajoitteisuus"
-            ],
-            "ages": [
-                "age-4",
-                "age-5",
-                "age-6"
-            ],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.51548539999999,
-                "lng": 23.7852902,
-                "address": "Rauhaniementie 23, 33180 Tampere"
-            },
-            "upcomingDates": [],
-            "contactEmail": "info@saunatemppeli.fi",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": null,
-                "instagram": "https://www.instagram.com/saunatemppeli/",
-                "twitter": null
-            },
-            "description": "Hiking Travel Hit invites you to a sauna from the waves, in collaboration with Saunatemppeli.We are celebrating the Finnish sauna festival on Friday 13.6. on the Rauhaniemi beach.Let's spend Friday sauna, paddling and enjoying! Paddling between 15:30-19:30. Sauna as usual 17-21.You do not need previous paddling experience to rent, as Hiking Travels will make sure you get started. If you are under 18 years old, please bring a signed permission slip from your parent. You can also book your equipment in advance by email (vuokraamo@hikingtravelhit.fi)1h rental prices at the event:2-person open canoe 13€/hKayak unit 10€/hKayak duo 16€/hand 2€ cheaper for those who bought a sauna ticket.We will also organize a \"waves to saunas\" large canoe trip on the same day, which can be purchased separately or combined with other celebrations of the evening. More information about the event in the coming days. Also follow Hiking Travels' own social media:F U O M A L A I S E N&nbsp; S A U N A N&nbsp; W I I D H O1 0 . 6 .&nbsp; -&nbsp; 1 5 . 6 .",
-            "ownerName": "Saunatemppeli / Saunakonkeli",
-            "locations_type": "outdoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Youth",
-                "Children",
-                "Family",
-                "Under 18"
-            ],
-            "occurrenceCount": 1,
-            "labels": [
-                "Family-friendly",
-                "Tourist Magnet",
-                "Seasonal Hotspot"
-            ]
-        }
-    },
-    {
-        "leftPanelData": {
             "eventName": "Manse Pride Movie Brunch - The Wizard of Oz, 1939, K7",
             "venue": "Tuulensuun Palatsi, Hämeenkatu 30, 33200 Tampere",
             "startDate": "2025-06-15T08:00:00.000Z",
@@ -5591,6 +5754,7 @@
             "daysToEvent": -3,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -5697,6 +5861,7 @@
             "daysToEvent": 30,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -5804,6 +5969,7 @@
             "daysToEvent": 71,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -5920,6 +6086,7 @@
             "daysToEvent": 71,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -6034,6 +6201,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -6150,6 +6318,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -6274,6 +6443,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -6400,6 +6570,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -6504,6 +6675,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -6605,6 +6777,7 @@
             "daysToEvent": 65,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -6716,6 +6889,7 @@
             "daysToEvent": -19,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -6819,6 +6993,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -6927,6 +7102,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -7035,6 +7211,7 @@
             "daysToEvent": 38,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth"
@@ -7127,108 +7304,6 @@
     },
     {
         "leftPanelData": {
-            "eventName": "Nightrun 2025",
-            "venue": "Ratinan Raitti, 33100 Tampere",
-            "startDate": "2025-09-06T15:00:00.000Z",
-            "endDate": "2025-09-06T20:30:00.000Z",
-            "eventType": [
-                "sports and fitness",
-                "festivals"
-            ],
-            "score": 78,
-            "normalizedScore": 22.29,
-            "dayType": "weekend",
-            "timeOfDay": "other",
-            "views": 299,
-            "audienceType": "Adult",
-            "daysToEvent": 80,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Running Enthusiasts",
-                "Fitness Participants"
-            ],
-            "occurrenceCount": 1,
-            "labels": []
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Nightrun 2025",
-            "startDate": "2025-09-06T15:00:00.000Z",
-            "endDate": "2025-09-06T20:30:00.000Z",
-            "score": 78,
-            "normalizedScore": 22.29,
-            "scoreBreakdown": [
-                {
-                    "type": "Event Type",
-                    "value": 20
-                },
-                {
-                    "type": "Views",
-                    "value": 10
-                },
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 20
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 20
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 8
-                }
-            ],
-            "views": 299,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekend",
-            "timeOfDay": "other",
-            "audienceType": "Adult",
-            "globalContentCategories": [
-                "sports and fitness",
-                "festivals"
-            ],
-            "ages": [
-                "age-4",
-                "age-5",
-                "age-6"
-            ],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.49294231190305,
-                "lng": 23.7602199156611,
-                "address": "Ratinan Raitti, 33100 Tampere"
-            },
-            "upcomingDates": [
-                {
-                    "start": "2025-09-06T15:00:00.000Z",
-                    "end": "2025-09-06T20:30:00.000Z"
-                }
-            ],
-            "contactEmail": "setalatouko@gmail.com",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": "https://www.facebook.com/nightrunbytcc/",
-                "instagram": "https://www.instagram.com/nightrunbytcc/",
-                "twitter": null
-            },
-            "description": "Nightrun 2025The venue for Night Run will once again be Ratinnanniemi Event Park, where the start and finish of the event will be located. The running route itself will run through the centre of Tampere and the Tammerkoski area.The event gates will open at 18:00, from which point you can gather to discuss your running plan and tactics. The start will take place in the dark at 21:00. When you register, you can choose the starting group where you feel most at home. However, it is not advisable to participate in the run with your teeth in your mouth. You can choose either a 5km or 7.5km run for your running distance.The finish line for the run will close at 23:00, when it is time to head to our partners' facilities to enjoy the after-games. You can then dance the rest of your energy away at the official after-party, where the awards ceremony will also take place starting at around 00:30.Now gather your own running team, choose your team outfits and join us for the toughest running event of the autumn through idyllic Tampere!",
-            "ownerName": "Tampereen Nuorkauppakamari Ry",
-            "locations_type": "outdoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Running Enthusiasts",
-                "Fitness Participants"
-            ],
-            "occurrenceCount": 1,
-            "labels": []
-        }
-    },
-    {
-        "leftPanelData": {
             "eventName": "Youth Manse Pride: GRWM - Manse Pride 2025",
             "venue": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere",
             "startDate": "2025-06-13T12:00:00.000Z",
@@ -7245,6 +7320,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -7359,6 +7435,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -7476,6 +7553,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior",
@@ -7581,6 +7659,7 @@
             "daysToEvent": 24,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -7690,6 +7769,7 @@
             "daysToEvent": 52,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -7795,6 +7875,7 @@
             "daysToEvent": 447,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -7904,6 +7985,7 @@
             "daysToEvent": -12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -8006,6 +8088,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -8116,6 +8199,7 @@
             "daysToEvent": 50,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -8224,6 +8308,7 @@
             "daysToEvent": 52,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -8331,6 +8416,7 @@
             "daysToEvent": 87,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -8463,6 +8549,7 @@
             "daysToEvent": 211,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -8565,6 +8652,7 @@
             "daysToEvent": 232,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -8669,6 +8757,7 @@
             "daysToEvent": -19,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -8770,6 +8859,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -8877,9 +8967,10 @@
             "timeOfDay": "other",
             "views": 37,
             "audienceType": "Adult",
-            "daysToEvent": -4,
+            "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -8990,6 +9081,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -9093,6 +9185,7 @@
             "daysToEvent": -12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -9183,118 +9276,6 @@
     },
     {
         "leftPanelData": {
-            "eventName": "Kotisalsa Baila Concert Silvito El Nórdico",
-            "venue": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
-            "startDate": "2025-07-15T12:00:00.000Z",
-            "endDate": "2025-07-15T19:00:00.000Z",
-            "eventType": [
-                "consert",
-                "food and beverage"
-            ],
-            "score": 73,
-            "normalizedScore": 20.86,
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "views": 30,
-            "audienceType": "General",
-            "daysToEvent": 27,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Adults",
-                "Latin music enthusiasts",
-                "Dance enthusiasts",
-                "International"
-            ],
-            "occurrenceCount": 1,
-            "labels": [
-                "Seasonal Hotspot",
-                "International"
-            ]
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Kotisalsa Baila Concert Silvito El Nórdico",
-            "startDate": "2025-07-15T12:00:00.000Z",
-            "endDate": "2025-07-15T19:00:00.000Z",
-            "score": 73,
-            "normalizedScore": 20.86,
-            "scoreBreakdown": [
-                {
-                    "type": "Event Type",
-                    "value": 20
-                },
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 20
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 20
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 10
-                },
-                {
-                    "type": "Demographics Fit",
-                    "value": 3
-                }
-            ],
-            "views": 30,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "audienceType": "General",
-            "globalContentCategories": [
-                "consert",
-                "food and beverage"
-            ],
-            "ages": [
-                "age-5",
-                "age-6",
-                "age-4"
-            ],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.499484908944474,
-                "lng": 23.761686380975043,
-                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
-            },
-            "upcomingDates": [
-                {
-                    "start": "2025-07-15T12:00:00.000Z",
-                    "end": "2025-07-15T19:00:00.000Z"
-                }
-            ],
-            "contactEmail": "kotisalsa@gmail.com",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": "https://www.facebook.com/kotisalsa/",
-                "instagram": "https://www.instagram.com/kotisalsa/",
-                "twitter": null
-            },
-            "description": "Tervetuloa tanssimaan lattarimusiikin tahdissa ja nauttimaan livemusiikista yhdessä Silvito El Nórdico(CUB/FIN) kanssa!klo 15:00&nbsp;– Aloitus: DJ Cuba - levymusiikkia ja lattaritanssejaklo 16:00 - 16:30&nbsp;– Tanssiopetusta: Soolo &amp; parisalsa (alkeet)klo 16:30&nbsp;– DJ Cuba - levymusiikkiaklo 18:00&nbsp;– Tauko (Sound check)klo 19:00 - 19:30&nbsp;&amp;&nbsp;klo 20:00 - 20:30&nbsp;– Konserttiesityksetklo 20:30 - 22:00&nbsp;– DJ-levymusiikkia ja tanssianimaatiotaDJ soittaa latinalaisamerikkalaista musiikkia: salsa, reggaeton, son, rumba, cha cha cha, bachata, latin pop, cumbia, merengue, samba.Tapahtuman aikana myynnissä karibialaisia herkkuja ja ruokaa (hinnat 3 - 15 €).Esintyjän kuvausSilvito El Nórdico – itsenäinen artisti, syntynyt Cienfuegosissa, Kuubassa. Asunut Tampereella, Suomessa, marraskuusta 2005 lähtien. Hänen suosikkigenrensä ovat salsa, reggaeton, latin urbano, bachata ja latinalainen fuusio.Spotify: https://open.spotify.com/artist/3Vf0ncn7XJfyortuvT2Hr2?si=eTPai1NPQ0yzq4Sz4csdPgLP - Vive tu Vida - 2025Vive Tu Vida - 2020 / Vuelve - 2021 / Romántica - 2021 / Pitágoras - 2021 /Juntos - 2021 /Madre - 2024 / Hermanita - 2024 / Eres Mi Sueño - 2024EP - El Amor cura - 2025Loco Por Tu amor / Amigos / Olvido / Eres Mí Sueño / La Elegida -2024 /Perdón De Dios",
-            "ownerName": "Kotisalsa",
-            "locations_type": "outdoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Adults",
-                "Latin music enthusiasts",
-                "Dance enthusiasts",
-                "International"
-            ],
-            "occurrenceCount": 1,
-            "labels": [
-                "Seasonal Hotspot",
-                "International"
-            ]
-        }
-    },
-    {
-        "leftPanelData": {
             "eventName": "BLOCKFEST 2025: FRIDAY",
             "venue": "Ratinanniemi, 33200 Tampere",
             "startDate": "2025-08-14T21:00:00.000Z",
@@ -9315,6 +9296,7 @@
             "daysToEvent": 57,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -9421,6 +9403,7 @@
             "daysToEvent": 58,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -9524,12 +9507,12 @@
             "daysToEvent": 446,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Professionals",
                 "Industry Experts",
-                "Volunteers",
-                "Future Experts"
+                "Entrepreneurs"
             ],
             "occurrenceCount": 1,
             "labels": []
@@ -9602,8 +9585,7 @@
             "demographics": [
                 "Professionals",
                 "Industry Experts",
-                "Volunteers",
-                "Future Experts"
+                "Entrepreneurs"
             ],
             "occurrenceCount": 1,
             "labels": []
@@ -9629,6 +9611,7 @@
             "daysToEvent": 447,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Food Industry Professionals"
@@ -9732,6 +9715,7 @@
             "daysToEvent": -39,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -9844,6 +9828,7 @@
             "daysToEvent": 16,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -10006,6 +9991,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -10093,6 +10079,111 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Kotisalsa Baila Concert Silvito El Nórdico",
+            "venue": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
+            "startDate": "2025-07-15T12:00:00.000Z",
+            "endDate": "2025-07-15T19:00:00.000Z",
+            "eventType": [
+                "consert",
+                "food and beverage"
+            ],
+            "score": 70,
+            "normalizedScore": 20.0,
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "views": 30,
+            "audienceType": "General",
+            "daysToEvent": 27,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Adults",
+                "Latin music enthusiasts",
+                "Dance enthusiasts"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Kotisalsa Baila Concert Silvito El Nórdico",
+            "startDate": "2025-07-15T12:00:00.000Z",
+            "endDate": "2025-07-15T19:00:00.000Z",
+            "score": 70,
+            "normalizedScore": 20.0,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                }
+            ],
+            "views": 30,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert",
+                "food and beverage"
+            ],
+            "ages": [
+                "age-5",
+                "age-6",
+                "age-4"
+            ],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.499484908944474,
+                "lng": 23.761686380975043,
+                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-15T12:00:00.000Z",
+                    "end": "2025-07-15T19:00:00.000Z"
+                }
+            ],
+            "contactEmail": "kotisalsa@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kotisalsa/",
+                "instagram": "https://www.instagram.com/kotisalsa/",
+                "twitter": null
+            },
+            "description": "Tervetuloa tanssimaan lattarimusiikin tahdissa ja nauttimaan livemusiikista yhdessä Silvito El Nórdico(CUB/FIN) kanssa!klo 15:00&nbsp;– Aloitus: DJ Cuba - levymusiikkia ja lattaritanssejaklo 16:00 - 16:30&nbsp;– Tanssiopetusta: Soolo &amp; parisalsa (alkeet)klo 16:30&nbsp;– DJ Cuba - levymusiikkiaklo 18:00&nbsp;– Tauko (Sound check)klo 19:00 - 19:30&nbsp;&amp;&nbsp;klo 20:00 - 20:30&nbsp;– Konserttiesityksetklo 20:30 - 22:00&nbsp;– DJ-levymusiikkia ja tanssianimaatiotaDJ soittaa latinalaisamerikkalaista musiikkia: salsa, reggaeton, son, rumba, cha cha cha, bachata, latin pop, cumbia, merengue, samba.Tapahtuman aikana myynnissä karibialaisia herkkuja ja ruokaa (hinnat 3 - 15 €).Esintyjän kuvausSilvito El Nórdico – itsenäinen artisti, syntynyt Cienfuegosissa, Kuubassa. Asunut Tampereella, Suomessa, marraskuusta 2005 lähtien. Hänen suosikkigenrensä ovat salsa, reggaeton, latin urbano, bachata ja latinalainen fuusio.Spotify: https://open.spotify.com/artist/3Vf0ncn7XJfyortuvT2Hr2?si=eTPai1NPQ0yzq4Sz4csdPgLP - Vive tu Vida - 2025Vive Tu Vida - 2020 / Vuelve - 2021 / Romántica - 2021 / Pitágoras - 2021 /Juntos - 2021 /Madre - 2024 / Hermanita - 2024 / Eres Mi Sueño - 2024EP - El Amor cura - 2025Loco Por Tu amor / Amigos / Olvido / Eres Mí Sueño / La Elegida -2024 /Perdón De Dios",
+            "ownerName": "Kotisalsa",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Adults",
+                "Latin music enthusiasts",
+                "Dance enthusiasts"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Tanssiteatteri MD: VIRNE-SMIRK",
             "venue": "Hämeenkatu 25, 33200 Tampere",
             "startDate": "2025-11-15T16:00:00.000Z",
@@ -10111,6 +10202,7 @@
             "daysToEvent": 150,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -10248,6 +10340,7 @@
             "daysToEvent": -10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -10359,6 +10452,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -10459,6 +10553,7 @@
             "daysToEvent": 52,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -10590,6 +10685,7 @@
             "daysToEvent": 57,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -10731,6 +10827,7 @@
             "daysToEvent": 156,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -10840,6 +10937,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -10954,6 +11052,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -11075,6 +11174,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -11198,6 +11298,7 @@
             "daysToEvent": 174,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -11308,6 +11409,7 @@
             "daysToEvent": 25,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -11408,6 +11510,7 @@
             "daysToEvent": 50,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -11510,6 +11613,7 @@
             "daysToEvent": -159,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -11612,6 +11716,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -11717,6 +11822,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -11811,6 +11917,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -11907,6 +12014,7 @@
             "daysToEvent": 12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -12005,6 +12113,7 @@
             "daysToEvent": 26,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -12103,6 +12212,7 @@
             "daysToEvent": 40,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -12201,6 +12311,7 @@
             "daysToEvent": 54,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -12299,6 +12410,7 @@
             "daysToEvent": 61,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -12397,6 +12509,7 @@
             "daysToEvent": 71,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -12507,6 +12620,7 @@
             "daysToEvent": 142,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -12610,6 +12724,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior",
@@ -12721,6 +12836,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -12823,6 +12939,7 @@
             "daysToEvent": 15,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -12928,6 +13045,7 @@
             "daysToEvent": 10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Local Residents",
@@ -13050,6 +13168,7 @@
             "daysToEvent": 135,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -13148,6 +13267,7 @@
             "daysToEvent": 149,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -13246,6 +13366,7 @@
             "daysToEvent": 163,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -13344,6 +13465,7 @@
             "daysToEvent": 177,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -13442,6 +13564,7 @@
             "daysToEvent": 184,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -13542,6 +13665,7 @@
             "daysToEvent": -26,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -13639,6 +13763,7 @@
             "daysToEvent": -26,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -13738,6 +13863,7 @@
             "daysToEvent": -26,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
@@ -13835,6 +13961,7 @@
             "daysToEvent": 28,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -13936,6 +14063,7 @@
             "daysToEvent": 70,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -14056,6 +14184,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -14176,6 +14305,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -14280,6 +14410,7 @@
             "daysToEvent": 9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -14391,6 +14522,7 @@
             "daysToEvent": 29,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -14499,6 +14631,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
@@ -14615,6 +14748,7 @@
             "daysToEvent": -10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -14727,6 +14861,7 @@
             "daysToEvent": 18,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -14825,6 +14960,7 @@
             "daysToEvent": 108,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -14945,6 +15081,7 @@
             "daysToEvent": 226,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
@@ -15056,12 +15193,12 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
                 "Youth",
-                "Pride",
-                "Queer"
+                "Pride"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -15129,8 +15266,7 @@
             "demographics": [
                 "LGBTQ+",
                 "Youth",
-                "Pride",
-                "Queer"
+                "Pride"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -15170,6 +15306,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Rainbow-friendly",
@@ -15297,6 +15434,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Rainbow-friendly",
@@ -15411,6 +15549,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -15509,6 +15648,7 @@
             "daysToEvent": 33,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth"
@@ -15605,6 +15745,7 @@
             "daysToEvent": 70,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth"
@@ -15702,6 +15843,7 @@
             "daysToEvent": 209,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Industry Professionals",
@@ -15802,6 +15944,7 @@
             "daysToEvent": 271,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Professionals",
@@ -15901,6 +16044,7 @@
             "daysToEvent": -12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -15990,6 +16134,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -16085,6 +16230,7 @@
             "daysToEvent": 19,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -16188,6 +16334,7 @@
             "daysToEvent": 66,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -16319,6 +16466,7 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -16425,6 +16573,7 @@
             "daysToEvent": -3,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -16533,6 +16682,7 @@
             "daysToEvent": 139,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -16637,6 +16787,7 @@
             "daysToEvent": 148,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Kids and Family"
@@ -16733,6 +16884,7 @@
             "daysToEvent": 149,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Kids and Family"
@@ -16830,6 +16982,7 @@
             "daysToEvent": 150,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -16934,6 +17087,7 @@
             "daysToEvent": 150,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Kids and Family"
@@ -17031,6 +17185,7 @@
             "daysToEvent": 153,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -17146,6 +17301,7 @@
             "daysToEvent": -12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Middle-aged",
@@ -17254,6 +17410,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -17357,6 +17514,7 @@
             "daysToEvent": 17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -17457,6 +17615,7 @@
             "daysToEvent": 31,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -17558,6 +17717,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -17663,6 +17823,7 @@
             "daysToEvent": -10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -17754,6 +17915,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -17847,6 +18009,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -17936,6 +18099,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18025,6 +18189,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18114,6 +18279,7 @@
             "daysToEvent": -3,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18203,6 +18369,7 @@
             "daysToEvent": 8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18299,6 +18466,7 @@
             "daysToEvent": 10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18395,6 +18563,7 @@
             "daysToEvent": 11,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18489,6 +18658,7 @@
             "daysToEvent": 17,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18583,6 +18753,7 @@
             "daysToEvent": 18,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18677,6 +18848,7 @@
             "daysToEvent": 31,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18771,6 +18943,7 @@
             "daysToEvent": 39,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18865,6 +19038,7 @@
             "daysToEvent": 45,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -18959,6 +19133,7 @@
             "daysToEvent": 45,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -19053,6 +19228,7 @@
             "daysToEvent": 53,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -19147,6 +19323,7 @@
             "daysToEvent": 60,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -19242,6 +19419,7 @@
             "daysToEvent": 144,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -19346,6 +19524,7 @@
             "daysToEvent": -119,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -19434,6 +19613,7 @@
             "daysToEvent": 1,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -19540,6 +19720,7 @@
             "daysToEvent": 8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -19657,6 +19838,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -19766,6 +19948,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adult",
@@ -19859,6 +20042,7 @@
             "daysToEvent": 59,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -19953,6 +20137,7 @@
             "daysToEvent": 171,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -20063,6 +20248,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -20177,6 +20363,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -20264,8 +20451,8 @@
         "leftPanelData": {
             "eventName": "Tampere Philharmonic Orchestra: Season series concert",
             "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
-            "startDate": "2026-02-13T17:00:00.000Z",
-            "endDate": "2026-02-13T19:00:00.000Z",
+            "startDate": "2026-01-23T17:00:00.000Z",
+            "endDate": "2026-01-23T19:00:00.000Z",
             "eventType": [
                 "consert"
             ],
@@ -20275,13 +20462,14 @@
             "timeOfDay": "evening",
             "views": 1,
             "audienceType": "Adult",
-            "daysToEvent": 240,
+            "daysToEvent": 219,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
-                "Classical Music Enthusiasts"
+                "Music Enthusiasts"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -20291,8 +20479,8 @@
         "fullEventData": {
             "eventId": "",
             "name": "Tampere Philharmonic Orchestra: Season series concert",
-            "startDate": "2026-02-13T17:00:00.000Z",
-            "endDate": "2026-02-13T19:00:00.000Z",
+            "startDate": "2026-01-23T17:00:00.000Z",
+            "endDate": "2026-01-23T19:00:00.000Z",
             "score": 41,
             "normalizedScore": 11.71,
             "scoreBreakdown": [
@@ -20335,8 +20523,8 @@
             },
             "upcomingDates": [
                 {
-                    "start": "2026-02-13T17:00:00.000Z",
-                    "end": "2026-02-13T19:00:00.000Z"
+                    "start": "2026-01-23T17:00:00.000Z",
+                    "end": "2026-01-23T19:00:00.000Z"
                 }
             ],
             "contactEmail": "sara.hamalainen@tampere.fi",
@@ -20346,13 +20534,13 @@
                 "instagram": "https://www.instagram.com/tamperefilharmonia/",
                 "twitter": null
             },
-            "description": "Matthew Halls, conductorJean-Guihen Queyras, celloAnna Thorvaldsdottir: DreamingAntonin Dvořák: Cello ConcertoJean Sibelius: Symphony No. 6Season series concert | more information will be published in AutumnSeason tickets for the whole season of 2025-2026 will go on sale on Tuesday 20 May at 6:15 PM. Single tickets of spring 2026 season series concerts will go on sale later in Autumn. ",
+            "description": "Matthew Halls, conductorLucy Crowe, sopranoClaude Debussy: La Mer (The Sea)Jean Sibelius: LuonnotarRalph Vaughan Williams: Symphony No. 3, “Pastoral”Season series concert | more information will be published in AutumnSeason tickets for the whole season of 2025-2026 will go on sale on Tuesday 20 May at 6:15 PM. Single tickets of spring 2026 season series concerts will go on sale later in Autumn. ",
             "ownerName": "Tampere Filharmonia",
             "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
-                "Classical Music Enthusiasts"
+                "Music Enthusiasts"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -20391,6 +20579,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
@@ -20510,6 +20699,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Queer",
@@ -20618,6 +20808,7 @@
             "daysToEvent": 4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -20722,6 +20913,7 @@
             "daysToEvent": 7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -20816,6 +21008,7 @@
             "daysToEvent": 18,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -20920,6 +21113,7 @@
             "daysToEvent": 25,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
@@ -21026,10 +21220,12 @@
             "daysToEvent": 32,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
                 "Music Enthusiasts",
+                "Tourists",
                 "Local Community"
             ],
             "occurrenceCount": 1,
@@ -21103,6 +21299,7 @@
             "demographics": [
                 "Family",
                 "Music Enthusiasts",
+                "Tourists",
                 "Local Community"
             ],
             "occurrenceCount": 1,
@@ -21130,6 +21327,7 @@
             "daysToEvent": 42,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -21222,6 +21420,7 @@
             "daysToEvent": 78,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21316,6 +21515,7 @@
             "daysToEvent": 86,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21410,6 +21610,7 @@
             "daysToEvent": 93,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21504,6 +21705,7 @@
             "daysToEvent": 95,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21598,6 +21800,7 @@
             "daysToEvent": 100,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21692,6 +21895,7 @@
             "daysToEvent": 107,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21786,6 +21990,7 @@
             "daysToEvent": 114,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21880,6 +22085,7 @@
             "daysToEvent": 144,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -21974,6 +22180,7 @@
             "daysToEvent": 156,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -22064,6 +22271,7 @@
             "daysToEvent": 178,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family"
@@ -22160,9 +22368,12 @@
             "daysToEvent": -145,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "General"
+                "Adults",
+                "Art Enthusiasts",
+                "Finnish Culture"
             ],
             "occurrenceCount": 1,
             "labels": []
@@ -22223,7 +22434,9 @@
             "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "General"
+                "Adults",
+                "Art Enthusiasts",
+                "Finnish Culture"
             ],
             "occurrenceCount": 1,
             "labels": []
@@ -22245,6 +22458,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -22342,6 +22556,7 @@
             "daysToEvent": -12,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior"
@@ -22453,11 +22668,11 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
-                "Spa Enthusiasts",
-                "Wellness Seekers"
+                "Wellness Enthusiasts"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -22535,8 +22750,7 @@
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
-                "Spa Enthusiasts",
-                "Wellness Seekers"
+                "Wellness Enthusiasts"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -22560,6 +22774,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Queer",
@@ -22655,6 +22870,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Music Enthusiasts",
@@ -22745,6 +22961,7 @@
             "daysToEvent": 5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior"
@@ -22839,6 +23056,7 @@
             "daysToEvent": 14,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -22935,6 +23153,7 @@
             "daysToEvent": 21,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -23031,6 +23250,7 @@
             "daysToEvent": 34,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -23127,6 +23347,7 @@
             "daysToEvent": 47,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior"
@@ -23221,6 +23442,7 @@
             "daysToEvent": 50,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International"
@@ -23303,100 +23525,6 @@
         "leftPanelData": {
             "eventName": "Tampere Philharmonic Orchestra: Season series concert",
             "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
-            "startDate": "2026-01-23T17:00:00.000Z",
-            "endDate": "2026-01-23T19:00:00.000Z",
-            "eventType": [
-                "consert"
-            ],
-            "score": 38,
-            "normalizedScore": 10.86,
-            "dayType": "weekday",
-            "timeOfDay": "evening",
-            "views": 1,
-            "audienceType": "Adult",
-            "daysToEvent": 219,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Music Enthusiasts",
-                "Classical Music Fans",
-                "Cultural Attendees"
-            ],
-            "occurrenceCount": 1,
-            "labels": []
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Tampere Philharmonic Orchestra: Season series concert",
-            "startDate": "2026-01-23T17:00:00.000Z",
-            "endDate": "2026-01-23T19:00:00.000Z",
-            "score": 38,
-            "normalizedScore": 10.86,
-            "scoreBreakdown": [
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 5
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 5
-                },
-                {
-                    "type": "Time of Day",
-                    "value": 20
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 8
-                }
-            ],
-            "views": 1,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekday",
-            "timeOfDay": "evening",
-            "audienceType": "Adult",
-            "globalContentCategories": [
-                "consert"
-            ],
-            "ages": [],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.4959526,
-                "lng": 23.7813754,
-                "address": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere"
-            },
-            "upcomingDates": [
-                {
-                    "start": "2026-01-23T17:00:00.000Z",
-                    "end": "2026-01-23T19:00:00.000Z"
-                }
-            ],
-            "contactEmail": "sara.hamalainen@tampere.fi",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": "https://www.facebook.com/TampereFilharmonia",
-                "instagram": "https://www.instagram.com/tamperefilharmonia/",
-                "twitter": null
-            },
-            "description": "Matthew Halls, conductorLucy Crowe, sopranoClaude Debussy: La Mer (The Sea)Jean Sibelius: LuonnotarRalph Vaughan Williams: Symphony No. 3, “Pastoral”Season series concert | more information will be published in AutumnSeason tickets for the whole season of 2025-2026 will go on sale on Tuesday 20 May at 6:15 PM. Single tickets of spring 2026 season series concerts will go on sale later in Autumn. ",
-            "ownerName": "Tampere Filharmonia",
-            "locations_type": "indoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "Music Enthusiasts",
-                "Classical Music Fans",
-                "Cultural Attendees"
-            ],
-            "occurrenceCount": 1,
-            "labels": []
-        }
-    },
-    {
-        "leftPanelData": {
-            "eventName": "Tampere Philharmonic Orchestra: Season series concert",
-            "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
             "startDate": "2026-01-30T17:00:00.000Z",
             "endDate": "2026-01-30T19:00:00.000Z",
             "eventType": [
@@ -23411,6 +23539,7 @@
             "daysToEvent": 226,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Music Enthusiasts",
@@ -23489,125 +23618,97 @@
     },
     {
         "leftPanelData": {
-            "eventName": "Relaxing sound journey",
-            "venue": "Federleynkatu 19, 33400 Tampere",
-            "startDate": "2025-06-17T16:15:00.000Z",
-            "endDate": "2025-06-17T17:30:00.000Z",
+            "eventName": "Tampere Philharmonic Orchestra: Season series concert",
+            "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
+            "startDate": "2026-02-13T17:00:00.000Z",
+            "endDate": "2026-02-13T19:00:00.000Z",
             "eventType": [
-                "tt_asuminen",
-                "tt_digitaidot",
-                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
-                "tt_kaverit_ihmissuhteet",
-                "tt_kotoutuminen_maahanmuutto",
-                "tt_paihteettomyys_riippuvuudet",
-                "tt_opiskelu_oppiminen",
-                "tt_mielen_hyvinvointi",
-                "tt_sairaudet",
-                "tt_talous_velka",
-                "tt_terveys_elintavat",
-                "tt_tyottomyys_tyollistyminen",
-                "tt_vammaisuus_liikuntarajoitteisuus",
                 "consert"
             ],
-            "score": 36,
-            "normalizedScore": 10.29,
+            "score": 38,
+            "normalizedScore": 10.86,
             "dayType": "weekday",
-            "timeOfDay": "other",
-            "views": 3,
+            "timeOfDay": "evening",
+            "views": 1,
             "audienceType": "Adult",
-            "daysToEvent": -1,
+            "daysToEvent": 240,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Relaxation",
-                "Wellness",
-                "Therapeutic",
-                "International"
+                "Music Enthusiasts",
+                "Classical Music Fans",
+                "Cultural Attendees"
             ],
             "occurrenceCount": 1,
-            "labels": [
-                "Seasonal Hotspot",
-                "International"
-            ]
+            "labels": []
         },
         "fullEventData": {
             "eventId": "",
-            "name": "Relaxing sound journey",
-            "startDate": "2025-06-17T16:15:00.000Z",
-            "endDate": "2025-06-17T17:30:00.000Z",
-            "score": 36,
-            "normalizedScore": 10.29,
+            "name": "Tampere Philharmonic Orchestra: Season series concert",
+            "startDate": "2026-02-13T17:00:00.000Z",
+            "endDate": "2026-02-13T19:00:00.000Z",
+            "score": 38,
+            "normalizedScore": 10.86,
             "scoreBreakdown": [
                 {
                     "type": "Outdoor/Indoor",
-                    "value": 20
+                    "value": 5
                 },
                 {
                     "type": "Event Duration",
                     "value": 5
                 },
                 {
-                    "type": "Audience Fit",
-                    "value": 8
+                    "type": "Time of Day",
+                    "value": 20
                 },
                 {
-                    "type": "Demographics Fit",
-                    "value": 3
+                    "type": "Audience Fit",
+                    "value": 8
                 }
             ],
-            "views": 3,
+            "views": 1,
             "peakFootTraffic": "N/A",
             "dayType": "weekday",
-            "timeOfDay": "other",
+            "timeOfDay": "evening",
             "audienceType": "Adult",
             "globalContentCategories": [
-                "tt_asuminen",
-                "tt_digitaidot",
-                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
-                "tt_kaverit_ihmissuhteet",
-                "tt_kotoutuminen_maahanmuutto",
-                "tt_paihteettomyys_riippuvuudet",
-                "tt_opiskelu_oppiminen",
-                "tt_mielen_hyvinvointi",
-                "tt_sairaudet",
-                "tt_talous_velka",
-                "tt_terveys_elintavat",
-                "tt_tyottomyys_tyollistyminen",
-                "tt_vammaisuus_liikuntarajoitteisuus",
                 "consert"
             ],
             "ages": [],
             "weather": "N/A",
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.5214593,
-                "lng": 23.6873269,
-                "address": "Federleynkatu 19, 33400 Tampere"
+                "lat": 61.4959526,
+                "lng": 23.7813754,
+                "address": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere"
             },
-            "upcomingDates": [],
-            "contactEmail": "infohealingtones@gmail.com",
+            "upcomingDates": [
+                {
+                    "start": "2026-02-13T17:00:00.000Z",
+                    "end": "2026-02-13T19:00:00.000Z"
+                }
+            ],
+            "contactEmail": "sara.hamalainen@tampere.fi",
             "mainImage": null,
             "socialLinks": {
-                "facebook": "https://www.facebook.com/HealingTones2022",
-                "instagram": "https://www.instagram.com/healing_tones2022/",
+                "facebook": "https://www.facebook.com/TampereFilharmonia",
+                "instagram": "https://www.instagram.com/tamperefilharmonia/",
                 "twitter": null
             },
-            "description": "Warmly welcome to enjoy a small group sound journey on Tue 17.6.25 at 19.15-20.30 to the Pirtti, built in 1861 and full of history in the Niemenranta area.The Pirtti is located in Lielahti next to the magnificent cattle building designed by Birger Federley. The Pirtti has been renovated and its outer walls have also regained their original yellow color.Inside the Pirtti, there is a wonderfully serene atmosphere and the beautiful log walls and wooden floor provide a wonderful setting for a sound bowl concert.The Pirtti has excellent transport connections to and from Tampere. For example, the journey from Pyynikintori takes approx. 10 minutes by tram and the walk from the tram stop to the Pirtti is approx. 400m.The singing bowl concert takes you on a sound journey, where in addition to singing bowls, many other therapeutic instruments play. A relaxing sound journey is a healing experience that offers the mind and body a moment of rest in the midst of hectic everyday life. At the end of the evening, it is wonderful to head home relaxed and prepare for sleep. This evening, the main instruments are traditional Tibetan singing bowls 🎶in addition to which the sound world is enlivened by many other therapeutic instruments.For an hour, you can lie under a blanket with your eyes closed and just relax, listening to the harmony and vibration of the bowls. Breathing becomes more even and deeper, heart rate decreases and mind calms down.Take time for yourself ♥️Bring your own platform (yoga mat, camping mattress, sun lounger cushion), pillow and blanket. The harmony bath is received comfortably lying under a blanket, you can also sit if you wish. You can borrow a yoga mat, let us know in the registration message if you need it. Dress in comfortable and relaxed clothes, also bring some warm clothes, because when the body relaxes it often gets cold. Remember to also bring a water bottle. At the beginning and end, there is a moment of time reserved for conversation, clinking glasses for approx. 60 min.Price: €22 incl. VATPayment on site in cash or MobilePay on the day of the event at. By 15REGISTRATIONinfohealingtones@gmail.com(registration is binding)You will receive instructions on how to arrive by return mail and it is also a confirmation that your registration has arrived. If you do not receive a return email, please check if the email address is spelled correctly.More information about events and upcoming events:www.healingtones.fi(events also in Kangasala, Lempäälä, Pirkkala and Ylöjärvi)See you at Rientola Pirtti ✨&lt;3:t Terhi Jaskari*All rights reserved.Upcoming singing bowl concerts in Niemenranta:Tues 1.7 crystal bowlsTues 15.7 Tibetan singing bowlsTues 29.7 crystal bowlsTues 12.8 Tibetan singing bowlsTues 26.8 crystal bowls",
-            "ownerName": "HealingTones",
-            "locations_type": "outdoor",
+            "description": "Matthew Halls, conductorJean-Guihen Queyras, celloAnna Thorvaldsdottir: DreamingAntonin Dvořák: Cello ConcertoJean Sibelius: Symphony No. 6Season series concert | more information will be published in AutumnSeason tickets for the whole season of 2025-2026 will go on sale on Tuesday 20 May at 6:15 PM. Single tickets of spring 2026 season series concerts will go on sale later in Autumn. ",
+            "ownerName": "Tampere Filharmonia",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Relaxation",
-                "Wellness",
-                "Therapeutic",
-                "International"
+                "Music Enthusiasts",
+                "Classical Music Fans",
+                "Cultural Attendees"
             ],
             "occurrenceCount": 1,
-            "labels": [
-                "Seasonal Hotspot",
-                "International"
-            ]
+            "labels": []
         }
     },
     {
@@ -23630,6 +23731,7 @@
             "daysToEvent": -13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -23721,6 +23823,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -23806,6 +23909,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -23904,6 +24008,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24006,6 +24111,7 @@
             "daysToEvent": -2,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24091,6 +24197,7 @@
             "daysToEvent": -1,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24176,6 +24283,7 @@
             "daysToEvent": 0,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24266,6 +24374,7 @@
             "daysToEvent": 0,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24356,6 +24465,7 @@
             "daysToEvent": 7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24446,6 +24556,7 @@
             "daysToEvent": 13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24536,6 +24647,7 @@
             "daysToEvent": 14,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24626,6 +24738,7 @@
             "daysToEvent": 21,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24716,6 +24829,7 @@
             "daysToEvent": 22,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24806,6 +24920,7 @@
             "daysToEvent": 28,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24896,6 +25011,7 @@
             "daysToEvent": 35,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -24986,6 +25102,7 @@
             "daysToEvent": 35,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25076,6 +25193,7 @@
             "daysToEvent": 36,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25166,6 +25284,7 @@
             "daysToEvent": 49,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25256,6 +25375,7 @@
             "daysToEvent": 49,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25346,6 +25466,7 @@
             "daysToEvent": 53,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25442,6 +25563,7 @@
             "daysToEvent": 56,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25532,6 +25654,7 @@
             "daysToEvent": 63,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25622,6 +25745,7 @@
             "daysToEvent": 63,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -25712,6 +25836,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -25823,6 +25948,7 @@
             "daysToEvent": -8,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -25920,6 +26046,107 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Lempeä open mic",
+            "venue": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere",
+            "startDate": "2025-06-11T15:00:00.000Z",
+            "endDate": "2025-06-11T17:00:00.000Z",
+            "eventType": [],
+            "score": 34,
+            "normalizedScore": 9.71,
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "views": 220,
+            "audienceType": "Adult",
+            "daysToEvent": -7,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+",
+                "Youth (over 18)",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Lempeä open mic",
+            "startDate": "2025-06-11T15:00:00.000Z",
+            "endDate": "2025-06-11T17:00:00.000Z",
+            "score": 34,
+            "normalizedScore": 9.71,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 8
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 6
+                }
+            ],
+            "views": 220,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "audienceType": "Adult",
+            "globalContentCategories": [],
+            "ages": [
+                "age-4",
+                "age-5"
+            ],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4988264,
+                "lng": 23.762119,
+                "address": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "lempeaopenmic@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": null,
+                "instagram": "https://www.instagram.com/lempeaopenmic/",
+                "twitter": null
+            },
+            "description": "Lempeä open mic will be oozing queerness on Manse Pride-week!🫧In this event you don’t have to be queer in a pretty way or be afraid of being too political, too fierce or too rough! We’ll make space for every thought and feeling regarding queerness and/or pride, whether it’s a soft whisper of self love or an angry speech of hopelessness, or anything in-between! We recommend this event for over 18-year-olds. So far our events have been finnish-speaking only, but for this event we’re broadening our horizons to any language you’d like to share with and hosting will be in finnish and english!💫Before the actual open mic there will be two opening acts: Hannaeerika and AARRE! The event is free of charge. As per usual, at the back of the space there will be pens and paper for the listeners who feel like doodling. There will be a keyboard on stage which you can use in your performance if you’d like. You can sign up to perform in advance at lempeaopenmic@gmail.com, but signing up will also be possible at the event. To start, we’re hoping for your set to be max 10mins. Please tell your stage name in your message. 🫧Even though the event has a theme, you can share whatever you’d like. Our goal is to create a space for sharing especially for queer people. Openness to unfinished thoughts is still very important to us and we aim to keep the threshold to share as low as possible. Every performer will be met with open arms but we encourage you to check in with your own relationship to queerness and how and when to take and to give space.🩷See you next month, we are looking forward to this! 💫Hannaeerika is a wonderful new name in the finnish indie music scene. She’s a singer-songwriter, whose gentle and playful style captures the listener from the very first note. Hannaeerika is an artist who believes in true self-expression. Her songs are full of personal stories and the small, meaningfull moments&nbsp;in&nbsp;life.AARRE is a rapper and a transman. In his lyrics he covers his difficulties with men and manhood. The characters that have been hiding in the shadows will be released in front of the mic, it’s their time to come out",
+            "ownerName": "Tampereen kaupungin nuorisopalvelut",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+",
+                "Youth (over 18)",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Tampere Film Festival Goes Manse Pride: Echoes of Brokeback Mountain",
             "venue": "Arthouse Cinema Niagara / Pirkanmaa Film Center, Kehräsaari B, 33200 Tampere",
             "startDate": "2025-06-11T16:15:00.000Z",
@@ -25936,6 +26163,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -26047,6 +26275,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -26170,6 +26399,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -26281,6 +26511,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Sports Enthusiasts",
@@ -26352,6 +26583,124 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Relaxing sound journey",
+            "venue": "Federleynkatu 19, 33400 Tampere",
+            "startDate": "2025-06-17T16:15:00.000Z",
+            "endDate": "2025-06-17T17:30:00.000Z",
+            "eventType": [
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus",
+                "consert"
+            ],
+            "score": 33,
+            "normalizedScore": 9.43,
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "views": 3,
+            "audienceType": "Adult",
+            "daysToEvent": -1,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Relaxation",
+                "Wellness",
+                "Therapeutic",
+                "Mindfulness"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Relaxing sound journey",
+            "startDate": "2025-06-17T16:15:00.000Z",
+            "endDate": "2025-06-17T17:30:00.000Z",
+            "score": 33,
+            "normalizedScore": 9.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 8
+                }
+            ],
+            "views": 3,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "audienceType": "Adult",
+            "globalContentCategories": [
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus",
+                "consert"
+            ],
+            "ages": [],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5214593,
+                "lng": 23.6873269,
+                "address": "Federleynkatu 19, 33400 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "infohealingtones@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/HealingTones2022",
+                "instagram": "https://www.instagram.com/healing_tones2022/",
+                "twitter": null
+            },
+            "description": "Warmly welcome to enjoy a small group sound journey on Tue 17.6.25 at 19.15-20.30 to the Pirtti, built in 1861 and full of history in the Niemenranta area.The Pirtti is located in Lielahti next to the magnificent cattle building designed by Birger Federley. The Pirtti has been renovated and its outer walls have also regained their original yellow color.Inside the Pirtti, there is a wonderfully serene atmosphere and the beautiful log walls and wooden floor provide a wonderful setting for a sound bowl concert.The Pirtti has excellent transport connections to and from Tampere. For example, the journey from Pyynikintori takes approx. 10 minutes by tram and the walk from the tram stop to the Pirtti is approx. 400m.The singing bowl concert takes you on a sound journey, where in addition to singing bowls, many other therapeutic instruments play. A relaxing sound journey is a healing experience that offers the mind and body a moment of rest in the midst of hectic everyday life. At the end of the evening, it is wonderful to head home relaxed and prepare for sleep. This evening, the main instruments are traditional Tibetan singing bowls 🎶in addition to which the sound world is enlivened by many other therapeutic instruments.For an hour, you can lie under a blanket with your eyes closed and just relax, listening to the harmony and vibration of the bowls. Breathing becomes more even and deeper, heart rate decreases and mind calms down.Take time for yourself ♥️Bring your own platform (yoga mat, camping mattress, sun lounger cushion), pillow and blanket. The harmony bath is received comfortably lying under a blanket, you can also sit if you wish. You can borrow a yoga mat, let us know in the registration message if you need it. Dress in comfortable and relaxed clothes, also bring some warm clothes, because when the body relaxes it often gets cold. Remember to also bring a water bottle. At the beginning and end, there is a moment of time reserved for conversation, clinking glasses for approx. 60 min.Price: €22 incl. VATPayment on site in cash or MobilePay on the day of the event at. By 15REGISTRATIONinfohealingtones@gmail.com(registration is binding)You will receive instructions on how to arrive by return mail and it is also a confirmation that your registration has arrived. If you do not receive a return email, please check if the email address is spelled correctly.More information about events and upcoming events:www.healingtones.fi(events also in Kangasala, Lempäälä, Pirkkala and Ylöjärvi)See you at Rientola Pirtti ✨&lt;3:t Terhi Jaskari*All rights reserved.Upcoming singing bowl concerts in Niemenranta:Tues 1.7 crystal bowlsTues 15.7 Tibetan singing bowlsTues 29.7 crystal bowlsTues 12.8 Tibetan singing bowlsTues 26.8 crystal bowls",
+            "ownerName": "HealingTones",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Relaxation",
+                "Wellness",
+                "Therapeutic",
+                "Mindfulness"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Summer Park Concerts: Sorokoska ry, Huojuva Komppi, Hyvän ajan surut",
             "venue": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
             "startDate": "2025-06-18T15:00:00.000Z",
@@ -26368,6 +26717,7 @@
             "daysToEvent": 0,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -26471,6 +26821,7 @@
             "daysToEvent": 13,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General",
@@ -26591,6 +26942,7 @@
             "daysToEvent": 27,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Relaxation Seekers",
@@ -26711,11 +27063,13 @@
             "daysToEvent": 41,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Relaxation Seekers",
-                "Wellness Enthusiasts",
-                "Therapeutic Music Participants"
+                "Relaxation",
+                "Wellness",
+                "Therapeutic",
+                "Mindfulness"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -26790,9 +27144,10 @@
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Relaxation Seekers",
-                "Wellness Enthusiasts",
-                "Therapeutic Music Participants"
+                "Relaxation",
+                "Wellness",
+                "Therapeutic",
+                "Mindfulness"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -26818,6 +27173,7 @@
             "daysToEvent": 55,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Music Enthusiasts",
@@ -26910,6 +27266,7 @@
             "daysToEvent": 337,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -26980,102 +27337,6 @@
     },
     {
         "leftPanelData": {
-            "eventName": "Lempeä open mic",
-            "venue": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere",
-            "startDate": "2025-06-11T15:00:00.000Z",
-            "endDate": "2025-06-11T17:00:00.000Z",
-            "eventType": [],
-            "score": 31,
-            "normalizedScore": 8.86,
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "views": 220,
-            "audienceType": "Adult",
-            "daysToEvent": -7,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "LGBTQ+",
-                "Youth (over 18)"
-            ],
-            "occurrenceCount": 1,
-            "labels": [
-                "Seasonal Hotspot",
-                "LGBTQ+ Friendly"
-            ]
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Lempeä open mic",
-            "startDate": "2025-06-11T15:00:00.000Z",
-            "endDate": "2025-06-11T17:00:00.000Z",
-            "score": 31,
-            "normalizedScore": 8.86,
-            "scoreBreakdown": [
-                {
-                    "type": "Views",
-                    "value": 10
-                },
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 5
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 5
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 8
-                },
-                {
-                    "type": "Demographics Fit",
-                    "value": 3
-                }
-            ],
-            "views": 220,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "audienceType": "Adult",
-            "globalContentCategories": [],
-            "ages": [
-                "age-4",
-                "age-5"
-            ],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.4988264,
-                "lng": 23.762119,
-                "address": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere"
-            },
-            "upcomingDates": [],
-            "contactEmail": "lempeaopenmic@gmail.com",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": null,
-                "instagram": "https://www.instagram.com/lempeaopenmic/",
-                "twitter": null
-            },
-            "description": "Lempeä open mic will be oozing queerness on Manse Pride-week!🫧In this event you don’t have to be queer in a pretty way or be afraid of being too political, too fierce or too rough! We’ll make space for every thought and feeling regarding queerness and/or pride, whether it’s a soft whisper of self love or an angry speech of hopelessness, or anything in-between! We recommend this event for over 18-year-olds. So far our events have been finnish-speaking only, but for this event we’re broadening our horizons to any language you’d like to share with and hosting will be in finnish and english!💫Before the actual open mic there will be two opening acts: Hannaeerika and AARRE! The event is free of charge. As per usual, at the back of the space there will be pens and paper for the listeners who feel like doodling. There will be a keyboard on stage which you can use in your performance if you’d like. You can sign up to perform in advance at lempeaopenmic@gmail.com, but signing up will also be possible at the event. To start, we’re hoping for your set to be max 10mins. Please tell your stage name in your message. 🫧Even though the event has a theme, you can share whatever you’d like. Our goal is to create a space for sharing especially for queer people. Openness to unfinished thoughts is still very important to us and we aim to keep the threshold to share as low as possible. Every performer will be met with open arms but we encourage you to check in with your own relationship to queerness and how and when to take and to give space.🩷See you next month, we are looking forward to this! 💫Hannaeerika is a wonderful new name in the finnish indie music scene. She’s a singer-songwriter, whose gentle and playful style captures the listener from the very first note. Hannaeerika is an artist who believes in true self-expression. Her songs are full of personal stories and the small, meaningfull moments&nbsp;in&nbsp;life.AARRE is a rapper and a transman. In his lyrics he covers his difficulties with men and manhood. The characters that have been hiding in the shadows will be released in front of the mic, it’s their time to come out",
-            "ownerName": "Tampereen kaupungin nuorisopalvelut",
-            "locations_type": "indoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "LGBTQ+",
-                "Youth (over 18)"
-            ],
-            "occurrenceCount": 1,
-            "labels": [
-                "Seasonal Hotspot",
-                "LGBTQ+ Friendly"
-            ]
-        }
-    },
-    {
-        "leftPanelData": {
             "eventName": "Sinuiksi ry's 52nd anniversary celebration for members and those joining as members",
             "venue": "Nightclub Mixei, Itsenäisyydenkatu 7, 33100 Tampere",
             "startDate": "2025-06-12T16:00:00.000Z",
@@ -27092,6 +27353,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -27191,6 +27453,7 @@
             "daysToEvent": -10,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Adults",
@@ -27284,6 +27547,7 @@
             "daysToEvent": 39,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -27378,6 +27642,7 @@
             "daysToEvent": 46,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -27475,6 +27740,7 @@
             "daysToEvent": 114,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -27571,6 +27837,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+",
@@ -27682,6 +27949,7 @@
             "daysToEvent": -7,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -27793,6 +28061,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Music Enthusiasts",
@@ -27891,6 +28160,7 @@
             "daysToEvent": -6,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"
@@ -27981,6 +28251,7 @@
             "daysToEvent": -5,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -28087,6 +28358,7 @@
             "daysToEvent": -4,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -28206,6 +28478,7 @@
             "daysToEvent": -9,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "LGBTQ+"
@@ -28313,6 +28586,7 @@
             "daysToEvent": 22,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28411,6 +28685,7 @@
             "daysToEvent": 29,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28509,6 +28784,7 @@
             "daysToEvent": 36,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28607,6 +28883,7 @@
             "daysToEvent": 43,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28691,6 +28968,103 @@
         "leftPanelData": {
             "eventName": "Tampere Philharmonic Orchestra: Season series concert",
             "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
+            "startDate": "2026-04-02T16:00:00.000Z",
+            "endDate": "2026-04-02T18:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 21,
+            "normalizedScore": 6.0,
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "views": 1,
+            "audienceType": "Adult",
+            "daysToEvent": 288,
+            "peakFootTraffic": "N/A",
+            "weather": "N/A",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "International",
+                "Music Enthusiasts"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Tampere Philharmonic Orchestra: Season series concert",
+            "startDate": "2026-04-02T16:00:00.000Z",
+            "endDate": "2026-04-02T18:00:00.000Z",
+            "score": 21,
+            "normalizedScore": 6.0,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 8
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 1,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "other",
+            "audienceType": "Adult",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": "N/A",
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4959526,
+                "lng": 23.7813754,
+                "address": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2026-04-02T16:00:00.000Z",
+                    "end": "2026-04-02T18:00:00.000Z"
+                }
+            ],
+            "contactEmail": "sara.hamalainen@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/TampereFilharmonia",
+                "instagram": "https://www.instagram.com/tamperefilharmonia/",
+                "twitter": null
+            },
+            "description": "Matthew Halls, conductorDame Sarah Connolly, sopranoBen Hullet, tenorAndrew Foster-Williams, baritoneTampere Philharmonic ChoirEdward Elgar: The Dream of GerontiusSeason series concert | more information will be published in AutumnSeason tickets for the whole season of 2025-2026 will go on sale on Tuesday 20 May at 6:15 PM. Single tickets of spring 2026 season series concerts will go on sale later in Autumn. ",
+            "ownerName": "Tampere Filharmonia",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "International",
+                "Music Enthusiasts"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Tampere Philharmonic Orchestra: Season series concert",
+            "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
             "startDate": "2026-04-24T16:00:00.000Z",
             "endDate": "2026-04-24T18:00:00.000Z",
             "eventType": [
@@ -28705,6 +29079,7 @@
             "daysToEvent": 310,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28801,6 +29176,7 @@
             "daysToEvent": 324,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28897,6 +29273,7 @@
             "daysToEvent": 344,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "International",
@@ -28979,92 +29356,6 @@
         "leftPanelData": {
             "eventName": "Tampere Philharmonic Orchestra: Season series concert",
             "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
-            "startDate": "2026-04-02T16:00:00.000Z",
-            "endDate": "2026-04-02T18:00:00.000Z",
-            "eventType": [
-                "consert"
-            ],
-            "score": 18,
-            "normalizedScore": 5.14,
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "views": 1,
-            "audienceType": "Adult",
-            "daysToEvent": 288,
-            "peakFootTraffic": "N/A",
-            "weather": "N/A",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "General"
-            ],
-            "occurrenceCount": 1,
-            "labels": []
-        },
-        "fullEventData": {
-            "eventId": "",
-            "name": "Tampere Philharmonic Orchestra: Season series concert",
-            "startDate": "2026-04-02T16:00:00.000Z",
-            "endDate": "2026-04-02T18:00:00.000Z",
-            "score": 18,
-            "normalizedScore": 5.14,
-            "scoreBreakdown": [
-                {
-                    "type": "Outdoor/Indoor",
-                    "value": 5
-                },
-                {
-                    "type": "Event Duration",
-                    "value": 5
-                },
-                {
-                    "type": "Audience Fit",
-                    "value": 8
-                }
-            ],
-            "views": 1,
-            "peakFootTraffic": "N/A",
-            "dayType": "weekday",
-            "timeOfDay": "other",
-            "audienceType": "Adult",
-            "globalContentCategories": [
-                "consert"
-            ],
-            "ages": [],
-            "weather": "N/A",
-            "availableSpotsNearby": 0,
-            "location": {
-                "lat": 61.4959526,
-                "lng": 23.7813754,
-                "address": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere"
-            },
-            "upcomingDates": [
-                {
-                    "start": "2026-04-02T16:00:00.000Z",
-                    "end": "2026-04-02T18:00:00.000Z"
-                }
-            ],
-            "contactEmail": "sara.hamalainen@tampere.fi",
-            "mainImage": null,
-            "socialLinks": {
-                "facebook": "https://www.facebook.com/TampereFilharmonia",
-                "instagram": "https://www.instagram.com/tamperefilharmonia/",
-                "twitter": null
-            },
-            "description": "Matthew Halls, conductorDame Sarah Connolly, sopranoBen Hullet, tenorAndrew Foster-Williams, baritoneTampere Philharmonic ChoirEdward Elgar: The Dream of GerontiusSeason series concert | more information will be published in AutumnSeason tickets for the whole season of 2025-2026 will go on sale on Tuesday 20 May at 6:15 PM. Single tickets of spring 2026 season series concerts will go on sale later in Autumn. ",
-            "ownerName": "Tampere Filharmonia",
-            "locations_type": "indoor",
-            "hotspotType": "Event-hotspot",
-            "demographics": [
-                "General"
-            ],
-            "occurrenceCount": 1,
-            "labels": []
-        }
-    },
-    {
-        "leftPanelData": {
-            "eventName": "Tampere Philharmonic Orchestra: Season series concert",
-            "venue": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere",
             "startDate": "2026-04-17T16:00:00.000Z",
             "endDate": "2026-04-17T18:00:00.000Z",
             "eventType": [
@@ -29079,6 +29370,7 @@
             "daysToEvent": 303,
             "peakFootTraffic": "N/A",
             "weather": "N/A",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "General"

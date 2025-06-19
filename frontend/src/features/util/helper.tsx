@@ -44,17 +44,28 @@ function shortVenue(venue: string) {
 }
 
 
-// Medal-style mapping with emoji
-function scoreCategory(score) {
+// function scoreCategory(score: number) {
+//     if (score >= 150) return { label: "Top", color: "bg-purple-100 text-purple-700" };
+//     if (score >= 100) return { label: "High", color: "bg-green-100 text-green-700" };
+//     if (score >= 70) return { label: "Medium", color: "bg-yellow-100 text-yellow-700" };
+//     return { label: "Low", color: "bg-red-100 text-red-700" };
+// }
+
+function scoreCategory(score: number) {
     if (score >= 150) {
-        return { icon: <GoldMedal size={32} /> };
-    } else if (score >= 100) {
-        return { icon: <SilverMedal size={32} /> };
-    } else if (score >= 70) {
-        return { icon: <BronzeMedal size={32} /> };
-    } else {
-        return { icon: null };
+        // Gold medal
+        return { label: "Top", color: "bg-[#FFD700] text-[#7c6500]" }; // Gold background, dark gold text
     }
+    if (score >= 100) {
+        // Silver medal
+        return { label: "High", color: "bg-[#C0C0C0] text-[#444]" }; // Silver background, dark gray text
+    }
+    if (score >= 70) {
+        // Bronze medal
+        return { label: "Medium", color: "bg-[#cd7f32] text-white" }; // Bronze background, white text
+    }
+    // Low/default
+    return { label: "Low", color: "bg-gray-200 text-gray-600" }; // Light gray background, gray text
 }
 
 export {

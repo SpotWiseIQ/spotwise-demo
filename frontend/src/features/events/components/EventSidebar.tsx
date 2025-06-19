@@ -1,5 +1,5 @@
 import React from "react";
-import { Star, CloudSun, Footprints } from "lucide-react";
+import { Star, CloudSun, Footprints, Clock, Calendar } from "lucide-react";
 import { scoreCategory, shortVenue, formatDuration } from "../../util/helper";
 
 export function EventSidebar({ events, loading, error, selectedEvent, onSelect }) {
@@ -38,39 +38,42 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                                     }`}
                                 onClick={() => onSelect && onSelect(e)}
                             >
-                                {/* Score Badge: Slanted Stamp Style Top Left */}
+                                {/* Score Badge: Top Right */}
                                 <span
-                                    className="absolute top-0 left-0 transform -rotate-12 -translate-x-1/4 -translate-y-1/2 flex items-center shadow-lg"
-                                    style={{
-                                        zIndex: 2,
-                                        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                                        transform: "rotate(-18deg) translate(-30%, -50%)"
-                                    }}
+                                    className={`absolute top-4 right-4 flex items-center px-2 py-1 rounded ${scoreCat.color} shadow font-bold text-xs`}
+                                    style={{ zIndex: 2 }}
                                 >
-                                    {scoreCat.icon}
+                                    <Star className="w-4 h-4 mr-1" />
+                                    {scoreCat.label}
                                 </span>
 
-                                {/* Top: Venue and Crowd Type Badge */}
+                                {/* Top: Location Name */}
                                 <div className="flex items-center justify-between mb-2">
                                     <div className="font-semibold text-lg">{shortVenue(e.leftPanelData.venue)}</div>
-                                    {crowdType && (
-                                        <span className={`badge text-xs px-2 py-1 rounded ${crowdBadgeColor}`}>
-                                            {crowdType}
-                                        </span>
-                                    )}
                                 </div>
 
-                                {/* Middle: Duration and Primary Audience */}
-                                <div className="flex flex-col gap-1 mb-2">
-                                    <span
-                                        className="text-gray-500 flex items-center text-base"
-                                        title="This is the duration of the event."
-                                    >
-                                        <span role="img" aria-label="duration" className="mr-1">⏰</span>
-                                        {e.leftPanelData.occurrenceCount > 1
-                                            ? `${e.leftPanelData.occurrenceCount} days`
-                                            : formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)}
-                                    </span>
+                                {/* Middle: Primary Audience, Crowd Type with Duration */}
+                                <div className="flex flex-col gap-1 mb-2 mt-1">
+                                    {crowdType === "Event crowd" && (
+                                        <div className="flex items-center gap-2" style={{ width: "fit-content" }}>
+                                            {/* Event Category Icon (emoji) */}
+                                            <span style={{ fontSize: "1.2rem" }}>🎉</span>
+                                            <span
+                                                className={`inline-block text-base font-semibold rounded px-2 py-1 ${crowdBadgeColor}`}
+                                                style={{ width: "fit-content" }}
+                                            >
+                                                {e.leftPanelData.locations_type
+                                                    ? `${e.leftPanelData.dayType.charAt(0).toUpperCase() + e.leftPanelData.dayType.slice(1)} `
+                                                    : ""}
+                                                {e.leftPanelData.eventType[0]
+                                                    ? `${e.leftPanelData.eventType[0].toLowerCase()} `
+                                                    : "event "}
+                                                for {e.leftPanelData.occurrenceCount > 1
+                                                    ? `${e.leftPanelData.occurrenceCount} days`
+                                                    : formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)}
+                                            </span>
+                                        </div>
+                                    )}
                                     {e.leftPanelData.audienceType && (
                                         <span className="text-pink-600 flex items-center text-base" title="This event/location is most popular with this audience.">
                                             <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>

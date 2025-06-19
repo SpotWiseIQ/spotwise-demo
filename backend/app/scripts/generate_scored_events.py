@@ -183,6 +183,7 @@ for event in events:
                 'daysToEvent': days_to_event,
                 'peakFootTraffic': 'N/A',  # Placeholder for now
                 'weather': 'N/A',  # Placeholder for now
+                'locations_type': locations_type,
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
                 'occurrenceCount': occurrenceCount,
