@@ -1,11 +1,11 @@
 # TODO: need to use Open AI to detect the type of hotspot (outdoor/indoor/mixed)
-from dotenv import load_dotenv
-load_dotenv()
-
-from app.scripts.weather_meteo import WeatherMeteo
-import openai
-import os
 import json
+import os
+import openai
+from app.scripts.weather_meteo import WeatherMeteo
+from dotenv import load_dotenv
+from datetime import datetime
+load_dotenv()
 
 
 def detect_locations_type(event, use_ai_fallback=True):
@@ -19,14 +19,18 @@ def detect_locations_type(event, use_ai_fallback=True):
 
     addresses = []
     if event.get("locations"):
-        addresses = [loc.get("address", "").lower() for loc in event["locations"] if loc.get("address")]
+        addresses = [loc.get("address", "").lower()
+                     for loc in event["locations"] if loc.get("address")]
     elif event.get("location"):
         addresses = [event["location"].get("address", "").lower()]
 
-    found_outdoor = any(any(word in addr for word in outdoor_keywords) for addr in addresses)
-    found_indoor = any(any(word in addr for word in indoor_keywords) for addr in addresses)
+    found_outdoor = any(any(word in addr for word in outdoor_keywords)
+                        for addr in addresses)
+    found_indoor = any(any(word in addr for word in indoor_keywords)
+                       for addr in addresses)
 
-    desc = (event.get("description") or event.get("descriptionLong") or "").lower()
+    desc = (event.get("description") or event.get(
+        "descriptionLong") or "").lower()
     desc_outdoor = any(word in desc for word in outdoor_keywords)
     desc_indoor = any(word in desc for word in indoor_keywords)
 
@@ -46,14 +50,23 @@ def detect_locations_type(event, use_ai_fallback=True):
         return ai_result.get("locationType", "unknown")
     return result
 
-def detect_audience_type(event):
+
+def detect_audience_type(event, use_ai_fallback=True):
     # The primary, main group the event is intended for.
     # Keywords for different audience types
-    family_keywords = ["family", "children", "kids", "lapsi", "perhe", "child", "junior", "youth", "nuori"]
+
+    # Problem: "ages" like "age-5" are not always clear.
+    # In Finnish event data, "age-5" often means "all ages" or "family/youth",
+    # not literally age 5. So we need to handle these cases carefully in future when we have knowledge.
+
+    family_keywords = ["family", "children", "kids",
+                       "lapsi", "perhe", "child", "junior", "youth", "nuori"]
     adult_keywords = ["adult", "aikuinen", "18+", "21+", "mature"]
     senior_keywords = ["senior", "eläkeläinen", "elderly", "retiree"]
-    student_keywords = ["student", "opiskelija", "university", "school", "campus"]
-    general_keywords = ["everyone", "kaikki", "public", "yleisö", "all ages", "general"]
+    student_keywords = ["student", "opiskelija",
+                        "university", "school", "campus"]
+    general_keywords = ["everyone", "kaikki",
+                        "public", "yleisö", "all ages", "general"]
 
     # Combine all relevant text fields
     text = (
@@ -74,16 +87,28 @@ def detect_audience_type(event):
         return "Student"
     if any(word in text for word in general_keywords):
         return "General"
+
+    # Fallback to OpenAI if ambiguous or unknown
+    if use_ai_fallback:
+        ai_result = classify_audience_with_openai(event)
+        return ai_result.get("audienceType", "Unknown")
     return "Unknown"
 
-def detect_demographics(event):
+
+def detect_demographics(event, use_ai_fallback=True):
     # A list of all relevant groups that might be interested in or represented at the event.
     # Example keywords for demographics
+
+    # Problem: "ages" like "age-5" are not always clear.
+    # In Finnish event data, "age-5" often means "all ages" or "family/youth",
+    # not literally age 5. So we need to handle these cases carefully in future when we have knowledge.
+
     youth_keywords = ["youth", "junior", "nuori", "teen", "teini"]
     family_keywords = ["family", "perhe", "children", "kids", "lapsi"]
     senior_keywords = ["senior", "eläkeläinen", "elderly", "retiree"]
     lgbtq_keywords = ["lgbt", "pride", "rainbow", "queer"]
-    international_keywords = ["international", "expat", "foreigner", "english", "englanti"]
+    international_keywords = ["international",
+                              "expat", "foreigner", "english", "englanti"]
 
     text = (
         " ".join(event.get("ages", [])) + " " +
@@ -103,6 +128,10 @@ def detect_demographics(event):
         demographics.append("LGBTQ+")
     if any(word in text for word in international_keywords):
         demographics.append("International")
+    # If no demographics found, we can use AI to classify
+    if not demographics and use_ai_fallback:
+        ai_result = classify_audience_with_openai(event)
+        return ai_result.get("demographics", ["General"])
     if not demographics:
         demographics.append("General")
     return demographics
@@ -120,7 +149,7 @@ def classify_audience_with_openai(event):
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY environment variable not set.")
-    
+
     client = openai.OpenAI(api_key=api_key)
     response = client.chat.completions.create(
         model="gpt-4.1-nano",
@@ -130,6 +159,7 @@ def classify_audience_with_openai(event):
         temperature=0.0,
     )
     return json.loads(response.choices[0].message.content)
+
 
 def classify_location_type_with_openai(event):
     prompt = (
@@ -150,6 +180,7 @@ def classify_location_type_with_openai(event):
     )
     return json.loads(response.choices[0].message.content)
 
+
 def get_event_date_range(event):
     event_dates = event.get('event', {}).get('dates', [])
     if event_dates:
@@ -159,6 +190,7 @@ def get_event_date_range(event):
             return min(starts), max(ends), len(event_dates)
     # Fallback
     return event.get('defaultStartDate'), event.get('defaultEndDate'), 1
+
 
 HOTSPOT_LABEL_RULES = [
     {
@@ -180,7 +212,8 @@ HOTSPOT_LABEL_RULES = [
     {
         "label": "Nightlife Zone",
         "condition": lambda e: e.get("timeOfDay") == "evening" and (
-            "gig" in e.get("globalContentCategories", []) or "gig" in e.get("eventType", [])
+            "gig" in e.get("globalContentCategories", []
+                           ) or "gig" in e.get("eventType", [])
         )
     },
     {
@@ -204,6 +237,7 @@ HOTSPOT_LABEL_RULES = [
     },
 ]
 
+
 def get_hotspot_labels(event_data):
     labels = []
     for rule in HOTSPOT_LABEL_RULES:
@@ -213,6 +247,7 @@ def get_hotspot_labels(event_data):
         except Exception:
             continue
     return labels
+
 
 def get_weather_data(weather_client: WeatherMeteo, lat: float, lng: float, date: str):
     try:
@@ -224,11 +259,13 @@ def get_weather_data(weather_client: WeatherMeteo, lat: float, lng: float, date:
     except Exception:
         pass
 
+
 def map_meteo_to_weather_data(meteo_response: dict, date: str) -> dict:
     from datetime import datetime
     # Extract date part if needed
     if "T" in date:
-        date = datetime.fromisoformat(date.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+        date = datetime.fromisoformat(
+            date.replace("Z", "+00:00")).strftime("%Y-%m-%d")
     daily = meteo_response.get("daily", {})
     times = daily.get("time", [])
     if date in times:
@@ -247,3 +284,18 @@ def map_meteo_to_weather_data(meteo_response: dict, date: str) -> dict:
         "temperature": 0,
         "condition": ""
     }
+
+
+def get_time_of_day(date_str):
+    dt = datetime.fromisoformat(date_str.replace('Z', ''))
+    hour = dt.hour
+    if 6 <= hour < 12:
+        return "morning"
+    elif 12 <= hour < 17:
+        return "afternoon"
+    elif 17 <= hour < 22:
+        return "evening"
+    elif 22 <= hour or hour < 6:
+        return "night"
+    else:
+        return "other"

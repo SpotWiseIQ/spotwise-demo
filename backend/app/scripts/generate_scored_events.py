@@ -2,12 +2,12 @@ import json
 import os
 import re
 from datetime import datetime, timezone
-from app.engine.calculate_score import calculate_score, map_age_groups, is_weekend, is_morning, is_evening
-from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels, get_weather_data
+from app.engine.calculate_score import calculate_score, is_weekend
+from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels, get_weather_data, get_time_of_day
 from app.scripts.weather_meteo import WeatherMeteo
 
 # Load your saved event list
-with open('./data/events_full_list.json', 'r', encoding='utf-8') as f:
+with open('./data/EventListOneSampleResponse.json', 'r', encoding='utf-8') as f:
     events_data = json.load(f)
 
 # Access the list of events
@@ -21,12 +21,6 @@ sample_resource = {
     }
 }
 
-# Optional data (mock for now)
-# weather_data = {
-#     'rain': 0,
-#     'temperature': 20,
-#     'condition': 'sunny'
-# }
 weather_client = WeatherMeteo()
 
 traffic_data = {
@@ -46,34 +40,31 @@ MAX_SCORE = 350  # Based on previous calculation
 
 today = datetime.now()
 
+
 def strip_html_tags(text):
     clean = re.compile('<.*?>')
     return re.sub(clean, '', text) if text else text
 
+
 for event in events:
     try:
-        startDate, endDate, occurrenceCount  = get_event_date_range(event)
+        startDate, endDate, occurrenceCount = get_event_date_range(event)
 
         if not startDate or not endDate:
-            print(f"Skipping event due to missing start or end date: {event.get('name', 'Unknown')}")
+            print(
+                f"Skipping event due to missing start or end date: {event.get('name', 'Unknown')}")
             continue
 
         locations = event.get('locations')
         if not locations or len(locations) == 0:
-            print(f"Skipping event due to missing location: {event.get('name', 'Unknown')}")
+            print(
+                f"Skipping event due to missing location: {event.get('name', 'Unknown')}")
             continue
 
         owner_name = event.get('ownerName', '')
 
         audience_type = detect_audience_type(event)
         demographics = detect_demographics(event)
-
-        if audience_type == "Unknown":
-            openai_result = classify_audience_with_openai(event)  # You'd write this using OpenAI API
-            if openai_result.get("audienceType"):
-                audience_type = openai_result["audienceType"]
-            if openai_result.get("demographics"):
-                demographics = openai_result["demographics"]
 
         # For each location, create a separate event object
         for loc_idx, loc in enumerate(locations):
@@ -86,9 +77,9 @@ for event in events:
 
             # --- Fetch weather for this event/location/date ---
             weather = get_weather_data(
-                weather_client, 
-                event_location['lat'], 
-                event_location['lng'], 
+                weather_client,
+                event_location['lat'],
+                event_location['lng'],
                 startDate
             )
 
@@ -126,32 +117,31 @@ for event in events:
             event_description_short = event.get('descriptionShort')
             event_description = strip_html_tags(event.get('descriptionLong'))
 
-            event_start_dt = datetime.fromisoformat(event_data['defaultStartDate'].replace('Z', ''))
+            event_start_dt = datetime.fromisoformat(
+                event_data['defaultStartDate'].replace('Z', ''))
             days_to_event = (event_start_dt - today).days
 
             # Derived values
-            day_type = 'weekend' if is_weekend(event_data['defaultStartDate']) else 'weekday'
-            if is_morning(event_data['defaultStartDate']):
-                time_of_day = 'morning'
-            elif is_evening(event_data['defaultStartDate']):
-                time_of_day = 'evening'
-            else:
-                time_of_day = 'other'
+            day_type = 'weekend' if is_weekend(
+                event_data['defaultStartDate']) else 'weekday'
 
+            time_of_day = get_time_of_day(event_data['defaultStartDate'])
+            event_data['timeOfDay'] = time_of_day
 
             score, breakdown = calculate_score(
                 event_data=event_data,
-                # resource_data=sample_resource,
                 weather_data=weather,
+                demographics=demographics,
+                # resource_data=sample_resource,
                 # traffic_data=traffic_data,
-                # demographics_data=demographics_data,
-                # transport_data=transport_data,
+                # public_transport_spots=transport_data,
                 # available_spots_nearby=available_spots_nearby
             )
 
             # ✅ Validate
             if not isinstance(score, int):
-                print(f"Skipping event due to invalid score: {event_data['name']}")
+                print(
+                    f"Skipping event due to invalid score: {event_data['name']}")
                 continue
 
             normalized_score = round((score / MAX_SCORE) * 100, 2)
@@ -169,7 +159,8 @@ for event in events:
                 }]
             for d in event_dates:
                 try:
-                    d_start = datetime.fromisoformat(d['start'].replace('Z', '+00:00'))
+                    d_start = datetime.fromisoformat(
+                        d['start'].replace('Z', '+00:00'))
                     if d_start > now:
                         upcoming_dates.append({
                             'start': d['start'],
@@ -225,7 +216,7 @@ for event in events:
                 'mainImage': event_image,
                 'socialLinks': social_links,
                 'description': event_description,
-                'ownerName': owner_name, 
+                'ownerName': owner_name,
                 'locations_type': locations_type,
                 'hotspotType': 'Event-hotspot',
                 'demographics': demographics,
@@ -240,9 +231,10 @@ for event in events:
 
     except (IndexError, KeyError, TypeError) as e:
         print(f"Skipping event due to missing data: {e}")
-        
+
 #  Sort events by score descending
-scored_events = sorted(scored_events, key=lambda x: int(x['leftPanelData']['score']), reverse=True)
+scored_events = sorted(scored_events, key=lambda x: int(
+    x['leftPanelData']['score']), reverse=True)
 
 # Save the scored events to a test_output_samples folder
 output_path = '../frontend/public/scored_events.json'
