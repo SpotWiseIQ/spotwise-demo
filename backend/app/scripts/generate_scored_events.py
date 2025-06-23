@@ -7,7 +7,7 @@ from app.utils.helper import detect_locations_type, detect_audience_type, detect
 from app.scripts.weather_meteo import WeatherMeteo
 
 # Load your saved event list
-with open('./data/events_full_list.json', 'r', encoding='utf-8') as f:
+with open('./data/EventListOneSampleResponse.json', 'r', encoding='utf-8') as f:
     events_data = json.load(f)
 
 # Access the list of events
