@@ -7606,12 +7606,8 @@
             "startDate": "2025-06-30T21:00:00.000Z",
             "endDate": "2025-07-23T21:00:00.000Z",
             "eventType": [
-                "handicraft",
-                "festivals",
-                "museums and galleries",
-                "museums",
-                "exhibitions",
-                "kids and family"
+                "activities",
+                "excursions, guided tours"
             ],
             "score": 105,
             "normalizedScore": 30.0,
@@ -7626,32 +7622,33 @@
                 "temperature": 15.2,
                 "condition": "sunny"
             },
-            "locations_type": "indoor",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Family"
+                "International"
             ],
-            "occurrenceCount": 1,
+            "occurrenceCount": 3,
             "labels": [
-                "Family-friendly",
-                "Seasonal Hotspot"
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
             ]
         },
         "fullEventData": {
             "eventId": "",
-            "name": "PiiPoo's Poetry Living Room and Summer Art Workshops",
-            "startDate": "2025-06-30T21:00:00.000Z",
-            "endDate": "2025-07-23T21:00:00.000Z",
-            "score": 105,
-            "normalizedScore": 30.0,
+            "name": "Free walking tour in English",
+            "startDate": "2025-06-07T08:00:00.000Z",
+            "endDate": "2025-06-19T16:00:00.000Z",
+            "score": 133,
+            "normalizedScore": 38.0,
             "scoreBreakdown": [
                 {
-                    "type": "Event Type",
-                    "value": 20
+                    "type": "Views",
+                    "value": 60
                 },
                 {
                     "type": "Outdoor/Indoor",
-                    "value": 5
+                    "value": 20
                 },
                 {
                     "type": "Event Duration",
@@ -7663,10 +7660,6 @@
                 },
                 {
                     "type": "Audience Fit",
-                    "value": 20
-                },
-                {
-                    "type": "Demographics Fit",
                     "value": 10
                 }
             ],
@@ -7842,7 +7835,7 @@
                 "Family",
                 "International"
             ],
-            "occurrenceCount": 1,
+            "occurrenceCount": 3,
             "labels": [
                 "Family-friendly",
                 "Seasonal Hotspot",
