@@ -5,6 +5,7 @@ import openai
 from app.scripts.weather_meteo import WeatherMeteo
 from dotenv import load_dotenv
 from datetime import datetime
+from zoneinfo import ZoneInfo  # Python 3.9+ only
 load_dotenv()
 
 
@@ -287,8 +288,14 @@ def map_meteo_to_weather_data(meteo_response: dict, date: str) -> dict:
 
 
 def get_time_of_day(date_str):
-    dt = datetime.fromisoformat(date_str.replace('Z', ''))
-    hour = dt.hour
+    # Convert UTC ISO string to Helsinki local time
+    dt_utc = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+    try:
+        dt_local = dt_utc.astimezone(ZoneInfo('Europe/Helsinki'))
+    except Exception:
+        # Fallback: treat as UTC if zoneinfo not available
+        dt_local = dt_utc
+    hour = dt_local.hour
     if 6 <= hour < 12:
         return "morning"
     elif 12 <= hour < 17:
@@ -299,3 +306,13 @@ def get_time_of_day(date_str):
         return "night"
     else:
         return "other"
+
+
+def is_all_day_event(start_str, end_str):
+    dt_start = datetime.fromisoformat(start_str.replace('Z', '+00:00'))
+    dt_end = datetime.fromisoformat(end_str.replace('Z', '+00:00'))
+    # If event lasts 23+ hours or both start and end are at midnight, treat as all-day
+    return (
+        (dt_end - dt_start).total_seconds() >= 23*3600 or
+        (dt_start.hour == 0 and dt_end.hour == 0)
+    )

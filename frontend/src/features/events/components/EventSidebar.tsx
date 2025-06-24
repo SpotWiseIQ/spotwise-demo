@@ -1,17 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { Star, CloudSun, Footprints, Clock, Calendar } from "lucide-react";
 import { scoreCategory, shortVenue, formatDuration, getWeatherIcon } from "../../util/helper";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function EventSidebar({ events, loading, error, selectedEvent, onSelect }) {
+
+    const defaultDate = new Date(2025, 5, 1);
+    const [selectedDate, setSelectedDate] = useState<Date | null>(defaultDate);
+    const [sortBy, setSortBy] = useState("score");
+
+    // Filter events based on selectedDate
+    const filteredEvents = selectedDate
+        ? events.filter(e => new Date(e.leftPanelData.startDate) >= selectedDate)
+        : events;
+
+    // Sorting logic
+    const sortedEvents = [...filteredEvents].sort((a, b) => {
+        if (sortBy === "score") return b.leftPanelData.score - a.leftPanelData.score;
+        if (sortBy === "views") return b.leftPanelData.views - a.leftPanelData.views;
+        if (sortBy === "start") return new Date(a.leftPanelData.startDate).getTime() - new Date(b.leftPanelData.startDate).getTime();
+        if (sortBy === "weather") return (a.leftPanelData.weather?.rain ?? 0) - (b.leftPanelData.weather?.rain ?? 0);
+        if (sortBy === "venue") return a.leftPanelData.venue.localeCompare(b.leftPanelData.venue);
+        return 0;
+    });
+
     return (
         <>
+            {/* Date picker and sort dropdown */}
+            <div className="mb-4 flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                    <span className="font-semibold">Show hotspots from:</span>
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={(date: Date | null) => setSelectedDate(date)}
+                        placeholderText="Select date"
+                        className="border rounded px-2 py-1"
+                        dateFormat="yyyy-MM-dd"
+                        isClearable
+                    />
+                </div>
+                <div className="flex items-center gap-2">
+                    <span className="font-semibold">Sort by:</span>
+                    <select
+                        value={sortBy}
+                        onChange={e => setSortBy(e.target.value)}
+                        className="border rounded px-2 py-1"
+                    >
+                        <option value="score">Best Score</option>
+                        <option value="views">Most Foot Traffic</option>
+                        <option value="start">Earliest Start</option>
+                        <option value="weather">Best Weather</option>
+                        <option value="venue">Venue Name</option>
+                    </select>
+                </div>
+            </div>
+
             {loading ? (
                 <div className="text-gray-500">Loading events...</div>
             ) : error ? (
                 <div className="text-red-500">Error: {error}</div>
             ) : (
                 <ul className="space-y-6">
-                    {events.map((e, i) => {
+                    {sortedEvents.map((e, i) => {
                         const isActive =
                             selectedEvent &&
                             selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName &&

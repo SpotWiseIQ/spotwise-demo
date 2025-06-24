@@ -77,6 +77,7 @@ export function EventDetails({ event, events }) {
     const social = fullEventData?.socialLinks || {};
     const ages = fullEventData?.ages || [];
     const occurrenceCount = leftPanelData?.occurrenceCount;
+    const upcomingDates = fullEventData?.upcomingDates || [];
 
     // Description expand/collapse
     const [descExpanded, setDescExpanded] = useState(false);
@@ -87,6 +88,8 @@ export function EventDetails({ event, events }) {
     const hasLongDesc = description && description.length > MAX_DESC_LENGTH;
     const shortDesc = hasLongDesc ? description.slice(0, MAX_DESC_LENGTH) + "..." : description;
     const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+
+    console.log("Venue:", venue, "upcomingDates:", upcomingDates, "startDate:", startDate, "endDate:", endDate);
 
     return (
         <div className="p-6 bg-white rounded-lg shadow w-full max-w-6xl mx-auto overflow-hidden flex flex-col">
@@ -170,53 +173,6 @@ export function EventDetails({ event, events }) {
                 highlights={labels}
             />
 
-            {/* Audience & Demographics
-            <div className="mb-6">
-                <div className="text-gray-700 mb-1 font-semibold text-sm">Audience Type & Groups:</div>
-                <div className="ml-4 flex items-center gap-3">
-                    {primaryAudience && (
-                        <span className="flex items-center px-2 py-1 rounded bg-pink-100 text-pink-700 font-semibold">
-                            <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>
-                            {primaryAudience}
-                        </span>
-                    )}
-                    {demographics.length > 0 && demographics.map((d, i) => (
-                        <span key={i} className="px-2 py-1 rounded bg-green-100 text-green-700 font-semibold">
-                            {d}
-                        </span>
-                    ))}
-                </div>
-            </div> */}
-
-            {/* Foot Traffic & Weather */}
-            {/* <div className="mb-6">
-                <div className="text-gray-700 mb-1 font-semibold text-sm">Estimated Visitors & Weather:</div>
-                <div className="ml-4 flex items-center gap-4">
-                    <span className="flex items-center text-green-700 font-semibold text-base">
-                        <Footprints className="w-5 h-5 mr-1" />
-                        {footTraffic}
-                    </span>
-                    <span className="flex items-center text-blue-600 font-semibold text-base">
-                        <CloudSun className="w-5 h-5 mr-1" />
-                        {weather}
-                    </span>
-                </div>
-            </div> */}
-
-            {/* Tags/Labels */}
-            {/* {labels.length > 0 && (
-                <div className="mb-6">
-                    <div className="text-gray-700 mb-1 font-semibold text-sm">Highlights:</div>
-                    <div className="ml-4 flex flex-wrap gap-2">
-                        {labels.map((l, i) => (
-                            <span key={i} className="px-2 py-1 rounded bg-gray-200 text-gray-700 font-semibold">
-                                {l}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            )} */}
-
             {/* Expandable Sections */}
             {/* Book the spot contact info */}
             <div className="mt-6 mb-6">
@@ -289,6 +245,41 @@ export function EventDetails({ event, events }) {
                                 </span>
                             )}
                         </div>
+
+                        {/* Show all event dates if more than one */}
+                        {upcomingDates && upcomingDates.length > 1 && (
+                            <div>
+                                <div className="font-semibold mb-1 text-gray-700">All Event Dates</div>
+                                <ul className="list-disc ml-6 text-base text-gray-800">
+                                    {upcomingDates
+                                        .filter(
+                                            (d) =>
+                                                d &&
+                                                typeof d.start === "string" &&
+                                                !isNaN(new Date(d.start).getTime())
+                                        )
+                                        .map((d, idx) => (
+                                            <li key={idx}>
+                                                {new Date(d.start).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}
+                                                {d.end && d.end !== d.start && (
+                                                    <>
+                                                        {" – "}
+                                                        {new Date(d.end).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}
+                                                    </>
+                                                )}
+                                                {d.end && (
+                                                    <>{" "}
+                                                        <span className="text-gray-500 text-sm">
+                                                            ({formatDuration(d.start, d.end)})
+                                                        </span>
+                                                    </>
+                                                )}
+                                            </li>
+                                        ))}
+                                </ul>
+                            </div>
+                        )}
+
                         {/* Description */}
                         {description && (
                             <div>
@@ -312,9 +303,6 @@ export function EventDetails({ event, events }) {
 
             {/* Extra Details */}
             <div className="mb-6 text-sm text-gray-500">
-                {ages && ages.length > 0 && (
-                    <div>Ages: {ages.join(", ")}</div>
-                )}
                 {typeof availableSpots === "number" && (
                     <div>Available spots nearby: {availableSpots}</div>
                 )}

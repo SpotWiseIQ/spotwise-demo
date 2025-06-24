@@ -1011,6 +1011,112 @@
 			"links": [],
 			"openingHours": [],
 			"sort": 6.17509716
+		},
+		{
+			"_id": "6800dfb768bf7f5f7921870f",
+			"site_id": "634844c32f41a024ee51a234",
+			"subSite_id": null,
+			"countViews": 10,
+			"defaultStartDate": "2025-06-25T15:00:00.000Z",
+			"defaultEndDate": "2025-06-25T16:00:00.000Z",
+			"modificationDate": "2025-04-17T11:02:15.550Z",
+			"creationDate": "2025-04-17T11:02:15.550Z",
+			"inLanguage": "fi",
+			"country": "FI",
+			"languages": [
+				"fi",
+				"en"
+			],
+			"owner_id": "64ca265ade646415d3c316c8",
+			"ownerName": "Kaupunkikulttuuriyksikkö",
+			"pageType": "event",
+			"id_state": 20,
+			"seasons": [],
+			"imageDesktop": "4688f5294e2f9f1ce19584389e178e3a206d771edee640001bb4ad35f466852c",
+			"imageMobile": "00e6e3d2ef4794c7a5b17da3ed386013bbf6706ac9bce4b512307a72f1b2291e",
+			"imageList": "96ac4e27e9a9af705eba91f652bceea0b8871cbe7a588804c1805ccfb17d5c2b",
+			"countUpdates": 0,
+			"countFollowers": 0,
+			"countMembers": 0,
+			"privacy": "public",
+			"sourceName": "Tampereen tapahtumakalenteri",
+			"hasPrice": true,
+			"price": {
+				"min": 0,
+				"max": 0
+			},
+			"email": "puistokonsertit@tampere.fi",
+			"urlFacebook": "https://www.facebook.com/kulttuuritampere/",
+			"urlTwitter": null,
+			"urlYoutube": null,
+			"urlInstagram": "https://www.instagram.com/tampereenpuistokonsertit",
+			"hasLocation": true,
+			"locations": [
+				{
+					"lat": 61.4697426,
+					"lng": 23.8904216,
+					"address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere",
+					"country": "FI",
+					"page_id": "64d0a4bfd182f3098cb3d143",
+					"alt": {
+						"fi": {
+							"address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere"
+						},
+						"en": {
+							"address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere"
+						}
+					},
+					"location_id": "location-1"
+				}
+			],
+			"collections": [
+				"63484944e30a1f16a64104d3",
+				"64ca4b4ede646415d3c31c00"
+			],
+			"primaryCollection": null,
+			"ages": [],
+			"globalContentCategories": [
+				"consert"
+			],
+			"categories": [
+				"6170601b7a45476ff366cb18",
+				"65c9d8a36536991ee2b91d5a"
+			],
+			"event": {
+				"datesType": "individual-dates",
+				"callToActionsPublishingDateDefined": false,
+				"locationsType": "event-with-location",
+				"marketingAreaType": "none-area",
+				"dates": [
+					{
+						"start": "2025-06-25T15:00:00.000Z",
+						"end": "2025-06-25T16:00:00.000Z",
+						"isSoldOut": false
+					}
+				],
+				"start": "2025-06-25T15:00:00.000Z",
+				"end": "2025-06-25T16:00:00.000Z"
+			},
+			"publishingDateDefined": false,
+			"publishingDate": null,
+			"sort2": {
+				"primary": 6,
+				"secondary": 1750863600000
+			},
+			"name": "Summer Park Concerts: Papa Reino & Hurja-Jussi",
+			"descriptionShort": "Summer Park Concerts brings a diverse range of music and culture close to you!",
+			"descriptionLong": "Free open-air concerts offer experiences for everyone around Tampere. The concerts at Haihara are held in Valjasvaja.\n\nAt 6 PM Papa Reino & Hurja-Jussi\nRising from the mist of the marsh and the soil of rocky fields, Härmälä blues mystic Papa Reino performs Finnish-sung blues-folk with his cigar box guitar. Papa Reino's music strongly reflects the influences of American delta blues and roots music. His second album, Hiljaiset hautajaiset, was released in September 2024. In the Summer Park Concert, Papa Reino performs as a duo with master violinist Hurja-Jussi.\n\nSee you in Tampere Summer Park Concerts!",
+			"hashtags": [],
+			"imageAlt": "Artist is sitting with a guitar on his lap and a hat covering his face.",
+			"links": [],
+			"openingHours": [],
+			"translated": {
+				"by": "GoogleTranslate",
+				"properties": [
+					"name"
+				]
+			},
+			"sort": 6.17508636
 		}
 	],
 	"sort": "startDate"

@@ -3,7 +3,7 @@ import os
 import re
 from datetime import datetime, timezone
 from app.engine.calculate_score import calculate_score, is_weekend
-from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels, get_weather_data, get_time_of_day
+from app.utils.helper import detect_locations_type, detect_audience_type, detect_demographics, classify_audience_with_openai, get_event_date_range, get_hotspot_labels, get_weather_data, get_time_of_day, is_all_day_event
 from app.scripts.weather_meteo import WeatherMeteo
 
 # Load your saved event list
@@ -125,8 +125,14 @@ for event in events:
             day_type = 'weekend' if is_weekend(
                 event_data['defaultStartDate']) else 'weekday'
 
-            time_of_day = get_time_of_day(event_data['defaultStartDate'])
+            # Detect all-day event
+            all_day = is_all_day_event(
+                event_data['defaultStartDate'], event_data['defaultEndDate'])
+
+            time_of_day = get_time_of_day(
+                event_data['defaultStartDate']) if not all_day else 'allday'
             event_data['timeOfDay'] = time_of_day
+            event_data['allDay'] = all_day
 
             score, breakdown = calculate_score(
                 event_data=event_data,
