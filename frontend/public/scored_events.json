@@ -1143,7 +1143,7 @@
                 "Children",
                 "Under 18"
             ],
-            "occurrenceCount": 1,
+            "occurrenceCount": 3,
             "labels": [
                 "Family-friendly",
                 "Tourist Magnet",
@@ -1701,6 +1701,144 @@
                 },
                 {
                     "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 15
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 21
+                }
+            ],
+            "views": 130,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "morning",
+            "audienceType": "Student",
+            "globalContentCategories": [
+                "food and beverage",
+                "dance",
+                "circus",
+                "consert"
+            ],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 20.6,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.499484908944474,
+                "lng": 23.761686380975043,
+                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-04T09:00:00.000Z",
+                    "end": "2025-07-04T17:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-05T09:00:00.000Z",
+                    "end": "2025-07-05T17:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-06T09:00:00.000Z",
+                    "end": "2025-07-06T13:00:00.000Z"
+                }
+            ],
+            "contactEmail": "kotisalsa@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kotisalsa/",
+                "instagram": "https://www.instagram.com/kotisalsa/",
+                "twitter": null
+            },
+            "description": "Kotisalsa Baila - Tampere Salsa Fest outdoor eventsEnjoy summer, dance and Latin rhythms at Laikunlava! Basic dance lessons, DJ-played record music and lots of Latin dancing are available. Caribbean delicacies and food will also be sold - come dance and feast!Dates and scheduleFriday 4.7.2025 | 08:00 - 22:00&nbsp;Laikunlava | Free admission | No pre-registration required12:00 – Start: DJ record music and floor dances14:00, 16:00, 18:00 – Dance lessons (Solo salsa &amp; couple salsa, beginners)Duration: 30 min per set18:30 – DJ record music20:00 – Thank you!Saturday 5.7.2025 | 08:00 - 20:00Laikun Stage | Free admission | No pre-registration required12:00 – Start: DJ music and floor dances2:00, 4:00, 6:00 PM – Dance lessons and show (Bachata, merengue, reggaeton, beginners)Duration: 30 min per set6:30 PM – DJ music8:00 PM – Thank you!Sunday 6.7.2025 | 8:00 AM - 4:00 PMLaikun Stage | Free admission | No pre-registration required12:00 PM – Start: DJ music and Latin dances12:00 PM &amp; 2:00 PM – Dance lessons &amp; Show -&nbsp;samba,&nbsp;salsa (beginners)Teachers: Samba School Força Natural, Kotisalsa16:00 PM – Thank you!DJs will play Latin American music: salsa, reggaeton, son, rumba, cha cha cha, bachata, latin pop, cumbia, merengue, samba.Caribbean delicacies and food on sale during the event",
+            "ownerName": "Kotisalsa",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International",
+                "Latin dance enthusiasts"
+            ],
+            "occurrenceCount": 3,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "Student Hub",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Folk music jam sessions",
+            "venue": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere",
+            "startDate": "2025-06-05T15:00:00.000Z",
+            "endDate": "2025-06-05T16:45:00.000Z",
+            "eventType": [
+                "gig"
+            ],
+            "score": 143,
+            "normalizedScore": 40.86,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 1418,
+            "audienceType": "Family",
+            "daysToEvent": -19,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 2.0,
+                "temperature": 18.4,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Folk music jam sessions",
+            "startDate": "2025-06-05T15:00:00.000Z",
+            "endDate": "2025-06-05T16:45:00.000Z",
+            "score": 143,
+            "normalizedScore": 40.86,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 70
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
                     "value": 10
                 },
                 {
@@ -2118,7 +2256,6 @@
                 "fairs",
                 "consert"
             ],
-            "ages": [],
             "weather": {
                 "rain": 0.0,
                 "temperature": 21.1,
@@ -2126,9 +2263,9 @@
             },
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.5034939,
-                "lng": 23.7540468,
-                "address": "Tallipiha, Kuninkaankatu 4, 33210 Tampere"
+                "lat": 61.4988264,
+                "lng": 23.762119,
+                "address": "Culture House Laikku, Music hall, Keskustori 4, 33100 Tampere"
             },
             "upcomingDates": [
                 {
@@ -2143,8 +2280,8 @@
             "contactEmail": "tallipiha10@gmail.com",
             "mainImage": null,
             "socialLinks": {
-                "facebook": "https://www.facebook.com/TallipihaTampere",
-                "instagram": "https://www.instagram.com/tallipiha?igshid=MjEwN2IyYWYwYw==",
+                "facebook": null,
+                "instagram": null,
                 "twitter": null
             },
             "description": "The sweetest sales event of the summer is here again! Treasures, style and music from the past come to Tampere. Vintage dealers galore from all over Finland. Live music, dancing, delicious food. Plenty of entertainment on both days. You can't miss this event. Come and bring your friends.",
@@ -2248,6 +2385,147 @@
             "weather": {
                 "rain": 0.0,
                 "temperature": 21.1,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4697426,
+                "lng": 23.8904216,
+                "address": "Haihara Art Centre, Haiharankatu 30, 33710 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-02T12:00:00.000Z",
+                    "end": "2025-07-02T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-09T12:00:00.000Z",
+                    "end": "2025-07-09T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-16T12:00:00.000Z",
+                    "end": "2025-07-16T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-23T12:00:00.000Z",
+                    "end": "2025-07-23T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-30T12:00:00.000Z",
+                    "end": "2025-07-30T15:00:00.000Z"
+                }
+            ],
+            "contactEmail": "kulttuuri@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/haiharantaidekeskus",
+                "instagram": "https://www.instagram.com/haiharantaidekeskus/",
+                "twitter": null
+            },
+            "description": "Every Wednesday from July 2 to July 30, 2025, from 3 PM to 7 PM 3 PM - 5 PM Art Workshops in front of Haihara Manor. In case of rain, held in Valjasvaja. 3 PM - 6 PM Outdoor Flea Market in front of Haihara Manor. Not held in rainy weather. 6 PM - 7 PM Summer Park Concerts in Valjasvaja (no concert on July 30). 2.7. Theatre in the Park Come and try the basics of acting through fun and relaxed exercises. In the workshop, we will create our own 'Play of the Day' using the Forum Theatre method. The instructor is Miia Säppi / Tampere Intercultural Art. 9.7. &amp; 16.7. Photography workshop The workshop invites participants to explore new approaches to photography. The session includes a one-hour walk in the local environment, focusing on photography using a theme, natural materials, reflections, and physical movement. No prior photography experience is required, just a curious mind! Participants can use any type of camera—smartphone, digital, film, or DSLR. Instructor of the workshop is Daria Craciun / Tampere Intercultural Art. 23.7. &amp; 30.7. Art Orienteering In the art orienteering workshop, participants are given tasks and clues that help them explore the Haihara Art Center’s exhibitions and their themes on a deeper level. The orienteering takes place both inside the exhibition spaces and outside in the nearby environment. The workshop opens up new perspectives on viewing and experiencing art. The art orienteering is led by Zeynep Kaynar / Tampere Intercultural Art. No prior registration is required for the workshops. Participants of all ages are welcome, small children accompanied by an adult. None of the workshops require previous experience. Come and boldly try something new! The workshops are conducted in easy Finnish and English. Outdoor Flea Market is open for everyone and selling spots are free of charge. Welcome to sell or find second-hand gems! Summer Park Concerts in July, in Haihara: 2.7. Raija &amp; Toonika 9.7. Amilos 16.7. Duo Pamela &amp; Piia Kristiina 23.7. Pirkkalan Pelimannit Check the whole schedule for the summer: puistokonsertit.fi/en The art exhibitions in the Haihara Manor and the Stable are open on Wednesdays from 1 PM to 6 PM. Runeberg’s Cottage is open from 12 PM to 6 PM, and Haihara’s Coffee Chamber from 12 PM to 7 PM.",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 5,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Haihara Summer Wednesdays",
+            "venue": "Haihara Art Centre, Haiharankatu 30, 33710 Tampere",
+            "startDate": "2025-07-02T12:00:00.000Z",
+            "endDate": "2025-07-30T15:00:00.000Z",
+            "eventType": [
+                "festivals"
+            ],
+            "score": 143,
+            "normalizedScore": 40.86,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 90,
+            "audienceType": "Family",
+            "daysToEvent": 8,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 19.6,
+                "condition": "sunny"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 5,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Haihara Summer Wednesdays",
+            "startDate": "2025-07-02T12:00:00.000Z",
+            "endDate": "2025-07-30T15:00:00.000Z",
+            "score": 143,
+            "normalizedScore": 40.86,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 5
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 13
+                }
+            ],
+            "views": 90,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "festivals"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 19.6,
                 "condition": "sunny"
             },
             "availableSpotsNearby": 0,
@@ -2411,6 +2689,328 @@
             "occurrenceCount": 1,
             "labels": [
                 "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Sing-along events at Culture House Laikku",
+            "venue": "Kulttuuritalo Laikku, Musiikkisali, Keskustori 4, 33100 Tampere",
+            "startDate": "2025-09-04T13:15:00.000Z",
+            "endDate": "2025-12-11T15:15:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 138,
+            "normalizedScore": 39.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 1294,
+            "audienceType": "General",
+            "daysToEvent": 72,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 14,
+            "labels": [
+                "Family-friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Sing-along events at Culture House Laikku",
+            "startDate": "2025-09-04T13:15:00.000Z",
+            "endDate": "2025-12-11T15:15:00.000Z",
+            "score": 138,
+            "normalizedScore": 39.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 70
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 1294,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [
+                "age-5",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4988264,
+                "lng": 23.762119,
+                "address": "Kulttuuritalo Laikku, Musiikkisali, Keskustori 4, 33100 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-09-04T13:15:00.000Z",
+                    "end": "2025-09-04T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-09-11T13:15:00.000Z",
+                    "end": "2025-09-11T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-09-18T13:15:00.000Z",
+                    "end": "2025-09-18T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-09-25T13:15:00.000Z",
+                    "end": "2025-09-25T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-10-02T13:15:00.000Z",
+                    "end": "2025-10-02T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-10-16T13:15:00.000Z",
+                    "end": "2025-10-16T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-10-23T13:15:00.000Z",
+                    "end": "2025-10-23T14:15:00.000Z"
+                },
+                {
+                    "start": "2025-10-30T14:15:00.000Z",
+                    "end": "2025-10-30T15:15:00.000Z"
+                },
+                {
+                    "start": "2025-11-06T14:15:00.000Z",
+                    "end": "2025-11-06T15:15:00.000Z"
+                },
+                {
+                    "start": "2025-11-13T14:15:00.000Z",
+                    "end": "2025-11-13T15:15:00.000Z"
+                },
+                {
+                    "start": "2025-11-20T14:15:00.000Z",
+                    "end": "2025-11-20T15:15:00.000Z"
+                },
+                {
+                    "start": "2025-11-27T14:15:00.000Z",
+                    "end": "2025-11-27T15:15:00.000Z"
+                },
+                {
+                    "start": "2025-12-04T14:15:00.000Z",
+                    "end": "2025-12-04T15:15:00.000Z"
+                },
+                {
+                    "start": "2025-12-11T14:15:00.000Z",
+                    "end": "2025-12-11T15:15:00.000Z"
+                }
+            ],
+            "contactEmail": "kulttuuri@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritalolaikku/",
+                "instagram": "https://www.instagram.com/kulttuuritalolaikku/",
+                "twitter": null
+            },
+            "description": "Sing-along events are organized at Culture House Laikku on Thursdays! The song leader is singer and entertainer Martti Kuurila, and choir director Jussi Tamminen is responsible for the accompaniment.&nbsp; The first sing-along of 2025 will be held on Thursday, January 16 in Music Hall of Culture House Laikku from 4:15 p.m. Free entry!Sing-alog events are very popular! The Music Hall can accommodate the first 110 people, we recommend arriving on time to Laikku!Free entry!&nbsp;In order to protect the oak floor of the Music Hall, please change your studded shoes to indoor shoes during the winter season. Thank you!Changes are possible, the most up-to-date information can be asked from Laiku's info, tel. 040 806 2330.organiser: City of Tampere Public Cultural Services",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 14,
+            "labels": [
+                "Family-friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Canoeing & Löyly (Finnish sauna week)",
+            "venue": "Rauhaniementie 23, 33180 Tampere",
+            "startDate": "2025-06-13T14:00:00.000Z",
+            "endDate": "2025-06-13T18:00:00.000Z",
+            "eventType": [
+                "festivals",
+                "activities",
+                "excursions, guided tours",
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus"
+            ],
+            "score": 136,
+            "normalizedScore": 38.86,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 22,
+            "audienceType": "Family",
+            "daysToEvent": -11,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 18.9,
+                "condition": "sunny"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Canoeing & Löyly (Finnish sauna week)",
+            "startDate": "2025-06-13T14:00:00.000Z",
+            "endDate": "2025-06-13T18:00:00.000Z",
+            "score": 136,
+            "normalizedScore": 38.86,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 10
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 21
+                }
+            ],
+            "views": 22,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "festivals",
+                "activities",
+                "excursions, guided tours",
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus"
+            ],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 18.9,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.51548539999999,
+                "lng": 23.7852902,
+                "address": "Rauhaniementie 23, 33180 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "info@saunatemppeli.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": null,
+                "instagram": "https://www.instagram.com/saunatemppeli/",
+                "twitter": null
+            },
+            "description": "Hiking Travel Hit invites you to a sauna from the waves, in collaboration with Saunatemppeli.We are celebrating the Finnish sauna festival on Friday 13.6. on the Rauhaniemi beach.Let's spend Friday sauna, paddling and enjoying! Paddling between 15:30-19:30. Sauna as usual 17-21.You do not need previous paddling experience to rent, as Hiking Travels will make sure you get started. If you are under 18 years old, please bring a signed permission slip from your parent. You can also book your equipment in advance by email (vuokraamo@hikingtravelhit.fi)1h rental prices at the event:2-person open canoe 13€/hKayak unit 10€/hKayak duo 16€/hand 2€ cheaper for those who bought a sauna ticket.We will also organize a \"waves to saunas\" large canoe trip on the same day, which can be purchased separately or combined with other celebrations of the evening. More information about the event in the coming days. Also follow Hiking Travels' own social media:F U O M A L A I S E N&nbsp; S A U N A N&nbsp; W I I D H O1 0 . 6 .&nbsp; -&nbsp; 1 5 . 6 .",
+            "ownerName": "Saunatemppeli / Saunakonkeli",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
             ]
         }
     },
@@ -3535,9 +4135,9 @@
             "startDate": "2025-06-14T08:00:00.000Z",
             "endDate": "2025-06-15T13:00:00.000Z",
             "eventType": [
-                "fairs",
-                "handicraft",
-                "consert"
+                "voluntary",
+                "activities",
+                "excursions, guided tours"
             ],
             "score": 123,
             "normalizedScore": 35.14,
@@ -3548,21 +4148,20 @@
             "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": {
-                "rain": 0.0,
-                "temperature": 23.1,
-                "condition": "sunny"
+                "rain": 5.7,
+                "temperature": 19.0,
+                "condition": "partly cloudy"
             },
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Family",
-                "Adults",
-                "Youth"
+                "LGBTQ+"
             ],
-            "occurrenceCount": 2,
+            "occurrenceCount": 1,
             "labels": [
-                "Family-friendly",
-                "Seasonal Hotspot"
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
             ]
         },
         "fullEventData": {
@@ -3574,12 +4173,8 @@
             "normalizedScore": 35.14,
             "scoreBreakdown": [
                 {
-                    "type": "Event Type",
-                    "value": 20
-                },
-                {
                     "type": "Views",
-                    "value": 5
+                    "value": 70
                 },
                 {
                     "type": "Outdoor/Indoor",
@@ -3587,11 +4182,11 @@
                 },
                 {
                     "type": "Event Duration",
-                    "value": 20
+                    "value": 5
                 },
                 {
                     "type": "Weather",
-                    "value": 30
+                    "value": 10
                 },
                 {
                     "type": "Audience Fit",
@@ -3599,52 +4194,55 @@
                 },
                 {
                     "type": "Demographics Fit",
-                    "value": 18
+                    "value": 3
                 }
             ],
-            "views": 75,
+            "views": 1097,
             "peakFootTraffic": "N/A",
             "dayType": "weekend",
             "timeOfDay": "allday",
             "audienceType": "General",
             "globalContentCategories": [
-                "fairs",
-                "handicraft",
-                "consert"
+                "voluntary",
+                "activities",
+                "excursions, guided tours"
             ],
-            "ages": [],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
             "weather": {
-                "rain": 0.0,
-                "temperature": 23.1,
-                "condition": "sunny"
+                "rain": 5.7,
+                "temperature": 19.0,
+                "condition": "partly cloudy"
             },
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.5034939,
-                "lng": 23.7540468,
-                "address": "Tallipiha, Kuninkaankatu 4, 33210 Tampere"
+                "lat": 61.4954216,
+                "lng": 23.761186,
+                "address": "Laukontori, 33200 Tampere"
             },
             "upcomingDates": [],
-            "contactEmail": "tallipiha10@gmail.com",
+            "contactEmail": "klaus@sinuiksi.fi",
             "mainImage": null,
             "socialLinks": {
-                "facebook": "https://www.facebook.com/TallipihaTampere",
-                "instagram": "https://www.instagram.com/tallipiha?igshid=MjEwN2IyYWYwYw==",
+                "facebook": "https://www.facebook.com/pirkanmaanseta/?locale=fi_FI",
+                "instagram": "https://www.instagram.com/sinuiksi/",
                 "twitter": null
             },
-            "description": "Modus Market - unique handicrafts and small series for sale. At the event, artisans and craftsmen will sell and demonstrate their skills. On Saturday, every hour from 12 to 15, Go Go Pops will perform (30 min. set). The good-natured ukulele band Go Go Pops will play relaxed, easy-going music - from the sweet melodies of the past to today's rallies. On Sunday, at 12 and 14, the lovely Miss Daisy will perform. Miss Daisy will perform unforgettable songs from the 40s and 60s in her own unique style in the event yard.",
-            "ownerName": "Tallipiha",
+            "description": "In honor of Manse Pride Week, Sinuiksi ry is organizing two rainbow history-themed walks. The walks start on Tue 10.6. and Fri 13.6. at 6:00 PM from Laukontori. The walk lasts approximately 1.5 hours, ending at Otavalankatu. Participation in the walks is free of charge. Welcome to the parade sites of Tampere's rainbow history to see and learn! We will follow the principles of a safer space at the event. You can read the principles in advance here: https://yhdistys.sinuiksi.fi/toiminta/turvallisempi-tila/ Accessibility of the venue and movement: The starting point Laukontori is accessible without barriers. The route follows the street network, on sidewalks and in park areas, as well as dirt roads/paths. There are no stairs along the route. There are traffic barriers at the street crossings, lowered at pedestrian crossings. In Hämeenpuisto, the route between Satamakatu and Kauppakatu is uphill. Route: Laukontori – Satamakatu – Hämeenpuisto (park dirt road) – Kauppakatu – Frenckelli via the bridge to Koskipuisto (where there is also a dirt road) – Hatanpää highway – Otavalankatu. Accessible parking space: There are some public accessible (streetside) parking spaces near the starting point Laukontori and the finishing point Otavalankatu, but their availability cannot be guaranteed. You can participate in the event with an assistant and/or guide dog. During the event tour, the speech will be announced through a portable loud speaker. The route mainly takes you through smaller streets and the park, but there may be more traffic noise, especially in the Hämeenpuisto and Hatanpää highway areas. You can ask Klaus for more information by email: klaus@sinuiksi.fi.",
+            "ownerName": "Sinuiksi ry",
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Family",
-                "Adults",
-                "Youth"
+                "LGBTQ+"
             ],
-            "occurrenceCount": 2,
+            "occurrenceCount": 1,
             "labels": [
-                "Family-friendly",
-                "Seasonal Hotspot"
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
             ]
         }
     },
@@ -3946,6 +4544,480 @@
             "views": 2,
             "audienceType": "Family",
             "daysToEvent": -12,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 19.4,
+                "condition": "sunny"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Youth Manse Pride: GRWM - Manse Pride 2025",
+            "startDate": "2025-06-13T12:00:00.000Z",
+            "endDate": "2025-06-13T17:00:00.000Z",
+            "score": 121,
+            "normalizedScore": 34.57,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 11
+                }
+            ],
+            "views": 2,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "festivals"
+            ],
+            "ages": [
+                "age-4",
+                "age-3"
+            ],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 19.4,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.50097899999999,
+                "lng": 23.7657001,
+                "address": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": null,
+                "instagram": "https://www.instagram.com/nuortensateenkaari",
+                "twitter": null
+            },
+            "description": "At the Youth Pride House on June 13th:\n\n💓 GRWM - Manse Pride 2025 💓\n\nOn Friday, we'll be getting ready for the highlight of Manse Pride week: the march and the main party 🩷 So come and make the final touches to your pride look!\n\n15-20 | we'll be making different kind of jewelry from shrink plastic, painting fabric tags, making pearl bracelets and pins! Rewinding the week!\n\n15-18 | there will be a traditional workshop where you can print and paint your own pride shirt! We have colors, stencils and white t-shirts in different sizes. You can bring your own cotton shirt with you if you want.\n\n15-19 | sign workshop, where the materials needed to make signs are all provided!\n\nThe Youth Pride House is a meeting place for young people aged 13-25 who a part of the LGBTQI+ community and for those interested in the topics. The Youth Pride House is part of the Youth Manse Pride event week organized by the Youth Services of the City of Tampere. This year, Youth Pride House offers a different themed program for four days, but you can also just come and hang out. Youth Pride House is open during Manse Pride week from Tuesday to Friday and daily from 3–8 p.m. (except on Thursday, when it is extended until 10 p.m.).  We follow the safer space guidelines in our activities. And as in previous years, the venue is the Youth Cultural Center, Monitoimitalo 13. Welcome!",
+            "ownerName": "Tampereen kaupungin nuorisopalvelut",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Taste of Nokia",
+            "venue": "Visit Nokia, 37100 Nokia",
+            "startDate": "2025-06-26T21:00:00.000Z",
+            "endDate": "2025-06-28T21:00:00.000Z",
+            "eventType": [
+                "festivals",
+                "food and beverage"
+            ],
+            "score": 125,
+            "normalizedScore": 35.71,
+            "dayType": "weekday",
+            "timeOfDay": "evening",
+            "views": 59,
+            "audienceType": "General",
+            "daysToEvent": 2,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 18.4,
+                "condition": "sunny"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Taste of Nokia",
+            "startDate": "2025-06-26T21:00:00.000Z",
+            "endDate": "2025-06-28T21:00:00.000Z",
+            "score": 125,
+            "normalizedScore": 35.71,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 5
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 20
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                }
+            ],
+            "views": 59,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "evening",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "festivals",
+                "food and beverage"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 18.4,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4803094,
+                "lng": 23.501203,
+                "address": "Visit Nokia, 37100 Nokia"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-06-26T21:00:00.000Z",
+                    "end": "2025-06-28T21:00:00.000Z"
+                }
+            ],
+            "contactEmail": "tiina.rinne-jarvensivu@nokiankaupunki.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/events/1702608223711526",
+                "instagram": "https://www.instagram.com/visitnokia/",
+                "twitter": null
+            },
+            "description": "The Taste of Nokia restaurant weekend will gather gourmets who enjoy good food and drinks to Nokia from 27 to 29 June 2025!\nThe city's restaurants and cafés will serve tasting experiences for just 3.50 euros from Friday to Sunday from 12 to 18. The event's dishes will feature plenty of creativity, new flavors and, of course, Nokia-ness.\n\nParticipating in the event:\n\nTapahtumassa mukana:\nAidan Herkut, Härkitie 6\nBufferi, Nokia River Golf, Alastalontie 33\nFizza Nokia, Yrittäjäkatu 2\nFood & Cafe Frida, Välikatu 14\nFood Market, Scandic Eden Nokia, Paratiisikatu 2\nKahvila Hinttala, Nokianvaltatie 5\nKataja kahvila, Välikatu 19\nKeilaamo, Pirkkalaistie 1\nKoskibaari, Siurontie 71\nNakkikikkari, Pirkkalaistori\nNokian panimo/Schnitzel Fabrik, Nuijamiestentie 17\nPancho Villa Nokia, Pirkkalaistori 1\nPepper Bar & Restaurant, Välikatu 18\nPirkkalaistorin Minetti, Pirkkalaistori\nRapee Grill, Pirkkalaistori\nTehdassaaren kahvila, Souranderintie 2\n\nRead more about the event and join the taste journey! https://visitnokia.fi/tapahtumat/taste-of-nokia/",
+            "ownerName": "Visit Nokia",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Surrealism – A Collective Dream",
+            "venue": "Tampere Art Museum, Puutarhakatu 34, 33230 Tampere",
+            "startDate": "2025-02-07T22:00:00.000Z",
+            "endDate": "2025-08-09T21:00:00.000Z",
+            "eventType": [
+                "museums and galleries",
+                "museums",
+                "exhibitions"
+            ],
+            "score": 123,
+            "normalizedScore": 35.14,
+            "dayType": "weekday",
+            "timeOfDay": "night",
+            "views": 1431,
+            "audienceType": "General",
+            "daysToEvent": -137,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": null,
+                "temperature": null,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "International",
+                "Art Enthusiasts",
+                "Museum Visitors"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Surrealism – A Collective Dream",
+            "startDate": "2025-02-07T22:00:00.000Z",
+            "endDate": "2025-08-09T21:00:00.000Z",
+            "score": 123,
+            "normalizedScore": 35.14,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 70
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 5
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 1431,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "night",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "museums and galleries",
+                "museums",
+                "exhibitions"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": null,
+                "temperature": null,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4984925,
+                "lng": 23.7438104,
+                "address": "Tampere Art Museum, Puutarhakatu 34, 33230 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "tamu@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/tampereentaidemuseo",
+                "instagram": "https://www.instagram.com/tampereentaidemuseo/",
+                "twitter": null
+            },
+            "description": "The Surrealism exhibition deals with the world of the subconscious and the instability of reality through the works of avant-garde artists like Max Ernst, Yves Tanguy, René Magritte, Joan Miró, Man Ray, Salvador Dalí, Luis Buñuel and Claude Cahun and the work of contemporary artists like Cindy Sherman, Tony Oursler, Penny Slinger, Yayoi Kusama, Sarah Lucas and David Lynch. Central themes include identity, gender, technology and mental health examined from different perspectives. The media work of the world-famous contemporary artist and filmmaker Marco Brambilla Heaven´s Gate (2022) is shown in the basement gallery of the museum as part of the exhibition. The writer André Breton published the first Surrealist Manifesto in Paris one hundred years ago on 15th October 1924. It brought about a revolutionary cultural movement whose ideas and practices spread all over the world and continue to exert an influence in the present day.A century after the birth of the movement, Surrealist thinking is once again extremely topical. In an age of great change and unrest, we are creating new visions of reality. Political and social instability, crises and wars, ever accelerating change and uncertainty about the future are unsettling our view of the world. Questioning our own conception of reality has once again assumed a central position, and old questions re-emerge in our search for answers. Looking at Surrealist works over a hundred years opens up alternative perspectives stretching from the past to the present.&nbsp;The exhibition examines Surrealism and its impacts from the 1920s to the present day. The works of the original Surrealists engage with the interpretations of succeeding generations. The dialogue between these works shows that Surrealism is not just an historical movement, but rather one whose influence extends up to the present day. The Surrealist stance reflects a way of thinking that is based on incompleteness and continual change. The interaction between the art of different decades makes the themes and subjects of the avantgarde seem more topical today than ever. The search for identity, transformation, irrationality, the questioning of reality and perception are all dealt with in contemporary works of art that bear a Surrealist stamp.&nbsp;The exhibition, which is divided thematically into six sections shows how Surrealist practices have called the present and the future into question in a critical and humorous way over the generations right up to the present day.&nbsp;The over 100 works on show in the exhibition present the diversity of Surrealist art: paintings, prints, sculptures, photographs and films. The exhibition has been organized in cooperation with the German Institut für Kulturaustausch. ",
+            "ownerName": "Tampereen taidemuseo",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "International",
+                "Art Enthusiasts",
+                "Museum Visitors"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Adults' Evening in Rulla",
+            "venue": "Keskustori 4, 33100 Tampere",
+            "startDate": "2025-06-10T13:00:00.000Z",
+            "endDate": "2025-06-10T16:00:00.000Z",
+            "eventType": [
+                "festivals",
+                "handicraft"
+            ],
+            "score": 123,
+            "normalizedScore": 35.14,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 371,
+            "audienceType": "Family",
+            "daysToEvent": -14,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 5.7,
+                "temperature": 18.9,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Adults' Evening in Rulla",
+            "startDate": "2025-06-10T13:00:00.000Z",
+            "endDate": "2025-06-10T16:00:00.000Z",
+            "score": 123,
+            "normalizedScore": 35.14,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 30
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 10
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 13
+                }
+            ],
+            "views": 371,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "festivals",
+                "handicraft"
+            ],
+            "ages": [
+                "age-5"
+            ],
+            "weather": {
+                "rain": 5.7,
+                "temperature": 18.9,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4988264,
+                "lng": 23.762119,
+                "address": "Keskustori 4, 33100 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "emma.peura@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": null,
+                "twitter": null
+            },
+            "description": "Children's Cultural Centre Rulla is located on the first floor of the Culture House Laikku. It is a colorful, stimulating, and grounding art and exhibition space. Normally, Rulla serves only children and families, but during Pride week, we open the doors exclusively for adults, for one night only. During the Adults' Evening, you can explore the exhibition and play areas in peace, rest, read, meditate, listen to audiobooks or music (with headphones), take a nap, and participate in a guided art workshop inspired by Tove Jansson's worldview and art.In the Art workshop at 17, we will try painting with acrylics and mixed techniques and create our own artwork. The workshop celebrates the 80th anniversary of the Moomins and Tove Jansson's unique creativity and attitude towards life. Tove Jansson (1914–2001) was a writer, visual artist, and illustrator who loved work and life, and her production is a celebration of humanism, colors, and storytelling. She is best known as the creator of Moominvalley and the Moomin stories. Tove surrounded the Moomins with numerous friends – the community and the power of art carry the trolls through life. The world of the Moomins is built on adventure and inclusion, where different perspectives are heard. (Source: tovejansson.com)The message of Manse Pride 2025 \"We are one big family\" fits perfectly with Tove's stories about a safe place that can be called home. In the art workshop, we strengthen the feeling of hope, the importance of belonging, and the freedom of self-expression through art. The art workshop is led by visual artist Zeynep Kaynar / Tampere Intercultural Art.The exhibition space at Rulla features the spring exhibition of the Handicraft and Design School Näpsä What on Earth? Fairytale Crafts.The entrance to Rulla is from the end of Laikku facing Tampere Theatre. Outdoor shoes cannot be worn in Rulla; there is coat rack space and lockable lockers in the lobby. We kindly ask you to keep smart devices silent during the visit.The evening concludes with Pride concert: Narrikoira &amp; Kiukkupussy and Elsi Sloan at 19:00 on Laikunlava!Free entry. Taking part in the art workshop is also free of charge.Tervetuloa * Welcome * Välkommen * Teretulemast * स्वागत * Bi xêr hatî * Bienvenido * Ласкаво просимо * Hoş geldiniz * Добро пожаловать * স্বাগত * Benvenuto * ようこそ * Willkommen * 欢迎 * Soo dhowow * Dobrodošli * خوش آمدید * مرحباً بكThe event follows the principles of a safer space.Accessibility information for Rulla.",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Youth Manse Pride: GRWM - Manse Pride 2025",
+            "venue": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere",
+            "startDate": "2025-06-13T12:00:00.000Z",
+            "endDate": "2025-06-13T17:00:00.000Z",
+            "eventType": [
+                "festivals"
+            ],
+            "score": 121,
+            "normalizedScore": 34.57,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 2,
+            "audienceType": "Family",
+            "daysToEvent": -11,
             "peakFootTraffic": "N/A",
             "weather": {
                 "rain": 0.0,
@@ -6264,6 +7336,270 @@
                 {
                     "type": "Weather",
                     "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 21
+                }
+            ],
+            "views": 106,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 18.2,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5160985,
+                "lng": 23.6864171,
+                "address": "Hiedanranta, Lielahti Manor, Tehdaskartanonkatu 38, 33400 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-06-26T15:00:00.000Z",
+                    "end": "2025-06-26T17:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 6 PM Lempivärit\nLempivärit enchants, touches, and entertains with their atmospheric gigs. The band uniquely combines diverse music with personal lyrics that address equality and environmental and climate crises. In Lempivärit's rocking indie folk, the viola and woodwinds illustrate the twists of Finnish-language songs, complemented by the ukulele bass, guitar/banjo, and drums. However, the songs escape genre boundaries, taking the listener to surprising places and moods. In the summer of 2024, Lempivärit released their debut album, “Tehkää jotakin!”. Musically, Lempivärit follows its own progressive paths on the album. The lyrics take a broad stance while maintaining a twinkle in the eye.\n\nAt 7 PM Jäätelökone\nJäätelökone plays self-made folk-inspired pop music! The core elements of our songs are distinctive lyrics, changing moods, and thought-provoking tones. Our live set is performed with a cajon-based drum kit, guitar, bass, and keyboards, with vocal harmonies playing a crucial role. Join us in daydreaming or sing along!\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Ohranjyvä's Sunday quiz",
+            "venue": "Ohranjyvä, Näsilinnankatu 15, 33210",
+            "startDate": "2025-06-08T14:00:00.000Z",
+            "endDate": "2025-07-27T16:00:00.000Z",
+            "eventType": [
+                "food and beverage",
+                "literature"
+            ],
+            "score": 110,
+            "normalizedScore": 31.43,
+            "dayType": "weekend",
+            "timeOfDay": "afternoon",
+            "views": 45,
+            "audienceType": "General",
+            "daysToEvent": -16,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 17.5,
+                "condition": "sunny"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "General"
+            ],
+            "occurrenceCount": 6,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Ohranjyvä's Sunday quiz",
+            "startDate": "2025-06-08T14:00:00.000Z",
+            "endDate": "2025-07-27T16:00:00.000Z",
+            "score": 110,
+            "normalizedScore": 31.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 10
+                }
+            ],
+            "views": 45,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "food and beverage",
+                "literature"
+            ],
+            "ages": [
+                "age-5",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 17.5,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.49986707907093,
+                "lng": 23.754202765382505,
+                "address": "Ohranjyvä, Näsilinnankatu 15, 33210"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-06T14:00:00.000Z",
+                    "end": "2025-07-06T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-13T14:00:00.000Z",
+                    "end": "2025-07-13T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-20T14:00:00.000Z",
+                    "end": "2025-07-20T16:00:00.000Z"
+                },
+                {
+                    "start": "2025-07-27T14:00:00.000Z",
+                    "end": "2025-07-27T16:00:00.000Z"
+                }
+            ],
+            "contactEmail": "info@ravintolaohranjyva.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/Ohranjyva/",
+                "instagram": null,
+                "twitter": null
+            },
+            "description": "One visa team can have 1-4 people, advance registration is not required. The visa has 21 questions and they concern general information and current topics. The leader of the visa is either Tommi or Vieraileva vätäjä. The main prize is a €40 gift card for the winning team every week and smaller prizes for second place. Along with the visa, you can buy the refreshments you want and food from the kitchen (the kitchen is open on Sundays until 19:00). A warm welcome!",
+            "ownerName": "Ohranjyvä",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "General"
+            ],
+            "occurrenceCount": 6,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Nuorten Manse Pride: It's all about YOUth",
+            "venue": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere",
+            "startDate": "2025-06-11T12:00:00.000Z",
+            "endDate": "2025-06-11T17:00:00.000Z",
+            "eventType": [
+                "handicraft",
+                "fairs",
+                "voluntary"
+            ],
+            "score": 106,
+            "normalizedScore": 30.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 68,
+            "audienceType": "Family",
+            "daysToEvent": -13,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 4.2,
+                "temperature": 16.4,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Nuorten Manse Pride: It's all about YOUth",
+            "startDate": "2025-06-11T12:00:00.000Z",
+            "endDate": "2025-06-11T17:00:00.000Z",
+            "score": 106,
+            "normalizedScore": 30.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 5
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
                 },
                 {
                     "type": "Audience Fit",
@@ -8608,6 +9944,253 @@
     },
     {
         "leftPanelData": {
+            "eventName": "Youth Manse Pride: Gaymer's night",
+            "venue": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere",
+            "startDate": "2025-06-12T12:00:00.000Z",
+            "endDate": "2025-06-12T19:00:00.000Z",
+            "eventType": [
+                "festivals"
+            ],
+            "score": 106,
+            "normalizedScore": 30.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 70,
+            "audienceType": "Family",
+            "daysToEvent": -12,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 16.1,
+                "temperature": 16.7,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Youth Manse Pride: Gaymer's night",
+            "startDate": "2025-06-12T12:00:00.000Z",
+            "endDate": "2025-06-12T19:00:00.000Z",
+            "score": 106,
+            "normalizedScore": 30.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 5
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 5
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 11
+                }
+            ],
+            "views": 70,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "festivals"
+            ],
+            "ages": [
+                "age-4",
+                "age-3"
+            ],
+            "weather": {
+                "rain": 16.1,
+                "temperature": 16.7,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.50097899999999,
+                "lng": 23.7657001,
+                "address": "Nuorten kulttuurikeskus Monitoimitalo 13, Pellavatehtaankatu 4, 33100 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": null,
+                "instagram": "https://www.instagram.com/nuortensateenkaari",
+                "twitter": null
+            },
+            "description": "At the Youth Pride House on June 12th:🌟 GAYMER'S NIGHT 🌟 Gaming Thursday! Board games, console games and role-playing games! 3-10 pm | Board and console games available, Huppu project (@huppunuoret) employees visiting 3-6 pm | Come and draw fan art and talk about gaming and equality-related topics. Welcome to cheer on your favorite characters and games! 4-6 pm | Tabletop role-playing game: Jewel hunt (fi/en) Register in advance for the tabletop role-playing game via this link: https://docs.google.com/forms/d/e/1FAIpQLScXxHsQ4Op_4J3InSl7aweOvk9aZ_fx1UL98RW-JT-A20cl5g/viewform 6-7 pm | Workshop: What makes a shared space relaxed and homely? What things are needed for everyone to be comfortable? Come and find answers together! 🌟 The Youth Pride House is a meeting place for young people aged 13-25 who a part of the LGBTQI+ community and for those interested in the topics. The Youth Pride House is part of the Youth Manse Pride event week organized by the Youth Services of the City of Tampere. This year, Youth Pride House offers a different themed program for four days, but you can also just come and hang out. Youth Pride House is open during Manse Pride week from Tuesday to Friday and daily from 3–8 p.m. (except on Thursday, when it is extended until 10 p.m.). We follow the safer space guidelines in our activities. And as in previous years, the venue is the Youth Cultural Center, Monitoimitalo 13. Welcome!",
+            "ownerName": "Tampereen kaupungin nuorisopalvelut",
+            "locations_type": "indoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Anti-Art Drawing Club Pop-Up Gallery",
+            "venue": "Sorsapuisto, 33500 Tampere",
+            "startDate": "2025-06-14T00:00:00.000Z",
+            "endDate": "2025-06-14T15:00:00.000Z",
+            "eventType": [
+                "festivals",
+                "voluntary",
+                "museums and galleries",
+                "museums",
+                "exhibitions"
+            ],
+            "score": 106,
+            "normalizedScore": 30.29,
+            "dayType": "weekend",
+            "timeOfDay": "night",
+            "views": 37,
+            "audienceType": "Adult",
+            "daysToEvent": -11,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 23.1,
+                "condition": "sunny"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Anti-Art Drawing Club Pop-Up Gallery",
+            "startDate": "2025-06-14T00:00:00.000Z",
+            "endDate": "2025-06-14T15:00:00.000Z",
+            "score": 106,
+            "normalizedScore": 30.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 5
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 8
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 37,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "night",
+            "audienceType": "Adult",
+            "globalContentCategories": [
+                "festivals",
+                "voluntary",
+                "museums and galleries",
+                "museums",
+                "exhibitions"
+            ],
+            "ages": [
+                "age-5",
+                "age-4",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 23.1,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.49683940000001,
+                "lng": 23.7813427,
+                "address": "Sorsapuisto, 33500 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "antiart.drawingclub@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": null,
+                "instagram": "https://www.instagram.com/antiart.drawingclub",
+                "twitter": null
+            },
+            "description": "Anti-Art Drawing Club is stationed at Sorsapuisto from 15-18 during the Puistojuhla at Manse Pride. At our pop-up you can see the results of our banner workshop in Bar Kuja, 16-19 on the 13th of June. Our participants drew banners and made patches for the Pride March, and are showcasing their ideas centered around our workshop theme: transgression.Some of our organizers will be present at the installation throughout the Puistojuhla, where you can enquire about our next steps and spark your own ideas of transgression. Pride is a protest with you in it!*** Anti-Art Drawing Club is a collective run by immigŕants and return migrators. We are aiming to provide a platform for those without a voice, and revolutionize the way we think about art entirely. ***",
+            "ownerName": "SappherSing",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
             "eventName": "Manse Pride -Leimarit®",
             "venue": "Fame club, Satakunnankatu 18, 33210 Tampere",
             "startDate": "2025-06-14T18:00:00.000Z",
@@ -9155,6 +10738,118 @@
                 "age-6",
                 "age-4"
             ],
+            "contactEmail": "ninjosanto@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kestavatampere",
+                "instagram": "https://www.instagram.com/kestavatampere/",
+                "twitter": null
+            },
+            "description": "Welcome to the summer wild vegetable tour to Haihara and mushroom tour to Hervantajärvi. The language of the tours is English. Your guide will be environmental biologist (FM), teacher, herbal and natural product advisor Tuomas Lilleberg, who invites you to explore the surrounding natural marvel.Notice: Both trips are limited to 25 people. Registration can be done by sending an email to ninjosanto(at)gmail.com.To 15.5. klo 17 Wild herb tour HaiharaWelcome to the summer wild vegetable tour to Haiharan kartano in Kaukajärvi to enjoy summer nature and its offerings. You will learn to identify and collect a few wild vegetables for food. You do not need previous experience, but an interest in wild vegetables is enough.Bring a few paper bags, a water bottle and, if you wish, collecting gloves and a small snack.The trip is limited to 25 people, and registration can be done by sending an email to ninjosanto(at)gmail.com. Please also include your phone number in the email. You can inform one person with you. You can also register for a reserve place. Also children are more than welcome.Meeting point: At the main doors of Haiharan kartano, Haiharankatu 30.To 28.8. klo 17 Mushroom tour HervantajärviWelcome to a mushroom tour in the Hervantajärvi forest area that provides diverse habitats for mushrooms to grow. On this tour you’ll know more about edible mushrooms in Finland and how to recognize, pick and use them.You´ll learn more about the delicious culinary treasures of the nearby forests and your mushroom-hawk-eye will definitely sharpen. Expect to be surprised how exotic mushrooms of the forest can be! Also children are more than welcome.We will focus on edible mushrooms and their look-alikes and to the ones you should be aware of: the toxic species.The trip is limited to 25 people, and registration can be done by sending an email to ninjosanto(at)gmail.com. Please also include your phone number in the email. You can inform one person with you. You can also register for a reserve place.Meeting point: Makkarajärvenkatu 35. We start walking towards the Makkarajärvi camping area and take a look at the mushrooms we find. Although we focus on edible species, all mushrooms are interesting to take a look at.Take with you:Outdoor clothing and shoes, an airy basket, a little snack and a water bottle. In case you don't have a basket, bring a container if you wish to carry mushrooms home.A knife, note equipment and mushroom literature is also useful.",
+            "ownerName": "City of Tampere, Environmental Protection Unit",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Wild herb and mushroom tours in English 2025",
+            "venue": "Makkarajärvenkatu 35, 33720 Tampere",
+            "startDate": "2025-08-28T14:00:00.000Z",
+            "endDate": "2025-08-28T16:00:00.000Z",
+            "eventType": [
+                "nature and well-being",
+                "activities",
+                "excursions, guided tours",
+                "food and beverage"
+            ],
+            "score": 103,
+            "normalizedScore": 29.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 141,
+            "audienceType": "Family",
+            "daysToEvent": 65,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Wild herb and mushroom tours in English 2025",
+            "startDate": "2025-08-28T14:00:00.000Z",
+            "endDate": "2025-08-28T16:00:00.000Z",
+            "score": 103,
+            "normalizedScore": 29.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Event Type",
+                    "value": 20
+                },
+                {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 13
+                }
+            ],
+            "views": 141,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "nature and well-being",
+                "activities",
+                "excursions, guided tours",
+                "food and beverage"
+            ],
+            "ages": [],
             "weather": {
                 "rain": 0,
                 "temperature": 0,
@@ -9162,9 +10857,67 @@
             },
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.499484908944474,
-                "lng": 23.761686380975043,
-                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+                "lat": 61.43955489999999,
+                "lng": 23.8784435,
+                "address": "Makkarajärvenkatu 35, 33720 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-08-28T14:00:00.000Z",
+                    "end": "2025-08-28T16:00:00.000Z"
+                }
+            ],
+            "contactEmail": "ninjosanto@gmail.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kestavatampere",
+                "instagram": "https://www.instagram.com/kestavatampere/",
+                "twitter": null
+            },
+            "description": "Welcome to the summer wild vegetable tour to Haihara and mushroom tour to Hervantajärvi. The language of the tours is English. Your guide will be environmental biologist (FM), teacher, herbal and natural product advisor Tuomas Lilleberg, who invites you to explore the surrounding natural marvel.Notice: Both trips are limited to 25 people. Registration can be done by sending an email to ninjosanto(at)gmail.com.To 15.5. klo 17 Wild herb tour HaiharaWelcome to the summer wild vegetable tour to Haiharan kartano in Kaukajärvi to enjoy summer nature and its offerings. You will learn to identify and collect a few wild vegetables for food. You do not need previous experience, but an interest in wild vegetables is enough.Bring a few paper bags, a water bottle and, if you wish, collecting gloves and a small snack.The trip is limited to 25 people, and registration can be done by sending an email to ninjosanto(at)gmail.com. Please also include your phone number in the email. You can inform one person with you. You can also register for a reserve place. Also children are more than welcome.Meeting point: At the main doors of Haiharan kartano, Haiharankatu 30.To 28.8. klo 17 Mushroom tour HervantajärviWelcome to a mushroom tour in the Hervantajärvi forest area that provides diverse habitats for mushrooms to grow. On this tour you’ll know more about edible mushrooms in Finland and how to recognize, pick and use them.You´ll learn more about the delicious culinary treasures of the nearby forests and your mushroom-hawk-eye will definitely sharpen. Expect to be surprised how exotic mushrooms of the forest can be! Also children are more than welcome.We will focus on edible mushrooms and their look-alikes and to the ones you should be aware of: the toxic species.The trip is limited to 25 people, and registration can be done by sending an email to ninjosanto(at)gmail.com. Please also include your phone number in the email. You can inform one person with you. You can also register for a reserve place.Meeting point: Makkarajärvenkatu 35. We start walking towards the Makkarajärvi camping area and take a look at the mushrooms we find. Although we focus on edible species, all mushrooms are interesting to take a look at.Take with you:Outdoor clothing and shoes, an airy basket, a little snack and a water bottle. In case you don't have a basket, bring a container if you wish to carry mushrooms home.A knife, note equipment and mushroom literature is also useful.",
+            "ownerName": "City of Tampere, Environmental Protection Unit",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "International"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Film screening: The Summer with Carmen (2023)",
+            "venue": "Arthouse Cinema Niagara / Pirkanmaa Film Center, Kehräsaari B, 33200 Tampere",
+            "startDate": "2025-06-13T16:15:00.000Z",
+            "endDate": "2025-06-13T18:00:00.000Z",
+            "eventType": [
+                "movies"
+            ],
+            "score": 101,
+            "normalizedScore": 28.86,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 172,
+            "audienceType": "Family",
+            "daysToEvent": -11,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4953835,
+                "lng": 23.7637295,
+                "address": "Arthouse Cinema Niagara / Pirkanmaa Film Center, Kehräsaari B, 33200 Tampere"
             },
             "upcomingDates": [
                 {
@@ -9184,8 +10937,8 @@
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "Youth",
                 "Family",
+                "LGBTQ+",
                 "International"
             ],
             "occurrenceCount": 3,
@@ -9843,6 +11596,7 @@
             "labels": [
                 "Family-friendly",
                 "Seasonal Hotspot",
+                "LGBTQ+ Friendly",
                 "International"
             ]
         }
@@ -10333,7 +12087,7 @@
             "timeOfDay": "evening",
             "views": 134,
             "audienceType": "General",
-            "daysToEvent": -12,
+            "daysToEvent": -16,
             "peakFootTraffic": "N/A",
             "weather": {
                 "rain": 0.0,
@@ -12056,11 +13810,11 @@
                 },
                 {
                     "type": "Audience Fit",
-                    "value": 20
+                    "value": 10
                 },
                 {
                     "type": "Demographics Fit",
-                    "value": 10
+                    "value": 21
                 }
             ],
             "views": 8,
@@ -12102,6 +13856,7 @@
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
+                "Youth",
                 "Family",
                 "Children",
                 "Parents"
@@ -12943,6 +14698,320 @@
                 "Family-friendly",
                 "Seasonal Hotspot"
             ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Azúcar's summer salsa",
+            "startDate": "2025-06-12T16:00:00.000Z",
+            "endDate": "2025-06-12T19:00:00.000Z",
+            "score": 93,
+            "normalizedScore": 26.57,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 10
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 5,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "dance",
+                "circus"
+            ],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 16.1,
+                "temperature": 16.7,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.499484908944474,
+                "lng": 23.761686380975043,
+                "address": "Puutarhakatu 1, 33210 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "hallitus@azucar.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/events/s/azucar-kesasalsat-laikunlava/972164811663911/",
+                "instagram": "https://www.instagram.com/Azucar_tampere/",
+                "twitter": null
+            },
+            "description": "☀ Azúcar's 2025 salsa summer will continue at Laikunlava on 12.6. at 19-22☀🎼 DJ Georgie MTV &amp; DJ Kaapo 🎼💸 MEMBER 💸G Livelab offers a -15% discount on the prices of restaurant services to Azucar members by showing their 2025 membership card!Benefit valid during Azúcar events.⭐ Azucar membership (€25/person in 2025) can be redeemed at salsa nights. Only card or mobile pay payment.The events of Azúcar - Tampereen Salsa ry are supported by the urban culture unit of the city of Tampere.",
+            "ownerName": "Azúcar Tampereen Salsa Ry",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Rainbow History Walk",
+            "venue": "Laukontori, 33200 Tampere",
+            "startDate": "2025-06-13T15:00:00.000Z",
+            "endDate": "2025-06-13T16:30:00.000Z",
+            "eventType": [
+                "voluntary",
+                "activities",
+                "excursions, guided tours"
+            ],
+            "score": 93,
+            "normalizedScore": 26.57,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 134,
+            "audienceType": "General",
+            "daysToEvent": -11,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 19.4,
+                "condition": "sunny"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Rainbow History Walk",
+            "startDate": "2025-06-13T15:00:00.000Z",
+            "endDate": "2025-06-13T16:30:00.000Z",
+            "score": 93,
+            "normalizedScore": 26.57,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 134,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "voluntary",
+                "activities",
+                "excursions, guided tours"
+            ],
+            "ages": [
+                "age-4",
+                "age-5",
+                "age-6"
+            ],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 19.4,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4954216,
+                "lng": 23.761186,
+                "address": "Laukontori, 33200 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "klaus@sinuiksi.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/pirkanmaanseta/?locale=fi_FI",
+                "instagram": "https://www.instagram.com/sinuiksi/",
+                "twitter": null
+            },
+            "description": "In honor of Manse Pride Week, Sinuiksi ry is organizing two rainbow history-themed walks. The walks start on Tue 10.6. and Fri 13.6. at 6:00 PM from Laukontori. The walk lasts approximately 1.5 hours, ending at Otavalankatu. Participation in the walks is free of charge.Welcome to the parade sites of Tampere's rainbow history to see and learn! We will follow the principles of a safer space at the event. You can read the principles in advance here: https://yhdistys.sinuiksi.fi/toiminta/turvallisempi-tila/Accessibility of the venue and movement: The starting point Laukontori is accessible without barriers. The route follows the street network, on sidewalks and in park areas, as well as dirt roads/paths. There are no stairs along the route. There are traffic barriers at the street crossings, lowered at pedestrian crossings. In Hämeenpuisto, between Satamakatu and Kauppakatu, the route is uphill. Route: Laukontori – Satamakatu – Hämeenpuisto (park dirt road) – Kauppakatu – from Frenckell via the bridge to Koskipuisto (where there is also a dirt road) – Hatanpää highway – Otavalankatu.Accessible parking space: There are some public accessible (streetside) parking spaces near the starting point Laukontori and the finishing point Otavalankatu, but their availability cannot be guaranteed. You can participate in the event with an assistant and/or guide dog. During the event tour, the speech will be announced via a portable loud speaker. The route mainly passes through smaller streets and parks, but there may be more traffic noise, especially in the Hämeenpuisto and Hatanpää highway areas.You can ask Klaus for more information by email: klaus@sinuiksi.fi.",
+            "ownerName": "Sinuiksi ry",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Herkät Hemmot",
+            "venue": "Näsinpuiston laululava, Näsinpuisto, 33210 Tampere",
+            "startDate": "2025-06-14T11:00:00.000Z",
+            "endDate": "2025-06-14T12:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 93,
+            "normalizedScore": 26.57,
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "views": 24,
+            "audienceType": "General",
+            "daysToEvent": -10,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.0,
+                "temperature": 22.9,
+                "condition": "sunny"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Herkät Hemmot",
+            "startDate": "2025-06-14T11:00:00.000Z",
+            "endDate": "2025-06-14T12:00:00.000Z",
+            "score": 93,
+            "normalizedScore": 26.57,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 10
+                },
+                {
+                    "type": "Weather",
+                    "value": 30
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 24,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0.0,
+                "temperature": 22.9,
+                "condition": "sunny"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5036474,
+                "lng": 23.7513074,
+                "address": "Näsinpuiston laululava, Näsinpuisto, 33210 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 2 PM Herkät Hemmot\nLegendary schlager music with delicate melodies.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
         }
     },
     {
@@ -13694,6 +15763,10 @@
                 {
                     "type": "Event Duration",
                     "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
                 },
                 {
                     "type": "Audience Fit",
@@ -15213,7 +17286,8 @@
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior",
-                "Health-conscious"
+                "Health-conscious adults",
+                "Patients or at-risk individuals"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -15302,7 +17376,8 @@
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Senior",
-                "Health-conscious"
+                "Health-conscious adults",
+                "Patients or at-risk individuals"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -17250,7 +19325,7 @@
             "occurrenceCount": 1,
             "labels": [
                 "Seasonal Hotspot",
-                "International"
+                "LGBTQ+ Friendly"
             ]
         },
         "fullEventData": {
@@ -17262,8 +19337,12 @@
             "normalizedScore": 23.14,
             "scoreBreakdown": [
                 {
+                    "type": "Views",
+                    "value": 5
+                },
+                {
                     "type": "Outdoor/Indoor",
-                    "value": 20
+                    "value": 5
                 },
                 {
                     "type": "Event Duration",
@@ -17400,14 +19479,14 @@
                 },
                 {
                     "type": "Audience Fit",
-                    "value": 10
+                    "value": 20
                 },
                 {
                     "type": "Demographics Fit",
                     "value": 21
                 }
             ],
-            "views": 18,
+            "views": 84,
             "peakFootTraffic": "N/A",
             "dayType": "weekend",
             "timeOfDay": "afternoon",
@@ -18485,10 +20564,11 @@
                 "age-5",
                 "age-4"
             ],
+            "ages": [],
             "weather": {
-                "rain": 0.0,
-                "temperature": 19.4,
-                "condition": "sunny"
+                "rain": 0.6,
+                "temperature": 18.7,
+                "condition": "partly cloudy"
             },
             "availableSpotsNearby": 0,
             "location": {
@@ -18629,6 +20709,954 @@
                 "Family-friendly",
                 "Seasonal Hotspot",
                 "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Q-Kafe",
+            "venue": "Eteläpuisto, 33200 Tampere",
+            "startDate": "2025-06-09T14:00:00.000Z",
+            "endDate": "2025-06-09T17:00:00.000Z",
+            "eventType": [
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus",
+                "voluntary"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 219,
+            "audienceType": "General",
+            "daysToEvent": -15,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.6,
+                "temperature": 18.7,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Q-Kafe",
+            "startDate": "2025-06-09T14:00:00.000Z",
+            "endDate": "2025-06-09T17:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 10
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 219,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "tt_asuminen",
+                "tt_digitaidot",
+                "tt_erillaisuus_suvaitsevaisuus_vahemmistot",
+                "tt_kaverit_ihmissuhteet",
+                "tt_kotoutuminen_maahanmuutto",
+                "tt_paihteettomyys_riippuvuudet",
+                "tt_opiskelu_oppiminen",
+                "tt_mielen_hyvinvointi",
+                "tt_sairaudet",
+                "tt_talous_velka",
+                "tt_terveys_elintavat",
+                "tt_tyottomyys_tyollistyminen",
+                "tt_vammaisuus_liikuntarajoitteisuus",
+                "voluntary"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0.6,
+                "temperature": 18.7,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4902329,
+                "lng": 23.7511196,
+                "address": "Eteläpuisto, 33200 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "info@transfeminiinit.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/transfeminiinit",
+                "instagram": "https://www.instagram.com/transfeminiinit/",
+                "twitter": null
+            },
+            "description": "Q-kafé is the first-ever Swedish-speaking Pride event in Tampere’s history. It is a Swedish-speaking, rainbow-friendly café in the form of a picnic. We will gather on June 9th at the Transfeminiinit Ry office at Näsilinnankatu 48 D, 4th floor, at 5:00 PM. From there, we will head together to Eteläpuisto, where we will enjoy the pride picnic. In case of rain, the event will be held entirely within the office space. You are welcome to bring something to share with others. Please be mindful of allergies when serving food! We will provide non-alcoholic sparkling drinks and some small savory snacks.All rainbow-friendly Swedish speakers, or those interested in a Swedish language immersion, are welcome!",
+            "ownerName": "Transfeminiinit ry",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "MansePride Scrimmage",
+            "venue": "Kuntokatu 17, 33520 Tampere",
+            "startDate": "2025-06-11T16:00:00.000Z",
+            "endDate": "2025-06-11T19:00:00.000Z",
+            "eventType": [
+                "sports and fitness"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 176,
+            "audienceType": "General",
+            "daysToEvent": -13,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 4.3,
+                "temperature": 16.2,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "MansePride Scrimmage",
+            "startDate": "2025-06-11T16:00:00.000Z",
+            "endDate": "2025-06-11T19:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 10
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 176,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "sports and fitness"
+            ],
+            "ages": [
+                "age-4",
+                "age-5"
+            ],
+            "weather": {
+                "rain": 4.3,
+                "temperature": 16.2,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5080459,
+                "lng": 23.8083578,
+                "address": "Kuntokatu 17, 33520 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "events@tampererollerderby.com",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/TampereRollerDerby",
+                "instagram": "https://www.instagram.com/trerollerderby/",
+                "twitter": null
+            },
+            "description": "We offer the exhibition match to the public for free. The event starts at 7 pm with the team's on-skate warm-up, after which we will play the exhibition match starting at 7:30 pm. Tampere Roller Derby (TRD) is a roller derby club founded in 2009 and owned and operated by its members. TRD consists of the representative teams Tampere Roller Derby All-Stars and Tampere Howlin’ Rolls, amateurs Combat Wombats and officials. TRD plays at the highest domestic level in the roller derby championship. TRD's representative teams also tour abroad in games and tournaments. TRD wants to be a safe and meaningful space for everyone interested in roller derby to practice, develop and make friends. We do not accept any kind of racism, nor homophobia or transphobia within the club. Diversity is an asset and we respect the diversity of our members.Additional information: The route to the event venue is barrier-free. The access route to the event venue is barrier-free. There is space for escort vehicles to park in front of the entrance. The event venue can be reached by public transport. There is an accessible parking space at the event venue. The entrance to the event venue is barrier-free and the entrance doors are automatic. Moving around the event venue is barrier-free. There is an accessible toilet in the event venue, which is marked with signs. The disabled toilet is gender-neutral. You can participate in the event with an assistant and/or guide dog. An induction loop is available at the event venue: unknown.",
+            "ownerName": "Tampere Roller Derby",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "LGBTQ+"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Laikunlava Sings | Kanerva-kuoro and sing-along",
+            "venue": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
+            "startDate": "2025-06-16T15:30:00.000Z",
+            "endDate": "2025-06-16T17:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 20,
+            "audienceType": "General",
+            "daysToEvent": -8,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.5,
+                "temperature": 23.0,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Laikunlava Sings | Kanerva-kuoro and sing-along",
+            "startDate": "2025-06-16T15:30:00.000Z",
+            "endDate": "2025-06-16T17:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 20,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0.5,
+                "temperature": 23.0,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.499484908944474,
+                "lng": 23.761686380975043,
+                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "On Mondays, the Laikunlava Sings concerts include a performance by a choir from Tampere at 6.30 PM and a sing-along led by Sulasol Pirkanmaa District starting at 7 PM. Sing-alongs are held every Monday from June 2nd to August 18th, 2025. At 6.30 PM Kanerva-kuoro Tampere Kanerva-kuoro (\"Kanerva Choir\") is a four-part mixed choir founded in 1945. The choir is open to singing enthusiasts of all ages and levels, inviting them to experience the joy of singing together with a low threshold. In addition to our own concerts, an important mission is to bring the joy, emotions, and memories of singing to places like nursing homes. Our repertoire mainly consists of Finnish and Slavic songs. We aim to offer diverse musical experiences to the audience, performing choir music from classics to originals. At 7 PM Sing-along The lead singer is Ari Sandberg and the accompanist is Tauno Honkala.See you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Sellopirkanmaa Ensemble",
+            "venue": "Litukan siirtolapuutarha, Litukankatu 13, 33500 Tampere",
+            "startDate": "2025-06-17T15:00:00.000Z",
+            "endDate": "2025-06-17T16:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 17,
+            "audienceType": "General",
+            "daysToEvent": -7,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 5.0,
+                "temperature": 18.3,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Music Enthusiasts",
+                "Open to All"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Sellopirkanmaa Ensemble",
+            "startDate": "2025-06-17T15:00:00.000Z",
+            "endDate": "2025-06-17T16:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 17,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 5.0,
+                "temperature": 18.3,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.50335539999999,
+                "lng": 23.8026905,
+                "address": "Litukan siirtolapuutarha, Litukankatu 13, 33500 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 6 PM Sellopirkanmaa Ensemble\nThe acoustic sound of the cello ensemble will not leave you cold. In this concert, experienced and skilled cellists from Sellopirkanmaa will perform. The diverse concert program ranges from classical to lighter music.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Music Enthusiasts",
+                "Open to All"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Kolmas Painos Vocal Group",
+            "venue": "Nekalan siirtolapuutarha, Muotialantie 43, 33800 Tampere",
+            "startDate": "2025-06-18T15:00:00.000Z",
+            "endDate": "2025-06-18T16:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 17,
+            "audienceType": "General",
+            "daysToEvent": -6,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 11.8,
+                "temperature": 17.1,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Kolmas Painos Vocal Group",
+            "startDate": "2025-06-18T15:00:00.000Z",
+            "endDate": "2025-06-18T16:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 17,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 11.8,
+                "temperature": 17.1,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4789936,
+                "lng": 23.8140176,
+                "address": "Nekalan siirtolapuutarha, Muotialantie 43, 33800 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 6 PM Kolmas Painos Vocal Group\nKolmas Painos Vocal Group creates a summery atmosphere with their beautifully delicate singing performances. We are present wherever the audience is, moving among the crowd with our performance. We pamper your ears with Finnish and Irish tunes. There is always an opportunity for sing-alongs at the audience's request.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Tampereen rautatieläisten soittokunta ry",
+            "venue": "Raholan siirtolapuutarha, Kaarilankatu 26, 33300 Tampere",
+            "startDate": "2025-07-01T15:00:00.000Z",
+            "endDate": "2025-07-01T16:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 8,
+            "audienceType": "General",
+            "daysToEvent": 7,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 2.0,
+                "temperature": 15.1,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Summer Event",
+                "Public"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Tampereen rautatieläisten soittokunta ry",
+            "startDate": "2025-07-01T15:00:00.000Z",
+            "endDate": "2025-07-01T16:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 8,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 2.0,
+                "temperature": 15.1,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4999433,
+                "lng": 23.6658183,
+                "address": "Raholan siirtolapuutarha, Kaarilankatu 26, 33300 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-01T15:00:00.000Z",
+                    "end": "2025-07-01T16:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 6 PM  Tampereen rautatieläisten soittokunta ry\nA wind orchestra that will celebrate its 130th anniversary next year, with a wide repertoire ranging from entertainment and schlager music to classical and marches. For summer events, the program is summery and entertaining.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Summer Event",
+                "Public"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Art Walk",
+            "venue": "Tampere Intercultural Art, Pirkankatu 10",
+            "startDate": "2025-07-03T13:00:00.000Z",
+            "endDate": "2025-08-07T15:00:00.000Z",
+            "eventType": [
+                "activities",
+                "excursions, guided tours"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 10,
+            "audienceType": "General",
+            "daysToEvent": 9,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0.8,
+                "temperature": 21.8,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "International",
+                "Tourists",
+                "Local Residents"
+            ],
+            "occurrenceCount": 2,
+            "labels": [
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Art Walk",
+            "startDate": "2025-07-03T13:00:00.000Z",
+            "endDate": "2025-08-07T15:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 3
+                }
+            ],
+            "views": 10,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "activities",
+                "excursions, guided tours"
+            ],
+            "ages": [
+                "age-5"
+            ],
+            "weather": {
+                "rain": 0.8,
+                "temperature": 21.8,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.497881,
+                "lng": 23.74587499999999,
+                "address": "Tampere Intercultural Art, Pirkankatu 10"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-03T13:00:00.000Z",
+                    "end": "2025-07-03T15:00:00.000Z"
+                },
+                {
+                    "start": "2025-08-07T13:00:00.000Z",
+                    "end": "2025-08-07T15:00:00.000Z"
+                }
+            ],
+            "contactEmail": "info@ticas.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/TampereInterculturalArt/",
+                "instagram": "https://www.instagram.com/tampereinterculturalart/",
+                "twitter": null
+            },
+            "description": "Have you ever roamed the streets of Tampere, come across some piece of art and thought to yourself: “Huh, I wonder what this is”? Well, maybe this is your chance to get some answers! TIcAS Art Walk is quite literally a walk that focuses on art one may view while being out and about in the city. Statues, architecture and even street art, all catered with lil’ nuggets of historical information and anecdotes, delivered to you by TIcAS member Miia Säppi. This is a free event, but requires registration. Please sign up through the attached link. This activity is supported by City of Tampere.",
+            "ownerName": "Tampere Intercultural Art",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "International",
+                "Tourists",
+                "Local Residents"
+            ],
+            "occurrenceCount": 2,
+            "labels": [
+                "Tourist Magnet",
+                "Seasonal Hotspot",
+                "International"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Laikunlava Sings | Tuulantei-kuoro and sing-along",
+            "venue": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
+            "startDate": "2025-07-14T15:30:00.000Z",
+            "endDate": "2025-07-14T17:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 78,
+            "normalizedScore": 22.29,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 7,
+            "audienceType": "Family",
+            "daysToEvent": 20,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Music Enthusiasts"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Laikunlava Sings | Tuulantei-kuoro and sing-along",
+            "startDate": "2025-07-14T15:30:00.000Z",
+            "endDate": "2025-07-14T17:00:00.000Z",
+            "score": 78,
+            "normalizedScore": 22.29,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 7,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.499484908944474,
+                "lng": 23.761686380975043,
+                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-14T15:30:00.000Z",
+                    "end": "2025-07-14T17:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "On Mondays, the Laikunlava Sings concerts include a performance by a choir from Tampere at 6.30 PM and a sing-along led by Sulasol Pirkanmaa District starting at 7 PM. Sing-alongs are held every Monday from June 2nd to August 18th, 2025. At 6.30 PM Tuulantei-kuoroA joyful singing group of eternally young members, accompanied by guitar. Our repertoire consists of familiar schlager songs from various decades. At 7 PM Sing-along The lead singer is Tapani Leppäsalko and the accompanist is Tauno Honkala.See you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Music Enthusiasts"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
             ]
         }
     },
@@ -20047,16 +23075,16 @@
     },
     {
         "leftPanelData": {
-            "eventName": "The opening of PiiPoo's Runo-olohuone",
-            "venue": "Kulttuurikeskus PiiPoo, Ideaparkinkatu 4, 37570 Lempäälä",
-            "startDate": "2025-01-10T22:00:00.000Z",
-            "endDate": "2025-06-13T21:00:00.000Z",
+            "eventName": "SUMMER ART POP-UP",
+            "venue": "Pispala Clothing, Aleksis Kiven katu 15, 33200 Tampere",
+            "startDate": "2025-05-23T22:00:00.000Z",
+            "endDate": "2025-08-08T22:00:00.000Z",
             "eventType": [
-                "handicraft",
                 "museums and galleries",
                 "museums",
                 "exhibitions",
-                "kids and family"
+                "handicraft",
+                "fairs"
             ],
             "score": 75,
             "normalizedScore": 21.43,
@@ -20184,7 +23212,7 @@
                 "temperature": 0,
                 "condition": ""
             },
-            "locations_type": "outdoor",
+            "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Youth",
@@ -20208,10 +23236,14 @@
             "scoreBreakdown": [
                 {
                     "type": "Outdoor/Indoor",
-                    "value": 20
+                    "value": 5
                 },
                 {
                     "type": "Event Duration",
+                    "value": 20
+                },
+                {
+                    "type": "Time of Day",
                     "value": 5
                 },
                 {
@@ -20368,11 +23400,11 @@
                 "address": "Raholan siirtolapuutarha, Kaarilankatu 26, 33300 Tampere"
             },
             "upcomingDates": [],
-            "contactEmail": "puistokonsertit@tampere.fi",
+            "contactEmail": "info@pispalaclothing.com",
             "mainImage": null,
             "socialLinks": {
-                "facebook": "https://www.facebook.com/kulttuuritampere/",
-                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "facebook": "https://www.facebook.com/pispalaclothing",
+                "instagram": "https://www.instagram.com/pispalaclothing",
                 "twitter": null
             },
             "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 6 PM Ahjolan Harmonikat\nAhjolan Harmonikat conjures joy, delight, and especially summer vibes as the interpreter of the Finnish soul with acoustic accordions. The music will be played for the first time with a new lineup. Our music genre is meant to be played, enjoyed, and as a spice of good life for every lover of traditional dance and entertainment music.\n\nSee you in Tampere Summer Park Concerts!",
@@ -21738,6 +24770,10 @@
             "normalizedScore": 20.86,
             "scoreBreakdown": [
                 {
+                    "type": "Views",
+                    "value": 10
+                },
+                {
                     "type": "Outdoor/Indoor",
                     "value": 5
                 },
@@ -22384,8 +25420,9 @@
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
+                "Family",
                 "Youth",
-                "Family"
+                "Local"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -22438,9 +25475,9 @@
             },
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.499484908944474,
-                "lng": 23.761686380975043,
-                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+                "lat": 61.4992975,
+                "lng": 23.7430531,
+                "address": "Amurin museokortteli, Satakunnankatu 49, 33230 Tampere"
             },
             "upcomingDates": [
                 {
@@ -22460,8 +25497,9 @@
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
+                "Family",
                 "Youth",
-                "Family"
+                "Local"
             ],
             "occurrenceCount": 1,
             "labels": [
@@ -22714,9 +25752,9 @@
             "daysToEvent": 56,
             "peakFootTraffic": "N/A",
             "weather": {
-                "rain": 0,
-                "temperature": 0,
-                "condition": ""
+                "rain": 0.6,
+                "temperature": 16.3,
+                "condition": "partly cloudy"
             },
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
@@ -22771,9 +25809,9 @@
             ],
             "ages": [],
             "weather": {
-                "rain": 0,
-                "temperature": 0,
-                "condition": ""
+                "rain": 0.6,
+                "temperature": 16.3,
+                "condition": "partly cloudy"
             },
             "availableSpotsNearby": 0,
             "location": {
@@ -24459,6 +27497,547 @@
             ],
             "occurrenceCount": 1,
             "labels": [
+                "Seasonal Hotspot",
+                "LGBTQ+ Friendly"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Anton V. Kivi",
+            "venue": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere",
+            "startDate": "2025-06-18T15:00:00.000Z",
+            "endDate": "2025-06-18T16:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 68,
+            "normalizedScore": 19.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 20,
+            "audienceType": "General",
+            "daysToEvent": -6,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 13.7,
+                "temperature": 16.8,
+                "condition": "partly cloudy"
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Music Enthusiasts",
+                "Cultural Attendees"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Anton V. Kivi",
+            "startDate": "2025-06-18T15:00:00.000Z",
+            "endDate": "2025-06-18T16:00:00.000Z",
+            "score": 68,
+            "normalizedScore": 19.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Weather",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 8
+                }
+            ],
+            "views": 20,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 13.7,
+                "temperature": 16.8,
+                "condition": "partly cloudy"
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4697426,
+                "lng": 23.8904216,
+                "address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere"
+            },
+            "upcomingDates": [],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. The concerts at Haihara are held in Valjasvaja.\n\nAt 6 PM Anton V. Kivi\nAnton V. Kivi is a new singer-songwriter from Tampere, performing stripped-down, dark-toned indie folk. His music centers around minimalist arrangements built around acoustic guitar and captivating vocal interpretations, along with thought-provoking lyrics. In his songs, Anton V. Kivi addresses the unspoken pain points of humanity and societal themes such as the climate crisis and criticism of capitalism. The intimate atmosphere of the songs compels the listener to consciously focus on the music and reflect on the topics raised. The artist's debut single ”Huhtikuu (kukaan ei puhu siitä)” is the first release from his debut EP, which will be released in the fall of 2025.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Music Enthusiasts",
+                "Cultural Attendees"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Amilos",
+            "venue": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere",
+            "startDate": "2025-07-09T15:00:00.000Z",
+            "endDate": "2025-07-09T16:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 68,
+            "normalizedScore": 19.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 19,
+            "audienceType": "General",
+            "daysToEvent": 15,
+            "peakFootTraffic": "N/A",
+            "weather": null,
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Amilos",
+            "startDate": "2025-07-09T15:00:00.000Z",
+            "endDate": "2025-07-09T16:00:00.000Z",
+            "score": 68,
+            "normalizedScore": 19.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 19,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": null,
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4697426,
+                "lng": 23.8904216,
+                "address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-09T15:00:00.000Z",
+                    "end": "2025-07-09T16:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. The concerts at Haihara are held in Valjasvaja.\n\nAt 6 PM Amilos\nSensitivity and Peace of Mind. Amilos is a band spreading the message of tranquility. We met in rehabilitative work activities and are now starting to test our wings. We've been practicing quite intensively for a year, and we've been asked to perform even after being heard. We perform anywhere, but Rami thinks we work best when the atmosphere is intimate.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Duo Käk', Tuukka Hämäläinen",
+            "venue": "Hiedanranta, Lielahti Manor, Tehdaskartanonkatu 38, 33400 Tampere",
+            "startDate": "2025-07-10T15:00:00.000Z",
+            "endDate": "2025-07-10T17:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 68,
+            "normalizedScore": 19.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 44,
+            "audienceType": "General",
+            "daysToEvent": 16,
+            "peakFootTraffic": "N/A",
+            "weather": null,
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Duo Käk', Tuukka Hämäläinen",
+            "startDate": "2025-07-10T15:00:00.000Z",
+            "endDate": "2025-07-10T17:00:00.000Z",
+            "score": 68,
+            "normalizedScore": 19.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 44,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": null,
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5160985,
+                "lng": 23.6864171,
+                "address": "Hiedanranta, Lielahti Manor, Tehdaskartanonkatu 38, 33400 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-10T15:00:00.000Z",
+                    "end": "2025-07-10T17:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 6 PM Duo Käk'\nAtmospheric music with harp and keyboard. The repertoire includes both familiar and newer music, ranging from classics to folk songs and movie themes.\n\nAt 7 PM Tuukka Hämäläinen\nTuukka Hämäläinen is a singer-songwriter who has released music both as a solo artist and with the band Kumma Koje. Better known as an author, Hämäläinen creates unique Finnish-language music that sensitively addresses even dark themes with a twinkle in his eye. When performing solo, Hämäläinen acoustically presents both his own material and that of his band Kumma Koje.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Laikunlava Sings | Kamarikuoro Camena and sing-along",
+            "venue": "Laikunlava, Puutarhakatu 1, 33210 Tampere",
+            "startDate": "2025-07-21T15:30:00.000Z",
+            "endDate": "2025-07-21T17:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 68,
+            "normalizedScore": 19.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 10,
+            "audienceType": "Family",
+            "daysToEvent": 27,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Laikunlava Sings | Kamarikuoro Camena and sing-along",
+            "startDate": "2025-07-21T15:30:00.000Z",
+            "endDate": "2025-07-21T17:00:00.000Z",
+            "score": 68,
+            "normalizedScore": 19.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 20
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 8
+                }
+            ],
+            "views": 10,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "Family",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.499484908944474,
+                "lng": 23.761686380975043,
+                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-21T15:30:00.000Z",
+                    "end": "2025-07-21T17:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "On Mondays, the Laikunlava Sings concerts include a performance by a choir from Tampere at 6.30 PM and a sing-along led by Sulasol Pirkanmaa District starting at 7 PM. Sing-alongs are held every Monday from June 2nd to August 18th, 2025. At 6.30 PM Kamarikuoro Camena A youthful mixed choir from Tampere, led by Jani Laaksonen. At 7 PM Sing-along The lead singer is Keijo Saarinen and the accompanist is Tauno Honkala.See you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Pirkkalan Pelimannit",
+            "venue": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere",
+            "startDate": "2025-07-23T15:00:00.000Z",
+            "endDate": "2025-07-23T16:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 68,
+            "normalizedScore": 19.43,
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "views": 34,
+            "audienceType": "General",
+            "daysToEvent": 29,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Pirkkalan Pelimannit",
+            "startDate": "2025-07-23T15:00:00.000Z",
+            "endDate": "2025-07-23T16:00:00.000Z",
+            "score": 68,
+            "normalizedScore": 19.43,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 34,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekday",
+            "timeOfDay": "afternoon",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4697426,
+                "lng": 23.8904216,
+                "address": "Haiharan taidekeskus, Haiharankatu 30, 33710 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-07-23T15:00:00.000Z",
+                    "end": "2025-07-23T16:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. The concerts at Haihara are held in Valjasvaja.\n\nAt 6 PM Pirkkalan Pelimannit\nPirkkalan Pelimannit was founded in 1971. The current lineup honors the history of the well-known band by keeping traditional folk tunes in their repertoire, including compositions by founding member, oltermanni Huugo Värälä. Modern times are reflected in the band's performances, which are delivered with a touch of humor, complemented by the unique rhythm of the “box drummer”. Pirkkalan Pelimannit has performed at events such as the Kaustinen Folk Music Festival for several years.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
                 "Seasonal Hotspot"
             ]
         }
@@ -24964,7 +28543,7 @@
             "scoreBreakdown": [
                 {
                     "type": "Outdoor/Indoor",
-                    "value": 5
+                    "value": 20
                 },
                 {
                     "type": "Event Duration",
@@ -25123,9 +28702,9 @@
             },
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.499484908944474,
-                "lng": 23.761686380975043,
-                "address": "Laikunlava, Puutarhakatu 1, 33210 Tampere"
+                "lat": 61.51979509999999,
+                "lng": 23.8922355,
+                "address": "Niihaman siirtolapuutarha, Luhtaankartanontie 39, 33560 Tampere"
             },
             "upcomingDates": [
                 {
@@ -25625,8 +29204,8 @@
             ],
             "occurrenceCount": 1,
             "labels": [
-                "Seasonal Hotspot",
-                "International"
+                "Family-friendly",
+                "Seasonal Hotspot"
             ]
         }
     },
@@ -27587,7 +31166,7 @@
                 },
                 {
                     "type": "Demographics Fit",
-                    "value": 3
+                    "value": 13
                 }
             ],
             "views": 70,
@@ -27623,12 +31202,15 @@
             "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "LGBTQ+"
+                "Community",
+                "International",
+                "Family"
             ],
             "occurrenceCount": 1,
             "labels": [
+                "Family-friendly",
                 "Seasonal Hotspot",
-                "LGBTQ+ Friendly"
+                "International"
             ]
         }
     },
@@ -28032,22 +31614,18 @@
             "locations_type": "indoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
-                "International",
-                "Tourists",
-                "Local Residents"
+                "Senior"
             ],
-            "occurrenceCount": 2,
+            "occurrenceCount": 1,
             "labels": [
-                "Tourist Magnet",
-                "Seasonal Hotspot",
-                "International"
+                "Seasonal Hotspot"
             ]
         },
         "fullEventData": {
             "eventId": "",
-            "name": "Art Walk",
-            "startDate": "2025-07-03T13:00:00.000Z",
-            "endDate": "2025-08-07T15:00:00.000Z",
+            "name": "Summer Park Concerts: Laikunlava Sings | Tampereen Sisun laulajat and sing-along",
+            "startDate": "2025-06-23T15:30:00.000Z",
+            "endDate": "2025-06-23T17:00:00.000Z",
             "score": 63,
             "normalizedScore": 18.0,
             "scoreBreakdown": [
@@ -28057,7 +31635,11 @@
                 },
                 {
                     "type": "Event Duration",
-                    "value": 20
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
                 },
                 {
                     "type": "Weather",
@@ -28065,25 +31647,22 @@
                 },
                 {
                     "type": "Audience Fit",
-                    "value": 10
+                    "value": 8
                 },
                 {
                     "type": "Demographics Fit",
-                    "value": 3
+                    "value": 5
                 }
             ],
-            "views": 10,
+            "views": 21,
             "peakFootTraffic": "N/A",
             "dayType": "weekday",
             "timeOfDay": "allday",
             "audienceType": "General",
             "globalContentCategories": [
-                "activities",
-                "excursions, guided tours"
+                "consert"
             ],
-            "ages": [
-                "age-5"
-            ],
+            "ages": [],
             "weather": {
                 "rain": 0.4,
                 "temperature": 20.5,
@@ -28155,42 +31734,45 @@
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
-                "Senior",
-                "International"
+                "Youth",
+                "Local"
             ],
-            "occurrenceCount": 3,
+            "occurrenceCount": 1,
             "labels": [
                 "Family-friendly",
-                "Seasonal Hotspot",
-                "International"
+                "Seasonal Hotspot"
             ]
         },
         "fullEventData": {
             "eventId": "",
-            "name": "Nightwish Yesterwynde Orchestral – Tampere Filharmonia",
-            "startDate": "2025-08-28T16:00:00.000Z",
-            "endDate": "2025-08-30T14:15:00.000Z",
+            "name": "Summer Park Concerts: Anna Katariina and Aleksi Laukkonen duo",
+            "startDate": "2025-07-27T11:00:00.000Z",
+            "endDate": "2025-07-27T12:00:00.000Z",
             "score": 63,
             "normalizedScore": 18.0,
             "scoreBreakdown": [
                 {
                     "type": "Outdoor/Indoor",
-                    "value": 5
+                    "value": 20
                 },
                 {
                     "type": "Event Duration",
-                    "value": 20
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 10
                 },
                 {
                     "type": "Audience Fit",
-                    "value": 20
+                    "value": 10
                 },
                 {
                     "type": "Demographics Fit",
                     "value": 18
                 }
             ],
-            "views": 23,
+            "views": 4,
             "peakFootTraffic": "N/A",
             "dayType": "weekday",
             "timeOfDay": "allday",
@@ -28206,45 +31788,262 @@
             },
             "availableSpotsNearby": 0,
             "location": {
-                "lat": 61.4959526,
-                "lng": 23.7813754,
-                "address": "Tampere-talo Oy, Yliopistonkatu 55, 33100 Tampere"
+                "lat": 61.4992975,
+                "lng": 23.7430531,
+                "address": "Amurin museokortteli, Satakunnankatu 49, 33230 Tampere"
             },
             "upcomingDates": [
                 {
-                    "start": "2025-08-28T16:00:00.000Z",
-                    "end": "2025-08-28T17:15:00.000Z"
-                },
-                {
-                    "start": "2025-08-29T16:00:00.000Z",
-                    "end": "2025-08-29T17:15:00.000Z"
-                },
-                {
-                    "start": "2025-08-30T13:00:00.000Z",
-                    "end": "2025-08-30T14:15:00.000Z"
+                    "start": "2025-07-27T11:00:00.000Z",
+                    "end": "2025-07-27T12:00:00.000Z"
                 }
             ],
-            "contactEmail": "sara.hamalainen@tampere.fi",
+            "contactEmail": "puistokonsertit@tampere.fi",
             "mainImage": null,
             "socialLinks": {
-                "facebook": "https://www.facebook.com/TampereFilharmonia",
-                "instagram": "https://www.instagram.com/tamperefilharmonia/",
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
                 "twitter": null
             },
-            "description": "Performers:Tampere Philharmonic OrchestraConductor Eero LehtimäkiTampere Opera Choir, and a children’s choirNightwish, Finland’s most internationally successful metal band, released their tenth studio album,&nbsp;Yesterwynde, in September 2024. Having received widespread acclaim from critics and fans alike, the album will now be performed as an orchestral version for a live audience. The music will be performed in three concerts by the Tampere Philharmonic Orchestra, the Tampere Opera Choir, and a children’s choir. Further details about the concerts can be found in our press release!Please note that this is the orchestral version of the&nbsp;Yesterwynde&nbsp;album, and members of Nightwish will not be performing. Concert duration is approximately 1 hour (no intermission).Ticket information:Tickets €69.90 / €64.90 / €59.90Discounted tickets for seniors, children under 16, students, and the unemployed: €67.40 / €62.40 / €57.40Event details are subject to change. Production: Tampere Philharmonic Orchestra, Tampere Hall, and All Things Live, in collaboration with Radio City.",
-            "ownerName": "Tampere Filharmonia",
-            "locations_type": "indoor",
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 2 PM Anna Katariina and Aleksi Laukkonen duo\nSinger Anna Katariina and accordionist-pianist Aleksi Laukkonen form a musically skilled duo where joy and sensitivity meet in their performances. The duo prefers to play jazz, French chansons, and pop. Both performers graduated from TAMK's musical theatre program and now work full-time in the music industry.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
             "hotspotType": "Event-hotspot",
             "demographics": [
                 "Family",
-                "Senior",
-                "International"
+                "Youth",
+                "Local"
             ],
-            "occurrenceCount": 3,
+            "occurrenceCount": 1,
             "labels": [
                 "Family-friendly",
-                "Seasonal Hotspot",
-                "International"
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: Jules Varjola",
+            "venue": "Näsinpuiston laululava, Näsinpuisto, 33210 Tampere",
+            "startDate": "2025-08-02T11:00:00.000Z",
+            "endDate": "2025-08-02T12:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 63,
+            "normalizedScore": 18.0,
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "views": 8,
+            "audienceType": "General",
+            "daysToEvent": 39,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: Jules Varjola",
+            "startDate": "2025-08-02T11:00:00.000Z",
+            "endDate": "2025-08-02T12:00:00.000Z",
+            "score": 63,
+            "normalizedScore": 18.0,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 8,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.5036474,
+                "lng": 23.7513074,
+                "address": "Näsinpuiston laululava, Näsinpuisto, 33210 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-08-02T11:00:00.000Z",
+                    "end": "2025-08-02T12:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 2 PM Jules Varjola\nJussi Syrjälä creates music and performs troubadour gigs under the name Jules Varjola. Varjola's music is diverse, unprejudiced, and the Finnish lyrics are multi-interpretative and deep. A strong underground touch is evident in both the lyrics and compositions.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Youth",
+                "Family",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        }
+    },
+    {
+        "leftPanelData": {
+            "eventName": "Summer Park Concerts: RatikkaPlikat",
+            "venue": "Amurin museokortteli, Satakunnankatu 49, 33230 Tampere",
+            "startDate": "2025-08-17T11:00:00.000Z",
+            "endDate": "2025-08-17T12:00:00.000Z",
+            "eventType": [
+                "consert"
+            ],
+            "score": 63,
+            "normalizedScore": 18.0,
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "views": 2,
+            "audienceType": "General",
+            "daysToEvent": 54,
+            "peakFootTraffic": "N/A",
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
+            ]
+        },
+        "fullEventData": {
+            "eventId": "",
+            "name": "Summer Park Concerts: RatikkaPlikat",
+            "startDate": "2025-08-17T11:00:00.000Z",
+            "endDate": "2025-08-17T12:00:00.000Z",
+            "score": 63,
+            "normalizedScore": 18.0,
+            "scoreBreakdown": [
+                {
+                    "type": "Outdoor/Indoor",
+                    "value": 20
+                },
+                {
+                    "type": "Event Duration",
+                    "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 10
+                },
+                {
+                    "type": "Audience Fit",
+                    "value": 10
+                },
+                {
+                    "type": "Demographics Fit",
+                    "value": 18
+                }
+            ],
+            "views": 2,
+            "peakFootTraffic": "N/A",
+            "dayType": "weekend",
+            "timeOfDay": "morning",
+            "audienceType": "General",
+            "globalContentCategories": [
+                "consert"
+            ],
+            "ages": [],
+            "weather": {
+                "rain": 0,
+                "temperature": 0,
+                "condition": ""
+            },
+            "availableSpotsNearby": 0,
+            "location": {
+                "lat": 61.4992975,
+                "lng": 23.7430531,
+                "address": "Amurin museokortteli, Satakunnankatu 49, 33230 Tampere"
+            },
+            "upcomingDates": [
+                {
+                    "start": "2025-08-17T11:00:00.000Z",
+                    "end": "2025-08-17T12:00:00.000Z"
+                }
+            ],
+            "contactEmail": "puistokonsertit@tampere.fi",
+            "mainImage": null,
+            "socialLinks": {
+                "facebook": "https://www.facebook.com/kulttuuritampere/",
+                "instagram": "https://www.instagram.com/tampereenpuistokonsertit",
+                "twitter": null
+            },
+            "description": "Free open-air concerts offer experiences for everyone around Tampere. \n\nAt 2 PM RatikkaPlikat\nRatikkaPlikat consists of ladies from three different decades. The ladies have gathered performance experience in both music and theatre, both together and separately. From these circles, the lively vocal group RatikkaPlikat ended up on the same ride. Their performances are entertaining bursts that casually combine different music genres.\n\nSee you in Tampere Summer Park Concerts!",
+            "ownerName": "Kaupunkikulttuuriyksikkö",
+            "locations_type": "outdoor",
+            "hotspotType": "Event-hotspot",
+            "demographics": [
+                "Family",
+                "Youth",
+                "Local"
+            ],
+            "occurrenceCount": 1,
+            "labels": [
+                "Family-friendly",
+                "Seasonal Hotspot"
             ]
         }
     },
@@ -30599,6 +34398,10 @@
                 {
                     "type": "Event Duration",
                     "value": 5
+                },
+                {
+                    "type": "Time of Day",
+                    "value": 15
                 },
                 {
                     "type": "Time of Day",
@@ -34800,7 +38603,7 @@
                 "18+",
                 "Music Enthusiasts"
             ],
-            "occurrenceCount": 8,
+            "occurrenceCount": 1,
             "labels": [
                 "Seasonal Hotspot",
                 "International"
@@ -34834,7 +38637,9 @@
             "demographics": [],
             "occurrenceCount": 1,
             "labels": [
-                "Seasonal Hotspot"
+                "Family-friendly",
+                "Seasonal Hotspot",
+                "International"
             ]
         },
         "fullEventData": {
@@ -34851,7 +38656,7 @@
                 },
                 {
                     "type": "Outdoor/Indoor",
-                    "value": 20
+                    "value": 5
                 },
                 {
                     "type": "Event Duration",
@@ -35718,6 +39523,7 @@
                 "age-5",
                 "age-6"
             ],
+            "ages": [],
             "weather": {
                 "rain": 0.6,
                 "temperature": 18.8,
