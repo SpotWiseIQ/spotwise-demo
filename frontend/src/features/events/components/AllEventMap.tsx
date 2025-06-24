@@ -19,10 +19,10 @@ const customIcon = new L.Icon({
 export function AllEventsMap({ events }) {
     const eventLocations = events
         .map(e => ({
-            lat: e.fullEventData.location?.lat,
-            lng: e.fullEventData.location?.lng,
-            name: e.leftPanelData.eventName,
-            venue: e.leftPanelData.venue,
+            lat: e.fullEventData?.location?.lat,
+            lng: e.fullEventData?.location?.lng,
+            name: e.leftPanelData?.eventName,
+            venue: e.leftPanelData?.venue,
         }))
         .filter(e => typeof e.lat === "number" && typeof e.lng === "number");
 

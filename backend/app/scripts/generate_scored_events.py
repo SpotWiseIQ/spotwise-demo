@@ -7,7 +7,7 @@ from app.utils.helper import detect_locations_type, detect_audience_type, detect
 from app.scripts.weather_meteo import WeatherMeteo
 
 # Load your saved event list
-with open('./data/EventListOneSampleResponse.json', 'r', encoding='utf-8') as f:
+with open('./data/events_full_list.json', 'r', encoding='utf-8') as f:
     events_data = json.load(f)
 
 # Access the list of events
@@ -34,6 +34,8 @@ available_spots_nearby = 3
 
 # Prepare a list to store results
 scored_events = []
+# For deduplication: use a set to track unique events by (name, startDate, venue)
+unique_event_keys = set()
 
 # Constants for normalization
 MAX_SCORE = 350  # Based on previous calculation
@@ -229,6 +231,13 @@ for event in events:
                 'occurrenceCount': occurrenceCount,
                 'labels': labels,
             }
+
+            # Deduplication key: (event name, start date, venue)
+            dedup_key = (event_data['name'],
+                         event_data['defaultStartDate'], venue)
+            if dedup_key in unique_event_keys:
+                continue  # Skip duplicate
+            unique_event_keys.add(dedup_key)
 
             scored_events.append({
                 'leftPanelData': left_panel_data,
