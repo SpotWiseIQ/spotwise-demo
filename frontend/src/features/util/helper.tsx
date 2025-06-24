@@ -1,5 +1,3 @@
-import { GoldMedal, SilverMedal, BronzeMedal } from "../../features/events/components/icons/MedalIcons";
-
 function formatDuration(start: string, end: string) {
     const s = new Date(start);
     const e = new Date(end);
@@ -43,14 +41,6 @@ function shortVenue(venue: string) {
     return venue.split(",")[0];
 }
 
-
-// function scoreCategory(score: number) {
-//     if (score >= 150) return { label: "Top", color: "bg-purple-100 text-purple-700" };
-//     if (score >= 100) return { label: "High", color: "bg-green-100 text-green-700" };
-//     if (score >= 70) return { label: "Medium", color: "bg-yellow-100 text-yellow-700" };
-//     return { label: "Low", color: "bg-red-100 text-red-700" };
-// }
-
 function scoreCategory(score: number) {
     if (score >= 150) {
         // Gold medal
@@ -68,10 +58,40 @@ function scoreCategory(score: number) {
     return { label: "Low", color: "bg-gray-200 text-gray-600" }; // Light gray background, gray text
 }
 
+function getWeatherIcon(condition: string, rain: number): JSX.Element {
+    // https://www.svgrepo.com/svg/
+
+    const cond = (condition || "").toLowerCase();
+
+    // Rain categorization
+    if (rain >= 7.6) return <img src="/icons/weather/fullrain.svg" alt="Heavy Rain" className="w-7 h-7 mr-2 inline" />;
+    if (rain >= 2.6) return <img src="/icons/weather/moderaterain.svg" alt="Moderate Rain" className="w-7 h-7 mr-2 inline" />;
+    if (rain > 0) return <img src="/icons/weather/shower.svg" alt="Showers" className="w-7 h-7 mr-2 inline" />;
+
+    // Snow
+    if (cond.includes("snow")) return <img src="/icons/weather/snow.svg" alt="Snow" className="w-7 h-7 mr-2 inline" />;
+
+    // Partly cloudy with rain (if you have this as a separate condition)
+    if (cond.includes("partly") && cond.includes("rain")) return <img src="/icons/weather/partlycloudyrain.svg" alt="Partly Cloudy with Rain" className="w-7 h-7 mr-2 inline" />;
+
+    // Partly cloudy
+    if (cond.includes("partly") && cond.includes("cloudy")) return <img src="/icons/weather/partlycloudy.svg" alt="Partly Cloudy" className="w-7 h-7 mr-2 inline" />;
+
+    // Cloudy
+    if (cond.includes("cloudy") || cond.includes("overcast")) return <img src="/icons/weather/cloud.svg" alt="Cloudy" className="w-7 h-7 mr-2 inline" />;
+
+    // Sunny
+    if (cond.includes("sunny") || cond.includes("clear")) return <img src="/icons/weather/sunny.svg" alt="Sunny" className="w-7 h-7 mr-2 inline" />;
+
+    // Default to partly cloudy if nothing matches
+    return <img src="/icons/weather/partlycloudy.svg" alt="Partly Cloudy" className="w-7 h-7 mr-2 inline" />;
+}
+
 export {
     formatDuration,
     daysToEvent,
     formatDateRange,
     shortVenue,
-    scoreCategory
+    scoreCategory,
+    getWeatherIcon
 };

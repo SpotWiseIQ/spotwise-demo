@@ -40,9 +40,13 @@ export function EventDetails({ event, events }) {
     const { leftPanelData, fullEventData } = event;
     const weather =
         leftPanelData.weather && leftPanelData.weather !== "N/A"
-            ? `${leftPanelData.weather.condition || "Sunny"} ${leftPanelData.weather.temperature ?? "--"}°C` +
-            (leftPanelData.weather.rain > 1000 ? `, Rain: ${leftPanelData.weather.rain}mm` : "")
-            : "Sunny 22°C";
+            ? `${(leftPanelData.weather.condition || "Sunny").toLowerCase()} ${leftPanelData.weather.temperature ?? "--"}°C` +
+            (leftPanelData.weather.rain > 0 ? `, Rain (${leftPanelData.weather.rain}mm)` : "")
+            : "sunny 22°C";
+    const weatherData = leftPanelData.weather && leftPanelData.weather !== "N/A"
+        ? leftPanelData.weather
+        : { condition: "Sunny", temperature: 22, rain: 0 };
+
     const name = leftPanelData?.eventName || fullEventData?.eventName || "Event";
     const venue = leftPanelData?.venue || fullEventData?.venue || "";
     const mapLink = fullEventData?.venue_url || "#";
@@ -162,7 +166,7 @@ export function EventDetails({ event, events }) {
                 primaryAudience={primaryAudience}
                 demographics={demographics}
                 footTraffic={footTraffic}
-                weather={weather}
+                weatherData={weatherData}
                 highlights={labels}
             />
 

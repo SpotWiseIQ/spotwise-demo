@@ -1,10 +1,11 @@
 import { Footprints, CloudSun } from "lucide-react";
+import { getWeatherIcon } from "../../util/helper";
 
 export function EventDetailsKeyInfoCard({
     primaryAudience,
     demographics = [],
     footTraffic,
-    weather,
+    weatherData,
     highlights = [],
 }) {
     // Filter out "Family" from groups if it's already shown as Audience Type
@@ -45,8 +46,11 @@ export function EventDetailsKeyInfoCard({
                 <div className="bg-gray-50 rounded-lg p-3 flex flex-col items-start h-full">
                     <div className="font-semibold mb-1">Weather</div>
                     <div className="flex items-center text-blue-700 font-semibold">
-                        <CloudSun className="w-4 h-4 mr-1" />
-                        {weather}
+                        {getWeatherIcon(weatherData.condition, weatherData.rain)}
+                        <span>
+                            {(weatherData.condition || "Sunny").toLowerCase()} {weatherData.temperature ?? "--"}°C
+                            {weatherData.rain > 0 ? `, Rain (${weatherData.rain}mm)` : ""}
+                        </span>
                     </div>
                 </div>
             </div>
