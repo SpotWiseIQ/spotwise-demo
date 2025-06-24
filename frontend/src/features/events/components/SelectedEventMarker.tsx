@@ -20,7 +20,14 @@ export function SelectedEventMarker({ lat, lng, name, venue }) {
 
     useEffect(() => {
         if (lat && lng) {
-            map.flyTo([lat, lng], 15, { duration: 1.2 });
+            const current = map.getCenter();
+            // Only fly if the center is not already at the marker (with a small threshold)
+            if (
+                Math.abs(current.lat - lat) > 0.0001 ||
+                Math.abs(current.lng - lng) > 0.0001
+            ) {
+                map.flyTo([lat, lng], 15, { duration: 1.2 });
+            }
         }
     }, [lat, lng, map]);
 
@@ -28,7 +35,6 @@ export function SelectedEventMarker({ lat, lng, name, venue }) {
         <Marker
             position={[lat, lng]}
             icon={customIcon}
-        // Leaflet doesn't have built-in bounce, but you can use a CSS animation or a plugin for more
         >
             <Popup>
                 <b>{name}</b>
