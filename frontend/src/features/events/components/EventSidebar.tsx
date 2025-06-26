@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star, Footprints, Calendar as CalendarIcon } from "lucide-react";
+import { Star, Footprints, Calendar as CalendarIcon, ArrowUpDown } from "lucide-react";
 import { scoreCategory, shortVenue, formatDuration, getWeatherIcon } from "../../util/helper";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -99,178 +99,228 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect, 
     }
 
     return (
-        <>
-            {/* Date picker and sort dropdown */}
-            <div className="mb-4 flex flex-col gap-2">
-                <div className="flex items-center gap-2 relative">
-                    <button
-                        className={"w-56 border rounded-md px-3 py-2 text-left font-normal bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center gap-2 transition-colors hover:bg-blue-50 hover:border-blue-300" + (selectedRange.from ? "" : " text-muted-foreground")}
-                        onClick={() => setShowCalendar((v) => !v)}
-                        type="button"
-                    >
-                        <CalendarIcon className="w-4 h-4 mr-2 text-blue-400" />
-                        {selectedRange.from && selectedRange.to && selectedRange.from.getTime() === selectedRange.to.getTime() ?
-                            `${selectedRange.from.toLocaleDateString()}` :
-                            selectedRange.from && selectedRange.to ?
-                                `${selectedRange.from.toLocaleDateString()} - ${selectedRange.to.toLocaleDateString()}` :
-                                selectedRange.from ?
-                                    `${selectedRange.from.toLocaleDateString()}` :
-                                    "Select date range"}
-                    </button>
-                    {showCalendar && (
-                        <div
-                            ref={calendarRef}
-                            className="absolute left-0 top-full mt-2 z-30 bg-white rounded-md shadow-lg border p-2 flex flex-col items-center"
+        <div className="text-selection-visible h-full flex flex-col" style={{
+            '--selection-bg': '#3b82f6',
+            '--selection-color': '#ffffff'
+        } as React.CSSProperties}>
+            <style>{`
+                .text-selection-visible ::selection {
+                    background-color: var(--selection-bg);
+                    color: var(--selection-color);
+                }
+                .text-selection-visible ::-moz-selection {
+                    background-color: var(--selection-bg);
+                    color: var(--selection-color);
+                }
+            `}</style>
+
+            {/* Fixed Date picker and sort dropdown */}
+            <div className="mb-4 flex flex-col gap-3 flex-shrink-0">
+                {/* Calendar and Sort - Side by Side */}
+                <div className="flex gap-3">
+                    {/* Calendar Button */}
+                    <div className="flex-1 relative">
+                        <button
+                            className={"w-full border rounded-md px-3 py-2 text-left font-normal bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center gap-2 transition-colors hover:bg-blue-50 hover:border-blue-300" + (selectedRange.from ? "" : " text-muted-foreground")}
+                            onClick={() => setShowCalendar((v) => !v)}
+                            type="button"
                         >
-                            <Calendar
-                                mode="range"
-                                selected={selectedRange}
-                                onSelect={(range, day) => handleRangeSelect(range, day)}
-                                // className="rounded-md border"
-                                classNames={{
-                                    day_selected: "bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-600",
-                                    day_range_middle: "bg-blue-200 text-blue-900",
-                                    day_range_start: "bg-blue-500 text-white rounded-l-full",
-                                    day_range_end: "bg-blue-500 text-white rounded-r-full",
-                                    day_today: "bg-blue-100 text-blue-700"
-                                }}
-                            />
-                            <button
-                                className="mt-2 px-3 py-1 rounded-full bg-blue-500 text-white text-sm font-semibold shadow-sm hover:bg-blue-600 focus:bg-blue-700 transition-all duration-150"
-                                onClick={() => {
-                                    if (selectedRange.from && !selectedRange.to) {
-                                        setSelectedRange({ from: selectedRange.from, to: selectedRange.from });
-                                    }
-                                    // Clear selected event when "Show Events" is clicked
-                                    if (onSelect) onSelect(null);
-                                    setShowCalendar(false);
-                                }}
+                            <CalendarIcon className="w-4 h-4 mr-2 text-blue-400" />
+                            <span className="truncate">
+                                {selectedRange.from && selectedRange.to && selectedRange.from.getTime() === selectedRange.to.getTime() ?
+                                    `${selectedRange.from.toLocaleDateString()}` :
+                                    selectedRange.from && selectedRange.to ?
+                                        `${selectedRange.from.toLocaleDateString()} - ${selectedRange.to.toLocaleDateString()}` :
+                                        selectedRange.from ?
+                                            `${selectedRange.from.toLocaleDateString()}` :
+                                            "Select date range"}
+                            </span>
+                        </button>
+                        {showCalendar && (
+                            <div
+                                ref={calendarRef}
+                                className="absolute left-0 top-full mt-2 z-30 bg-white rounded-md shadow-lg border p-2 flex flex-col items-center"
                             >
-                                Close
-                            </button>
-                        </div>
-                    )}
-                </div>
-                <div className="flex items-center gap-2">
-                    <span className="font-semibold">Sort by:</span>
-                    <Select value={sortBy} onValueChange={setSortBy}>
-                        <SelectTrigger className="w-44">
-                            <SelectValue placeholder="Sort by" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="score">Best Score</SelectItem>
-                            <SelectItem value="views">Most Foot Traffic</SelectItem>
-                            <SelectItem value="start">Earliest Start</SelectItem>
-                            <SelectItem value="weather">Best Weather</SelectItem>
-                            <SelectItem value="venue">Venue Name</SelectItem>
-                        </SelectContent>
-                    </Select>
+                                <Calendar
+                                    mode="range"
+                                    selected={selectedRange}
+                                    onSelect={(range, day) => handleRangeSelect(range, day)}
+                                    classNames={{
+                                        day_selected: "bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-600",
+                                        day_range_middle: "bg-blue-200 text-blue-900",
+                                        day_range_start: "bg-blue-500 text-white rounded-l-full",
+                                        day_range_end: "bg-blue-500 text-white rounded-r-full",
+                                        day_today: "bg-blue-100 text-blue-700"
+                                    }}
+                                />
+                                <button
+                                    className="mt-2 px-3 py-1 rounded-full bg-blue-500 text-white text-sm font-semibold shadow-sm hover:bg-blue-600 focus:bg-blue-700 transition-all duration-150"
+                                    onClick={() => {
+                                        if (selectedRange.from && !selectedRange.to) {
+                                            setSelectedRange({ from: selectedRange.from, to: selectedRange.from });
+                                        }
+                                        // Clear selected event when "Show Events" is clicked
+                                        if (onSelect) onSelect(null);
+                                        setShowCalendar(false);
+                                    }}
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Sort Dropdown */}
+                    <div className="flex-1">
+                        <Select value={sortBy} onValueChange={setSortBy}>
+                            <SelectTrigger className="w-full">
+                                <ArrowUpDown className="w-4 h-4 mr-2 text-blue-400" />
+                                <SelectValue placeholder="Sort by" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="score">
+                                    <div className="flex items-center gap-2">
+                                        <Star className="w-4 h-4 text-yellow-500" />
+                                        Best Score
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="views">
+                                    <div className="flex items-center gap-2">
+                                        <Footprints className="w-4 h-4 text-green-600" />
+                                        Most Foot Traffic
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="start">
+                                    <div className="flex items-center gap-2">
+                                        <CalendarIcon className="w-4 h-4 text-blue-500" />
+                                        Earliest Start
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="weather">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-blue-500">☀️</span>
+                                        Best Weather
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="venue">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-gray-600">📍</span>
+                                        Venue Name
+                                    </div>
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
             </div>
 
-            {loading ? (
-                <div className="text-gray-500">Loading events...</div>
-            ) : error ? (
-                <div className="text-red-500">Error: {error}</div>
-            ) : (
-                <ul className="space-y-6">
-                    {sortedEvents.map((e, i) => {
-                        const isActive =
-                            selectedEvent &&
-                            selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName &&
-                            selectedEvent.leftPanelData.venue === e.leftPanelData.venue;
+            {/* Scrollable content area */}
+            <div className="flex-1 overflow-y-auto">
+                {loading ? (
+                    <div className="text-gray-500">Loading events...</div>
+                ) : error ? (
+                    <div className="text-red-500">Error: {error}</div>
+                ) : (
+                    <ul className="space-y-6 p-1 pr-3">
+                        {/* ...existing code... */}
+                        {sortedEvents.map((e, i) => {
+                            const isActive =
+                                selectedEvent &&
+                                selectedEvent.leftPanelData.eventName === e.leftPanelData.eventName &&
+                                selectedEvent.leftPanelData.venue === e.leftPanelData.venue;
 
-                        // Weather display logic
-                        const scoreCat = scoreCategory(e.leftPanelData.score);
-                        const weatherData = e.leftPanelData.weather && e.leftPanelData.weather !== "N/A"
-                            ? e.leftPanelData.weather
-                            : { condition: "Sunny", temperature: 22, rain: 0 };
+                            // Weather display logic
+                            const scoreCat = scoreCategory(e.leftPanelData.score);
+                            const weatherData = e.leftPanelData.weather && e.leftPanelData.weather !== "N/A"
+                                ? e.leftPanelData.weather
+                                : { condition: "Sunny", temperature: 22, rain: 0 };
 
-                        const weatherIcon = getWeatherIcon(weatherData.condition, weatherData.rain);
-                        // Badge for crowd type
-                        let crowdType = "";
-                        let crowdBadgeColor = "";
-                        if (e.fullEventData?.hotspotType === "Regular-hotspot") {
-                            crowdType = "Regular crowd";
-                            crowdBadgeColor = "bg-blue-100 text-blue-700";
-                        } else if (e.fullEventData?.hotspotType === "Event-hotspot") {
-                            crowdType = "Event crowd";
-                            crowdBadgeColor = "bg-purple-100 text-purple-700";
-                        }
-                        return (
-                            <li
-                                key={i}
-                                className={`relative bg-white rounded-lg shadow p-6 flex flex-col justify-between cursor-pointer transition ring-2 ${isActive ? "ring-blue-400" : "ring-transparent"
-                                    }`}
-                                onClick={() => onSelect && onSelect(e)}
-                            >
-                                {/* Score Badge: Top Right */}
-                                <span
-                                    className={`absolute top-4 right-4 flex items-center px-2 py-1 rounded ${scoreCat.color} shadow font-bold text-xs`}
-                                    style={{ zIndex: 2 }}
+                            const weatherIcon = getWeatherIcon(weatherData.condition, weatherData.rain);
+                            // Badge for crowd type
+                            let crowdType = "";
+                            let crowdBadgeColor = "";
+                            if (e.fullEventData?.hotspotType === "Regular-hotspot") {
+                                crowdType = "Regular crowd";
+                                crowdBadgeColor = "bg-blue-100 text-blue-700";
+                            } else if (e.fullEventData?.hotspotType === "Event-hotspot") {
+                                crowdType = "Event crowd";
+                                crowdBadgeColor = "bg-purple-100 text-purple-700";
+                            }
+                            return (
+                                <li
+                                    key={i}
+                                    className={`relative bg-white rounded-lg shadow p-6 flex flex-col justify-between cursor-pointer transition-all duration-200 ${isActive ? "ring-2 ring-blue-400 ring-offset-2" : "hover:shadow-md"
+                                        }`}
+                                    onClick={() => onSelect && onSelect(e)}
                                 >
-                                    <Star className="w-4 h-4 mr-1" />
-                                    {scoreCat.label}
-                                </span>
+                                    {/* Score Badge: Top Right */}
+                                    <span
+                                        className={`absolute top-4 right-4 flex items-center px-2 py-1 rounded ${scoreCat.color} shadow font-bold text-xs`}
+                                        style={{ zIndex: 2 }}
+                                    >
+                                        <Star className="w-4 h-4 mr-1" />
+                                        {scoreCat.label}
+                                    </span>
 
-                                {/* Top: Location Name */}
-                                <div className="flex items-center justify-between mb-2">
-                                    <div className="font-semibold text-lg">{shortVenue(e.leftPanelData.venue)}</div>
-                                </div>
+                                    {/* Top: Location Name */}
+                                    <div className="flex items-center justify-between mb-2">
+                                        <div className="font-semibold text-lg">{shortVenue(e.leftPanelData.venue)}</div>
+                                    </div>
 
-                                {/* Middle: Primary Audience, Crowd Type with Duration */}
-                                <div className="flex flex-col gap-1 mb-2 mt-1">
-                                    {crowdType === "Event crowd" && (
-                                        <div className="flex items-center gap-2" style={{ width: "fit-content" }}>
-                                            {/* Event Category Icon (emoji) */}
-                                            <span style={{ fontSize: "1.2rem" }}>🎉</span>
-                                            <span
-                                                className={`inline-block text-base font-semibold rounded px-2 py-1 ${crowdBadgeColor}`}
-                                                style={{ width: "fit-content" }}
-                                            >
-                                                {e.leftPanelData.locations_type
-                                                    ? `${e.leftPanelData.dayType.charAt(0).toUpperCase() + e.leftPanelData.dayType.slice(1)} `
-                                                    : ""}
-                                                {e.leftPanelData.eventType[0]
-                                                    ? `${e.leftPanelData.eventType[0].toLowerCase()} `
-                                                    : "event "}
-                                                for {e.leftPanelData.occurrenceCount > 1
-                                                    ? `${e.leftPanelData.occurrenceCount} days`
-                                                    : formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)}
-                                            </span>
-                                        </div>
-                                    )}
-                                    {e.leftPanelData.audienceType && (
-                                        <span className="text-pink-600 flex items-center text-base" title="This event/location is most popular with this audience.">
-                                            <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>
-                                            Primary Audience: {e.leftPanelData.audienceType}
-                                        </span>
-                                    )}
-                                </div>
-
-                                {/* Bottom: Weather & Foot Traffic */}
-                                <div className="flex items-center justify-between mt-4">
-                                    <span className="text-blue-600 flex items-center font-semibold">
-                                        {weatherIcon}
-                                        <span>
-                                            {weatherData.temperature ?? "--"}°C
-                                            {weatherData.rain > 0 && (
-                                                <span className="text-blue-500 font-normal">
-                                                    , {weatherData.rain}mm
+                                    {/* Middle: Primary Audience, Crowd Type with Duration */}
+                                    <div className="flex flex-col gap-1 mb-2 mt-1">
+                                        {crowdType === "Event crowd" && (
+                                            <div className="flex items-center gap-2" style={{ width: "fit-content" }}>
+                                                {/* Event Category Icon (emoji) */}
+                                                <span style={{ fontSize: "1.2rem" }}>🎉</span>
+                                                <span
+                                                    className={`inline-block text-base font-semibold rounded px-2 py-1 ${crowdBadgeColor}`}
+                                                    style={{ width: "fit-content" }}
+                                                >
+                                                    {e.leftPanelData.locations_type
+                                                        ? `${e.leftPanelData.dayType.charAt(0).toUpperCase() + e.leftPanelData.dayType.slice(1)} `
+                                                        : ""}
+                                                    {e.leftPanelData.eventType[0]
+                                                        ? `${e.leftPanelData.eventType[0].toLowerCase()} `
+                                                        : "event "}
+                                                    for {e.leftPanelData.occurrenceCount > 1
+                                                        ? `${e.leftPanelData.occurrenceCount} days`
+                                                        : formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)}
                                                 </span>
-                                            )}
+                                            </div>
+                                        )}
+                                        {e.leftPanelData.audienceType && (
+                                            <span className="text-pink-600 flex items-center text-base" title="This event/location is most popular with this audience.">
+                                                <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>
+                                                Primary Audience: {e.leftPanelData.audienceType}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Bottom: Weather & Foot Traffic */}
+                                    <div className="flex items-center justify-between mt-4">
+                                        <span className="text-blue-600 flex items-center font-semibold">
+                                            {weatherIcon}
+                                            <span>
+                                                {weatherData.temperature ?? "--"}°C
+                                                {weatherData.rain > 0 && (
+                                                    <span className="text-blue-500 font-normal">
+                                                        , {weatherData.rain}mm
+                                                    </span>
+                                                )}
+                                            </span>
                                         </span>
-                                    </span>
-                                    <span className="text-green-700 font-semibold flex items-center">
-                                        <Footprints className="w-5 h-5 mr-2" />
-                                        {e.leftPanelData.views}
-                                    </span>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ul>
-            )}
-        </>
+                                        <span className="text-green-700 font-semibold flex items-center">
+                                            <Footprints className="w-5 h-5 mr-2" />
+                                            {e.leftPanelData.views}
+                                        </span>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
+            </div>
+        </div>
     );
 }

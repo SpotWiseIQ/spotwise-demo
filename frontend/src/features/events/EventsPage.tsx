@@ -63,7 +63,7 @@ export default function EventsPage() {
             </div>
             {/* Main content */}
             <div className="flex flex-1 overflow-hidden">
-                <aside className="w-[24rem] border-r border-gray-200 bg-gray-50 p-4 h-full overflow-y-auto">
+                <aside className="w-[32rem] border-r border-gray-200 bg-gray-50 p-4 h-full overflow-y-auto">
                     <EventSidebar
                         events={events}
                         loading={loading}
