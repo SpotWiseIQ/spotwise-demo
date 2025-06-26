@@ -29,32 +29,32 @@ export default function EventsPage() {
     return (
         <div className="min-h-screen h-screen bg-white overflow-hidden flex flex-col">
             {/* Header */}
-            <header className="flex items-center justify-between px-8 pt-8 pb-2">
+            <header className="flex items-center justify-between px-4 pt-2 pb-1" style={{ minHeight: '56px' }}>
                 {/* Left: Colorful Home icon with border and shadow */}
-                <Link to="/" className="rounded-full bg-white border-1 border-blue-200 shadow-lg p-2 flex items-center justify-center hover:scale-105 transition">
-                    <HomeIcon className="w-10 h-10" />
+                <Link to="/" className="rounded-full bg-white border-1 border-blue-200 shadow-lg p-1 flex items-center justify-center hover:scale-105 transition">
+                    <HomeIcon className="w-8 h-8" />
                 </Link>
                 {/* Center: Truck icon and title */}
-                <div className="flex items-center gap-3 justify-center flex-1">
-                    <TruckIcon className="w-12 h-12" />
-                    <h1 className="text-3xl font-bold text-[#111827]">Mobile Business Spots</h1>
+                <div className="flex items-center gap-2 justify-center flex-1">
+                    <TruckIcon className="w-9 h-9" />
+                    <h1 className="text-2xl font-bold text-[#111827]">Mobile Business Spots</h1>
                 </div>
                 {/* Right: Language switcher or other controls */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1">
                     <span className="text-gray-500 font-medium">FI</span>
                     <span className="mx-1 text-gray-300">|</span>
-                    <span className="bg-blue-700 text-white px-3 py-1 rounded-lg font-bold">EN</span>
+                    <span className="bg-blue-700 text-white px-2 py-1 rounded-lg font-bold">EN</span>
                 </div>
             </header>
             {/* Subheading */}
-            <div className="px-8 pb-4">
-                <div className="bg-gray-50 rounded-lg px-6 py-3 text-xl font-medium text-gray-600 border-blue-200 shadow-lg p-1">
+            <div className="px-4 pb-2">
+                <div className="bg-gray-50 rounded-lg px-4 py-2 text-lg font-medium text-gray-600 border-blue-200 shadow p-0">
                     Displaying hotspots for <span className="text-pink-500 font-semibold">{business}</span> in <span className="text-pink-500 font-semibold">{location}</span>
                 </div>
             </div>
             {/* Main content */}
             <div className="flex flex-1 overflow-hidden">
-                <aside className="w-[28rem] border-r border-gray-200 bg-gray-50 p-6 h-full overflow-y-auto">
+                <aside className="w-[24rem] border-r border-gray-200 bg-gray-50 p-4 h-full overflow-y-auto">
                     <EventSidebar
                         events={events}
                         loading={loading}
@@ -63,7 +63,7 @@ export default function EventsPage() {
                         selectedEvent={selectedEvent}
                     />
                 </aside>
-                <main className="flex-1 p-4 h-full overflow-y-auto">
+                <main className="flex-1 p-0 h-full overflow-y-auto">
                     <EventDetails event={selectedEvent} events={events} />
                 </main>
             </div>
