@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star, Footprints, Calendar as CalendarIcon } from "lucide-react";
+import { Star, Footprints, Calendar as CalendarIcon, ArrowUpDown } from "lucide-react";
 import { scoreCategory, shortVenue, formatDuration, getWeatherIcon } from "../../util/helper";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -99,9 +99,23 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect, 
     }
 
     return (
-        <>
+        <div className="text-selection-visible" style={{
+            '--selection-bg': '#3b82f6',
+            '--selection-color': '#ffffff'
+        } as React.CSSProperties}>
+            <style>{`
+                .text-selection-visible ::selection {
+                    background-color: var(--selection-bg);
+                    color: var(--selection-color);
+                }
+                .text-selection-visible ::-moz-selection {
+                    background-color: var(--selection-bg);
+                    color: var(--selection-color);
+                }
+            `}</style>
             {/* Date picker and sort dropdown */}
-            <div className="mb-4 flex flex-col gap-2">
+            <div className="mb-4 flex flex-col gap-3">
+                {/* Calendar Button */}
                 <div className="flex items-center gap-2 relative">
                     <button
                         className={"w-56 border rounded-md px-3 py-2 text-left font-normal bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center gap-2 transition-colors hover:bg-blue-50 hover:border-blue-300" + (selectedRange.from ? "" : " text-muted-foreground")}
@@ -151,20 +165,49 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect, 
                         </div>
                     )}
                 </div>
+
+                {/* Sort Dropdown - Now uses themed Select component */}
                 <div className="flex items-center gap-2">
-                    <span className="font-semibold">Sort by:</span>
-                    <Select value={sortBy} onValueChange={setSortBy}>
-                        <SelectTrigger className="w-44">
-                            <SelectValue placeholder="Sort by" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="score">Best Score</SelectItem>
-                            <SelectItem value="views">Most Foot Traffic</SelectItem>
-                            <SelectItem value="start">Earliest Start</SelectItem>
-                            <SelectItem value="weather">Best Weather</SelectItem>
-                            <SelectItem value="venue">Venue Name</SelectItem>
-                        </SelectContent>
-                    </Select>
+                    <div className="relative flex-1">
+                        <Select value={sortBy} onValueChange={setSortBy}>
+                            <SelectTrigger className="w-56">
+                                <ArrowUpDown className="w-4 h-4 mr-2 text-blue-400" />
+                                <SelectValue placeholder="Sort by" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="score">
+                                    <div className="flex items-center gap-2">
+                                        <Star className="w-4 h-4 text-yellow-500" />
+                                        Best Score
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="views">
+                                    <div className="flex items-center gap-2">
+                                        <Footprints className="w-4 h-4 text-green-600" />
+                                        Most Foot Traffic
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="start">
+                                    <div className="flex items-center gap-2">
+                                        <CalendarIcon className="w-4 h-4 text-blue-500" />
+                                        Earliest Start
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="weather">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-blue-500">☀️</span>
+                                        Best Weather
+                                    </div>
+                                </SelectItem>
+                                <SelectItem value="venue">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-gray-600">📍</span>
+                                        Venue Name
+                                    </div>
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
             </div>
 
@@ -271,6 +314,6 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect, 
                     })}
                 </ul>
             )}
-        </>
+        </div>
     );
 }
