@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star, Footprints, Calendar as CalendarIcon, ArrowUpDown } from "lucide-react";
+import { Star, Footprints, Calendar as CalendarIcon, ArrowUpDown, MapPin } from "lucide-react";
 import { scoreCategory, shortVenue, formatDuration, getWeatherIcon } from "../../util/helper";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -264,55 +264,61 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect, 
 
                                     {/* Top: Location Name */}
                                     <div className="flex items-center justify-between mb-2">
-                                        <div className="font-semibold text-lg">{shortVenue(e.leftPanelData.venue)}</div>
-                                    </div>
+                                        <div className="flex items-center gap-2">
+                                            <MapPin className="w-5 h-5 text-gray-600" />
+                                            <div className="font-semibold text-lg">{shortVenue(e.leftPanelData.venue)}</div>
+                                        </div>
+                                    </div>                                    {/* Middle: Event Info and Primary Audience - Side by Side */}
+                                    <div className="flex flex-col gap-2 mb-2 mt-1">
+                                        {/* Event crowd and Primary audience in one row */}
+                                        <div className="flex items-center gap-3 flex-wrap">
+                                            {/* Event crowd info */}
+                                            {crowdType === "Event crowd" && (
+                                                <div className="flex items-center gap-2 flex-shrink-0">
+                                                    {/* Event Category Icon (emoji) */}
+                                                    <span style={{ fontSize: "1.2rem" }}>🎉</span>
+                                                    <span
+                                                        className={`inline-block text-sm font-semibold rounded px-2 py-1 ${crowdBadgeColor}`}
+                                                    >
+                                                        {e.leftPanelData.locations_type
+                                                            ? `${e.leftPanelData.dayType.charAt(0).toUpperCase() + e.leftPanelData.dayType.slice(1)} `
+                                                            : ""}
+                                                        {e.leftPanelData.eventType[0]
+                                                            ? `${e.leftPanelData.eventType[0].toLowerCase()} `
+                                                            : "event "}
+                                                        for {e.leftPanelData.occurrenceCount > 1
+                                                            ? `${e.leftPanelData.occurrenceCount} days`
+                                                            : formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)}
+                                                    </span>
+                                                </div>
+                                            )}
 
-                                    {/* Middle: Primary Audience, Crowd Type with Duration */}
-                                    <div className="flex flex-col gap-1 mb-2 mt-1">
-                                        {crowdType === "Event crowd" && (
-                                            <div className="flex items-center gap-2" style={{ width: "fit-content" }}>
-                                                {/* Event Category Icon (emoji) */}
-                                                <span style={{ fontSize: "1.2rem" }}>🎉</span>
-                                                <span
-                                                    className={`inline-block text-base font-semibold rounded px-2 py-1 ${crowdBadgeColor}`}
-                                                    style={{ width: "fit-content" }}
-                                                >
-                                                    {e.leftPanelData.locations_type
-                                                        ? `${e.leftPanelData.dayType.charAt(0).toUpperCase() + e.leftPanelData.dayType.slice(1)} `
-                                                        : ""}
-                                                    {e.leftPanelData.eventType[0]
-                                                        ? `${e.leftPanelData.eventType[0].toLowerCase()} `
-                                                        : "event "}
-                                                    for {e.leftPanelData.occurrenceCount > 1
-                                                        ? `${e.leftPanelData.occurrenceCount} days`
-                                                        : formatDuration(e.leftPanelData.startDate, e.leftPanelData.endDate)}
-                                                </span>
-                                            </div>
-                                        )}
-                                        {e.leftPanelData.audienceType && (
-                                            <span className="text-pink-600 flex items-center text-base" title="This event/location is most popular with this audience.">
-                                                <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>
-                                                Primary Audience: {e.leftPanelData.audienceType}
-                                            </span>
-                                        )}
+                                            {/* Primary audience */}
+                                            {e.leftPanelData.audienceType && (
+                                                <div className="text-pink-600 flex items-center text-sm flex-shrink-0" title="This event/location is most popular with this audience.">
+                                                    <span role="img" aria-label="audience" className="mr-1">👨‍👩‍👧</span>
+                                                    <span>Primary: {e.leftPanelData.audienceType}</span>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
 
                                     {/* Bottom: Weather & Foot Traffic */}
                                     <div className="flex items-center justify-between mt-4">
-                                        <span className="text-blue-600 flex items-center font-semibold">
+                                        <span className="text-blue-600 flex items-center font-bold">
                                             {weatherIcon}
-                                            <span>
+                                            <span className="text-lg ml-1">
                                                 {weatherData.temperature ?? "--"}°C
                                                 {weatherData.rain > 0 && (
-                                                    <span className="text-blue-500 font-normal">
-                                                        , {weatherData.rain}mm
+                                                    <span className="text-blue-500 font-normal text-sm ml-1">
+                                                        {weatherData.rain}mm
                                                     </span>
                                                 )}
                                             </span>
                                         </span>
-                                        <span className="text-green-700 font-semibold flex items-center">
-                                            <Footprints className="w-5 h-5 mr-2" />
-                                            {e.leftPanelData.views}
+                                        <span className="text-green-700 font-bold flex items-center">
+                                            <Footprints className="w-5 h-5 mr-1" />
+                                            <span className="text-lg">{e.leftPanelData.views}</span>
                                         </span>
                                     </div>
                                 </li>
