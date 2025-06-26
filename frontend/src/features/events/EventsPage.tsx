@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function EventsPage() {
     const [events, setEvents] = useState<EventData[]>([]);
+    const [filteredEvents, setFilteredEvents] = useState<EventData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
@@ -21,10 +22,18 @@ export default function EventsPage() {
     useEffect(() => {
         fetch("/scored_events.json")
             .then(res => res.json())
-            .then(setEvents)
+            .then((data) => {
+                setEvents(data);
+                setFilteredEvents(data); // Initialize filtered events with all events
+            })
             .catch(err => setError(err.message))
             .finally(() => setLoading(false));
     }, []);
+
+    // Handle filtered events from EventSidebar
+    const handleEventsFiltered = (filtered: EventData[]) => {
+        setFilteredEvents(filtered);
+    };
 
     return (
         <div className="min-h-screen h-screen bg-white overflow-hidden flex flex-col">
@@ -61,10 +70,11 @@ export default function EventsPage() {
                         error={error}
                         onSelect={setSelectedEvent}
                         selectedEvent={selectedEvent}
+                        onEventsFiltered={handleEventsFiltered}
                     />
                 </aside>
                 <main className="flex-1 p-0 h-full overflow-y-auto">
-                    <EventDetails event={selectedEvent} events={events} />
+                    <EventDetails event={selectedEvent} events={filteredEvents} />
                 </main>
             </div>
         </div>

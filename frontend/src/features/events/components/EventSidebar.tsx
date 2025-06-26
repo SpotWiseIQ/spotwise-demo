@@ -13,7 +13,7 @@ import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { DateRange } from "react-day-picker";
 
-export function EventSidebar({ events, loading, error, selectedEvent, onSelect }) {
+export function EventSidebar({ events, loading, error, selectedEvent, onSelect, onEventsFiltered }) {
     // Default range: first to last day of current month
     const now = new Date();
     const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -22,15 +22,24 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
     const [selectedRange, setSelectedRange] = useState<DateRange>({ from: firstDay, to: lastDay });
     const [sortBy, setSortBy] = useState("score");
     const [showCalendar, setShowCalendar] = useState(false);
+    const calendarRef = React.useRef<HTMLDivElement>(null);
 
     // Filter events based on selectedRange
     const filteredEvents = selectedRange.from
         ? events.filter(e => {
             const eventDate = new Date(e.leftPanelData.startDate);
-            if (selectedRange.to) {
-                return eventDate >= selectedRange.from && eventDate <= selectedRange.to;
+            let from = selectedRange.from;
+            let to = selectedRange.to;
+            // If only from is set or from == to, match only that day (ignore time)
+            if (!to || from.getTime() === to.getTime()) {
+                return (
+                    eventDate.getFullYear() === from.getFullYear() &&
+                    eventDate.getMonth() === from.getMonth() &&
+                    eventDate.getDate() === from.getDate()
+                );
             }
-            return eventDate >= selectedRange.from;
+            // For a range, include all days in the range
+            return eventDate >= from && eventDate <= to;
         })
         : events;
 
@@ -44,18 +53,49 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
         return 0;
     });
 
+    // Notify parent about filtered events whenever they change
+    React.useEffect(() => {
+        if (onEventsFiltered) {
+            onEventsFiltered(sortedEvents);
+        }
+    }, [sortedEvents, onEventsFiltered]);
+
+    // Close calendar when clicking outside
+    React.useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+                setShowCalendar(false);
+            }
+        };
+
+        if (showCalendar) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showCalendar]);
+
     // Helper for improved range selection UX
     function handleRangeSelect(range: DateRange | undefined, day?: Date) {
         if (!range) {
             setSelectedRange({ from: undefined, to: undefined });
+            // Clear selected event when range is cleared
+            if (onSelect) onSelect(null);
             return;
         }
-        // If both from and to are set, and user clicks a new day, start a new range from that day
-        if (range.from && range.to && day && (day < range.from || day > range.to)) {
-            setSelectedRange({ from: day, to: undefined });
-        } else {
-            setSelectedRange(range);
+        // If only from is set and user clicks the same day, treat as single-day selection
+        if (range.from && !range.to && day && range.from.getTime() === day.getTime()) {
+            setSelectedRange({ from: day, to: day });
+            // Clear selected event when range changes
+            if (onSelect) onSelect(null);
+            return;
         }
+        // Otherwise, use the range as provided (normal range selection)
+        setSelectedRange(range);
+        // Clear selected event when range changes
+        if (onSelect) onSelect(null);
     }
 
     return (
@@ -69,19 +109,24 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                         type="button"
                     >
                         <CalendarIcon className="w-4 h-4 mr-2 text-blue-400" />
-                        {selectedRange.from && selectedRange.to
-                            ? `${selectedRange.from.toLocaleDateString()} - ${selectedRange.to.toLocaleDateString()}`
-                            : selectedRange.from
-                                ? `${selectedRange.from.toLocaleDateString()} - ...`
-                                : "Select date range"}
+                        {selectedRange.from && selectedRange.to && selectedRange.from.getTime() === selectedRange.to.getTime() ?
+                            `${selectedRange.from.toLocaleDateString()}` :
+                            selectedRange.from && selectedRange.to ?
+                                `${selectedRange.from.toLocaleDateString()} - ${selectedRange.to.toLocaleDateString()}` :
+                                selectedRange.from ?
+                                    `${selectedRange.from.toLocaleDateString()}` :
+                                    "Select date range"}
                     </button>
                     {showCalendar && (
-                        <div className="absolute left-0 top-full mt-2 z-30 bg-white rounded-md shadow-lg border p-2 flex flex-col items-center">
+                        <div
+                            ref={calendarRef}
+                            className="absolute left-0 top-full mt-2 z-30 bg-white rounded-md shadow-lg border p-2 flex flex-col items-center"
+                        >
                             <Calendar
                                 mode="range"
                                 selected={selectedRange}
                                 onSelect={(range, day) => handleRangeSelect(range, day)}
-                                className="rounded-md border"
+                                // className="rounded-md border"
                                 classNames={{
                                     day_selected: "bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-600",
                                     day_range_middle: "bg-blue-200 text-blue-900",
@@ -91,10 +136,17 @@ export function EventSidebar({ events, loading, error, selectedEvent, onSelect }
                                 }}
                             />
                             <button
-                                className="mt-2 px-4 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
-                                onClick={() => setShowCalendar(false)}
+                                className="mt-2 px-3 py-1 rounded-full bg-blue-500 text-white text-sm font-semibold shadow-sm hover:bg-blue-600 focus:bg-blue-700 transition-all duration-150"
+                                onClick={() => {
+                                    if (selectedRange.from && !selectedRange.to) {
+                                        setSelectedRange({ from: selectedRange.from, to: selectedRange.from });
+                                    }
+                                    // Clear selected event when "Show Events" is clicked
+                                    if (onSelect) onSelect(null);
+                                    setShowCalendar(false);
+                                }}
                             >
-                                Done
+                                Close
                             </button>
                         </div>
                     )}
